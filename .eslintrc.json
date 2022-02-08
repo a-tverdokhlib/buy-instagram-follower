@@ -1,0 +1,32 @@
+{
+  "plugins": ["prettier", "simple-import-sort", "functional"],
+  "extends": [
+    "next/core-web-vitals",
+    "plugin:functional/lite",
+    "plugin:no-template-curly-in-string-fix/recommended",
+    "plugin:prettier/recommended"
+  ],
+  "rules": {
+    "prettier/prettier": ["error", {
+        "endOfLine": "auto"
+      }
+    ],
+    "quotes": ["error", "single"],
+    "prefer-template": "error",
+    "no-implicit-coercion": "error",
+    "no-restricted-imports": [
+      "error",
+      {
+        "patterns": [{ "group": [".."], "message": "Use '@/'." }]
+      }
+    ],
+    "simple-import-sort/imports": "error",
+    "simple-import-sort/exports": "error",
+    "import/no-anonymous-default-export": ["error", { "allowObject": true }],
+    "functional/no-return-void": "off",
+    "functional/immutable-data": [
+      "error",
+      { "ignoreAccessorPattern": "module.exports" }
+    ]
+  }
+}
