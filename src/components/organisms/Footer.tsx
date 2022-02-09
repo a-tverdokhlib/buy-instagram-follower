@@ -11,10 +11,5 @@ export const Footer: React.VFC<Props> = () => (
 export default {
   args: {},
 
-  parameters: {
-    design: {
-      type: 'figma',
-      url: 'https://www.figma.com/file/txwEsGpKjKC8ZESUs0mX6V/Layouts-ASK-Platform?node-id=5087%3A95289',
-    },
-  },
+  parameters: {},
 }

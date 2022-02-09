@@ -1,8 +1,8 @@
 import dynamic from 'next/dynamic'
 import Head from 'next/head'
-import Image from 'next/image'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 
+import { Image } from '@/components/atoms/Image'
 import { Header } from '@/components/organisms/Header'
 import type { SideProps } from '@/components/organisms/SideNavbar'
 import styles from '@/styles/css/Home.module.css'
@@ -54,9 +54,9 @@ export default function Home() {
           <p className="flex w-full dm:w-8/12 ml:h-42 mx:w-6/12 mx:h-48 lg:w-5/12 lg:h-36">
             Instagram is one of the best social media platforms to reach
             millions of followers. Buying active and real Instagram increase
-            increase your network of followers naturally. naturally. naturally.
-            Not only this but you will also save your precious time time and get
-            the job done in an effortless manner.
+            your network of followers naturally. Not only this but you will also
+            save your precious time and get the job done in an effortless
+            manner.
           </p>
           <div className="flex flex-wrap items-center mt-10 px-2 flex-col space-y-2 md:flex-row md:items-center md:space-x-2 md:space-y-0 lg:px-0">
             <button className="justify-center min-w-[60%] md:min-w-min max-w-sm text-white bg-[#25AAE1] px-3 py-2 rounded-3xl hover:text-white hover:bg-[#F15D23] transition-all">
