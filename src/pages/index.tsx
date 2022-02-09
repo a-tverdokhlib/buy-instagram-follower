@@ -30,7 +30,7 @@ export default function Home() {
       <Header menuClick={menuClick} navShown={() => navShown} />
       {navShown ? <SideNavbar>abc</SideNavbar> : <div></div>}
 
-      <main className="flex flex-1 flex-col justify-center w-full absolute top-0 min-h-screen p-0">
+      <main className="flex flex-1 flex-col w-full absolute top-0 min-h-screen p-0">
         <div className="w-full">
           <div className="ml-auto w-8/12">
             <img src="/home-banner.png" alt="bannerImage" width="100%" />
@@ -51,7 +51,7 @@ export default function Home() {
             </h1>
             <br></br>
           </div>
-          <p className="flex w-full ml:w-8/12 ml:h-42 mx:w-6/12 mx:h-48 lg:w-5/12 lg:h-36">
+          <p className="flex w-full dm:w-8/12 ml:h-42 mx:w-6/12 mx:h-48 lg:w-5/12 lg:h-36">
             Instagram is one of the best social media platforms to reach
             millions of followers. Buying active and real Instagram increase
             increase your network of followers naturally. naturally. naturally.
@@ -59,19 +59,19 @@ export default function Home() {
             the job done in an effortless manner.
           </p>
           <div className="flex flex-wrap items-center mt-10 px-2 flex-col space-y-2 md:flex-row md:items-center md:space-x-2 md:space-y-0 lg:px-0">
-            <button className="flex justify-center min-w-[60%] md:min-w-min max-w-sm text-white bg-[#25AAE1] px-3 py-2 rounded-3xl hover:text-white hover:bg-[#F15D23] transition-all">
+            <button className="justify-center min-w-[60%] md:min-w-min max-w-sm text-white bg-[#25AAE1] px-3 py-2 rounded-3xl hover:text-white hover:bg-[#F15D23] transition-all">
               Buy Instagram Followers
             </button>
-            <button className="flex justify-center min-w-[60%] md:min-w-min max-w-sm text-white bg-[#25AAE1] px-3 py-2 rounded-3xl hover:text-white hover:bg-[#F15D23] transition-all">
+            <button className="justify-center min-w-[60%] md:min-w-min max-w-sm text-white bg-[#25AAE1] px-3 py-2 rounded-3xl hover:text-white hover:bg-[#F15D23] transition-all">
               Buy Instagram Likes
             </button>
-            <button className="flex justify-center min-w-[60%] md:min-w-min max-w-sm text-white bg-[#25AAE1] px-3 py-2 rounded-3xl hover:text-white hover:bg-[#F15D23] transition-all">
+            <button className="justify-center min-w-[60%] md:min-w-min max-w-sm text-white bg-[#25AAE1] px-3 py-2 rounded-3xl hover:text-white hover:bg-[#F15D23] transition-all">
               Buy Instagram Views
             </button>
           </div>
+          <br></br>
         </div>
       </main>
-
       <footer className={styles['footer']}>
         <a
           href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
