@@ -22,8 +22,9 @@ body {
   text-decoration: none;
   padding: 1em 1em;
   border-radius: 60px;
-  font-weight: 700;
+  font-weight: 600;
   text-align: center;
+  line-height: 1.1em;
 }
 
 .nav a:hover{
@@ -39,6 +40,17 @@ body {
   transition: all 0.5s ease;
   /* height: 5rem; */
 }
+
+.nav li.others {
+  margin-right: -30px !important;
+}
+
+.nav li.custom {
+  margin-left: -0.5rem !important;
+}
+/* .custom {
+  margin-left: -15px !important;
+} */
 
 .dropdown {
   position: relative;
@@ -78,16 +90,17 @@ body {
 
 .sticky {
   background-color: black;
-  transition: 0.5s;
-  height: 6.5rem;
+  transition: all 0.5s ease;
+  height: 5.5rem;
   position: fixed;
   top: -0.3rem;
-  z-index: 1000;
+  z-index: 1001;
+
 }
 
 .relative {
   background: white rgba(255,255,255,0);
-  transition: 0.5s;
+  transition: all 0.5s ease;
   height: 7rem;
   position: relative;
   top: 0rem;
@@ -95,4 +108,18 @@ body {
 }
 
 .sticky + main {
+}
+
+.sticky + .sidenav {
+  margin-top: 6rem;
+}
+
+@media (max-width: 768px) { 
+  .nav li.others {
+    margin-right: 0 !important;
+  }
+  
+  .nav li.custom {
+    margin-left: 0 !important;
+  } 
 }

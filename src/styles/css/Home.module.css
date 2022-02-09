@@ -18,11 +18,12 @@
 .banner-wrapper {
   position: relative;
   overflow: hidden;
+}
+
+.banner {
   margin-left: auto !important;
 }
 
-.banner-image {
-}
 
 .footer {
   display: flex;
