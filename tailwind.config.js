@@ -1,7 +1,11 @@
 module.exports = {
   content: ['./src/**/*.{js,ts,jsx,tsx}', './node_modules/flowbite/**/*.js'],
   theme: {
-    extend: {},
+    extend: {
+      animation: {
+        'spin-slow': 'spin 5s linear infinite',
+      },
+    },
     screens: {
       ls: '300px',
       // => @media (min-width: 300px) { ... }

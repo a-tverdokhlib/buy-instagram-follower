@@ -1,7 +1,15 @@
-type Props = {}
+type Props = {
+  readonly minHeight: number
+}
 
-export const Layout: React.FC<Props> = ({ children }) => (
-  <div style={{ minHeight: '530px', display: 'flex', flexDirection: 'column' }}>
+export const Layout: React.FC<Props> = ({ children, minHeight }) => (
+  <div
+    style={{
+      minHeight: `${minHeight}px`,
+      display: 'flex',
+      flexDirection: 'column',
+    }}
+  >
     {children}
   </div>
 )

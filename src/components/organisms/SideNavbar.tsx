@@ -7,7 +7,7 @@ import { Layout } from '@/components/atoms/Layout'
 export const SideNavbar: React.VFC<SideProps> = ({ children }) => {
   return (
     <div className="sidenav">
-      <Layout>
+      <Layout minHeight={530}>
         <div
           className="md:hidden w-full scroll-auto absolute z-[100] bg-black nav"
           id="mobile-menu"

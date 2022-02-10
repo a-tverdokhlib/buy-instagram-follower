@@ -39,7 +39,15 @@ export const Header: React.VFC<Props> = ({ menuClick, navShown }) => {
       <div>
         <div className="min-w-min py-5 flex flex-wrap justify-between items-center mx-auto bg-black md:bg-transparent">
           <div className="ml-1 ls:ml-5 sm:ml-16">
-            <Image src="/Goreadlogo.png" width={190} height={40} alt="Logo" />
+            {/* <div>
+              <Image
+                src="/Goreadlogo.png"
+                width="100%"
+                height="100%"
+                alt="Logo"
+              />
+            </div> */}
+            <img src="/Goreadlogo.png" width="190px" height="40px" alt="Logo" />
           </div>
           <button
             data-collapse-toggle="mobile-menu"

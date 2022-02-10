@@ -4,6 +4,8 @@ import React, { useState } from 'react'
 
 import { Image } from '@/components/atoms/Image'
 import { Header } from '@/components/organisms/Header'
+import { Idea } from '@/components/organisms/Idea'
+import { Services } from '@/components/organisms/Services'
 import type { SideProps } from '@/components/organisms/SideNavbar'
 import styles from '@/styles/css/Home.module.css'
 
@@ -31,46 +33,55 @@ export default function Home() {
       {navShown ? <SideNavbar>abc</SideNavbar> : <div></div>}
 
       <main className="flex flex-1 flex-col w-full absolute top-0 min-h-screen p-0">
-        <div className="w-full">
-          <div className="ml-auto w-8/12">
-            <img src="/home-banner.png" alt="bannerImage" width="100%" />
+        <div className="min-h-screen">
+          <div className="w-full">
+            <div className="ml-auto w-8/12">
+              <Image
+                src="/home-banner.png"
+                alt="bannerImage"
+                width="100%"
+                height="100%"
+              />
+            </div>
           </div>
-        </div>
-        <div className="flex flex-col px-16 pt-10 z-[20] md:pt-0 md:absolute md:top-64 dm:top-56">
-          <div className="flex-none md:w-5/12 md:h-auto">
-            <h1 className="text-4xl font-medium max-w-full flex flex-wrap">
-              <span className="text-[#25AAE1]">Super Real Instagram </span>
-              <span>
-                followers,likes,power likes,views,comments,&nbsp;
-                <br></br>
-                <span className="whitespace-nowrap text-[#f15d23]">
-                  <span className="text-black">saves&nbsp;</span>
-                  <span className="whitespace-nowrap">in Minutes</span>
+          <div className="flex flex-col px-16 pt-10 z-[20] md:pt-0 md:absolute md:top-64 dm:top-56">
+            <div className="flex-none md:w-5/12 md:h-auto">
+              <h1 className="text-4xl font-medium max-w-full flex flex-wrap">
+                <span className="text-[#25AAE1]">Super Real Instagram </span>
+                <span>
+                  followers,likes,power likes,views,comments,&nbsp;
+                  <br></br>
+                  <span className="whitespace-nowrap text-[#f15d23]">
+                    <span className="text-black">saves&nbsp;</span>
+                    <span className="whitespace-nowrap">in Minutes</span>
+                  </span>
                 </span>
-              </span>
-            </h1>
+              </h1>
+              <br></br>
+            </div>
+            <p className="flex w-full dm:w-8/12 ml:h-42 mx:w-6/12 mx:h-48 lg:w-5/12 lg:h-36">
+              Instagram is one of the best social media platforms to reach
+              millions of followers. Buying active and real Instagram increase
+              your network of followers naturally. Not only this but you will
+              also save your precious time and get the job done in an effortless
+              manner.
+            </p>
+            <div className="flex flex-wrap items-center mt-10 px-2 flex-col space-y-2 md:flex-row md:items-center md:space-x-2 md:space-y-0 lg:px-0">
+              <button className="justify-center min-w-[60%] md:min-w-min max-w-sm text-white bg-[#25AAE1] px-3 py-2 rounded-3xl hover:text-white hover:bg-[#F15D23] transition-all">
+                Buy Instagram Followers
+              </button>
+              <button className="justify-center min-w-[60%] md:min-w-min max-w-sm text-white bg-[#25AAE1] px-3 py-2 rounded-3xl hover:text-white hover:bg-[#F15D23] transition-all">
+                Buy Instagram Likes
+              </button>
+              <button className="justify-center min-w-[60%] md:min-w-min max-w-sm text-white bg-[#25AAE1] px-3 py-2 rounded-3xl hover:text-white hover:bg-[#F15D23] transition-all">
+                Buy Instagram Views
+              </button>
+            </div>
             <br></br>
           </div>
-          <p className="flex w-full dm:w-8/12 ml:h-42 mx:w-6/12 mx:h-48 lg:w-5/12 lg:h-36">
-            Instagram is one of the best social media platforms to reach
-            millions of followers. Buying active and real Instagram increase
-            your network of followers naturally. Not only this but you will also
-            save your precious time and get the job done in an effortless
-            manner.
-          </p>
-          <div className="flex flex-wrap items-center mt-10 px-2 flex-col space-y-2 md:flex-row md:items-center md:space-x-2 md:space-y-0 lg:px-0">
-            <button className="justify-center min-w-[60%] md:min-w-min max-w-sm text-white bg-[#25AAE1] px-3 py-2 rounded-3xl hover:text-white hover:bg-[#F15D23] transition-all">
-              Buy Instagram Followers
-            </button>
-            <button className="justify-center min-w-[60%] md:min-w-min max-w-sm text-white bg-[#25AAE1] px-3 py-2 rounded-3xl hover:text-white hover:bg-[#F15D23] transition-all">
-              Buy Instagram Likes
-            </button>
-            <button className="justify-center min-w-[60%] md:min-w-min max-w-sm text-white bg-[#25AAE1] px-3 py-2 rounded-3xl hover:text-white hover:bg-[#F15D23] transition-all">
-              Buy Instagram Views
-            </button>
-          </div>
-          <br></br>
         </div>
+        <Idea />
+        <Services />
       </main>
       <footer className={styles['footer']}>
         <a
