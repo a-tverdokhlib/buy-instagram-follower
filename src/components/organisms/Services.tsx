@@ -46,13 +46,13 @@ export const Services: React.VFC = () => {
                   strokeLinejoin="round"
                 >
                   {' '}
-                  <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z" />{' '}
-                  <polyline points="17 21 17 13 7 13 7 21" />{' '}
-                  <polyline points="7 3 7 8 15 8" />
+                  <circle cx="12" cy="12" r="7" />{' '}
+                  <polyline points="12 9 12 12 13.5 13.5" />{' '}
+                  <path d="M16.51 17.35l-.35 3.83a2 2 0 0 1-2 1.82H9.83a2 2 0 0 1-2-1.82l-.35-3.83m.01-10.7l.35-3.83A2 2 0 0 1 9.83 1h4.35a2 2 0 0 1 2 1.82l.35 3.83" />
                 </svg>
               </div>
             </div>
-            <h2 className="flex w-full text-semibold text-2xl justify-center">
+            <h2 className="flex w-full text-semibold text-3xl justify-center">
               <span>Fast Delivery</span>
             </h2>
             <br></br>
@@ -89,13 +89,11 @@ export const Services: React.VFC = () => {
                   strokeLinejoin="round"
                 >
                   {' '}
-                  <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z" />{' '}
-                  <polyline points="17 21 17 13 7 13 7 21" />{' '}
-                  <polyline points="7 3 7 8 15 8" />
+                  <path d="M15.05 5A5 5 0 0 1 19 8.95M15.05 1A9 9 0 0 1 23 8.94m-1 7.98v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
                 </svg>
               </div>
             </div>
-            <h2 className="flex w-full text-semibold text-2xl justify-center">
+            <h2 className="flex w-full text-semibold text-3xl justify-center">
               <span>&lt;&lt;a</span>
             </h2>
             <br></br>
@@ -137,7 +135,7 @@ export const Services: React.VFC = () => {
                 </svg>
               </div>
             </div>
-            <h2 className="flex w-full text-semibold text-2xl justify-center">
+            <h2 className="flex w-full text-semibold text-3xl justify-center">
               <span>Secure Payments</span>
             </h2>
             <br></br>
