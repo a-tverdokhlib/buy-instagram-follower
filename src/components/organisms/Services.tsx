@@ -56,7 +56,7 @@ export const Services: React.VFC = () => {
               <span>Fast Delivery</span>
             </h2>
             <br></br>
-            <p>
+            <span>
               <span>
                 We’re lightning fast! As soon as your sign up and make your
                 first payment, we begin boosting your Instagram account and
@@ -64,7 +64,7 @@ export const Services: React.VFC = () => {
                 of minutes. New followers come in at a fast pace as we continue
                 boosting your posts until your purchased amount is reached.
               </span>
-            </p>
+            </span>
           </Card>
         </div>
         <div className="flex p-10 w-full justify-center">
@@ -97,13 +97,13 @@ export const Services: React.VFC = () => {
               <span>&lt;&lt;a</span>
             </h2>
             <br></br>
-            <p>
+            <span>
               <span>
                 Technical support for all our services 24/7 to help you.If you
                 have some query,drop an email to our support team.We are
                 delighted to assit you.
               </span>
-            </p>
+            </span>
           </Card>
         </div>
         <div className="flex p-10 w-full justify-center">
@@ -139,14 +139,14 @@ export const Services: React.VFC = () => {
               <span>Secure Payments</span>
             </h2>
             <br></br>
-            <p>
+            <span>
               <span>
                 We only give you the highest quality Instagram followers, likes,
                 views. Quality is one of our most important goals at Goread.io.
                 We always make sure that your Instagram followers are
                 long-lasting, reliable, and that the packages are affordable.
               </span>
-            </p>
+            </span>
           </Card>
         </div>
       </div>
