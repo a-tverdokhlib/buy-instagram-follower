@@ -1,5 +1,5 @@
 type Props = {
-  readonly minHeight: number
+  readonly minHeight?: number
 }
 
 export const Layout: React.FC<Props> = ({ children, minHeight }) => (
