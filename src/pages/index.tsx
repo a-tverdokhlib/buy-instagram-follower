@@ -3,7 +3,9 @@ import Head from 'next/head'
 import React, { useState } from 'react'
 
 import { Image } from '@/components/atoms/Image'
+import Chat from '@/components/organisms/Chat'
 import { Header } from '@/components/organisms/Header'
+import { HowTo } from '@/components/organisms/HowTo'
 import { Idea } from '@/components/organisms/Idea'
 import { Services } from '@/components/organisms/Services'
 import type { SideProps } from '@/components/organisms/SideNavbar'
@@ -85,6 +87,8 @@ export default function Home() {
         </div>
         <Idea />
         <Services />
+        <HowTo />
+        <Chat />
       </main>
       <footer className={styles['footer']}>
         <a

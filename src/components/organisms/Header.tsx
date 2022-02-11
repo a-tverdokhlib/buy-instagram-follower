@@ -8,7 +8,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { Image } from '@/components/atoms/Image'
 
 export const Header: React.VFC<Props> = ({ menuClick, navShown }) => {
-  const [stickyClass, setStickyClass] = useState('nav w-full z-[1001] relative')
+  const [stickyClass, setStickyClass] = useState('nav w-full z-[1001] samnav')
 
   useEffect(() => {
     window.addEventListener('scroll', stickNavbar)
@@ -26,7 +26,7 @@ export const Header: React.VFC<Props> = ({ menuClick, navShown }) => {
       const windowHeight = window.scrollY
       if (windowHeight > 0 || window.innerWidth < 768)
         setStickyClass('nav w-full left-0 z-[1001] sticky')
-      else setStickyClass('nav w-full z-[1001] relative')
+      else setStickyClass('nav w-full z-[1001] samnav')
     }
   }
 

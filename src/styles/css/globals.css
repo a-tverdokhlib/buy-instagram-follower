@@ -97,7 +97,7 @@ body {
   z-index: 1001;
 }
 
-.relative {
+.samnav {
   background: white rgba(255,255,255,0);
   transition: all 0.5s ease;
   height: 7rem;
