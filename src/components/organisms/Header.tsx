@@ -39,14 +39,12 @@ export const Header: React.VFC<Props> = ({ menuClick, navShown }) => {
       <div>
         <div className="min-w-min py-5 flex flex-wrap justify-between items-center mx-auto bg-black md:bg-transparent">
           <div className="ml-1 ls:ml-5 sm:ml-16">
-            {/* <div>
-              <Image
-                src="/Goreadlogo.png"
-                width="100%"
-                height="100%"
-                alt="Logo"
-              />
-            </div> */}
+            {/* <Image
+              src="/Goreadlogo.png"
+              width="190px"
+              height="40px"
+              alt="Logo"
+            /> */}
             <img src="/Goreadlogo.png" width="190px" height="40px" alt="Logo" />
           </div>
           <button

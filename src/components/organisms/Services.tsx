@@ -24,11 +24,11 @@ export const Services: React.VFC = () => {
         <Slider color="#f15d23" barColor="#f15d23" value={sliderVal} />
       </div>
       <div className="flex flex-wrap w-full flex-col items-center justify-center p-12 space-y-20 mx:flex-row mx:flex-nowrap mx:space-x-10 mx:space-y-0">
-        <div className="flex flex-wrap w-full min-w-[286px] max-w-xs bg-[#f15d23] rounded-[50px] justify-center cursor-pointer hover:shadow-[0_1px_10px_5px_rgba(0,0,0,0.5)]">
+        <div className="overflow-hidden flex flex-wrap w-full min-w-[286px] max-w-xs bg-[#f15d23] rounded-[50px] justify-center cursor-pointer hover:shadow-[0_1px_10px_5px_rgba(0,0,0,0.5)]">
           <div className="w-full">
             <svg
-              className="h-auto w-full text-[#25AAE1] rounded-tl-[50px] rounded-tr-[50px] rounded-bl-[40px]"
-              viewBox="0 0 24 15"
+              className="h-auto w-full -mt-[100px] text-[#25AAE1] rounded-bl-[50px] rounded-br-[50px] rounded-tl-[40px] rotate-[-22deg]"
+              viewBox="0 0 24 18"
               strokeWidth="2"
               stroke="currentColor"
               fill="#25AAE1"
@@ -40,7 +40,7 @@ export const Services: React.VFC = () => {
               <rect x="0" y="1" width="24" height="15" rx="2" />{' '}
               {/* <line x1="4" y1="9" x2="20" y2="9" /> */}
             </svg>
-            <div className="w-48 h-48 m-auto -mt-[200px]">
+            <div className="w-48 h-48 -mt-[150px]">
               <div className="animate-spin-slow">
                 <Image
                   src="/three_dot_circle.svg"
@@ -51,7 +51,7 @@ export const Services: React.VFC = () => {
               </div>
               <div className="flex w-48 h-48 absolute -mt-[192px] justify-items-center">
                 <svg
-                  className="h-24 w-24 text-[#2f2a2a] m-auto"
+                  className="h-20 w-20 text-[#2f2a2a] m-auto"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
@@ -88,11 +88,11 @@ export const Services: React.VFC = () => {
             </Card>
           </div>
         </div>
-        <div className="flex flex-wrap w-full min-w-[286px] max-w-xs bg-[#f15d23] rounded-[50px] justify-center cursor-pointer hover:shadow-[0_1px_10px_5px_rgba(0,0,0,0.5)]">
+        <div className="overflow-hidden flex flex-wrap w-full min-w-[286px] max-w-xs bg-[#f15d23] rounded-[50px] justify-center cursor-pointer hover:shadow-[0_1px_10px_5px_rgba(0,0,0,0.5)]">
           <div className="w-full">
             <svg
-              className="h-auto w-full text-[#25AAE1] rounded-tl-[50px] rounded-tr-[50px] rounded-bl-[40px]"
-              viewBox="0 0 24 15"
+              className="h-auto w-full -mt-[100px] text-[#25AAE1] rounded-bl-[50px] rounded-br-[50px] rounded-tl-[40px] rotate-[-22deg]"
+              viewBox="0 0 24 18"
               strokeWidth="2"
               stroke="currentColor"
               fill="#25AAE1"
@@ -104,7 +104,7 @@ export const Services: React.VFC = () => {
               <rect x="0" y="1" width="24" height="15" rx="2" />{' '}
               {/* <line x1="4" y1="9" x2="20" y2="9" /> */}
             </svg>
-            <div className="w-48 h-48 m-auto -mt-[200px]">
+            <div className="w-48 h-48 -mt-[150px]">
               <div className="animate-spin-slow">
                 <Image
                   src="/three_dot_circle.svg"
@@ -115,7 +115,7 @@ export const Services: React.VFC = () => {
               </div>
               <div className="flex w-48 h-48 absolute -mt-[192px] justify-items-center">
                 <svg
-                  className="h-24 w-24 text-[#2f2a2a] m-auto"
+                  className="h-16 w-16 text-[#2f2a2a] m-auto"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
@@ -147,11 +147,11 @@ export const Services: React.VFC = () => {
             </Card>
           </div>
         </div>
-        <div className="flex flex-wrap w-full min-w-[286px] max-w-xs bg-[#f15d23] rounded-[50px] justify-center cursor-pointer hover:shadow-[0_1px_10px_5px_rgba(0,0,0,0.5)]">
+        <div className="overflow-hidden flex flex-wrap w-full min-w-[286px] max-w-xs bg-[#f15d23] rounded-[50px] justify-center cursor-pointer hover:shadow-[0_1px_10px_5px_rgba(0,0,0,0.5)]">
           <div className="w-full">
             <svg
-              className="h-auto w-full text-[#25AAE1] rounded-tl-[50px] rounded-tr-[50px] rounded-bl-[40px]"
-              viewBox="0 0 24 15"
+              className="h-auto w-full -mt-[100px] text-[#25AAE1] rounded-bl-[50px] rounded-br-[50px] rounded-tl-[40px] rotate-[-22deg]"
+              viewBox="0 0 24 18"
               strokeWidth="2"
               stroke="currentColor"
               fill="#25AAE1"
@@ -163,7 +163,7 @@ export const Services: React.VFC = () => {
               <rect x="0" y="1" width="24" height="15" rx="2" />{' '}
               {/* <line x1="4" y1="9" x2="20" y2="9" /> */}
             </svg>
-            <div className="w-48 h-48 m-auto -mt-[200px]">
+            <div className="w-48 h-48 -mt-[150px]">
               <div className="animate-spin-slow">
                 <Image
                   src="/three_dot_circle.svg"
@@ -174,7 +174,7 @@ export const Services: React.VFC = () => {
               </div>
               <div className="flex w-48 h-48 absolute -mt-[192px] justify-items-center">
                 <svg
-                  className="h-24 w-24 text-[#2f2a2a] m-auto"
+                  className="h-20 w-20 text-[#2f2a2a] m-auto"
                   width="24"
                   height="24"
                   viewBox="0 0 24 24"
@@ -213,11 +213,11 @@ export const Services: React.VFC = () => {
         </div>
       </div>
       <div className="flex flex-wrap flex-col w-full items-center justify-center p-12 space-y-20 mx:flex-row mx:flex-nowrap mx:space-x-10 mx:space-y-0">
-        <div className="flex flex-wrap w-full min-w-[286px] max-w-xs bg-[#f15d23] rounded-[50px] justify-center cursor-pointer hover:shadow-[0_1px_10px_5px_rgba(0,0,0,0.5)]">
+        <div className="overflow-hidden flex flex-wrap w-full min-w-[286px] max-w-xs bg-[#f15d23] rounded-[50px] justify-center cursor-pointer hover:shadow-[0_1px_10px_5px_rgba(0,0,0,0.5)]">
           <div className="w-full">
             <svg
-              className="h-auto w-full text-[#25AAE1] rounded-tl-[50px] rounded-tr-[50px] rounded-bl-[40px]"
-              viewBox="0 0 24 15"
+              className="h-auto w-full -mt-[100px] text-[#25AAE1] rounded-bl-[50px] rounded-br-[50px] rounded-tl-[40px] rotate-[-22deg]"
+              viewBox="0 0 24 18"
               strokeWidth="2"
               stroke="currentColor"
               fill="#25AAE1"
@@ -229,7 +229,7 @@ export const Services: React.VFC = () => {
               <rect x="0" y="1" width="24" height="15" rx="2" />{' '}
               {/* <line x1="4" y1="9" x2="20" y2="9" /> */}
             </svg>
-            <div className="w-48 h-48 m-auto -mt-[200px]">
+            <div className="w-48 h-48 -mt-[150px]">
               <div className="animate-spin-slow">
                 <Image
                   src="/three_dot_circle.svg"
@@ -240,7 +240,7 @@ export const Services: React.VFC = () => {
               </div>
               <div className="flex w-48 h-48 absolute -mt-[192px] justify-items-center">
                 <svg
-                  className="h-28 w-28 text-[#2f2a2a] m-auto"
+                  className="h-20 w-20 text-[#2f2a2a] m-auto"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
@@ -274,11 +274,11 @@ export const Services: React.VFC = () => {
             </Card>
           </div>
         </div>
-        <div className="flex flex-wrap w-full min-w-[286px] max-w-xs bg-[#f15d23] rounded-[50px] justify-center cursor-pointer hover:shadow-[0_1px_10px_5px_rgba(0,0,0,0.5)]">
+        <div className="overflow-hidden flex flex-wrap w-full min-w-[286px] max-w-xs bg-[#f15d23] rounded-[50px] justify-center cursor-pointer hover:shadow-[0_1px_10px_5px_rgba(0,0,0,0.5)]">
           <div className="w-full">
             <svg
-              className="h-auto w-full text-[#25AAE1] rounded-tl-[50px] rounded-tr-[50px] rounded-bl-[40px]"
-              viewBox="0 0 24 15"
+              className="h-auto w-full -mt-[100px] text-[#25AAE1] rounded-bl-[50px] rounded-br-[50px] rounded-tl-[40px] rotate-[-22deg]"
+              viewBox="0 0 24 18"
               strokeWidth="2"
               stroke="currentColor"
               fill="#25AAE1"
@@ -290,7 +290,7 @@ export const Services: React.VFC = () => {
               <rect x="0" y="1" width="24" height="15" rx="2" />{' '}
               {/* <line x1="4" y1="9" x2="20" y2="9" /> */}
             </svg>
-            <div className="w-48 h-48 m-auto -mt-[200px]">
+            <div className="w-48 h-48 -mt-[150px]">
               <div className="animate-spin-slow">
                 <Image
                   src="/three_dot_circle.svg"
@@ -336,11 +336,11 @@ export const Services: React.VFC = () => {
             </Card>
           </div>
         </div>
-        <div className="flex flex-wrap w-full min-w-[286px] max-w-xs bg-[#f15d23] rounded-[50px] justify-center cursor-pointer hover:shadow-[0_1px_10px_5px_rgba(0,0,0,0.5)]">
+        <div className="overflow-hidden flex flex-wrap w-full min-w-[286px] max-w-xs bg-[#f15d23] rounded-[50px] justify-center cursor-pointer hover:shadow-[0_1px_10px_5px_rgba(0,0,0,0.5)]">
           <div className="w-full">
             <svg
-              className="h-auto w-full text-[#25AAE1] rounded-tl-[50px] rounded-tr-[50px] rounded-bl-[40px]"
-              viewBox="0 0 24 15"
+              className="h-auto w-full -mt-[100px] text-[#25AAE1] rounded-bl-[50px] rounded-br-[50px] rounded-tl-[40px] rotate-[-22deg]"
+              viewBox="0 0 24 18"
               strokeWidth="2"
               stroke="currentColor"
               fill="#25AAE1"
@@ -352,7 +352,7 @@ export const Services: React.VFC = () => {
               <rect x="0" y="1" width="24" height="15" rx="2" />{' '}
               {/* <line x1="4" y1="9" x2="20" y2="9" /> */}
             </svg>
-            <div className="w-48 h-48 m-auto -mt-[200px]">
+            <div className="w-48 h-48 -mt-[150px]">
               <div className="animate-spin-slow">
                 <Image
                   src="/three_dot_circle.svg"
@@ -363,7 +363,7 @@ export const Services: React.VFC = () => {
               </div>
               <div className="flex w-48 h-48 absolute -mt-[192px] justify-items-center">
                 <svg
-                  className="h-24 w-24 text-[#2f2a2a] m-auto"
+                  className="h-20 w-20 text-[#2f2a2a] m-auto"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
