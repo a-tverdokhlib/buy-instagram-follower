@@ -49,7 +49,10 @@ export default function Home() {
               <h1 className="text-4xl font-medium max-w-full flex flex-wrap">
                 <span className="text-[#25AAE1]">Super Real Instagram </span>
                 <span>
-                  followers,likes,power likes,views,comments,&nbsp;
+                  <span>
+                    followers, likes, power likes, views, comments,&nbsp;
+                  </span>
+
                   <br></br>
                   <span className="whitespace-nowrap text-[#f15d23]">
                     <span className="text-black">saves&nbsp;</span>
@@ -67,13 +70,13 @@ export default function Home() {
               manner.
             </p>
             <div className="flex flex-wrap items-center mt-10 px-2 flex-col space-y-2 md:flex-row md:items-center md:space-x-2 md:space-y-0 lg:px-0">
-              <button className="justify-center min-w-[60%] md:min-w-min max-w-sm text-white bg-[#25AAE1] px-3 py-2 rounded-3xl hover:text-white hover:bg-[#F15D23] transition-all">
+              <button className="justify-center min-w-[250px] sm:min-w-[60%] md:min-w-min max-w-sm text-white bg-[#25AAE1] px-3 py-2 rounded-3xl hover:text-white hover:bg-[#F15D23] transition-all">
                 Buy Instagram Followers
               </button>
-              <button className="justify-center min-w-[60%] md:min-w-min max-w-sm text-white bg-[#25AAE1] px-3 py-2 rounded-3xl hover:text-white hover:bg-[#F15D23] transition-all">
+              <button className="justify-center min-w-[250px] sm:min-w-[60%] md:min-w-min max-w-sm text-white bg-[#25AAE1] px-3 py-2 rounded-3xl hover:text-white hover:bg-[#F15D23] transition-all">
                 Buy Instagram Likes
               </button>
-              <button className="justify-center min-w-[60%] md:min-w-min max-w-sm text-white bg-[#25AAE1] px-3 py-2 rounded-3xl hover:text-white hover:bg-[#F15D23] transition-all">
+              <button className="justify-center min-w-[250px] sm:min-w-[60%] md:min-w-min max-w-sm text-white bg-[#25AAE1] px-3 py-2 rounded-3xl hover:text-white hover:bg-[#F15D23] transition-all">
                 Buy Instagram Views
               </button>
             </div>
