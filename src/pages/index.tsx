@@ -2,11 +2,14 @@ import dynamic from 'next/dynamic'
 import Head from 'next/head'
 import React, { useState } from 'react'
 
-import { Image } from '@/components/atoms/Image'
+// import { Image } from '@/components/atoms/Image'
+import { MySwipper } from '@/components/atoms/MySwipper'
 import Chat from '@/components/organisms/Chat'
 import { Header } from '@/components/organisms/Header'
 import { HowTo } from '@/components/organisms/HowTo'
 import { Idea } from '@/components/organisms/Idea'
+import { Products } from '@/components/organisms/Products'
+import { Reputation } from '@/components/organisms/Reputation'
 import { Services } from '@/components/organisms/Services'
 import type { SideProps } from '@/components/organisms/SideNavbar'
 import styles from '@/styles/css/Home.module.css'
@@ -32,39 +35,28 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header menuClick={menuClick} navShown={() => navShown} />
-      {navShown ? <SideNavbar>abc</SideNavbar> : <div></div>}
+      {navShown ? <SideNavbar>abc</SideNavbar> : null}
 
-      <main className="flex flex-1 flex-col w-full absolute top-0 min-h-screen p-0">
-        <div className="min-h-screen">
-          <div className="w-full">
-            <div className="ml-auto w-8/12">
-              <img
-                src="/home-banner.png"
-                alt="bannerImage"
-                width="100%"
-                height="100%"
-              />
-            </div>
-          </div>
-          <div className="flex flex-col px-16 pt-10 z-[20] md:pt-0 md:absolute md:top-64 dm:top-56">
+      <main className="flex flex-1 flex-col w-full top-0 min-h-screen p-0">
+        <div className="flex flex-col w-full min-h-screen items-center justify-center flex-wrap md:flex-row md:flex-nowrap md:space-x-2 bg-[#222232]">
+          <div className="flex flex-col pt-20 md:pt-0 px-10 z-[20]">
             <div className="flex-none md:w-5/12 md:h-auto">
               <h1 className="text-4xl font-medium max-w-full flex flex-wrap">
-                <span className="text-[#25AAE1]">Super Real Instagram </span>
+                <span className="text-white">Super Real Instagram </span>
                 <span>
-                  <span>
+                  <span className="text-white">
                     followers, likes, power likes, views, comments,&nbsp;
                   </span>
 
                   <br></br>
-                  <span className="whitespace-nowrap text-[#f15d23]">
-                    <span className="text-black">saves&nbsp;</span>
+                  <span className="whitespace-nowrap text-white">
+                    <span className="text-white">saves&nbsp;</span>
                     <span className="whitespace-nowrap">in Minutes</span>
                   </span>
                 </span>
               </h1>
-              <br></br>
             </div>
-            <p className="flex w-full dm:w-8/12 ml:h-42 mx:w-6/12 mx:h-48 lg:w-5/12 lg:h-36">
+            <p className="flex md:w-5/12 text-white">
               Instagram is one of the best social media platforms to reach
               millions of followers. Buying active and real Instagram increase
               your network of followers naturally. Not only this but you will
@@ -72,23 +64,37 @@ export default function Home() {
               manner.
             </p>
             <div className="flex flex-wrap items-center mt-10 px-2 flex-col space-y-2 md:flex-row md:items-center md:space-x-2 md:space-y-0 lg:px-0">
-              <button className="justify-center min-w-[250px] sm:min-w-[60%] md:min-w-min max-w-sm text-white bg-[#25AAE1] px-3 py-2 rounded-3xl hover:text-white hover:bg-[#F15D23] transition-all">
-                Buy Instagram Followers
+              <button className="justify-center min-w-[250px] sm:min-w-[60%] md:min-w-min max-w-sm text-[#14161B] px-4 py-3 rounded-3xl gradient-btn">
+                <span className="font-bold">Buy Instagram Followers</span>
               </button>
-              <button className="justify-center min-w-[250px] sm:min-w-[60%] md:min-w-min max-w-sm text-white bg-[#25AAE1] px-3 py-2 rounded-3xl hover:text-white hover:bg-[#F15D23] transition-all">
-                Buy Instagram Likes
+              <button className="justify-center min-w-[250px] sm:min-w-[60%] md:min-w-min max-w-sm text-[#14161B] px-4 py-3 rounded-3xl gradient-btn">
+                <span className="font-bold">Buy Instagram Likes</span>
               </button>
-              <button className="justify-center min-w-[250px] sm:min-w-[60%] md:min-w-min max-w-sm text-white bg-[#25AAE1] px-3 py-2 rounded-3xl hover:text-white hover:bg-[#F15D23] transition-all">
-                Buy Instagram Views
+              <button className="justify-center min-w-[250px] sm:min-w-[60%] md:min-w-min max-w-sm text-[#14161B] px-4 py-3 rounded-3xl gradient-btn">
+                <span className="font-bold">Buy Instagram Views</span>
               </button>
             </div>
             <br></br>
           </div>
+          <div className="hidden md:flex md:w-2/5 justify-center bannerimg right-10 mt-16">
+            <div className="w-full">
+              <img
+                // className=""
+                // className="absolute"
+                src="/img/banner_image.png"
+                alt="bannerImage"
+                width="100%"
+                height="100%"
+              />
+            </div>
+          </div>
         </div>
-        <Idea />
+        {/* <Idea /> */}
+        <Products />
         <Services />
         <HowTo />
         <Chat />
+        <Reputation />
       </main>
       <footer className={styles['footer']}>
         <a

@@ -9,7 +9,7 @@ body {
   /* font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif; */
   font-family: 'Montserrat', sans-serif;
-  background: #fff;
+  background: black;
   color: #212121;
 }
 
@@ -27,10 +27,9 @@ body {
   line-height: 1.1em;
 }
 
-.nav a:hover{
-  text-decoration: none;
+/* .nav a:hover{
+  /* text-decoration: none;
   color: #fff;
-  background: #25aae1;
   border-color: #fff;
   font-weight: 700;
   border-radius: 60px;
@@ -38,8 +37,7 @@ body {
   color: #fff;
   border: none;
   transition: all 0.5s ease;
-  /* height: 5rem; */
-}
+} */
 
 .nav li.others {
   margin-right: -30px !important;
@@ -98,7 +96,7 @@ body {
 }
 
 .samnav {
-  background: white rgba(255,255,255,0);
+  background-color: black;
   transition: all 0.5s ease;
   height: 7rem;
   position: relative;
@@ -107,6 +105,7 @@ body {
 }
 
 .sticky + main {
+  margin-top: 5.5rem;
 }
 
 .sticky + .sidenav {
@@ -122,3 +121,55 @@ body {
     margin-left: 0 !important;
   } 
 }
+
+.bannerimg {
+  animation: MoveUpDown 5s linear infinite;
+  position: absolute;
+}
+
+@keyframes MoveUpDown {
+  0%, 100% {
+    top: 0;
+  }
+  50% {
+    top: 100px;
+  }
+}
+
+.gradient-btn {
+  /* background: radial-gradient(farthest-corner at top, #FFFFFF 0%, #ffb3ff 4%, #ff33ff 12.25%, #800080 31.25%, #b300b3 50%) top right/200% 200%; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* color: white; */
+  font-weight: bold;
+  background-color: white;
+
+  background-image: -o-linear-gradient(transparent, white);    
+  background-image: -webkit-linear-gradient(transparent, white);
+  background-image: -moz-linear-gradient(transparent, white);    
+  background-image: -ms-linear-gradient(transparent, white);
+  background-image: linear-gradient(transparent, white);    
+  -o-transition: background-color 1s;
+  -webkit-transition: background-color 1s;
+  -moz-transition: background-color 1s;
+  -ms-transition: background-color 1s;
+  transition: background-color 1s;    
+  /* animation: colorChange 5s infinite alternate; */
+}
+.gradient-btn:hover {
+  background-color: purple;    
+  /* background: radial-gradient(farthest-corner at top, #FFFFFF 0%, #ffb3ff 4%, #ff33ff 12.25%, #800080 31.25%, #b300b3 50%) top right/200% 200%; */
+  /* animation: colorChange 5s infinite alternate; */
+}
+
+@keyframes colorChange {
+  from {
+    background-position:0%;
+  }
+  to {
+    /* background-position:top left; */
+    background-position:100%;
+  }
+ }
+ 

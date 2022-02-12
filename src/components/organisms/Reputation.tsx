@@ -1,18 +1,18 @@
 import { Card } from '@/components/atoms/Card'
 
-export const HowTo: React.VFC = () => {
+export const Reputation: React.VFC = () => {
   return (
     <div className="flex flex-col min-h-screen items-center flex-wrap md:mt-20 bg-[#25AAE1] opacity-95">
-      <div className="w-full min-h-screen absolute z-[-99] opacity-20 bg-[url('/img/bg_how_it_works.jpg')] bg-auto bg-center bg-fixed"></div>
-      <div className="flex w-full min-w-[500] p-12 justify-center">
+      {/* <div className="w-full min-h-screen absolute z-[-99] opacity-20 bg-[url('/img/bg_how_it_works.jpg')] bg-auto bg-center bg-fixed"></div> */}
+      <div className="flex w-full min-w-[500] p-3 justify-center">
         <h1 className="text-4xl text-white font-semibold md:text-4xl md:font-semibold">
-          How to Buy a Package?
+          What People Say About Us?
         </h1>{' '}
       </div>
       <div className="flex w-full justify-center px-10">
         <span className="text-white">
-          Buying social media packages from Goread.io is simple and fast. Just
-          follow these steps
+          Our service has an extensive customer roster built on years’ worth of
+          trust. Read what our buyers think about our range of service.
         </span>
       </div>
       <div className="flex flex-wrap w-full flex-col justify-center p-10 space-y-5 mx:flex-row mx:flex-nowrap mx:space-x-10 mx:space-y-0">

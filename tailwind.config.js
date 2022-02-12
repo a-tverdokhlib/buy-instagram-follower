@@ -4,6 +4,7 @@ module.exports = {
     extend: {
       animation: {
         'spin-slow': 'spin 5s linear infinite',
+        'ping-slow': 'ping 2s linear infinite ',
       },
     },
     screens: {

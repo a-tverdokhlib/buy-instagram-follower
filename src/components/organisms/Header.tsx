@@ -89,7 +89,7 @@ export const Header: React.VFC<Props> = ({ menuClick, navShown }) => {
               <li>
                 <a
                   href="#"
-                  className="flex items-center h-full py-2 pr-4 pl-3 text-white bg-white-700 rounded md:bg-transparent md:text-white-700 md:p-0 dark:text-white"
+                  className="flex items-center h-full py-2 pr-4 pl-3 text-white border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-[#DC39FC] md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 transition-all duration-500 delay-75"
                   aria-current="page"
                 >
                   Home
@@ -98,7 +98,7 @@ export const Header: React.VFC<Props> = ({ menuClick, navShown }) => {
               <li className="w-full md:w-28 ml:w-28 lg:w-36">
                 <a
                   href="#"
-                  className="flex items-center h-full py-2 pr-4 pl-3 text-white border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                  className="flex items-center h-full py-2 pr-4 pl-3 text-white border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-[#DC39FC] md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 transition-all duration-500 delay-75"
                 >
                   Buy Intagram Followers
                 </a>
@@ -106,7 +106,7 @@ export const Header: React.VFC<Props> = ({ menuClick, navShown }) => {
               <li className="w-full md:w-28 ml:w-28 lg:w-36">
                 <a
                   href="#"
-                  className="flex items-center h-full py-2 pr-4 pl-3 text-white border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                  className="flex items-center h-full py-2 pr-4 pl-3 text-white border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-[#DC39FC] md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 transition-all duration-500 delay-75"
                 >
                   Buy Instagram Likes
                 </a>
@@ -114,7 +114,7 @@ export const Header: React.VFC<Props> = ({ menuClick, navShown }) => {
               <li className="w-full md:w-28 ml:w-28 lg:w-36">
                 <a
                   href="#"
-                  className="flex items-center h-full py-2 pr-4 pl-3 text-white border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                  className="flex items-center h-full py-2 pr-4 pl-3 text-white border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-[#DC39FC] md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 transition-all duration-500 delay-75"
                 >
                   Buy Instagram Views
                 </a>
@@ -122,7 +122,7 @@ export const Header: React.VFC<Props> = ({ menuClick, navShown }) => {
               <li className="block md:hidden w-full dm:block md:w-24 ml:w-28 xl:w-44 others dropdown">
                 <a
                   href="#"
-                  className="flex items-center h-full py-2 pr-4 pl-3 text-white border-b hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent md:w-28 xl:w-44"
+                  className="flex items-center h-full py-2 pr-4 pl-3 text-white border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-[#DC39FC] md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 transition-all duration-500 delay-75"
                 >
                   Other Services
                   <svg
@@ -163,7 +163,7 @@ export const Header: React.VFC<Props> = ({ menuClick, navShown }) => {
               <li className="hidden md:block md:w-16 xl:hidden dropdown">
                 <a
                   href="#"
-                  className="flex items-center h-full py-2 pr-4 pl-3 text-white border-b hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent md:w-18"
+                  className="flex items-center h-full py-2 pr-4 pl-3 text-white border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-[#DC39FC] md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 transition-all duration-500 delay-75"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -197,7 +197,7 @@ export const Header: React.VFC<Props> = ({ menuClick, navShown }) => {
               <li className="block md:hidden xl:block xl:w-16 pt-3 custom">
                 <a
                   href="#"
-                  className="flex items-center h-full py-2 pr-4 pl-3 text-white border-b hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                  className="flex items-center h-full py-2 pr-4 pl-3 text-white border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-[#DC39FC] md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 transition-all duration-500 delay-75"
                 >
                   Blog
                 </a>
@@ -205,7 +205,7 @@ export const Header: React.VFC<Props> = ({ menuClick, navShown }) => {
               <li className="block md:hidden xl:block xl:w-16 pt-3 custom">
                 <a
                   href="#"
-                  className="flex items-center h-full py-2 pr-4 pl-3 text-white border-b hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                  className="flex items-center h-full py-2 pr-4 pl-3 text-white border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-[#DC39FC] md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 transition-all duration-500 delay-75"
                 >
                   FAQ
                 </a>
@@ -213,7 +213,7 @@ export const Header: React.VFC<Props> = ({ menuClick, navShown }) => {
               <li className="block md:hidden xl:block xl:w-24 pt-3 custom">
                 <a
                   href="#"
-                  className="flex items-center h-full py-2 pr-4 pl-3 text-white border-b hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent "
+                  className="flex items-center h-full py-2 pr-4 pl-3 text-white border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-[#DC39FC] md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 transition-all duration-500 delay-75"
                 >
                   Contact
                 </a>
