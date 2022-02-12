@@ -38,7 +38,7 @@ export default function Home() {
         <div className="min-h-screen">
           <div className="w-full">
             <div className="ml-auto w-8/12">
-              <Image
+              <img
                 src="/home-banner.png"
                 alt="bannerImage"
                 width="100%"
