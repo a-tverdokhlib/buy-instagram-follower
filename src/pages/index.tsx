@@ -5,6 +5,7 @@ import React, { useState } from 'react'
 // import { Image } from '@/components/atoms/Image'
 import { MySwipper } from '@/components/atoms/MySwipper'
 import Chat from '@/components/organisms/Chat'
+import { Gap } from '@/components/organisms/Gap'
 import { Header } from '@/components/organisms/Header'
 import { HowTo } from '@/components/organisms/HowTo'
 import { Idea } from '@/components/organisms/Idea'
@@ -81,7 +82,7 @@ export default function Home() {
               <img
                 // className=""
                 // className="absolute"
-                src="/img/banner_image.png"
+                src="/img/header_top.png"
                 alt="bannerImage"
                 width="100%"
                 height="100%"
@@ -89,12 +90,13 @@ export default function Home() {
             </div>
           </div>
         </div>
-        {/* <Idea /> */}
-        <Products />
+        <Gap />
+        <Idea />
         <Services />
         <HowTo />
-        <Chat />
         <Reputation />
+        <Products />
+        <Chat />
       </main>
       <footer className={styles['footer']}>
         <a

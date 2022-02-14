@@ -53,7 +53,7 @@ const MyComponentRenderFn: ForwardRefRenderFunction<any, Props> = (
 
   return (
     <Swiper
-      className="flex w-full"
+      className="flex w-full min-h-screen justify-center items-center"
       modules={[Navigation, Pagination, Scrollbar, A11y]}
       spaceBetween={10}
       breakpoints={{
@@ -77,10 +77,10 @@ const MyComponentRenderFn: ForwardRefRenderFunction<any, Props> = (
           slidesPerView: 4,
         },
       }}
-      //   navigation={{
-      //     prevEl: prevRef.current ? prevRef.current : undefined,
-      //     nextEl: nextRef.current ? nextRef.current : undefined,
-      //   }}
+      navigation={{
+        prevEl: prevRef.current ? prevRef.current : undefined,
+        nextEl: nextRef.current ? nextRef.current : undefined,
+      }}
       pagination={{ clickable: true }}
       // scrollbar={{ draggable: true }}
       onSwiper={(swiper) => console.log(swiper)}

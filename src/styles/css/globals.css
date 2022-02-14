@@ -8,7 +8,8 @@ body {
   margin: 0;
   /* font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif; */
-  font-family: 'Montserrat', sans-serif;
+  /* font-family: 'Montserrat', sans-serif; */
+  font-family: 'Urbanist', sans-serif;
   background: black;
   color: #212121;
 }
@@ -173,3 +174,26 @@ body {
   }
  }
  
+
+ .gradient-btnb {
+   color: white;
+   font-size: 16px;
+   font-weight: bold;
+  background-image: -o-linear-gradient(indigo, purple);    
+  background-image: -webkit-linear-gradient(indigo, purple);
+  background-image: -moz-linear-gradient(indigo, purple);    
+  background-image: -ms-linear-gradient(indigo, purple);
+  background-image: linear-gradient(indigo, purple);    
+  -o-transition: background-color 1s;
+  -webkit-transition: background-color 1s;
+  -moz-transition: background-color 1s;
+  -ms-transition: background-color 1s;
+  transition: background-color 1s;    
+  animation: colorChange 5s infinite alternate;
+}
+.gradient-btnb:hover {
+  background-color: indigo;    
+  cursor: pointer;
+  /* background: radial-gradient(farthest-corner at top, #FFFFFF 0%, #ffb3ff 4%, #ff33ff 12.25%, #800080 31.25%, #b300b3 50%) top right/200% 200%; */
+  /* animation: colorChange 5s infinite alternate; */
+}

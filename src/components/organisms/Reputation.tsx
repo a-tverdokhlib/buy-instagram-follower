@@ -1,11 +1,38 @@
+import { useRef, useState } from 'react'
+
 import { Card } from '@/components/atoms/Card'
+import { Image } from '@/components/atoms/Image'
+import { MySwipper } from '@/components/atoms/MySwipper'
+
+import { ReputationCard } from './ReputationCard'
 
 export const Reputation: React.VFC = () => {
+  const swiperRef = useRef<any>(null)
+  const prevRef = useRef<any>(null)
+  const nextRef = useRef<any>(null)
+  // const [swiperCurrentIndex, setSwiperCurrentIndex] = useState(0)
+  const [swiperReachStarted, setSwiperReachStarted] = useState(0)
+  const [swiperReachEnded, setSwiperReachEnded] = useState(0)
+  const prevClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    prevRef.current?.click()
+  }
+  const nextClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    nextRef.current?.click()
+  }
+
+  const swiperIndexChange = (e: any) => {}
+
+  const swiperReachStart = (e: any) => {
+    setSwiperReachStarted(e)
+  }
+
+  const swiperReachEnd = (e: any) => {
+    setSwiperReachEnded(e)
+  }
   return (
-    <div className="flex flex-col min-h-screen items-center flex-wrap md:mt-20 bg-[#25AAE1] opacity-95">
-      {/* <div className="w-full min-h-screen absolute z-[-99] opacity-20 bg-[url('/img/bg_how_it_works.jpg')] bg-auto bg-center bg-fixed"></div> */}
-      <div className="flex w-full min-w-[500] p-3 justify-center">
-        <h1 className="text-4xl text-white font-semibold md:text-4xl md:font-semibold">
+    <div className="flex flex-col -mt-5 min-h-screen items-center flex-wrap bg-[#222232] opacity-95 rounded-3xl overflow-hidden shadow-[black] shadow-[0_0px_100px_0px_rgba(0,0,0,0.1)]">
+      <div className="mt-32 flex w-full min-w-[500] p-3 justify-center">
+        <h1 className="text-4xl text-center text-white font-semibold md:text-5xl md:font-semibold">
           What People Say About Us?
         </h1>{' '}
       </div>
@@ -15,78 +42,43 @@ export const Reputation: React.VFC = () => {
           trust. Read what our buyers think about our range of service.
         </span>
       </div>
-      <div className="flex flex-wrap w-full flex-col justify-center p-10 space-y-5 mx:flex-row mx:flex-nowrap mx:space-x-10 mx:space-y-0">
-        <div className="overflow-visible flex flex-wrap w-full min-w-[286px] rounded-[50px] cursor-pointer">
-          <div className="px-3 py-10">
-            <Card minHeight="200px" minWidth="100%">
-              <h2 className="flex w-full font-bold text-2xl text-white text-center">
-                <span>
-                  <span>Choose Package</span>
-                </span>
-              </h2>
-              <br></br>
-              <span>
-                <span className="text-white">
-                  It’s easy to get started with us. Choose from our wide range
-                  of Instagram marketing packages that cater your requirements
-                </span>
-              </span>
-            </Card>
-          </div>
-          <div className="absolute mr-auto z-[-1]">
-            <span className="text-[190px] font-semibold leading-[7rem] text-[#f15d23]">
-              1
-            </span>
-          </div>
-        </div>
-        <div className="overflow-visible flex flex-wrap w-full min-w-[286px] rounded-[50px] cursor-pointer">
-          <div className="px-3 py-10">
-            <Card minHeight="200px" minWidth="100%">
-              <h2 className="flex w-full font-bold text-2xl text-white text-center">
-                <span>
-                  <span>Enter Your Instagram Username</span>
-                </span>
-              </h2>
-              <br></br>
-              <span>
-                <span className="text-white">
-                  In the order form simply enter your Instagram username. Our
-                  system will automatically fetch your public info. We DON’T
-                  require your password
-                </span>
-              </span>
-            </Card>
-          </div>
-          <div className="absolute mr-auto z-[-1]">
-            <span className="text-[190px] font-semibold leading-[7rem] text-[#f15d23]">
-              2
-            </span>
-          </div>
-        </div>
-        <div className="overflow-visible flex flex-wrap w-full min-w-[286px] rounded-[50px] cursor-pointer">
-          <div className="px-3 py-10">
-            <Card minHeight="200px" minWidth="100%">
-              <h2 className="flex w-full font-bold text-2xl text-white text-center">
-                <span>
-                  <span>Wait for results</span>
-                </span>
-              </h2>
-              <br></br>
-              <span>
-                <span className="text-white">
-                  You can pay via any bank card. We will proceed with the order
-                  and inform you once its done via email. You can also track
-                  your order status from the client area
-                </span>
-              </span>
-            </Card>
-          </div>
-          <div className="absolute mr-auto z-[-1]">
-            <span className="text-[190px] font-semibold leading-[7rem] text-[#f15d23]">
-              3
-            </span>
-          </div>
-        </div>
+      <div className="mt-10 grid grid-cols-1 gap-10 justify-center p-12 md:grid-cols-2 xl:grid-cols-3">
+        <ReputationCard
+          img={
+            <Image
+              src="/img/avt-template.jpg"
+              alt="Avatar"
+              width="80px"
+              height="80px"
+            />
+          }
+          title="John Smith Youtuber"
+          description="After trying several websites who claim to have ’fast delivery’,I'm glad I finally found this service.They literally started delivering 5 seconds after my payment!"
+        />
+        <ReputationCard
+          img={
+            <Image
+              src="/img/avt-template.jpg"
+              alt="Avatar"
+              width="80px"
+              height="80px"
+            />
+          }
+          title="Keith Irvine Instagram Model"
+          description="I cannot stress enough how happy I am with the service that I received. Thanks to all of you, my Instagram account is surging with activity! You’ve not only earned yourself a loyal customer, but a friend for life."
+        />
+        <ReputationCard
+          img={
+            <Image
+              src="/img/avt-template.jpg"
+              alt="Avatar"
+              width="80px"
+              height="80px"
+            />
+          }
+          title="Sara-Jade Bevis Bloger"
+          description="Wow! This is amazing, I have been purchasing Instagram Likes for over a year and never got a delay! ? did a great job always"
+        />
       </div>
     </div>
   )
