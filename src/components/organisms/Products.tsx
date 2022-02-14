@@ -30,9 +30,9 @@ export const Products: React.VFC = () => {
   }
   return (
     <div className="flex flex-col md:p-12 items-center flex-wrap min-h-screen bg-[#030304]">
-      <div className="flex flex-col items-center flex-wrap w-full bg-[#222232] rounded-3xl">
+      <div className="flex flex-col items-center flex-wrap w-full bg-[#222232] rounded-3xl pb-10">
         <div className="flex mt-16 w-full min-w-[500] p-12 justify-left">
-          <div className="flex overflow-hidden rounded-full items-center justify-center w-16">
+          <div className="flex overflow-hidden rounded-full items-center justify-center w-16 h-16">
             <span className="animate-ping-slow z-[2] inline-flex h-6 w-6 rounded-full bg-red-600 border-2 border-red-600 opacity-75"></span>
             <div className="absolute z-[3] rounded-full bg-[#222232]">
               <svg
@@ -58,8 +58,8 @@ export const Products: React.VFC = () => {
               Live Products
             </h1>
           </div>
-          <div className="flex ml-auto">
-            <div className="flex space-x-2 rounded-full py-4 px-8 gradient-btnb">
+          <div className="hidden md:flex md:ml-auto min-w-[180px]">
+            <div className="flex space-x-2 rounded-full py-4 px-8 gradient-btn-1 items-center">
               <svg
                 className="h-5 w-5 text-white"
                 width="24"
@@ -75,11 +75,11 @@ export const Products: React.VFC = () => {
                 <path stroke="none" d="M0 0h24v24H0z" />{' '}
                 <path d="M15 10l-4 4l6 6l4 -16l-18 7l4 2l2 6l3 -4" />
               </svg>
-              <span>Browse More</span>
+              <span className="min-w-[110px]">Browse More</span>
             </div>
           </div>
         </div>
-        <div className="mt-5 grid grid-cols-1 gap-x-10 gap-y-0 justify-center p-3 md:grid-cols-2 xl:grid-cols-3">
+        <div className="mt-5 grid grid-cols-1 pb-5 gap-x-10 gap-y-0 justify-center p-3 md:grid-cols-2 xl:grid-cols-3">
           <ProductCard
             img={
               <Image
@@ -236,6 +236,26 @@ export const Products: React.VFC = () => {
             title="Instagram Followers"
             description="Sed ut perspiciatis unde omnis natus error sit voluptatem"
           />
+        </div>
+        <div className="md:hidden">
+          <div className="flex space-x-2 rounded-full py-4 px-8 gradient-btn-1">
+            <svg
+              className="h-5 w-5 text-white"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              strokeWidth="2"
+              stroke="currentColor"
+              fill="none"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              {' '}
+              <path stroke="none" d="M0 0h24v24H0z" />{' '}
+              <path d="M15 10l-4 4l6 6l4 -16l-18 7l4 2l2 6l3 -4" />
+            </svg>
+            <span>Browse More</span>
+          </div>
         </div>
       </div>
     </div>

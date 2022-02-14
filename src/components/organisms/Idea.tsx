@@ -14,8 +14,10 @@ export const Idea: React.VFC = () => {
         {/* <img src="/best_service.png" alt="Best Services" layout="include"/> */}
       </div>
       <div className="flex-1 p-12 md:w-7/12 md:mr-16 md:mt-20">
-        <h1 className="text-4xl font-medium max-w-full flex flex-wrap">
-          <span className="text-[#f15d23]">See why we are the best!</span>
+        <h1 className="text-4xl md:text-5xl font-medium max-w-full flex flex-wrap">
+          <span className="text-white text-center">
+            See why we are the best!
+          </span>
         </h1>
         <br></br>
         <p className="text-[#aaaaaa]">

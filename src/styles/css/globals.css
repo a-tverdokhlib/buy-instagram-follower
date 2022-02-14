@@ -175,7 +175,7 @@ body {
  }
  
 
- .gradient-btnb {
+ .gradient-btn-1 {
    color: white;
    font-size: 16px;
    font-weight: bold;
@@ -191,7 +191,7 @@ body {
   transition: background-color 1s;    
   animation: colorChange 5s infinite alternate;
 }
-.gradient-btnb:hover {
+.gradient-btn-1:hover {
   background-color: indigo;    
   cursor: pointer;
   /* background: radial-gradient(farthest-corner at top, #FFFFFF 0%, #ffb3ff 4%, #ff33ff 12.25%, #800080 31.25%, #b300b3 50%) top right/200% 200%; */
