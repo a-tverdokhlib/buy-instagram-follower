@@ -4,7 +4,7 @@ import { Layout } from '@/components/atoms/Layout'
 export const Idea: React.VFC = () => {
   return (
     <div className="flex flex-col flex-wrap md:flex-row rounded-3xl">
-      <div className="flex-none w-full min-w-[500] p-12 max-w-xl items-center md:w-5/12 ">
+      <div className="hidden md:flex flex-none w-full min-w-[500] p-12 max-w-xl items-center md:w-5/12 ">
         <img
           src="/best_service.png"
           alt="Best Services"

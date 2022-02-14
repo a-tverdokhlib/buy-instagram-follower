@@ -18,7 +18,7 @@ export const HowTo: React.VFC = () => {
       <div className="flex flex-wrap w-full flex-col justify-center p-10 space-y-5 mx:flex-row mx:flex-nowrap mx:space-x-10 mx:space-y-0">
         <div className="overflow-visible flex flex-wrap w-full min-w-[286px] rounded-[50px] cursor-pointer">
           <div className="px-3 py-10">
-            <Card minHeight="200px" minWidth="100%">
+            <Card className="w-full min-h-[200px]">
               <h2 className="flex w-full font-bold text-2xl text-white text-center">
                 <span>
                   <span>Choose Package</span>
@@ -41,7 +41,7 @@ export const HowTo: React.VFC = () => {
         </div>
         <div className="overflow-visible flex flex-wrap w-full min-w-[286px] rounded-[50px] cursor-pointer">
           <div className="px-3 py-10">
-            <Card minHeight="200px" minWidth="100%">
+            <Card className="w-full min-h-[200px]">
               <h2 className="flex w-full font-bold text-2xl text-white text-center">
                 <span>
                   <span>Enter Your Instagram Username</span>
@@ -65,7 +65,7 @@ export const HowTo: React.VFC = () => {
         </div>
         <div className="overflow-visible flex flex-wrap w-full min-w-[286px] rounded-[50px] cursor-pointer">
           <div className="px-3 py-10">
-            <Card minHeight="200px" minWidth="100%">
+            <Card className="w-full min-h-[200px]">
               <h2 className="flex w-full font-bold text-2xl text-white text-center">
                 <span>
                   <span>Wait for results</span>

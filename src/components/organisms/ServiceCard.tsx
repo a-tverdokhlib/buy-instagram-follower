@@ -49,7 +49,7 @@ const MyComponentRenderFn: ForwardRefRenderFunction<any, Props> = (
         </div>
       </div>
       <div className="p-10">
-        <Card minHeight="250px" minWidth="100%">
+        <Card className="min-h-min md:min-h-[250px] w-full">
           <span>
             <span className="text-white">{description}</span>
           </span>

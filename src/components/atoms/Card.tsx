@@ -1,22 +1,7 @@
 type Props = {
-  readonly minWidth?: string
-  readonly minHeight?: string
-  readonly padding?: string
+  readonly className?: string
 }
 
-export const Card: React.FC<Props> = ({
-  children,
-  minWidth,
-  minHeight,
-  padding,
-}) => (
-  <div
-    style={{
-      padding: padding,
-      minWidth: minWidth,
-      minHeight: minHeight,
-    }}
-  >
-    {children}
-  </div>
+export const Card: React.FC<Props> = ({ children, className }) => (
+  <div className={className}>{children}</div>
 )
