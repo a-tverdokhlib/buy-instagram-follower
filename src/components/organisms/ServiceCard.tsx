@@ -16,7 +16,7 @@ const MyComponentRenderFn: ForwardRefRenderFunction<any, Props> = (
 ) => {
   return (
     <div className="overflow-hidden flex flex-wrap w-full min-w-[286px] max-w-xs bg-transparent border-[2px] border-indigo-900 border-opacity-20 hover:bg-slate-900 hover:bg-opacity-30 hover:border-slate-900  rounded-[50px] justify-center cursor-pointer hover:shadow-[0_1px_10px_5px_rgba(0,0,0,0.5)] transition-all duration-300">
-      <div className="w-full p-3 hover:scale-105 transition-all duration-100">
+      <div className="w-full p-3 hover:scale-[101%] transition-all duration-100">
         <svg
           className="h-auto w-full -mt-[0px] text-[black] rounded-[40px]"
           viewBox="0 0 24 10"
