@@ -29,8 +29,8 @@ export const Products: React.VFC = () => {
     setSwiperReachEnded(e)
   }
   return (
-    <div className="flex flex-col md:p-12 items-center flex-wrap min-h-screen bg-[#030304]">
-      <div className="flex flex-col items-center flex-wrap w-full bg-[#222232] rounded-3xl pb-10">
+    <div className="flex flex-col md:p-20 items-center flex-wrap min-h-screen bg-[#030304] products">
+      <div className="flex flex-col items-center flex-wrap w-full bg-[#222232] rounded-3xl pb-10 shadow-[#222232] shadow-[0_0px_100px_-20px_rgba(0,0,0,0.1)]">
         <div className="flex mt-16 w-full min-w-[500] p-12 justify-left">
           <div className="flex overflow-hidden rounded-full items-center justify-center w-16 h-16">
             <span className="animate-ping-slow z-[2] inline-flex h-6 w-6 rounded-full bg-red-600 border-2 border-red-600 opacity-75"></span>
@@ -59,9 +59,9 @@ export const Products: React.VFC = () => {
             </h1>
           </div>
           <div className="hidden md:flex md:ml-auto min-w-[180px]">
-            <div className="flex space-x-2 rounded-full py-4 px-8 gradient-btn-1 items-center">
+            <div className="flex space-x-2 rounded-full py-2 px-8 gradient-btn-1 items-center hover:cursor-pointer">
               <svg
-                className="h-5 w-5 text-white"
+                className="h-5 w-5 text-white z-10"
                 width="24"
                 height="24"
                 viewBox="0 0 24 24"
@@ -103,7 +103,7 @@ export const Products: React.VFC = () => {
                 height="80px"
               />
             }
-            title="Instagram Followers"
+            title="Instagram Likes"
             description="Sed ut perspiciatis unde omnis natus error sit voluptatem"
           />
           <ProductCard
@@ -116,7 +116,7 @@ export const Products: React.VFC = () => {
                 height="80px"
               />
             }
-            title="Instagram Followers"
+            title="Instagram Followers cheap 10k"
             description="Sed ut perspiciatis unde omnis natus error sit voluptatem"
           />
           <ProductCard
@@ -129,7 +129,7 @@ export const Products: React.VFC = () => {
                 height="80px"
               />
             }
-            title="Instagram Followers"
+            title="20k Instagram Followers"
             description="Sed ut perspiciatis unde omnis natus error sit voluptatem"
           />
           <ProductCard
@@ -142,7 +142,7 @@ export const Products: React.VFC = () => {
                 height="80px"
               />
             }
-            title="Instagram Followers"
+            title="Instagram likes 50"
             description="Sed ut perspiciatis unde omnis natus error sit voluptatem"
           />
           <ProductCard
@@ -155,7 +155,7 @@ export const Products: React.VFC = () => {
                 height="80px"
               />
             }
-            title="Instagram Followers"
+            title="100k Instagram Followers"
             description="Sed ut perspiciatis unde omnis natus error sit voluptatem"
           />
           <ProductCard
@@ -168,7 +168,7 @@ export const Products: React.VFC = () => {
                 height="80px"
               />
             }
-            title="Instagram Followers"
+            title="1k followers in 5 minutes"
             description="Sed ut perspiciatis unde omnis natus error sit voluptatem"
           />
           <ProductCard
@@ -181,7 +181,7 @@ export const Products: React.VFC = () => {
                 height="80px"
               />
             }
-            title="Instagram Followers"
+            title="300 Instagram Followers"
             description="Sed ut perspiciatis unde omnis natus error sit voluptatem"
           />
           <ProductCard
@@ -194,7 +194,7 @@ export const Products: React.VFC = () => {
                 height="80px"
               />
             }
-            title="Instagram Followers"
+            title="50 Real Instagram Followers"
             description="Sed ut perspiciatis unde omnis natus error sit voluptatem"
           />
           <ProductCard
@@ -207,7 +207,7 @@ export const Products: React.VFC = () => {
                 height="80px"
               />
             }
-            title="Instagram Followers"
+            title="50 Instagram likes instantly delivery"
             description="Sed ut perspiciatis unde omnis natus error sit voluptatem"
           />
           <ProductCard
@@ -220,7 +220,7 @@ export const Products: React.VFC = () => {
                 height="80px"
               />
             }
-            title="Instagram Followers"
+            title="20k Instagram Followers"
             description="Sed ut perspiciatis unde omnis natus error sit voluptatem"
           />
           <ProductCard
@@ -233,7 +233,7 @@ export const Products: React.VFC = () => {
                 height="80px"
               />
             }
-            title="Instagram Followers"
+            title="50k real Instagram Followers"
             description="Sed ut perspiciatis unde omnis natus error sit voluptatem"
           />
         </div>
@@ -258,6 +258,7 @@ export const Products: React.VFC = () => {
           </div>
         </div>
       </div>
+      <div className="h-[150px] w-full"></div>
     </div>
     /* <MySwipper
         ref={swiperRef}

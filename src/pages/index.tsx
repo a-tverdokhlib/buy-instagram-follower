@@ -2,6 +2,7 @@ import dynamic from 'next/dynamic'
 import Head from 'next/head'
 import React, { useState } from 'react'
 
+import { Image } from '@/components/atoms/Image'
 // import { Image } from '@/components/atoms/Image'
 import { MySwipper } from '@/components/atoms/MySwipper'
 import Chat from '@/components/organisms/Chat'
@@ -9,6 +10,7 @@ import { Gap } from '@/components/organisms/Gap'
 import { Header } from '@/components/organisms/Header'
 import { HowTo } from '@/components/organisms/HowTo'
 import { Idea } from '@/components/organisms/Idea'
+import { NewsLetter } from '@/components/organisms/NewsLetter'
 import { Products } from '@/components/organisms/Products'
 import { Reputation } from '@/components/organisms/Reputation'
 import { Services } from '@/components/organisms/Services'
@@ -98,14 +100,30 @@ export default function Home() {
         <Products />
         <Chat />
       </main>
-      <footer className={styles['footer']}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-        </a>
+      <footer className="flex w-full px-3 md:px-20 pt-12 flex-col flex-wrap border-t-2 border-white min-h-[250px]">
+        <NewsLetter />
+        <div className="mt-10 flex w-full">
+          <div className="w-full grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-4">
+            <div className="flex flex-wrap">
+              <Image
+                className="flex"
+                src="/Goreadlogo.png"
+                alt="Logo"
+                width="200px"
+                height="40px"
+              />
+              <div className="w-full">
+                Sed ut perspiciatis unde omnis iste natus error sit voluptate
+                accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
+                quaes
+              </div>
+            </div>
+            <div className="flex">Language</div>
+            <div className="flex">Language</div>
+            <div className="flex">Language</div>
+          </div>
+        </div>
+        <div className="flex w-full"></div>
       </footer>
     </div>
   )
