@@ -17,7 +17,7 @@ export const Services: React.VFC = () => {
   return (
     <div className="flex flex-col items-center flex-wrap md:mt-20 bg-[#222232] rounded-3xl shadow-gray-400 shadow-[0_0px_5px_2px_rgba(0,0,0,0.1)]">
       <div className="mt-20 space-x-3 flex w-full min-w-[500] text-center p-12 justify-center">
-        <div className="flex overflow-hidden rounded-full items-center justify-center w-16">
+        <div className="flex overflow-hidden rounded-full items-center justify-center w-16 h-16">
           <span className="animate-ping-slow z-[2] inline-flex h-6 w-6 rounded-full bg-white border-2 border-white opacity-75"></span>
           <div className="absolute z-[3] rounded-full bg-[#222232]">
             <svg
@@ -38,7 +38,7 @@ export const Services: React.VFC = () => {
             </svg>
           </div>
         </div>
-        <h1 className="text-4xl font-semibold text-white md:text-5xl md:font-bold">
+        <h1 className="flex items-center text-4xl font-semibold text-white md:text-5xl md:font-bold">
           Services We Offer
         </h1>
       </div>
