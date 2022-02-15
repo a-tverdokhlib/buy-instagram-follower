@@ -160,6 +160,7 @@ body {
 }
 .gradient-btn:hover {
   background-color: purple;    
+
   /* background: radial-gradient(farthest-corner at top, #FFFFFF 0%, #ffb3ff 4%, #ff33ff 12.25%, #800080 31.25%, #b300b3 50%) top right/200% 200%; */
   /* animation: colorChange 5s infinite alternate; */
 }
@@ -204,6 +205,67 @@ body {
   position: relative;
   z-index: 3;
 }
+
+.gradient-btn-2 {
+  font-family: arial, sans-serif;
+  text-decoration: none;
+  position: relative;
+  background-color: rgba(255,255,255,0.1);
+  /* background-image: linear-gradient(to right, #ff05ff, indigo); */
+  -webkit-backface-visibility: hidden;
+  z-index: 1;
+}
+.gradient-btn-2:after {
+  position: absolute;
+  content: '';
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 9999px;
+  background-image: linear-gradient(to right, indigo, #ff05ff);
+  transition: opacity 0.5s ease-out;
+  z-index: 0;
+  opacity: 0;
+}
+.gradient-btn-2:hover:after {
+  opacity: 1;
+}
+.gradient-btn-2 span {
+  position: relative;
+  z-index: 3;
+}
+
+.footer-link {
+  font-family: arial, sans-serif;
+  text-decoration: none;
+  position: relative;
+  transition: opacity 0.5s ease-out;
+  -webkit-backface-visibility: hidden;
+  z-index: 1;
+}
+.footer-link:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: #DC39FC;
+  transform: scale(0,1);
+  transform-origin: right center;
+  transition: transform 500ms ease;
+}
+.footer-link:hover:after {
+  transform: scale(1,1);
+  transform-origin: left center;
+}
+
+.footer-link span {
+  position: relative;
+  z-index: 3;
+}
+
 .products ::-webkit-scrollbar {
   width: 0;  /* Remove scrollbar space */
   background: transparent;  /* Optional: just make scrollbar invisible */
