@@ -1,7 +1,7 @@
 export const NewsLetter: React.VFC = () => {
   return (
     <div className="flex flex-col w-full -mt-[150px]">
-      <div className="flex p-6 flex-wrap w-full ml:flex-nowrap ml:flex-row rounded-[30px] bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 min-h-[196px]">
+      <div className="flex p-6 flex-wrap w-full ml:flex-nowrap ml:flex-row rounded-[30px] bg-gradient-to-r from-indigo-700 via-purple-500 to-pink-500 min-h-[196px]">
         <div className="m-auto flex flex-wrap">
           <h3 className="flex text-4xl font-bold text-white w-full">
             Newsletters
