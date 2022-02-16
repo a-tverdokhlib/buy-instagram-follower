@@ -44,35 +44,35 @@ const MyComponentRenderFn: ForwardRefRenderFunction<any, Props> = (
 
   const nextSlide = () => {
     const swiper = document.querySelector('.swiper')?.swiper
+    console.log('Next Slide')
     swiper.slideNext()
   }
   const prevSlide = () => {
+    console.log('Prev Slide')
     const swiper = document.querySelector('.swiper')?.swiper
     swiper.slidePrev()
   }
 
   return (
     <Swiper
-      className="flex w-full h-screen justify-center items-center"
+      className="flex w-full min-h-screen justify-center items-center"
       modules={[Navigation, Pagination, Scrollbar, A11y]}
       spaceBetween={0}
-      // breakpoints={{
-      //   // when window width is >= 640px
-      //   640: {
-      //     width: 640,
-      //     slidesPerView: 1,
-      //   },
-      //   // when window width is >= 768px
-      //   768: {
-      //     width: 768,
-      //     slidesPerView: 2,
-      //   },
-      //   1024: {
-      //     width: 1024,
-      //     slidesPerView: 4,
-      //   },
-      // }}
-      slidesPerView={4}
+      breakpoints={{
+        640: {
+          slidesPerView: 2,
+          spaceBetween: 10,
+        },
+        960: {
+          slidesPerView: 3,
+          spaceBetween: 20,
+        },
+        1200: {
+          slidesPerView: 4,
+          spaceBetween: 20,
+        },
+      }}
+      // slidesPerView={4}
       navigation={{
         prevEl: prevRef.current ? prevRef.current : undefined,
         nextEl: nextRef.current ? nextRef.current : undefined,

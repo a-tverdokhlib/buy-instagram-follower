@@ -31,7 +31,7 @@ export const Banner: React.VFC = () => {
           <span className="text-lg">★★★★★</span> (39 Reviews)
         </div>
       </div>
-      <div className="flex w-full flex-col flex-wrap px-16 space-y-5 justify-center items-center">
+      <div className="flex w-full flex-col flex-wrap px-5 md:px-16 space-y-5 justify-center items-center">
         <div className="flex rounded-full items-center border-[purple] border-2 overflow-hidden">
           <span
             className={
