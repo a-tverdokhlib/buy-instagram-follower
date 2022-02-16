@@ -53,30 +53,26 @@ const MyComponentRenderFn: ForwardRefRenderFunction<any, Props> = (
 
   return (
     <Swiper
-      className="flex w-full min-h-screen justify-center items-center"
+      className="flex w-full h-screen justify-center items-center"
       modules={[Navigation, Pagination, Scrollbar, A11y]}
-      spaceBetween={10}
-      breakpoints={{
-        // when window width is >= 640px
-        640: {
-          width: 640,
-          slidesPerView: 1,
-        },
-        // when window width is >= 768px
-        768: {
-          width: 768,
-          slidesPerView: 2,
-        },
-        // when window width is >= 768px
-        1024: {
-          width: 1024,
-          slidesPerView: 3,
-        },
-        1280: {
-          width: 1280,
-          slidesPerView: 4,
-        },
-      }}
+      spaceBetween={0}
+      // breakpoints={{
+      //   // when window width is >= 640px
+      //   640: {
+      //     width: 640,
+      //     slidesPerView: 1,
+      //   },
+      //   // when window width is >= 768px
+      //   768: {
+      //     width: 768,
+      //     slidesPerView: 2,
+      //   },
+      //   1024: {
+      //     width: 1024,
+      //     slidesPerView: 4,
+      //   },
+      // }}
+      slidesPerView={4}
       navigation={{
         prevEl: prevRef.current ? prevRef.current : undefined,
         nextEl: nextRef.current ? nextRef.current : undefined,
@@ -91,7 +87,7 @@ const MyComponentRenderFn: ForwardRefRenderFunction<any, Props> = (
       {children
         ? children.map((slideContent, index) => (
             <SwiperSlide key={index} virtualIndex={index}>
-              <div className="flex px-10 justify-center">{slideContent}</div>
+              <div className="flex px-5 justify-center">{slideContent}</div>
             </SwiperSlide>
           ))
         : null}{' '}

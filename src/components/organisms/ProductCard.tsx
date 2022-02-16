@@ -1,60 +1,211 @@
 type Props = {
-  readonly children?: ReadonlyArray<Object>
-  readonly ref?: any
-  readonly img: any
-  readonly title: any
-  readonly description: any
+  readonly title: string
+  readonly subTitle: string
+  readonly avgMark?: number
+  readonly reviewCount: number
+  readonly cost: number
+  readonly isPopular: boolean
 }
 
-import React, { ForwardRefRenderFunction, useEffect, useState } from 'react'
-
-import { Card } from '@/components/atoms/Card'
-
-const MyComponentRenderFn: ForwardRefRenderFunction<any, Props> = (
-  { children, img, title, description },
-  ref,
-) => {
-  const stars = [1, 2, 3, 4, 5]
+export const ProductCard: React.VFC<Props> = (props) => {
   return (
-    <div className="product-card overflow-hidden pt-8 pb-5 flex flex-wrap w-full min-w-[286px] max-w-xs bg-opacity-50 hover:bg-opacity-100  justify-center cursor-pointer transition-all duration-300 rounded-2xl">
-      <div className="w-full overflow-hidden">
-        <div className="w-full space-x-3 h-20 flex flex-row flex-nowrap">
-          <div className="flex rounded-full overflow-hidden flex-shrink-0 transition-all duration-300">
-            {img}
-          </div>
-          <div className="flex overflow-y-scroll">
-            <div className="flex text-bold text-lg text-white ">
-              <div>
-                <span className="w-full">{title}</span>
-                <br></br>
-                <span className="text-[#aaaaaa] text-sm">{description}</span>
-              </div>
-            </div>
-          </div>
-          <div className="btn-buyit justify-center absolute">
-            <div className="flex space-x-1 rounded-full py-2 gradient-btn-2 justify-center hover:cursor-pointer">
-              <svg
-                className="h-5 w-5 text-white z-10"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                strokeWidth="2"
-                stroke="currentColor"
-                fill="none"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                {' '}
-                <path stroke="none" d="M0 0h24v24H0z" />{' '}
-                <path d="M15 10l-4 4l6 6l4 -16l-18 7l4 2l2 6l3 -4" />
-              </svg>
-              <span className="w-12 text-sm">Buy it</span>
-            </div>
-          </div>
+    <div
+      className={
+        props.isPopular === true
+          ? 'flex flex-wrap overflow-hidden product-card mt-0 text-white bg-[#000000] bg-opacity-50 hover:bg-opacity-100 border-[1px] hover:border-indigo-900 hover:border-opacity-20 border-opacity-30 border-slate-900 transition-all duration-300 rounded-2xl'
+          : 'flex mt-[25px] overflow-hidden product-card flex-wrap text-white bg-[#000000] bg-opacity-50 hover:bg-opacity-100 border-[1px] hover:border-indigo-900 hover:border-opacity-20 border-opacity-30 border-slate-900 transition-all duration-300 rounded-2xl'
+      }
+    >
+      <div
+        className={
+          props.isPopular === true
+            ? 'w-full h-6 text-center bg-gradient-to-r from-[#ff7802] to-[#fea921]'
+            : 'w-full h-6 -mt-[30px] text-center bg-transparent'
+        }
+      >
+        {props.isPopular === true ? <span>★★ Most Popular ★★</span> : <></>}
+      </div>
+      <div className="w-full p-3 text-center text-3xl text-white font-bold">
+        {props.title}
+      </div>
+      <div className="w-full text-center text-orange-100 font-semibold">
+        {props.subTitle}
+      </div>
+      <div className="w-full text-center text-sm text-orange-500">
+        <span>★★★★★</span>
+        <span>{props.avgMark}</span>
+        <span>({props.reviewCount} Reviews)</span>
+      </div>
+      {/* background-image: linear-gradient(to right,#ff7802 0%,#fea921 100%),linear-gradient(to right,#ff7802 0%,#fea921 100%); */}
+      <div className="mt-5 text-3xl w-full h-16 flex justify-center bg-gradient-to-r from-[indigo] to-[purple] items-center">
+        <sub className="symbol left-[-3px] top-[-7px] text-xl">
+          <svg
+            className="h-5 w-5 text-white"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            {' '}
+            <line x1="12" y1="1" x2="12" y2="23" />{' '}
+            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+          </svg>
+        </sub>
+        <span className="font-bold">{props.cost}</span>
+      </div>
+      <div className="w-full flex text-sm h-9 space-x-1 border-b-[1px] border-gray-600 items-center justify-center text-center">
+        <svg
+          className="h-4 w-4 text-orange-400"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
+          />
+        </svg>
+        <span>High Quality</span>
+      </div>
+      <div className="w-full flex text-sm h-9 space-x-1 border-b-[1px] border-gray-600 items-center justify-center text-center">
+        <svg
+          className="h-3 w-3 text-orange-400"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          {' '}
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />{' '}
+          <path d="M7 11V7a5 5 0 0 1 9.9-1" />
+        </svg>
+        <span>No Password Needed</span>
+      </div>
+      <div className="w-full flex text-sm h-9 space-x-1 border-b-[1px] border-gray-600 items-center justify-center text-center">
+        <svg
+          className="h-3 w-3 text-orange-400"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          {' '}
+          <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3" />
+        </svg>
+        <span>Drop Protection</span>
+      </div>
+      <div className="w-full flex text-sm h-9 space-x-1 border-b-[1px] border-gray-600 items-center justify-center text-center">
+        <svg
+          className="h-3 w-3 text-orange-400"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          {' '}
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+        </svg>
+        <span>Safe and Easy</span>
+      </div>
+      <div className="w-full flex text-sm h-9 space-x-1 border-b-[1px] border-gray-600 items-center justify-center text-center">
+        <svg
+          className="h-4 w-4 text-orange-400"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          strokeWidth="2"
+          stroke="currentColor"
+          fill="none"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          {' '}
+          <path stroke="none" d="M0 0h24v24H0z" />{' '}
+          <circle cx="12" cy="13" r="7" />{' '}
+          <polyline points="12 10 12 13 14 13" />{' '}
+          <line x1="7" y1="4" x2="4.25" y2="6" />{' '}
+          <line x1="17" y1="4" x2="19.75" y2="6" />
+        </svg>
+        <span>Instant Delivery</span>
+      </div>
+      <div className="w-full flex text-sm h-9 space-x-1 border-b-[1px] border-gray-600 items-center justify-center text-center">
+        <svg
+          className="h-3 w-3 text-orange-400"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          {' '}
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+        </svg>
+        <span>24/7 Support</span>
+      </div>
+      <div className="w-full flex text-sm h-9 space-x-1 border-b-[1px] border-gray-600 items-center justify-center text-center">
+        <svg
+          className="h-4 w-4 text-[green]"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          strokeWidth="2"
+          stroke="currentColor"
+          fill="none"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          {' '}
+          <path stroke="none" d="M0 0h24v24H0z" /> <path d="M5 12l5 5l10 -10" />
+        </svg>
+        <span className="text-[green]">Secure Payments</span>
+      </div>
+      <div className="w-full flex text-sm h-9 space-x-1  items-center justify-center text-center cursor-pointer hover:scale-110 transition-all duration-500">
+        <svg
+          className="h-5 w-5 text-yellow-400"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          {' '}
+          <circle cx="9" cy="21" r="1" /> <circle cx="20" cy="21" r="1" />{' '}
+          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
+        </svg>
+        <span>Order Now</span>
+      </div>
+      <div className="btn-buyit justify-center absolute">
+        <div className="flex space-x-1 rounded-full py-2 gradient-btn-2 justify-center hover:cursor-pointer">
+          <svg
+            className="h-5 w-5 text-white z-10"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            strokeWidth="2"
+            stroke="currentColor"
+            fill="none"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            {' '}
+            <path stroke="none" d="M0 0h24v24H0z" />{' '}
+            <path d="M15 10l-4 4l6 6l4 -16l-18 7l4 2l2 6l3 -4" />
+          </svg>
+          <span className="w-12 text-sm">Buy it</span>
         </div>
       </div>
     </div>
   )
 }
-
-export const ProductCard = React.forwardRef(MyComponentRenderFn)

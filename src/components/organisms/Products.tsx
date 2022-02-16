@@ -3,7 +3,7 @@ import React from 'react'
 
 import { Image } from '@/components/atoms/Image'
 
-import { ProductCard } from './ProductCard'
+import { ProductItem } from './ProductItem'
 
 export const Products: React.VFC = () => {
   const swiperRef = useRef<any>(null)
@@ -59,7 +59,7 @@ export const Products: React.VFC = () => {
             </h1>
           </div>
           <div className="hidden md:flex md:ml-auto min-w-[180px]">
-            <div className="flex space-x-2 rounded-full py-2 px-8 gradient-btn-1 items-center hover:cursor-pointer">
+            <div className="flex space-x-2 rounded-full py-2 px-8 gradient-btn items-center hover:cursor-pointer">
               <svg
                 className="h-5 w-5 text-white z-10"
                 width="24"
@@ -80,7 +80,7 @@ export const Products: React.VFC = () => {
           </div>
         </div>
         <div className="mt-5 grid grid-cols-1 pb-5 gap-x-10 gap-y-0 justify-center p-3 md:grid-cols-2 xl:grid-cols-3">
-          <ProductCard
+          <ProductItem
             img={
               <Image
                 className="hover:scale-110 transition-all duration-300"
@@ -93,7 +93,7 @@ export const Products: React.VFC = () => {
             title="Instagram Followers"
             description="Sed ut perspiciatis unde omnis natus error sit voluptatem"
           />
-          <ProductCard
+          <ProductItem
             img={
               <Image
                 className="hover:scale-110 transition-all duration-300"
@@ -106,7 +106,7 @@ export const Products: React.VFC = () => {
             title="Instagram Likes"
             description="Sed ut perspiciatis unde omnis natus error sit voluptatem"
           />
-          <ProductCard
+          <ProductItem
             img={
               <Image
                 className="hover:scale-110 transition-all duration-300"
@@ -119,7 +119,7 @@ export const Products: React.VFC = () => {
             title="Instagram Followers cheap 10k"
             description="Sed ut perspiciatis unde omnis natus error sit voluptatem"
           />
-          <ProductCard
+          <ProductItem
             img={
               <Image
                 className="hover:scale-110 transition-all duration-300"
@@ -132,7 +132,7 @@ export const Products: React.VFC = () => {
             title="20k Instagram Followers"
             description="Sed ut perspiciatis unde omnis natus error sit voluptatem"
           />
-          <ProductCard
+          <ProductItem
             img={
               <Image
                 className="hover:scale-110 transition-all duration-300"
@@ -145,7 +145,7 @@ export const Products: React.VFC = () => {
             title="Instagram likes 50"
             description="Sed ut perspiciatis unde omnis natus error sit voluptatem"
           />
-          <ProductCard
+          <ProductItem
             img={
               <Image
                 className="hover:scale-110 transition-all duration-300"
@@ -158,7 +158,7 @@ export const Products: React.VFC = () => {
             title="100k Instagram Followers"
             description="Sed ut perspiciatis unde omnis natus error sit voluptatem"
           />
-          <ProductCard
+          <ProductItem
             img={
               <Image
                 className="hover:scale-110 transition-all duration-300"
@@ -171,7 +171,7 @@ export const Products: React.VFC = () => {
             title="1k followers in 5 minutes"
             description="Sed ut perspiciatis unde omnis natus error sit voluptatem"
           />
-          <ProductCard
+          <ProductItem
             img={
               <Image
                 className="hover:scale-110 transition-all duration-300"
@@ -184,7 +184,7 @@ export const Products: React.VFC = () => {
             title="300 Instagram Followers"
             description="Sed ut perspiciatis unde omnis natus error sit voluptatem"
           />
-          <ProductCard
+          <ProductItem
             img={
               <Image
                 className="hover:scale-110 transition-all duration-300"
@@ -197,7 +197,7 @@ export const Products: React.VFC = () => {
             title="50 Real Instagram Followers"
             description="Sed ut perspiciatis unde omnis natus error sit voluptatem"
           />
-          <ProductCard
+          <ProductItem
             img={
               <Image
                 className="hover:scale-110 transition-all duration-300"
@@ -210,7 +210,7 @@ export const Products: React.VFC = () => {
             title="50 Instagram likes instantly delivery"
             description="Sed ut perspiciatis unde omnis natus error sit voluptatem"
           />
-          <ProductCard
+          <ProductItem
             img={
               <Image
                 className="hover:scale-110 transition-all duration-300"
@@ -223,7 +223,7 @@ export const Products: React.VFC = () => {
             title="20k Instagram Followers"
             description="Sed ut perspiciatis unde omnis natus error sit voluptatem"
           />
-          <ProductCard
+          <ProductItem
             img={
               <Image
                 className="hover:scale-110 transition-all duration-300"
@@ -238,7 +238,7 @@ export const Products: React.VFC = () => {
           />
         </div>
         <div className="md:hidden">
-          <div className="flex space-x-2 rounded-full py-4 px-8 gradient-btn-1">
+          <div className="flex space-x-2 rounded-full py-4 px-8 gradient-btn">
             <svg
               className="h-5 w-5 text-white"
               width="24"

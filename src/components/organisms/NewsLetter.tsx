@@ -16,7 +16,7 @@ export const NewsLetter: React.VFC = () => {
               placeholder="Enter Email Address"
               className="w-full p-4 md:p-8 rounded-full focus:outline-none"
             ></input>
-            <div className="flex space-x-2 absolute ml-auto -mt-[50px] md:-mt-[80px] mr-1 md:mr-3 rounded-full p-3 md:p-6 w-[135px] md:w-[172px] gradient-btn-1 items-center justify-center hover:cursor-pointer">
+            <div className="flex space-x-2 absolute ml-auto -mt-[50px] md:-mt-[80px] mr-1 md:mr-3 rounded-full p-3 md:p-6 w-[135px] md:w-[172px] gradient-btn items-center justify-center hover:cursor-pointer">
               <svg
                 className="h-5 w-5 text-white z-10"
                 width="24"

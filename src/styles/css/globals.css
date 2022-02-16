@@ -141,46 +141,8 @@ body {
     top: 100px;
   }
 }
-
-.gradient-btn {
-  /* background: radial-gradient(farthest-corner at top, #FFFFFF 0%, #ffb3ff 4%, #ff33ff 12.25%, #800080 31.25%, #b300b3 50%) top right/200% 200%; */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  /* color: white; */
-  font-weight: bold;
-  background-color: white;
-
-  background-image: -o-linear-gradient(to top, transparent, white);    
-  background-image: -webkit-linear-gradient(to top, transparent, white);
-  background-image: -moz-linear-gradient(to top, transparent, white);    
-  background-image: -ms-linear-gradient(to top, transparent, white);
-  background-image: linear-gradient(to top, transparent, white);    
-  -o-transition: background-color 1s;
-  -webkit-transition: background-color 1s;
-  -moz-transition: background-color 1s;
-  -ms-transition: background-color 1s;
-  transition: background-color 1s;    
-  /* animation: colorChange 5s infinite alternate; */
-}
-.gradient-btn:hover {
-  background-color: purple;    
-
-  /* background: radial-gradient(farthest-corner at top, #FFFFFF 0%, #ffb3ff 4%, #ff33ff 12.25%, #800080 31.25%, #b300b3 50%) top right/200% 200%; */
-  /* animation: colorChange 5s infinite alternate; */
-}
-
-@keyframes colorChange {
-  from {
-    background-position:0%;
-  }
-  to {
-    /* background-position:top left; */
-    background-position:100%;
-  }
- }
  
- .gradient-btn-1 {
+ .gradient-btn {
   color: #fff;
   font-family: arial, sans-serif;
   text-decoration: none;
@@ -188,9 +150,9 @@ body {
   background-color: #ccc;
   background-image: linear-gradient(to right, #ff05ff, indigo);
   -webkit-backface-visibility: hidden;
-  z-index: 1;
+  z-index: 10;
 }
-.gradient-btn-1:after {
+.gradient-btn:after {
   position: absolute;
   content: '';
   top: 0;
@@ -200,13 +162,13 @@ body {
   border-radius: 9999px;
   background-image: linear-gradient(to right, indigo, indigo);
   transition: opacity 0.5s ease-out;
-  z-index: 0;
+  z-index: -1;
   opacity: 0;
 }
-.gradient-btn-1:hover:after {
+.gradient-btn:hover:after {
   opacity: 1;
 }
-.gradient-btn-1 span {
+.gradient-btn span {
   position: relative;
   z-index: 3;
 }
@@ -215,8 +177,8 @@ body {
   font-family: arial, sans-serif;
   text-decoration: none;
   position: relative;
-  background-color: rgba(255,255,255,0.1);
-  /* background-image: linear-gradient(to right, #ff05ff, indigo); */
+  background-color: rgba(255,5,255,0.7);
+  /* background-image: linear-gradient(to right, indigo, indigo); */
   -webkit-backface-visibility: hidden;
   z-index: 1;
 }
@@ -317,4 +279,40 @@ body {
 .products ::-webkit-scrollbar {
   width: 0;  /* Remove scrollbar space */
   background: transparent;  /* Optional: just make scrollbar invisible */
+}
+
+
+.hover-animation {
+  text-decoration: none;
+  position: relative;
+  transition: opacity 0.5s ease-out;
+  -webkit-backface-visibility: hidden;
+  z-index: 1;
+}
+.hover-animation:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 48px;
+  border-radius: 9999px;
+  border-width:1px;
+  border-color:#DC39FC;
+  background-color: transparent;
+  
+  transition: transform 500ms ease;
+}
+.ani-left:after {
+  transform:translateX(100%);
+}
+.ani-right:after {
+  transform:translateX(-100%);
+}
+.hover-animation:hover:after {
+  transform: translateX(0%);
+}
+.hover-animation span {
+  position: relative;
+  z-index: 3;
 }
