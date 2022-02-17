@@ -64,7 +64,6 @@ export const Banner: React.VFC = () => {
           )}
         </div>
       </div>
-      <div className="h-64"></div>
     </div>
   )
 }

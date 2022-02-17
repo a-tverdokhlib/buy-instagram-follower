@@ -146,7 +146,7 @@ export const QualityFollowers: React.VFC = () => {
           </span>
         </div>
       </div>
-      <div className="h-3"></div>
+      <div className="h-0 md:h-3"></div>
       <MySwipper
         ref={swiperRef}
         prevRef={prevRef}

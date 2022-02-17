@@ -1,0 +1,233 @@
+
+@keyframes bottomright {
+    0% {
+      width: 0;
+      height: 0;
+      padding-top: 0;
+      visibility: visible;
+    }
+    25% {
+      width: 100%;
+      height: 0;
+      padding-top: 0;
+      visibility: visible;
+    }
+    50% {
+      height: 100%;
+      width: 100%;
+      visibility: visible;
+    }
+    75% {
+      visibility: visible;
+    }
+    100% {
+      visibility: visible;
+    }
+}
+  
+@keyframes revbottomright {
+    0% {
+      width: 100%;
+      height: 100%;
+      visibility: visible;
+    }
+    25% {
+      width: 100%;
+      height: 100%;
+      visibility: visible;
+    }
+    50% {
+      width: 100%;
+      height: 100%;
+      visibility: visible;
+    }
+    75% {
+      width: 100%;
+      height: 0;
+      padding-top: 0;
+      visibility: visible;
+    }
+    100% {
+      width: 0;
+      height: 0;
+      padding-top: 0;
+      visibility: hidden;
+    }
+}
+  
+@keyframes topleft {
+    0% {
+      width: 0;
+      height: 0;
+      padding-bottom: 0;
+      visibility: hidden;
+    }
+    25% {
+      width: 0;
+      height: 0;
+      padding-bottom: 0;
+      visibility: hidden;
+    }
+    50% {
+      width: 0;
+      height: 0;
+      padding-bottom: 0;
+      visibility: hidden;
+    }
+    75% {
+      width: 100%;
+      height: 0;
+      padding-bottom: 0;
+      visibility: visible;
+    }
+    100% {
+      width: 100%;
+      height: 100%;
+      opacity: 1;
+      visibility: visible;
+    }
+}
+  
+@keyframes revtopleft {
+    0% {
+      width: 100%;
+      height: 100%;
+      opacity: 1;
+      visibility: visible;
+    }
+    25% {
+      width: 100%;
+      height: 0;
+      padding-bottom: 0;
+      visibility: visible;
+    }
+    50% {
+      width: 0;
+      height: 0;
+      padding-bottom: 0;
+      visibility: hidden;
+    }
+    75% {
+      width: 0;
+      height: 0;
+      padding-bottom: 0;
+      visibility: hidden;
+    }
+    100% {
+      width: 0;
+      height: 0;
+      padding-bottom: 0;
+      visibility: hidden;
+    }
+}
+
+.package-item a {
+    font-family: Gotham, Tahoma, sans-serif;
+    letter-spacing: 1px;
+    transition: color 0.75s ease-in-out;
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 10px;
+    position: relative;
+    /* border: 1px solid #DC39FC; */
+    /* border-radius: full; */
+}
+  
+.package-item a:hover {
+    color: #DC39FC;
+    transition: color 0.75s ease-in-out;
+}
+  
+.package-item a:after {
+    content: "";
+    position: absolute;
+    bottom: 0px;
+    padding-right: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    border-bottom: 1px solid #DC39FC;
+    border-right: 1px solid #DC39FC;
+    visibility: hidden;
+}
+  
+.package-item a:before {
+    content: "";
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    padding-left: 0px;
+    width: 100%;
+    height: 100%;
+    border-top: 1px solid #DC39FC;
+    border-left: 1px solid #DC39FC;
+    visibility: hidden;
+}
+  
+.package-item a:hover:before {
+    animation: topleft 0.5s ease-in-out forwards;
+}
+  
+.package-item a:hover:after {
+    animation: bottomright 0.5s ease-in-out forwards;
+}
+  
+.package-item a.active:before {
+    animation: revtopleft 0.5s ease-in-out forwards;
+}
+  
+.package-item a.active:after {
+    animation: revbottomright 0.5s ease-in-out forwards;
+}
+  
+.package-item a.active:before, a.active:after {
+    width: 100%;
+    height: 100%;
+    visibility: visible;
+}
+  
+.package-item a.temp:before, a.temp:after {
+    width: 100%;
+    height: 100%;
+    visibility: visible;
+}
+
+.accordion-item:hover .accordion-btn {
+  animation: spin 1s infinite;
+}
+
+.accordion-header-active {
+  transform: scale(1.05);
+}
+.accordion-btn-active {
+  animation: spin 1s infinite;
+}
+.accordion-btn-active .svg-icon {
+  color: #f15d23;
+}
+
+.accordion-item:hover .svg-icon {
+  /* color: #DC39FC; */
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg) scale(1)
+  }
+  50% {
+    transform: rotate(180deg) scale(1.2)
+  }
+  100% {
+    transform: rotate(360deg) scale(1)
+  }
+  /* to {
+      transform: rotate(360deg) scale(1.5);
+  } */
+}
+
+
+.content-show {
+  display:block;
+}
+.content-hidden {
+  display: hidden;
+}

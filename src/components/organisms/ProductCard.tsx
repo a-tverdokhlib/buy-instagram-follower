@@ -55,7 +55,7 @@ export const ProductCard: React.VFC<Props> = (props) => {
         </sub>
         <span className="font-bold">{props.cost}</span>
       </div>
-      <div className="w-full flex text-sm h-9 space-x-1 border-b-[1px] border-gray-600 items-center justify-center text-center">
+      <div className="w-full flex text-sm h-9 text-gray-300 space-x-1 border-b-[1px] border-gray-600 items-center justify-center text-center">
         <svg
           className="h-4 w-4 text-orange-400"
           fill="none"
@@ -71,7 +71,7 @@ export const ProductCard: React.VFC<Props> = (props) => {
         </svg>
         <span>High Quality</span>
       </div>
-      <div className="w-full flex text-sm h-9 space-x-1 border-b-[1px] border-gray-600 items-center justify-center text-center">
+      <div className="w-full flex text-sm h-9 text-gray-300 space-x-1 border-b-[1px] border-gray-600 items-center justify-center text-center">
         <svg
           className="h-3 w-3 text-orange-400"
           viewBox="0 0 24 24"
@@ -85,9 +85,12 @@ export const ProductCard: React.VFC<Props> = (props) => {
           <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />{' '}
           <path d="M7 11V7a5 5 0 0 1 9.9-1" />
         </svg>
-        <span>No Password Needed</span>
+        <span>
+          <span className="font-semibold text-gray-400">No Password</span>{' '}
+          Needed
+        </span>
       </div>
-      <div className="w-full flex text-sm h-9 space-x-1 border-b-[1px] border-gray-600 items-center justify-center text-center">
+      <div className="w-full flex text-sm h-9 text-gray-300 space-x-1 border-b-[1px] border-gray-600 items-center justify-center text-center">
         <svg
           className="h-3 w-3 text-orange-400"
           viewBox="0 0 24 24"
@@ -100,9 +103,11 @@ export const ProductCard: React.VFC<Props> = (props) => {
           {' '}
           <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3" />
         </svg>
-        <span>Drop Protection</span>
+        <span>
+          Drop <span className="font-semibold">Protection</span>
+        </span>
       </div>
-      <div className="w-full flex text-sm h-9 space-x-1 border-b-[1px] border-gray-600 items-center justify-center text-center">
+      <div className="w-full flex text-sm h-9 text-gray-300 space-x-1 border-b-[1px] border-gray-600 items-center justify-center text-center">
         <svg
           className="h-3 w-3 text-orange-400"
           viewBox="0 0 24 24"
@@ -115,9 +120,12 @@ export const ProductCard: React.VFC<Props> = (props) => {
           {' '}
           <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
         </svg>
-        <span>Safe and Easy</span>
+        <span>
+          <span className="font-semibold text-gray-400">Safe</span> and{' '}
+          <span className="font-semibold text-gray-400">Easy</span>
+        </span>
       </div>
-      <div className="w-full flex text-sm h-9 space-x-1 border-b-[1px] border-gray-600 items-center justify-center text-center">
+      <div className="w-full flex text-sm h-9 text-gray-300 space-x-1 border-b-[1px] border-gray-600 items-center justify-center text-center">
         <svg
           className="h-4 w-4 text-orange-400"
           width="24"
@@ -136,9 +144,12 @@ export const ProductCard: React.VFC<Props> = (props) => {
           <line x1="7" y1="4" x2="4.25" y2="6" />{' '}
           <line x1="17" y1="4" x2="19.75" y2="6" />
         </svg>
-        <span>Instant Delivery</span>
+        <span>
+          <span className="font-semibold text-gray-400">Instant Delivery</span>{' '}
+          Guaranteed
+        </span>
       </div>
-      <div className="w-full flex text-sm h-9 space-x-1 border-b-[1px] border-gray-600 items-center justify-center text-center">
+      <div className="w-full flex text-sm h-9 text-gray-300 space-x-1 border-b-[1px] border-gray-600 items-center justify-center text-center">
         <svg
           className="h-3 w-3 text-orange-400"
           viewBox="0 0 24 24"
@@ -151,9 +162,11 @@ export const ProductCard: React.VFC<Props> = (props) => {
           {' '}
           <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
         </svg>
-        <span>24/7 Support</span>
+        <span>
+          <span className="font-semibold text-gray-400">24/7</span> Support
+        </span>
       </div>
-      <div className="w-full flex text-sm h-9 space-x-1 border-b-[1px] border-gray-600 items-center justify-center text-center">
+      <div className="w-full flex text-sm h-9 text-gray-300 space-x-1 border-b-[1px] border-gray-600 items-center justify-center text-center">
         <svg
           className="h-4 w-4 text-[green]"
           width="24"
@@ -170,7 +183,7 @@ export const ProductCard: React.VFC<Props> = (props) => {
         </svg>
         <span className="text-[green]">Secure Payments</span>
       </div>
-      <div className="w-full flex text-sm h-9 space-x-1  items-center justify-center text-center cursor-pointer hover:scale-110 transition-all duration-500">
+      <div className="w-full flex text-sm h-9 text-gray-300 space-x-1  items-center justify-center text-center cursor-pointer hover:scale-110 transition-all duration-500">
         <svg
           className="h-5 w-5 text-yellow-400"
           viewBox="0 0 24 24"
