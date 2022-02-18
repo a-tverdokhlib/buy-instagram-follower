@@ -29,7 +29,7 @@ const BuyInstagramFollower: React.VFC = () => {
         <HowTo />
         <FAQ />
         <Feedback />
-        <div className="h-64"></div>
+        <div className="h-32 bg-[#222232]"></div>
       </main>
       <Footer />
     </>

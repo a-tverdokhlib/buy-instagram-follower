@@ -193,7 +193,7 @@ export const Feedback: React.VFC = () => {
             <span className="text-sm md:text-base">Submit Your Review</span>
           </div>{' '}
           {showDlg === true ? <SubmitReview onClose={onCloseDlg} /> : <></>}
-          <div className="h-screen overflow-auto">
+          <div className="mt-3 h-screen overflow-auto rounded-xl">
             <div className="flex flex-col flex-wrap w-full space-y-3">
               {feedbackList.map((item, id) => {
                 return <ReviewItem key={id} feedbackInfo={item} />
