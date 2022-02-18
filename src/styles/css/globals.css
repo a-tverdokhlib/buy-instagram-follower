@@ -178,7 +178,6 @@ body {
   text-decoration: none;
   position: relative;
   background-color: rgba(255,5,255,0.7);
-  /* background-image: linear-gradient(to right, indigo, indigo); */
   -webkit-backface-visibility: hidden;
   z-index: 1;
 }
@@ -211,7 +210,6 @@ body {
   position: relative;
   background-color: transparent;
   border: #ccc solid 2px;
-  /* background-image: linear-gradient(to right, indigo, indigo); */
   -webkit-backface-visibility: hidden;
   z-index: 1;
 }
@@ -279,7 +277,6 @@ body {
   text-align: center;
   border: 0px;
   background-size: 200% auto;
-  /* background-image: linear-gradient(130.35deg, #6345ED 17.35%, #6345ED 78.23%); */
   color: #fff;
   opacity: 0;
   border: unset;

@@ -19,7 +19,7 @@ const DescItem: React.FC<DescItemProps> = ({ children, title }) => {
 }
 export const Description4: React.VFC = () => {
   return (
-    <div className="flex flex-col flex-wrap space-y-8 p-10 md:p-16 bg-[#222232]">
+    <div className="flex flex-col flex-wrap space-y-8 p-10 md:p-16 bg-[#222232] rounded-lg">
       <DescItem title="High-Quality Photos">
         <span>
           <span>

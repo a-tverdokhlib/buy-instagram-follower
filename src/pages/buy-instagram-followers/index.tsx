@@ -9,6 +9,7 @@ import { Description2 } from './Description2'
 import { Description3 } from './Description3'
 import { Description4 } from './Description4'
 import { FAQ } from './FAQ'
+import { Feedback } from './Feedback'
 import { FollowerPackages } from './FollowerPackages'
 import { LikePackages } from './LikesPackages'
 
@@ -27,6 +28,7 @@ const BuyInstagramFollower: React.VFC = () => {
         <Description4 />
         <HowTo />
         <FAQ />
+        <Feedback />
         <div className="h-64"></div>
       </main>
       <Footer />
