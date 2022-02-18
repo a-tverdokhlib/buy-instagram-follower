@@ -19,7 +19,7 @@ const MyComponentRenderFn: ForwardRefRenderFunction<any, Props> = (
     <div className="overflow-hidden m-auto pb-10 flex flex-wrap w-full min-w-[280px] max-w-xs bg-[#343444] justify-center cursor-pointer hover:-translate-y-2 hover:shadow-lg hover:shadow-cyan-700/50  transition-all duration-300 rounded-xl">
       <div className="w-full h-48 flex bg-[url('/img/follower-item-template.jpg')] bg-cover"></div>
       <div className="p-8">
-        <Card className="min-h-min w-full md:min-h-[80px]">
+        <Card className="min-h-min w-full md:min-h-[60px]">
           <span className="text-white font-bold">
             <span className="text-center">{title}</span>
           </span>
@@ -50,6 +50,26 @@ const MyComponentRenderFn: ForwardRefRenderFunction<any, Props> = (
             </svg>
           )
         })}
+      </div>
+      <div className="btn-buyit justify-center mt-5">
+        <div className="flex space-x-1 rounded-full py-2 px-3 gradient-btn-3 justify-center hover:cursor-pointer">
+          <svg
+            className="h-5 w-5 text-[#ff05ff] z-10"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            strokeWidth="2"
+            stroke="currentColor"
+            fill="none"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            {' '}
+            <path stroke="none" d="M0 0h24v24H0z" />{' '}
+            <path d="M15 10l-4 4l6 6l4 -16l-18 7l4 2l2 6l3 -4" />
+          </svg>
+          <span className="text-sm">Read More</span>
+        </div>
       </div>
     </div>
   )
