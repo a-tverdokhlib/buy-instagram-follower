@@ -61,15 +61,15 @@ const MyComponentRenderFn: ForwardRefRenderFunction<any, Props> = (
       breakpoints={{
         640: {
           slidesPerView: 2,
-          spaceBetween: 10,
+          spaceBetween: 5,
         },
         960: {
           slidesPerView: 3,
-          spaceBetween: 20,
+          spaceBetween: 5,
         },
         1200: {
           slidesPerView: 4,
-          spaceBetween: 20,
+          spaceBetween: 5,
         },
       }}
       // slidesPerView={4}
@@ -98,33 +98,3 @@ const MyComponentRenderFn: ForwardRefRenderFunction<any, Props> = (
 }
 
 export const MySwipper = React.forwardRef(MyComponentRenderFn)
-
-// export const MySwipper: React.FC<Props> = ({ children }) => {
-//   const nextSlide = () => {
-//     console.log('Next Slide')
-//   }
-//   const prevSlide = () => {
-//     console.log('Prev Slide')
-//   }
-//   return (
-//     <Swiper
-//       className="flex w-full"
-//       modules={[Navigation, Pagination, Scrollbar, A11y]}
-//       spaceBetween={10}
-//       slidesPerView={3}
-//       navigation
-//       pagination={{ clickable: true }}
-//       // scrollbar={{ draggable: true }}
-//       onSwiper={(swiper) => console.log(swiper)}
-//       onSlideChange={(e) => console.log('slide change => ', e)}
-//     >
-//       {children
-//         ? children.map((slideContent, index) => (
-//             <SwiperSlide key={index} virtualIndex={index}>
-//               <div className="flex px-10 justify-center">{slideContent}</div>
-//             </SwiperSlide>
-//           ))
-//         : null}{' '}
-//     </Swiper>
-//   )
-// }

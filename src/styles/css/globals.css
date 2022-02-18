@@ -270,17 +270,8 @@ body {
   z-index: 3;
 }
 
-
-.product-card {
-  font-family: arial, sans-serif;
-  text-decoration: none;
-  position: relative;
-  transition: opacity 0.5s ease-out;
-  -webkit-backface-visibility: hidden;
-  z-index: 1;
-}
 .product-card .btn-buyit{
-  top: 70%;
+  top: 110%;
   left: 50%;
   transform: translate(-50%,-30%);
   padding: 10px;
@@ -307,6 +298,18 @@ body {
   -ms-transition: all 0.3s ease;
   -o-transition: all 0.3s ease;
   transition: all 0.3s ease;
+}
+.product-card:hover .item-price {
+  opacity: 1;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.product-card .shadow-text {
+  text-shadow: 1px 1px #333333;
+
 }
 
 .sidenav ::-webkit-scrollbar {

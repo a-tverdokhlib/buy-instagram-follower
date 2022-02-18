@@ -16,7 +16,7 @@ const MyComponentRenderFn: ForwardRefRenderFunction<any, Props> = (
 ) => {
   const stars = [1, 2, 3, 4, 5]
   return (
-    <div className="overflow-hidden m-auto pb-10 flex flex-wrap w-full min-w-[280px] max-w-xs bg-[#343444] justify-center cursor-pointer hover:-translate-y-2 hover:shadow-lg hover:shadow-cyan-700/50  transition-all duration-300 rounded-xl">
+    <div className="overflow-hidden m-auto pb-10 flex flex-wrap w-full min-w-[280px] max-w-xs justify-center cursor-pointer bg-[#343444] hover:-translate-y-2 hover:shadow-lg hover:shadow-cyan-700/50  transition-all duration-300 rounded-xl">
       <div className="w-full h-48 flex bg-[url('/img/follower-item-template.jpg')] bg-cover"></div>
       <div className="p-8">
         <Card className="min-h-min w-full md:min-h-[60px]">

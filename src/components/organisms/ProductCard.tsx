@@ -12,52 +12,60 @@ export const ProductCard: React.VFC<Props> = (props) => {
     <div
       className={
         props.isPopular === true
-          ? 'flex flex-wrap overflow-hidden product-card mt-0 text-white bg-[#000000] bg-opacity-50 hover:bg-opacity-100 border-[1px] hover:border-indigo-900 hover:border-opacity-20 border-opacity-30 border-slate-900 transition-all duration-300 rounded-2xl'
-          : 'flex mt-[25px] overflow-hidden product-card flex-wrap text-white bg-[#000000] bg-opacity-50 hover:bg-opacity-100 border-[1px] hover:border-indigo-900 hover:border-opacity-20 border-opacity-30 border-slate-900 transition-all duration-300 rounded-2xl'
+          ? 'flex flex-wrap overflow-hidden product-card mt-[10px] text-white bg-[#343444] hover:-translate-y-2 hover:shadow-lg hover:shadow-cyan-700/50  transition-all duration-300 rounded-xl'
+          : 'flex mt-[35px] overflow-hidden product-card flex-wrap text-white bg-[#343444] hover:-translate-y-2 hover:shadow-lg hover:shadow-cyan-700/50  transition-all duration-300 rounded-xl'
       }
     >
       <div
         className={
           props.isPopular === true
-            ? 'w-full h-6 text-center bg-gradient-to-r from-[#ff7802] to-[#fea921]'
+            ? 'w-full h-6 text-center bg-gradient-to-r from-[#ff5502] to-[#aea921]'
             : 'w-full h-6 -mt-[30px] text-center bg-transparent'
         }
       >
         {props.isPopular === true ? <span>★★ Most Popular ★★</span> : <></>}
       </div>
-      <div className="w-full p-3 text-center text-3xl text-white font-bold">
-        {props.title}
-      </div>
-      <div className="w-full text-center text-orange-100 font-semibold">
-        {props.subTitle}
-      </div>
-      <div className="w-full text-center text-sm text-orange-500">
-        <span>★★★★★</span>
-        <span>{props.avgMark}</span>
-        <span>({props.reviewCount} Reviews)</span>
+      <div className="w-full h-48 flex flex-wrap bg-[url('/img/follower-item-template.jpg')] bg-cover">
+        <div className="w-full h-full flex flex-wrap bg-black opacity-80">
+          <div className="w-full flex items-center justify-center bg-[black] bg-opacity-80 text-center text-3xl text-[white] font-bold">
+            <span>
+              <span>{props.title}</span>
+            </span>
+          </div>
+          <div className="w-full mt-4 text-center text-orange-100 font-semibold ">
+            <span>
+              <span className="shadow-text">{props.subTitle}</span>
+            </span>
+          </div>
+          <div className="w-full text-center text-sm text-orange-500">
+            <span>★★★★★</span>
+            <span>{props.avgMark}</span>
+            <span>({props.reviewCount} Reviews)</span>
+          </div>
+          <div className="item-price text-3xl w-full  flex justify-center opacity-10 bg-gradient-to-r from-[indigo] to-[purple] items-center">
+            <sub className="symbol left-[-3px] top-[-7px] text-xl">
+              <svg
+                className="h-5 w-5 text-white"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                {' '}
+                <line x1="12" y1="1" x2="12" y2="23" />{' '}
+                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+              </svg>
+            </sub>
+            <span className="font-bold">{props.cost}</span>
+          </div>
+        </div>
       </div>
       {/* background-image: linear-gradient(to right,#ff7802 0%,#fea921 100%),linear-gradient(to right,#ff7802 0%,#fea921 100%); */}
-      <div className="mt-5 text-3xl w-full h-16 flex justify-center bg-gradient-to-r from-[indigo] to-[purple] items-center">
-        <sub className="symbol left-[-3px] top-[-7px] text-xl">
-          <svg
-            className="h-5 w-5 text-white"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            {' '}
-            <line x1="12" y1="1" x2="12" y2="23" />{' '}
-            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
-          </svg>
-        </sub>
-        <span className="font-bold">{props.cost}</span>
-      </div>
       <div className="w-full flex text-sm h-9 text-gray-300 space-x-1 border-b-[1px] border-gray-600 items-center justify-center text-center">
         <svg
-          className="h-4 w-4 text-orange-400"
+          className="h-4 w-4 text-[#DC39FC]"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -73,7 +81,7 @@ export const ProductCard: React.VFC<Props> = (props) => {
       </div>
       <div className="w-full flex text-sm h-9 text-gray-300 space-x-1 border-b-[1px] border-gray-600 items-center justify-center text-center">
         <svg
-          className="h-3 w-3 text-orange-400"
+          className="h-3 w-3 text-[#DC39FC]"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
@@ -92,7 +100,7 @@ export const ProductCard: React.VFC<Props> = (props) => {
       </div>
       <div className="w-full flex text-sm h-9 text-gray-300 space-x-1 border-b-[1px] border-gray-600 items-center justify-center text-center">
         <svg
-          className="h-3 w-3 text-orange-400"
+          className="h-3 w-3 text-[#DC39FC]"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
@@ -109,7 +117,7 @@ export const ProductCard: React.VFC<Props> = (props) => {
       </div>
       <div className="w-full flex text-sm h-9 text-gray-300 space-x-1 border-b-[1px] border-gray-600 items-center justify-center text-center">
         <svg
-          className="h-3 w-3 text-orange-400"
+          className="h-3 w-3 text-[#DC39FC]"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
@@ -127,7 +135,7 @@ export const ProductCard: React.VFC<Props> = (props) => {
       </div>
       <div className="w-full flex text-sm h-9 text-gray-300 space-x-1 border-b-[1px] border-gray-600 items-center justify-center text-center">
         <svg
-          className="h-4 w-4 text-orange-400"
+          className="h-4 w-4 text-[#DC39FC]"
           width="24"
           height="24"
           viewBox="0 0 24 24"
@@ -151,7 +159,7 @@ export const ProductCard: React.VFC<Props> = (props) => {
       </div>
       <div className="w-full flex text-sm h-9 text-gray-300 space-x-1 border-b-[1px] border-gray-600 items-center justify-center text-center">
         <svg
-          className="h-3 w-3 text-orange-400"
+          className="h-3 w-3 text-[#DC39FC]"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
