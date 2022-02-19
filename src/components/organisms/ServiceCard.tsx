@@ -15,7 +15,7 @@ const MyComponentRenderFn: ForwardRefRenderFunction<any, Props> = (
   ref,
 ) => {
   return (
-    <div className="service-card flex mt-16 flex-wrap w-full min-w-[286px] max-w-xs rounded-xl justify-center cursor-pointer bg-[#6345ED] bg-opacity-[0.02] hover:bg-opacity-[0.07] transition-colors duration-300">
+    <div className="service-card flex mt-16 flex-wrap w-full min-w-[286px] max-w-xs rounded-xl justify-center cursor-pointer bg-[#6345ED] bg-opacity-[0.07] hover:bg-opacity-[0.17] transition-colors duration-300">
       <div className="flex w-[130px] h-[130px] rounded-full bg-gray-700 bg-opacity-30 -mt-[60px] justify-center items-center shadow-[0_0px_50px_0px_rgba(100,69,237,0.37)]">
         <div className="flex justify-center rounded-full w-24 h-24 items-center overflow-hidden bg-[#343444]">
           <div className="icon">{img}</div>
