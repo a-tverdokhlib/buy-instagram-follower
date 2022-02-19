@@ -213,28 +213,32 @@ export const FAQ: React.VFC = () => {
         </div>
         <div className="mt-16 flex flex-col md:flex-row md:flex-nowrap md:space-x-3 md:space-y-0 justify-center">
           <div className="flex flex-col flex-wrap space-y-3 w-full md:w-1/2">
-            {providers.map((item, id) => {
-              return (
-                <Provider
-                  key={id}
-                  providerId={id}
-                  title={item.title}
-                  description={item.description}
-                />
-              )
-            })}
+            {providers
+              .filter((value) => value.providerId % 2 === 0)
+              .map((item, id) => {
+                return (
+                  <Provider
+                    key={id}
+                    providerId={id}
+                    title={item.title}
+                    description={item.description}
+                  />
+                )
+              })}
           </div>
           <div className="flex flex-col flex-wrap space-y-3 w-full md:w-1/2">
-            {providers.map((item, id) => {
-              return (
-                <Provider
-                  key={id}
-                  providerId={id}
-                  title={item.title}
-                  description={item.description}
-                />
-              )
-            })}
+            {providers
+              .filter((value) => value.providerId % 2 !== 0)
+              .map((item, id) => {
+                return (
+                  <Provider
+                    key={id}
+                    providerId={id}
+                    title={item.title}
+                    description={item.description}
+                  />
+                )
+              })}
           </div>
         </div>
       </div>

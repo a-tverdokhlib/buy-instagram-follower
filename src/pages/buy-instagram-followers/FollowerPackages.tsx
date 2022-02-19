@@ -76,7 +76,7 @@ const packageList = [
 export const FollowerPackages: React.VFC = () => {
   return (
     <div className="flex flex-col flex-wrap w-full items-center bg-[#222232] min-h-screen">
-      <div className="flex flex-col flex-wrap pb-9 md:w-1/2 lg:w-1/3 m-5 sm:m-10 md:m-24 bg-[black] bg-opacity-50 rounded-xl">
+      <div className="flex flex-col flex-wrap pb-9 md:w-1/2 lg:w-1/3 m-5 sm:m-10 md:mx-24 bg-[black] bg-opacity-50 rounded-xl">
         <div className="m-16 text-[#DC39FC] font-bold text-xl text-center animate-pulse">
           <span>
             <span className="">

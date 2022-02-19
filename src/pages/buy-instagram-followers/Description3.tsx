@@ -17,7 +17,7 @@ const DescItem: React.FC<DescItemProps> = ({ children, title }) => {
 }
 export const Description3: React.VFC = () => {
   return (
-    <div className="flex flex-col flex-wrap space-y-8 p-10 md:p-16 bg-[#222232]">
+    <div className="flex flex-col flex-wrap space-y-8 p-10 md:px-16 bg-[#222232]">
       <DescItem title="Consistency is Key">
         <span>
           <span>

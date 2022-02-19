@@ -67,9 +67,7 @@ export const LikePackages: React.VFC = () => {
       <div className="flex flex-col flex-wrap pb-9 md:w-1/2 lg:w-1/3 m-5 sm:m-10 md:mx-24 bg-[black] bg-opacity-50 rounded-xl">
         <div className="m-16 text-[#DC39FC] font-bold text-xl text-center animate-pulse">
           <span>
-            <span className="">
-              Goread.io Offers Following Active Instagram Likes Packages
-            </span>
+            <span className="">We have following Instagram Likes packages</span>
           </span>
         </div>
         <div className="flex flex-col flex-wrap px-3 space-y-1 justify-center">

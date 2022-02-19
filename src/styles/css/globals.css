@@ -268,6 +268,23 @@ body {
   z-index: 3;
 }
 
+.service-card:hover .icon {
+  transform:  rotateY(180deg);
+  -webkit-transition: all 0.7s ease;
+  -moz-transition: all 0.7s ease;
+  -ms-transition: all 0.7s ease;
+  -o-transition: all 0.7s ease;
+  transition: all 0.7s ease;
+}
+
+.service-card .icon {
+    -webkit-transition: all 0.7s ease-in-out;
+    -moz-transition: all 0.7s ease-in-out;
+    -ms-transition: all 0.7s ease-in-out;
+    -o-transition: all 0.7s ease-in-out;
+    transition: all 0.7s ease-in-out;
+}
+
 .product-card .btn-buyit{
   top: 110%;
   left: 50%;
@@ -318,7 +335,6 @@ body {
   width: 0;  /* Remove scrollbar space */
   background: transparent;  /* Optional: just make scrollbar invisible */
 }
-
 
 .hover-animation {
   text-decoration: none;

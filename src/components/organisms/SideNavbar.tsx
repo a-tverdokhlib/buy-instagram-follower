@@ -31,20 +31,18 @@ export const SideNavbar: React.VFC<SideProps> = ({ children }) => {
             </Link>
           </li>
           <li className="w-full md:w-28 ml:w-28 lg:w-36 pt-3">
-            <a
-              href="#"
-              className="flex items-center h-full py-2 pr-4 pl-3 text-white hover:text-[#DC39FC] md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 transition-all duration-500 delay-75"
-            >
-              Buy Instagram Likes
-            </a>
+            <Link href="buy-instagram-likes">
+              <a className="flex items-center h-full py-2 pr-4 pl-3 text-white hover:text-[#DC39FC] md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 transition-all duration-500 delay-75">
+                Buy Intagram Likes
+              </a>
+            </Link>
           </li>
           <li className="w-full md:w-28 ml:w-28 lg:w-36 pt-3">
-            <a
-              href="#"
-              className="flex items-center h-full py-2 pr-4 pl-3 text-white hover:text-[#DC39FC] md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 transition-all duration-500 delay-75"
-            >
-              Buy Instagram Views
-            </a>
+            <Link href="buy-instagram-views">
+              <a className="flex items-center h-full py-2 pr-4 pl-3 text-white hover:text-[#DC39FC] md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 transition-all duration-500 delay-75">
+                Buy Intagram Views
+              </a>
+            </Link>
           </li>
           <li className="block md:hidden w-full dm:block md:w-24 ml:w-28 xl:w-44 others dropdown pt-3">
             <a

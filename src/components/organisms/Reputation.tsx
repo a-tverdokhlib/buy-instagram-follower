@@ -30,7 +30,7 @@ export const Reputation: React.VFC = () => {
     setSwiperReachEnded(e)
   }
   return (
-    <div className="flex flex-col -mt-5 min-h-screen items-center flex-wrap bg-[#222232] opacity-95 rounded-3xl overflow-hidden shadow-[black] shadow-[0_0px_100px_0px_rgba(0,0,0,0.1)]">
+    <div className="flex flex-col -mt-5 min-h-screen items-center flex-wrap bg-[#222232] opacity-90 rounded-3xl overflow-hidden shadow-[black] shadow-[0_0px_100px_0px_rgba(0,0,0,0.1)]">
       <div className="mt-32 flex w-full min-w-[500] p-3 justify-center">
         <h1 className="text-4xl text-center text-white font-semibold md:text-5xl md:font-semibold">
           What People Say About Us?

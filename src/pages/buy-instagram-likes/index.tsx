@@ -2,7 +2,7 @@ import { Footer } from '@/components/organisms/Footer'
 import { Header } from '@/components/organisms/Header'
 import { HowTo } from '@/components/organisms/HowTo'
 
-import { ActiveFollowerPackages } from './ActiveFollowerPackages'
+import { ActiveLikePackages } from './ActiveLikePackages'
 import { Banner } from './Banner'
 import { Description1 } from './Description1'
 import { Description2 } from './Description2'
@@ -13,18 +13,18 @@ import { Feedback } from './Feedback'
 import { FollowerPackages } from './FollowerPackages'
 import { LikePackages } from './LikesPackages'
 
-const BuyInstagramFollowers: React.VFC = () => {
+const BuyInstagramLikes: React.VFC = () => {
   return (
     <>
       <Header />
       <main className="flex flex-1 flex-col w-full top-0 min-h-screen p-0">
         <Banner />
         <Description1 />
-        <FollowerPackages />
-        <Description2 />
         <LikePackages />
+        <Description2 />
+        <ActiveLikePackages />
         <Description3 />
-        <ActiveFollowerPackages />
+        <FollowerPackages />
         <Description4 />
         <HowTo />
         <FAQ />
@@ -35,4 +35,4 @@ const BuyInstagramFollowers: React.VFC = () => {
     </>
   )
 }
-export default BuyInstagramFollowers
+export default BuyInstagramLikes
