@@ -45,7 +45,7 @@ export const Services: React.VFC = () => {
       {/* <div className="flex w-1/3">
         <Slider color="#f15d23" barColor="#f15d23" value={sliderVal} />
       </div> */}
-      <div className="grid grid-cols-1 gap-10 items-center justify-center mt-16 p-12 md:grid-cols-2 xl:grid-cols-3">
+      <div className="grid grid-cols-1 gap-10 items-center justify-center mt-16 md:p-12 md:grid-cols-2 xl:grid-cols-3">
         <ServiceCard
           img={
             <svg

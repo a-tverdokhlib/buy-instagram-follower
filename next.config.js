@@ -3,4 +3,7 @@ module.exports = {
   eslint: {
     dirs: ['src'],
   },
+  experimental: {
+    scrollRestoration: true,
+  },
 }

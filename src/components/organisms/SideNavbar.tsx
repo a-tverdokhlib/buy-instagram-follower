@@ -4,8 +4,6 @@ export type SideProps = {
 
 import Link from 'next/link'
 
-import { Layout } from '@/components/atoms/Layout'
-
 export const SideNavbar: React.VFC<SideProps> = ({ children }) => {
   return (
     <div className="sidenav fixed w-full z-[1000]">
@@ -15,13 +13,14 @@ export const SideNavbar: React.VFC<SideProps> = ({ children }) => {
       >
         <ul className="flex flex-col mt-4 md:flex-row md:space-x-0 ml:space-x-1 md:mt-0 text-base md:font-medium">
           <li className="pt-3">
-            <a
-              href="#"
-              className="flex items-center h-full py-2 pr-4 pl-3 text-white hover:text-[#DC39FC] md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 transition-all duration-500 delay-75"
-              aria-current="page"
-            >
-              Home
-            </a>
+            <Link href="/" scroll={false}>
+              <a
+                className="flex items-center h-full py-2 pr-4 pl-3 text-white hover:text-[#DC39FC] md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 transition-all duration-500 delay-75"
+                aria-current="page"
+              >
+                Home
+              </a>
+            </Link>
           </li>
           <li className="w-full md:w-28 ml:w-28 lg:w-36 pt-3">
             <Link href="buy-instagram-followers">
