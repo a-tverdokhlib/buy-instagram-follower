@@ -3,14 +3,13 @@ import { useState } from 'react'
 import { ActiveLikes } from './ActiveLikes'
 import { QualityLikes } from './QualityLikes'
 
-export const Banner: React.VFC = () => {
-  const [likeType, setLikeType] = useState('highQuality')
-  const onClickedHighQuality = () => {
-    setLikeType('highQuality')
-  }
-  const onClickedActiveLikes = () => {
-    setLikeType('active')
-  }
+type Props = {
+  readonly onClickedHighQuality: () => void
+  readonly onClickedActiveFollowers: () => void
+  readonly likeType: () => string
+}
+
+export const Banner: React.VFC<Props> = (props) => {
   return (
     <div className="flex flex-col flex-wrap w-full bg-[#222232] min-h-screen">
       <div className="flex flex-col flex-wrap p-16 space-y-3 justify-center">
@@ -35,21 +34,21 @@ export const Banner: React.VFC = () => {
         <div className="flex rounded-full items-center border-[purple] border-2 overflow-hidden">
           <span
             className={
-              likeType === 'highQuality'
+              props.likeType() === 'highQuality'
                 ? 'rounded-full px-5 z-[4] py-3 bg-[purple] text-white hover:cursor-pointer text-center bg-gradient-to-t from-transparent to-purple-700'
                 : 'rounded-full px-5 z-[4] py-3 text-white hover:cursor-pointer hover-animation ani-left text-center'
             }
-            onClick={onClickedHighQuality}
+            onClick={props.onClickedHighQuality}
           >
             High Quality Likes
           </span>
           <span
             className={
-              likeType === 'active'
+              props.likeType() === 'active'
                 ? 'rounded-full px-5 z-[4] py-3 bg-[purple] text-white hover:cursor-pointer text-center bg-gradient-to-t from-transparent to-purple-700'
                 : 'rounded-full px-5 z-[4] py-3 text-white hover:cursor-pointer hover-animation ani-right text-center'
             }
-            onClick={onClickedActiveLikes}
+            onClick={props.onClickedActiveFollowers}
           >
             Active Likes
           </span>
@@ -57,7 +56,11 @@ export const Banner: React.VFC = () => {
         <div className="text-white text-center">What’s the difference?</div>
         <div className="h-10"></div>
         <div className="w-full justify-center items-center mt-16">
-          {likeType === 'highQuality' ? <QualityLikes /> : <ActiveLikes />}
+          {props.likeType() === 'highQuality' ? (
+            <QualityLikes />
+          ) : (
+            <ActiveLikes />
+          )}
         </div>
       </div>
     </div>

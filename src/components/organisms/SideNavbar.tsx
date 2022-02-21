@@ -13,7 +13,7 @@ export const SideNavbar: React.VFC<SideProps> = ({ children }) => {
       >
         <ul className="flex flex-col mt-4 md:flex-row md:space-x-0 ml:space-x-1 md:mt-0 text-base md:font-medium">
           <li className="pt-3">
-            <Link href="/" scroll={false}>
+            <Link href="/">
               <a
                 className="flex items-center h-full py-2 pr-4 pl-3 text-white hover:text-[#DC39FC] md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 transition-all duration-500 delay-75"
                 aria-current="page"
@@ -65,22 +65,34 @@ export const SideNavbar: React.VFC<SideProps> = ({ children }) => {
             </a>
             <div className="w-[300px] rounded-lg ml-auto mr-3 dropdown-content">
               <div className="bg-transparent">
-                <a href="#">Other Service 1</a>
+                <Link href="buy-instagram-comments">
+                  <a href="#">Buy Buy Instagram Comments</a>
+                </Link>
               </div>
               <div>
-                <a href="#">Other Service 2</a>
+                <Link href="buy-instagram-growth">
+                  <a href="#">Buy Instagram Growth</a>
+                </Link>
               </div>
               <div>
-                <a href="#">Other Service 3</a>
+                <Link href="buy-auto-instagram-likes">
+                  <a href="#">Buy Automatic Instagram Likes</a>
+                </Link>
               </div>
               <div>
-                <a href="#">Other Service 4</a>
+                <Link href="buy-auto-instagram-followers">
+                  <a href="#">Buy Auto Instagram Followers</a>
+                </Link>
               </div>
               <div>
-                <a href="#">Other Service 5</a>
+                <Link href="buy-custom-instagram-comments">
+                  <a href="#">Buy Custom Instagram Comments</a>
+                </Link>
               </div>
               <div>
-                <a href="#">Other Service 6</a>
+                <Link href="buy-instagram-story-views">
+                  <a href="#">Buy Instagram Story Views</a>
+                </Link>
               </div>
             </div>
           </li>

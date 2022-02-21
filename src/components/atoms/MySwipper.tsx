@@ -34,7 +34,7 @@ const MyComponentRenderFn: ForwardRefRenderFunction<any, Props> = (
   }, [])
 
   useEffect(() => {
-    if (activeIndex === 0) swiperReachStart()
+    if (activeIndex === 0) swiperReachStart(1)
     const swiper = document.querySelector('.swiper')?.swiper
     if (swiper.isEnd) swiperReachEnd(1)
     else swiperReachEnd(0)
@@ -44,11 +44,9 @@ const MyComponentRenderFn: ForwardRefRenderFunction<any, Props> = (
 
   const nextSlide = () => {
     const swiper = document.querySelector('.swiper')?.swiper
-    console.log('Next Slide')
     swiper.slideNext()
   }
   const prevSlide = () => {
-    console.log('Prev Slide')
     const swiper = document.querySelector('.swiper')?.swiper
     swiper.slidePrev()
   }
@@ -79,7 +77,7 @@ const MyComponentRenderFn: ForwardRefRenderFunction<any, Props> = (
       }}
       pagination={{ clickable: true }}
       // scrollbar={{ draggable: true }}
-      onSwiper={(swiper) => console.log(swiper)}
+      onSwiper={(swiper) => {}}
       onSlideChange={(e) => setActiveIndex(e.activeIndex)}
       onReachBeginning={swiperReachStart}
       onReachEnd={swiperReachEnd}

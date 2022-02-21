@@ -4,11 +4,14 @@ type Props = {
 }
 
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import React, { useEffect, useRef, useState } from 'react'
 
 import { Image } from '@/components/atoms/Image'
 
 export const Navbar: React.VFC<Props> = ({ menuClick, navShown }) => {
+  const router = useRouter()
+
   const [stickyClass, setStickyClass] = useState(
     'nav w-full z-[1001] samnav shadow-black-400 shadow-[0_0px_20px_3px_rgba(0,0,0,1)]',
   )
@@ -95,32 +98,36 @@ export const Navbar: React.VFC<Props> = ({ menuClick, navShown }) => {
           >
             <ul className="flex flex-col mt-4 md:flex-row md:space-x-0 ml:space-x-1 md:mt-0 text-base md:font-medium">
               <li>
-                <Link href="/">
-                  <a className="flex items-center h-full py-2 pr-4 pl-3 text-white border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-[#DC39FC] md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 transition-all duration-500 delay-75">
-                    Home
-                  </a>
-                </Link>
+                <a
+                  onClick={() => router.push('/')}
+                  className="hover:cursor-pointer flex items-center h-full py-2 pr-4 pl-3 text-white border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-[#DC39FC] md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 transition-all duration-500 delay-75"
+                >
+                  Home
+                </a>
               </li>
               <li className="w-full md:w-28 ml:w-28 lg:w-36">
-                <Link href="/buy-instagram-followers">
-                  <a className="flex items-center h-full py-2 pr-4 pl-3 text-white border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-[#DC39FC] md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 transition-all duration-500 delay-75">
-                    Buy Intagram Followers
-                  </a>
-                </Link>
+                <a
+                  onClick={() => router.push('/buy-instagram-followers')}
+                  className="hover:cursor-pointer flex items-center h-full py-2 pr-4 pl-3 text-white border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-[#DC39FC] md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 transition-all duration-500 delay-75"
+                >
+                  Buy Intagram Followers
+                </a>
               </li>
               <li className="w-full md:w-28 ml:w-28 lg:w-36">
-                <Link href="/buy-instagram-likes">
-                  <a className="flex items-center h-full py-2 pr-4 pl-3 text-white border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-[#DC39FC] md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 transition-all duration-500 delay-75">
-                    Buy Instagram Likes
-                  </a>
-                </Link>
+                <a
+                  onClick={() => router.push('/buy-instagram-likes')}
+                  className="hover:cursor-pointer flex items-center h-full py-2 pr-4 pl-3 text-white border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-[#DC39FC] md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 transition-all duration-500 delay-75"
+                >
+                  Buy Instagram Likes
+                </a>
               </li>
               <li className="w-full md:w-28 ml:w-28 lg:w-36">
-                <Link href="/buy-instagram-views">
-                  <a className="flex items-center h-full py-2 pr-4 pl-3 text-white border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-[#DC39FC] md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 transition-all duration-500 delay-75">
-                    Buy Instagram Views
-                  </a>
-                </Link>
+                <a
+                  onClick={() => router.push('/buy-instagram-views')}
+                  className="hover:cursor-pointer flex items-center h-full py-2 pr-4 pl-3 text-white border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-[#DC39FC] md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 transition-all duration-500 delay-75"
+                >
+                  Buy Instagram Views
+                </a>
               </li>
               <li className="block md:hidden w-full dm:block md:w-24 ml:w-28 xl:w-44 others dropdown">
                 <a
@@ -142,36 +149,46 @@ export const Navbar: React.VFC<Props> = ({ menuClick, navShown }) => {
                     ></path>
                   </svg>
                 </a>
-                <div className="dropdown-content">
+                <div className="dropdown-content w-[320px] hover:cursor-pointer">
                   <div>
-                    <Link href="#">
-                      <a>Other Service 1</a>
-                    </Link>
+                    <a onClick={() => router.push('/buy-instagram-comments')}>
+                      Buy Buy Instagram Comments
+                    </a>
                   </div>
                   <div>
-                    <Link href="#">
-                      <a>Other Service 2</a>
-                    </Link>
+                    <a onClick={() => router.push('/buy-instagram-growth')}>
+                      Buy Buy Instagram Growth
+                    </a>
                   </div>
                   <div>
-                    <Link href="#">
-                      <a>Other Service 3</a>
-                    </Link>
+                    <a onClick={() => router.push('/buy-auto-instagram-likes')}>
+                      Buy Automatic Instagram Likes
+                    </a>
                   </div>
                   <div>
-                    <Link href="#">
-                      <a>Other Service 4</a>
-                    </Link>
+                    <a
+                      onClick={() =>
+                        router.push('/buy-auto-instagram-followers')
+                      }
+                    >
+                      Buy Auto Instagram Followers
+                    </a>
                   </div>
                   <div>
-                    <Link href="#">
-                      <a>Other Service 5</a>
-                    </Link>
+                    <a
+                      onClick={() =>
+                        router.push('/buy-custom-instagram-comments')
+                      }
+                    >
+                      Buy Custom Instagram Comments
+                    </a>
                   </div>
                   <div>
-                    <Link href="#">
-                      <a>Other Service 6</a>
-                    </Link>
+                    <a
+                      onClick={() => router.push('/buy-instagram-story-views')}
+                    >
+                      Buy Instagram Story Views
+                    </a>
                   </div>
                 </div>
               </li>

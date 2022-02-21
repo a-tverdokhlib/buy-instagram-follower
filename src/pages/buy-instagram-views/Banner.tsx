@@ -3,14 +3,13 @@ import { useState } from 'react'
 import { ActiveViews } from './ActiveViews'
 import { QualityViews } from './QualityViews'
 
-export const Banner: React.VFC = () => {
-  const [viewType, setViewType] = useState('highQuality')
-  const onClickedHighQuality = () => {
-    setViewType('highQuality')
-  }
-  const onClickedActiveViews = () => {
-    setViewType('active')
-  }
+type Props = {
+  readonly onClickedHighQuality: () => void
+  readonly onClickedActiveViews: () => void
+  readonly viewType: () => string
+}
+
+export const Banner: React.VFC<Props> = (props) => {
   return (
     <div className="flex flex-col flex-wrap w-full bg-[#222232] min-h-screen">
       <div className="flex flex-col flex-wrap p-16 space-y-3 justify-center">
@@ -35,21 +34,21 @@ export const Banner: React.VFC = () => {
         <div className="flex rounded-full items-center border-[purple] border-2 overflow-hidden">
           <span
             className={
-              viewType === 'highQuality'
+              props.viewType() === 'highQuality'
                 ? 'rounded-full px-5 z-[4] py-3 bg-[purple] text-white hover:cursor-pointer text-center bg-gradient-to-t from-transparent to-purple-700'
                 : 'rounded-full px-5 z-[4] py-3 text-white hover:cursor-pointer hover-animation ani-left text-center'
             }
-            onClick={onClickedHighQuality}
+            onClick={props.onClickedHighQuality}
           >
             High Quality Views
           </span>
           <span
             className={
-              viewType === 'active'
+              props.viewType() === 'active'
                 ? 'rounded-full px-5 z-[4] py-3 bg-[purple] text-white hover:cursor-pointer text-center bg-gradient-to-t from-transparent to-purple-700'
                 : 'rounded-full px-5 z-[4] py-3 text-white hover:cursor-pointer hover-animation ani-right text-center'
             }
-            onClick={onClickedActiveViews}
+            onClick={props.onClickedActiveViews}
           >
             Active Views
           </span>
@@ -57,7 +56,11 @@ export const Banner: React.VFC = () => {
         <div className="text-white text-center">What’s the difference?</div>
         <div className="h-10"></div>
         <div className="w-full justify-center items-center mt-16">
-          {viewType === 'highQuality' ? <QualityViews /> : <ActiveViews />}
+          {props.viewType() === 'highQuality' ? (
+            <QualityViews />
+          ) : (
+            <ActiveViews />
+          )}
         </div>
       </div>
     </div>

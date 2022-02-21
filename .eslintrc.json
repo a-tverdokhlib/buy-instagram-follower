@@ -25,8 +25,10 @@
     "import/no-anonymous-default-export": ["error", { "allowObject": true }],
     "functional/no-return-void": "off",
     "functional/immutable-data": [
-      "error",
+      "off",
       { "ignoreAccessorPattern": "module.exports" }
-    ]
+    ],
+    "functional/prefer-readonly-type": "off",
+    "functional/no-let": "off"
   }
 }
