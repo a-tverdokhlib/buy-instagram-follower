@@ -70,7 +70,7 @@ export const SideNavbar: React.VFC<SideProps> = ({ children }) => {
                 </Link>
               </div>
               <div>
-                <Link href="buy-instagram-growth">
+                <Link href="instagram-growth">
                   <a href="#">Buy Instagram Growth</a>
                 </Link>
               </div>

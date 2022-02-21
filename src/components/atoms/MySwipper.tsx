@@ -58,15 +58,15 @@ const MyComponentRenderFn: ForwardRefRenderFunction<any, Props> = (
       spaceBetween={0}
       breakpoints={{
         640: {
-          slidesPerView: 2,
+          slidesPerView: Math.min(children.length, 2),
           spaceBetween: 5,
         },
         960: {
-          slidesPerView: 3,
+          slidesPerView: Math.min(children.length, 3),
           spaceBetween: 5,
         },
         1200: {
-          slidesPerView: 4,
+          slidesPerView: Math.min(children.length, 4),
           spaceBetween: 5,
         },
       }}

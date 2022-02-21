@@ -156,7 +156,7 @@ export const Navbar: React.VFC<Props> = ({ menuClick, navShown }) => {
                     </a>
                   </div>
                   <div>
-                    <a onClick={() => router.push('/buy-instagram-growth')}>
+                    <a onClick={() => router.push('/instagram-growth')}>
                       Buy Buy Instagram Growth
                     </a>
                   </div>
