@@ -8,6 +8,7 @@ import {
 import { createWrapper, HYDRATE } from 'next-redux-wrapper'
 import type { Reducer } from 'react'
 
+import { commentsReducer } from '@/redux/reducers/comments'
 import { followersReducer } from '@/redux/reducers/followers'
 import { likesReducer } from '@/redux/reducers/likes'
 import { viewsReducer } from '@/redux/reducers/views'
@@ -16,6 +17,7 @@ const combinedReducer = combineReducers({
   followers: followersReducer,
   likes: likesReducer,
   views: viewsReducer,
+  comments: commentsReducer,
 })
 
 const reducer: Reducer<ReturnType<typeof combinedReducer>, AnyAction> | any = (

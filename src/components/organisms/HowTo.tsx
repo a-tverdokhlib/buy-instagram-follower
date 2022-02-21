@@ -2,9 +2,9 @@ import { Card } from '@/components/atoms/Card'
 
 export const HowTo: React.VFC = () => {
   return (
-    <div className="flex flex-col min-h-screen items-center flex-wrap mt-3 bg-black opacity-95">
+    <div className="flex flex-col min-h-screen items-center flex-wrap mt-0 bg-black opacity-95">
       <div className="w-full min-h-screen absolute z-[-99] opacity-20 bg-[url('/img/bg_how_it_works.jpg')] bg-auto bg-center bg-fixed"></div>
-      <div className="flex w-full min-w-[500] p-12 justify-center">
+      <div className="flex w-full mt-24 min-w-[500] p-12 justify-center">
         <h1 className="text-4xl text-white font-semibold md:text-4xl md:font-semibold text-center">
           How to Buy a Package?
         </h1>{' '}
