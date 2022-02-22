@@ -1,5 +1,7 @@
 import Router, { NextRouter } from 'next/router'
 import { useEffect } from 'react'
+import * as Scroll from 'react-scroll'
+import { animateScroll as scroll, Element, scroller } from 'react-scroll'
 
 import { Footer } from '@/components/organisms/Footer'
 import { Header } from '@/components/organisms/Header'
@@ -26,6 +28,10 @@ function restoreScrollPosition(url: string, pos: number) {
 }
 
 const BuyInstagramLikes: React.VFC = () => {
+  let scroller = Scroll.scroller
+  let scroll = Scroll.animateScroll
+  let Element = Scroll.Element
+
   const dispatch = useAppDispatch()
   const { plan } = useAppSelector((state) => state.growth)
   const { scrollPosition } = useAppSelector((state) => state.growth)
@@ -36,6 +42,16 @@ const BuyInstagramLikes: React.VFC = () => {
 
   const onPlanSelected = (item) => {
     dispatch(setPlan(item))
+    setTimeout(() => {
+      // scroll.scrollTo(1000)
+      scroller.scrollTo('myScrollToElement', {
+        duration: 1500,
+        delay: 100,
+        smooth: true,
+        containerId: '',
+        offset: -70, // Scrolls to element + 50 pixels down the page
+      })
+    }, 100)
   }
 
   useEffect(() => {
@@ -79,9 +95,14 @@ const BuyInstagramLikes: React.VFC = () => {
   return (
     <>
       <Header />
-      <main className="flex flex-1 flex-col w-full top-0 min-h-screen p-0">
+      <main
+        className="flex flex-1 flex-col w-full top-0 min-h-screen p-0"
+        id="ContainerElementID"
+      >
         <Banner onPlanSelected={(item) => onPlanSelected(item)} />
-        <PlanConfirmation plan={plan} />
+        <Element name="myScrollToElement">
+          <PlanConfirmation plan={plan} />
+        </Element>
         <HowTo />
         <Feedback />
         <div className="h-32 bg-[#222232]"></div>

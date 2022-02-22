@@ -24,6 +24,7 @@
     "react-js-stickynav": "^1.0.2",
     "react-range": "^1.8.12",
     "react-redux": "^7.2.6",
+    "react-scroll": "^1.8.5",
     "react-youtube": "^7.14.0",
     "swiper": "^8.0.5"
   },
