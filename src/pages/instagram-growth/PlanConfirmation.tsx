@@ -4,7 +4,8 @@ type Props = {
 import NextImage from 'next/image'
 import { useEffect, useState } from 'react'
 import ReCAPTCHA from 'react-google-recaptcha'
-// import { Image } from '@/components/atoms/Image'
+import ProgressiveImage from 'react-progressive-image-loading'
+
 export const PlanConfirmation: React.VFC<Props> = (props) => {
   const [instagramName, setInstagramName] = useState('')
   const [email, setEmail] = useState('')
@@ -12,26 +13,28 @@ export const PlanConfirmation: React.VFC<Props> = (props) => {
   const [loaded, setLoaded] = useState(false)
 
   const submitPlan = () => {}
-  // const getPhoto = async () => {
-  // }
 
   useEffect(() => {
     setTimeout(() => {
       setPictureUrl(`https://instagram.com/${instagramName}/media`)
-      //  https://instagram.com/[USER_ID]/media
     }, 100)
   }, [instagramName])
+
   return (
     <div className="flex flex-col flex-wrap w-full pb-24 bg-[#222232]">
       <div className="flex flex-col flex-wrap mt-16 md:mt-8 w-full md:flex-row md:flex-nowrap md:space-x-3 text-white">
         <div className="flex w-full items-center justify-center">
-          <NextImage
-            src={loaded === true ? pictureUrl : '/img/instaPicture.png'}
-            width="150px"
-            height="150px"
-            alt="Insta Picture"
-            quality={100}
-            onLoadingComplete={() => setLoaded(true)}
+          <ProgressiveImage
+            preview="/img/instaPicture.png"
+            src={pictureUrl}
+            render={(src, style) => (
+              <NextImage
+                src={src}
+                width="150px"
+                height="150px"
+                alt="Insta Picture"
+              />
+            )}
           />
         </div>
         <div className="flex w-full">
