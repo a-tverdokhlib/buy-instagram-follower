@@ -29,6 +29,7 @@
       { "ignoreAccessorPattern": "module.exports" }
     ],
     "functional/prefer-readonly-type": "off",
-    "functional/no-let": "off"
+    "functional/no-let": "off",
+    "functional/no-mixed-type": "off"
   }
 }

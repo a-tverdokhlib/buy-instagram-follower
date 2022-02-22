@@ -9,6 +9,7 @@ import { useAppDispatch, useAppSelector } from '@/redux/store/hooks'
 
 import { Banner } from './Banner'
 import { Feedback } from './Feedback'
+import { PlanConfirmation } from './PlanConfirmation'
 
 function saveScrollPosition(
   url: string,
@@ -33,8 +34,8 @@ const BuyInstagramLikes: React.VFC = () => {
     dispatch(setScrollPosition(pos))
   }
 
-  const getPlan = () => {
-    return plan
+  const onPlanSelected = (item) => {
+    dispatch(setPlan(item))
   }
 
   useEffect(() => {
@@ -79,11 +80,8 @@ const BuyInstagramLikes: React.VFC = () => {
     <>
       <Header />
       <main className="flex flex-1 flex-col w-full top-0 min-h-screen p-0">
-        <Banner
-        // onClickedHighQuality={onClickedHighQuality}
-        // onClickedActiveViews={onClickedActiveViews}
-        // plan={getPlan}
-        />{' '}
+        <Banner onPlanSelected={(item) => onPlanSelected(item)} />
+        <PlanConfirmation plan={plan} />
         <HowTo />
         <Feedback />
         <div className="h-32 bg-[#222232]"></div>

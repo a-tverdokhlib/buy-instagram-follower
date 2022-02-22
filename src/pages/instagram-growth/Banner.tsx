@@ -8,7 +8,11 @@ import { Plans } from './Plans'
 //   readonly viewType: () => string
 // }
 
-export const Banner: React.VFC = (props) => {
+type Props = {
+  readonly onPlanSelected: (any) => void
+}
+
+export const Banner: React.VFC<Props> = (props) => {
   return (
     <div className="flex flex-col flex-wrap w-full bg-[#222232] min-h-screen">
       <div className="flex flex-col flex-wrap p-16 space-y-3 justify-center">
@@ -32,7 +36,7 @@ export const Banner: React.VFC = (props) => {
       <div className="flex w-full flex-col flex-wrap px-5 md:px-16 space-y-5 justify-center items-center">
         <div className="h-10"></div>
         <div className="w-full justify-center items-center mt-16">
-          <Plans />
+          <Plans onPlanSelected={(item) => props.onPlanSelected(item)} />
         </div>
       </div>
     </div>

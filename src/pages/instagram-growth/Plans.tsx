@@ -1,7 +1,8 @@
 import { useRef, useState } from 'react'
 
 import { MySwipper } from '@/components/atoms/MySwipper'
-import { GrowthPlanCard } from '@/components/organisms/GrowthPlanCard'
+
+import { GrowthPlanCard } from './GrowthPlanCard'
 
 const planCards = [
   {
@@ -54,7 +55,11 @@ const planCards = [
   },
 ]
 
-export const Plans: React.VFC = () => {
+type Props = {
+  readonly onPlanSelected: (any) => void
+}
+
+export const Plans: React.VFC<Props> = (props) => {
   const swiperRef = useRef<any>(null)
   const prevRef = useRef<any>(null)
   const nextRef = useRef<any>(null)
@@ -81,6 +86,7 @@ export const Plans: React.VFC = () => {
   const swiperReachEnd = (e: any) => {
     setSwiperReachEnded(e)
   }
+
   return (
     <>
       <div className="flex flex-row space-x-8 justify-center flex-nowrap">
@@ -165,6 +171,7 @@ export const Plans: React.VFC = () => {
               profileVisitDesc={item.profileVisitDesc}
               futurePostDesc={item.futurePostDesc}
               oneTimePaymentDesc={item.oneTimePaymentDesc}
+              onPurchaseClicked={() => props.onPlanSelected(item)}
             />
           )
         })}

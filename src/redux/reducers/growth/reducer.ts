@@ -3,12 +3,12 @@ import { createReducer } from '@reduxjs/toolkit'
 import { setPlan, setScrollPosition } from './actions'
 
 type GrowthState = {
-  plan: string
+  plan: any
   scrollPosition: number
 }
 
 const initialState: GrowthState = {
-  plan: '',
+  plan: {},
   scrollPosition: 0,
 }
 
