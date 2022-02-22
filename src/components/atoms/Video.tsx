@@ -14,7 +14,7 @@ export const Video: React.VFC<Props> = (props) => {
   } as const
 
   return (
-    <div className="text-white text-center md:p-24 p-4">
+    <div className="text-white text-center md:p-24 p-4 video-container">
       <YouTube videoId="mcHNUoAa05M" opts={options} />
     </div>
   )
