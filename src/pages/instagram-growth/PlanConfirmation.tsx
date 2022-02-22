@@ -1,6 +1,7 @@
 type Props = {
   readonly plan: any
 }
+import axios from 'axios'
 import NextImage from 'next/image'
 import { useEffect, useState } from 'react'
 import ReCAPTCHA from 'react-google-recaptcha'
@@ -10,16 +11,19 @@ export const PlanConfirmation: React.VFC<Props> = (props) => {
   const [instagramName, setInstagramName] = useState('')
   const [email, setEmail] = useState('')
   const [pictureUrl, setPictureUrl] = useState('/img/instaPicture.png')
-  const [loaded, setLoaded] = useState(false)
 
   const submitPlan = () => {}
-
-  useEffect(() => {
-    setTimeout(() => {
-      setPictureUrl(`https://instagram.com/${instagramName}/media`)
-    }, 100)
-  }, [instagramName])
-
+  const getProfilePicture = async () => {
+    await axios
+      .get(`https://www.instagram.com/${instagramName}/?__a=1`)
+      .then((res) => {
+        console.log(res.data)
+        setPictureUrl(res.data.graphql.profile_picture_url)
+      })
+      .catch((err) => {
+        window.alert(err)
+      })
+  }
   return (
     <div className="flex flex-col flex-wrap w-full pb-24 bg-[#222232]">
       <div className="flex flex-col flex-wrap mt-16 md:mt-8 w-full md:flex-row md:flex-nowrap md:space-x-3 text-white">
@@ -46,6 +50,7 @@ export const PlanConfirmation: React.VFC<Props> = (props) => {
                 name="insta-name"
                 placeholder="Your Instagram Name"
                 onChange={(e) => setInstagramName(e.target.value)}
+                onBlur={getProfilePicture}
                 value={instagramName}
               ></input>
             </div>

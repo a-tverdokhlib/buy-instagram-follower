@@ -4,6 +4,6 @@ module.exports = {
     dirs: ['src'],
   },
   images: {
-    domains: ['instagram.com'],
+    domains: ['instagram.com', 'images.firstpost.com'],
   },
 }
