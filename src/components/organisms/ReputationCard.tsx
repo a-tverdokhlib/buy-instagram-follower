@@ -17,7 +17,7 @@ const MyComponentRenderFn: ForwardRefRenderFunction<any, Props> = (
   const stars = [1, 2, 3, 4, 5]
   return (
     <div className="reputation-card-wrapper overflow-hidden w-full min-w-[280px] max-w-xs cursor-pointer rounded-xl">
-      <div className="reputation-card overflow-hidden m-auto pb-10  w-full min-w-[280px] max-w-xs justify-center cursor-pointer bg-[#6345ED] bg-opacity-5 transition-all duration-1000 rounded-xl">
+      <div className="reputation-card overflow-hidden m-auto pb-10  w-full min-w-[280px] max-w-xs justify-center cursor-pointer bg-[#6345ED] bg-opacity-5 transition-all duration-700 rounded-xl">
         <div className="w-full h-36 m-auto overflow-hidden">
           <div className="user-background w-full h-36 m-auto bg-[url('/img/reputation-bg-1.jpg')] bg-cover"></div>
         </div>

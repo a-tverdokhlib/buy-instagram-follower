@@ -1,18 +1,9 @@
 import { useEffect, useState } from 'react'
 
-import { Card } from '@/components/atoms/Card'
-import { Image } from '@/components/atoms/Image'
-import { Slider } from '@/components/atoms/Slider'
 import { ServiceCard } from '@/components/organisms/ServiceCard'
 
 export const Services: React.VFC = () => {
   const [sliderVal, setSliderVal] = useState(0)
-
-  useEffect(() => {
-    setTimeout(() => {
-      sliderVal > 100 ? setSliderVal(0) : setSliderVal(sliderVal + 1)
-    }, 100)
-  }, [sliderVal])
 
   return (
     <div className="flex flex-col mx-3 md:mx-20 items-center flex-wrap md:mt-20 pb-10 md:pb-0 bg-[#222232] rounded-3xl">

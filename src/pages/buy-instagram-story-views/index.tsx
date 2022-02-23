@@ -6,7 +6,7 @@ import { animateScroll as scroll, Element, scroller } from 'react-scroll'
 import { Footer } from '@/components/organisms/Footer'
 import { Header } from '@/components/organisms/Header'
 import { HowTo } from '@/components/organisms/HowTo'
-import { setPlan, setScrollPosition } from '@/redux/reducers/growth'
+import { setPlan, setScrollPosition } from '@/redux/reducers/storyViews'
 import { useAppDispatch, useAppSelector } from '@/redux/store/hooks'
 
 import { Banner } from './Banner'
@@ -27,14 +27,14 @@ function restoreScrollPosition(url: string, pos: number) {
   }
 }
 
-const BuyInstagramLikes: React.VFC = () => {
+const BuyInstagramStoryViews: React.VFC = () => {
   let scroller = Scroll.scroller
   let scroll = Scroll.animateScroll
   let Element = Scroll.Element
 
   const dispatch = useAppDispatch()
-  const { plan } = useAppSelector((state) => state.growth)
-  const { scrollPosition } = useAppSelector((state) => state.growth)
+  const { plan } = useAppSelector((state) => state.storyViews)
+  const { scrollPosition } = useAppSelector((state) => state.storyViews)
 
   const updatePosition = (url: string, pos: number) => {
     dispatch(setScrollPosition(pos))
@@ -110,4 +110,4 @@ const BuyInstagramLikes: React.VFC = () => {
     </>
   )
 }
-export default BuyInstagramLikes
+export default BuyInstagramStoryViews

@@ -5,9 +5,10 @@ type Props = {
   readonly reviewCount: number
   readonly cost: number
   readonly isPopular: boolean
+  readonly onPurchaseClicked: () => void
 }
 
-export const ProductCard: React.VFC<Props> = (props) => {
+export const StoryViewPlanCard: React.VFC<Props> = (props) => {
   return (
     <div
       className={
@@ -197,7 +198,10 @@ export const ProductCard: React.VFC<Props> = (props) => {
         </svg>
         <span className="text-[green]">Secure Payments</span>
       </div>
-      <div className="w-full flex text-sm h-9 text-gray-300 space-x-1  items-center justify-center text-center cursor-pointer hover:scale-110 transition-all duration-500">
+      <div
+        onClick={props.onPurchaseClicked}
+        className="w-full flex text-sm h-9 text-gray-300 space-x-1  items-center justify-center text-center cursor-pointer hover:scale-110 transition-all duration-500"
+      >
         <svg
           className="h-5 w-5 text-yellow-400"
           viewBox="0 0 24 24"
@@ -213,7 +217,10 @@ export const ProductCard: React.VFC<Props> = (props) => {
         </svg>
         <span>Order Now</span>
       </div>
-      <div className="btn-buyit justify-center absolute">
+      <div
+        onClick={props.onPurchaseClicked}
+        className="btn-buyit justify-center absolute"
+      >
         <div className="flex space-x-1 rounded-full py-2 gradient-btn-2 justify-center hover:cursor-pointer">
           <svg
             className="h-5 w-5 text-white z-10"
@@ -230,7 +237,7 @@ export const ProductCard: React.VFC<Props> = (props) => {
             <path stroke="none" d="M0 0h24v24H0z" />{' '}
             <path d="M15 10l-4 4l6 6l4 -16l-18 7l4 2l2 6l3 -4" />
           </svg>
-          <span className="w-12 text-sm">Buy it</span>
+          <span className="w-18 text-sm">Order Now</span>
         </div>
       </div>
     </div>

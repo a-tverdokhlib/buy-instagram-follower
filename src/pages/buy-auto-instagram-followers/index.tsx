@@ -6,12 +6,18 @@ import { animateScroll as scroll, Element, scroller } from 'react-scroll'
 import { Footer } from '@/components/organisms/Footer'
 import { Header } from '@/components/organisms/Header'
 import { HowTo } from '@/components/organisms/HowTo'
-import { setPlan, setScrollPosition } from '@/redux/reducers/growth'
+import {
+  setInstagramAccount,
+  setPlan,
+  setPrice,
+  setScrollPosition,
+  setSubscriptionPlan,
+} from '@/redux/reducers/autoFollowers'
 import { useAppDispatch, useAppSelector } from '@/redux/store/hooks'
 
 import { Banner } from './Banner'
-import { Feedback } from './Feedback'
-import { PlanConfirmation } from './PlanConfirmation'
+import { FollowerPlan } from './FollowerPlan'
+import { SubscriptionPlan } from './SubscriptionPlan'
 
 function saveScrollPosition(
   url: string,
@@ -27,30 +33,28 @@ function restoreScrollPosition(url: string, pos: number) {
   }
 }
 
-const BuyInstagramLikes: React.VFC = () => {
+const BuyAutoInstagramLikes: React.VFC = () => {
   let scroller = Scroll.scroller
   let scroll = Scroll.animateScroll
   let Element = Scroll.Element
 
   const dispatch = useAppDispatch()
-  const { plan } = useAppSelector((state) => state.growth)
-  const { scrollPosition } = useAppSelector((state) => state.growth)
+  const { plan } = useAppSelector((state) => state.autoFollowers)
+  const { subscriptionPlan } = useAppSelector((state) => state.autoFollowers)
+  const { instagramAccount } = useAppSelector((state) => state.autoFollowers)
+  const { price } = useAppSelector((state) => state.autoFollowers)
+  const { scrollPosition } = useAppSelector((state) => state.autoFollowers)
 
   const updatePosition = (url: string, pos: number) => {
     dispatch(setScrollPosition(pos))
   }
 
-  const onPlanSelected = (item) => {
+  const onFollowerPlanSelected = (item) => {
     dispatch(setPlan(item))
-    setTimeout(() => {
-      scroller.scrollTo('myScrollToElement', {
-        duration: 1500,
-        delay: 100,
-        smooth: true,
-        containerId: '',
-        offset: -70,
-      })
-    }, 100)
+  }
+
+  const onSubscriptionPlanSelected = (item) => {
+    dispatch(setSubscriptionPlan(item))
   }
 
   useEffect(() => {
@@ -98,16 +102,17 @@ const BuyInstagramLikes: React.VFC = () => {
         className="flex flex-1 flex-col w-full top-0 min-h-screen p-0"
         id="ContainerElementID"
       >
-        <Banner onPlanSelected={(item) => onPlanSelected(item)} />
-        <Element name="myScrollToElement">
-          <PlanConfirmation plan={plan} />
-        </Element>
-        <HowTo />
-        <Feedback />
+        <Banner />
+        <div className="flex flex-col flex-wrap w-full p-3 bg-[#222232]">
+          <FollowerPlan planSelected={(item) => onFollowerPlanSelected(item)} />
+          <SubscriptionPlan
+            planSelected={(item) => onSubscriptionPlanSelected(item)}
+          />
+        </div>
         <div className="h-32 bg-[#222232]"></div>
       </main>
       <Footer />
     </>
   )
 }
-export default BuyInstagramLikes
+export default BuyAutoInstagramLikes

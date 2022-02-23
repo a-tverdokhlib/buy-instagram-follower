@@ -1,17 +1,18 @@
 import Router, { NextRouter } from 'next/router'
 import { useEffect } from 'react'
-import * as Scroll from 'react-scroll'
-import { animateScroll as scroll, Element, scroller } from 'react-scroll'
 
 import { Footer } from '@/components/organisms/Footer'
 import { Header } from '@/components/organisms/Header'
 import { HowTo } from '@/components/organisms/HowTo'
-import { setPlan, setScrollPosition } from '@/redux/reducers/growth'
+import { setScrollPosition, setType } from '@/redux/reducers/customComments'
 import { useAppDispatch, useAppSelector } from '@/redux/store/hooks'
 
 import { Banner } from './Banner'
+import { Description1 } from './Description1'
+import { Description2 } from './Description2'
+import { FAQ } from './FAQ'
 import { Feedback } from './Feedback'
-import { PlanConfirmation } from './PlanConfirmation'
+import { ViewPackages } from './ViewPackages'
 
 function saveScrollPosition(
   url: string,
@@ -27,30 +28,24 @@ function restoreScrollPosition(url: string, pos: number) {
   }
 }
 
-const BuyInstagramLikes: React.VFC = () => {
-  let scroller = Scroll.scroller
-  let scroll = Scroll.animateScroll
-  let Element = Scroll.Element
-
+const BuyCustomInstagramComments: React.VFC = () => {
   const dispatch = useAppDispatch()
-  const { plan } = useAppSelector((state) => state.growth)
-  const { scrollPosition } = useAppSelector((state) => state.growth)
+  const { commentType } = useAppSelector((state) => state.customComments)
+  const { scrollPosition } = useAppSelector((state) => state.customComments)
+
+  const onClickedHighQuality = () => {
+    dispatch(setType('highQuality'))
+  }
+  const onClickedActive = () => {
+    dispatch(setType('active'))
+  }
 
   const updatePosition = (url: string, pos: number) => {
     dispatch(setScrollPosition(pos))
   }
 
-  const onPlanSelected = (item) => {
-    dispatch(setPlan(item))
-    setTimeout(() => {
-      scroller.scrollTo('myScrollToElement', {
-        duration: 1500,
-        delay: 100,
-        smooth: true,
-        containerId: '',
-        offset: -70,
-      })
-    }, 100)
+  const getCommentType = () => {
+    return commentType
   }
 
   useEffect(() => {
@@ -94,14 +89,13 @@ const BuyInstagramLikes: React.VFC = () => {
   return (
     <>
       <Header />
-      <main
-        className="flex flex-1 flex-col w-full top-0 min-h-screen p-0"
-        id="ContainerElementID"
-      >
-        <Banner onPlanSelected={(item) => onPlanSelected(item)} />
-        <Element name="myScrollToElement">
-          <PlanConfirmation plan={plan} />
-        </Element>
+      <main className="flex flex-1 flex-col w-full top-0 min-h-screen p-0">
+        <Banner
+          onClickedHighQuality={onClickedHighQuality}
+          onClickedActive={onClickedActive}
+          commentType={getCommentType}
+        />{' '}
+        <Description1 />
         <HowTo />
         <Feedback />
         <div className="h-32 bg-[#222232]"></div>
@@ -110,4 +104,4 @@ const BuyInstagramLikes: React.VFC = () => {
     </>
   )
 }
-export default BuyInstagramLikes
+export default BuyCustomInstagramComments
