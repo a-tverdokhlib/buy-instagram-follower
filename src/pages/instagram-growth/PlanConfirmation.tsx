@@ -15,7 +15,9 @@ export const PlanConfirmation: React.VFC<Props> = (props) => {
   const submitPlan = () => {}
   const getProfilePicture = async () => {
     await axios
-      .get(`https://www.instagram.com/${instagramName}/?__a=1`)
+      .get(
+        `https://www.instagram.com/web/search/topsearch/?query=${instagramName}`,
+      )
       .then((res) => {
         console.log(res.data)
         setPictureUrl(res.data.graphql.user.profile_picture_url)
