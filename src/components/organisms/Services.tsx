@@ -15,7 +15,7 @@ export const Services: React.VFC = () => {
   }, [sliderVal])
 
   return (
-    <div className="flex flex-col mx-3 md:mx-20 items-center flex-wrap md:mt-20 bg-[#222232] rounded-3xl">
+    <div className="flex flex-col mx-3 md:mx-20 items-center flex-wrap md:mt-20 pb-10 md:pb-0 bg-[#222232] rounded-3xl">
       <div className="mt-24 space-x-3 flex w-full min-w-[500] text-center justify-center">
         {/* <div className="flex overflow-hidden rounded-full items-center justify-center w-16 h-16">
           <span className="animate-ping-slow z-[2] inline-flex h-6 w-6 rounded-full bg-white border-2 border-white opacity-75"></span>

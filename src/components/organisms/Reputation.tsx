@@ -42,14 +42,14 @@ export const Reputation: React.VFC = () => {
           trust. Read what our buyers think about our range of service.
         </span>
       </div>
-      <div className="mt-10 grid grid-cols-1 gap-10 justify-center p-12 md:grid-cols-2 xl:grid-cols-3">
+      <div className="reputation-cards mt-10 grid grid-cols-1 gap-10 justify-center p-12 md:grid-cols-2 xl:grid-cols-3">
         <ReputationCard
           img={
             <Image
               src="/img/avt-template.jpg"
               alt="Avatar"
-              width="80px"
-              height="80px"
+              width="100px"
+              height="100px"
             />
           }
           title="John Smith Youtuber"
@@ -60,8 +60,8 @@ export const Reputation: React.VFC = () => {
             <Image
               src="/img/avt-template.jpg"
               alt="Avatar"
-              width="80px"
-              height="80px"
+              width="100px"
+              height="100px"
             />
           }
           title="Keith Irvine Instagram Model"
@@ -72,8 +72,8 @@ export const Reputation: React.VFC = () => {
             <Image
               src="/img/avt-template.jpg"
               alt="Avatar"
-              width="80px"
-              height="80px"
+              width="100px"
+              height="100px"
             />
           }
           title="Sara-Jade Bevis Bloger"

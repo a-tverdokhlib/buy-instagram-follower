@@ -18,7 +18,7 @@ export const PlanConfirmation: React.VFC<Props> = (props) => {
       .get(`https://www.instagram.com/${instagramName}/?__a=1`)
       .then((res) => {
         console.log(res.data)
-        setPictureUrl(res.data.graphql.profile_picture_url)
+        setPictureUrl(res.data.graphql.user.profile_picture_url)
       })
       .catch((err) => {
         window.alert(err)

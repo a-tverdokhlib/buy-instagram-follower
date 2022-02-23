@@ -285,6 +285,96 @@ body {
     -o-transition: all 0.7s ease-in-out;
     transition: all 0.7s ease-in-out;
 }
+/* 
+.reputation-card:hover .icon {
+  transform:  scale(0.9);
+  -webkit-transition: all 0.7s ease;
+  -moz-transition: all 0.7s ease;
+  -ms-transition: all 0.7s ease;
+  -o-transition: all 0.7s ease;
+  transition: all 0.7s ease;
+}
+
+.reputation-card .icon {
+    -webkit-transition: all 0.7s ease-in-out;
+    -moz-transition: all 0.7s ease-in-out;
+    -ms-transition: all 0.7s ease-in-out;
+    -o-transition: all 0.7s ease-in-out;
+    transition: all 0.7s ease-in-out;
+} */
+
+.reputation-card {
+  height: 250px;
+}
+
+.reputation-cards .reputation-card-wrapper {
+  height: 490px;
+}
+
+.reputation-card-wrapper:first-child > .reputation-card
+{
+  height: 490px;
+}
+
+.reputation-card:hover {
+  height: 490px;
+}
+
+.reputation-card .user-background{
+  -webkit-transition: all 0.7s ease;
+  -moz-transition: all 0.7s ease;
+  -ms-transition: all 0.7s ease;
+  -o-transition: all 0.7s ease;
+  transition: all 0.7s ease;
+}
+
+.reputation-card:hover .user-background{
+  transform:  scale(1.1);
+  -webkit-transition: all 0.7s ease;
+  -moz-transition: all 0.7s ease;
+  -ms-transition: all 0.7s ease;
+  -o-transition: all 0.7s ease;
+  transition: all 0.7s ease;
+}
+
+.reputation-card:hover .icon-ring {
+  border: 1px solid rgba(255, 255, 255, 1);
+  transform:  scale(0.9);
+  -webkit-transition: all 0.7s ease;
+  -moz-transition: all 0.7s ease;
+  -ms-transition: all 0.7s ease;
+  -o-transition: all 0.7s ease;
+  transition: all 0.7s ease;
+}
+
+.reputation-card .icon-ring {
+  border: 1px solid rgba(255, 255, 255, 0);
+    -webkit-transition: all 0.7s ease-in-out;
+    -moz-transition: all 0.7s ease-in-out;
+    -ms-transition: all 0.7s ease-in-out;
+    -o-transition: all 0.7s ease-in-out;
+    transition: all 0.7s ease-in-out;
+}
+
+@media (min-width: 893px) {
+  .reputation-card {
+    height: 235px;
+  }
+  
+  .reputation-cards .reputation-card-wrapper {
+    height: 470px;
+  }
+  
+  .reputation-card-wrapper:first-child > .reputation-card
+  {
+    height: 470px;
+  }
+  
+  .reputation-card:hover {
+    height: 470px;
+  }
+  
+}
 
 .product-card .btn-buyit{
   top: 110%;
