@@ -32,7 +32,7 @@ export const SubscriptionPlanCard: React.VFC<Props> = (props) => {
             <span
               className={
                 props.planInfo.isPopular
-                  ? 'flex p-3 items-center justify-center bg-[url("/img/discount-saving.png")] bg-no-repeat bg-contain bg-center py-2'
+                  ? 'flex ls:p-3 items-center justify-center bg-[url("/img/discount-saving.png")] bg-no-repeat bg-contain bg-center py-2'
                   : 'flex items-center justify-center bg-no-repeat bg-contain py-2'
               }
             >

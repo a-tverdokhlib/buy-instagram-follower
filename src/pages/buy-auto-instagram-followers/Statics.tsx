@@ -7,10 +7,10 @@ export const Statics: React.VFC<Props> = (props) => {
   return (
     <div className="flex flex-col flex-wrap justify-center items-center bg-black bg-opacity-30 rounded-t-2xl">
       <div className="flex w-full h-32"></div>
-      <div className="flex flex-col flex-wrap w-full items-center h-[90%] md:h-screen bg-[url('/img/stat-graph.svg')] bg-no-repeat bg-center">
+      <div className="flex flex-col flex-wrap w-full items-center h-[90%] md:h-[650px] bg-[url('/img/stat-graph.svg')] bg-no-repeat bg-center">
         <div className="flex w-full justify-center">
           <span>
-            <span className="flex text-white font-bold text-4xl text-center">
+            <span className="flex text-white font-bold text-2xl ls:text-4xl text-center">
               Until Now, We Have
             </span>
           </span>

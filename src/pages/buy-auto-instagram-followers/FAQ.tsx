@@ -17,7 +17,7 @@ export const FAQ: React.VFC = () => {
         <div className="mt-10 flex flex-col flex-wrap w-full items-center">
           <div className="flex w-full justify-center">
             <span>
-              <span className="flex text-white font-bold text-2xl md:text-4xl text-center px-16">
+              <span className="flex text-white font-bold text-2xl ls:text-2xl md:text-4xl text-center ls:px-16">
                 FAQs about Buying Instagram Auto Followers
               </span>
             </span>

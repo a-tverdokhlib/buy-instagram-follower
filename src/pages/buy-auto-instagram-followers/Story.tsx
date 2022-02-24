@@ -17,7 +17,7 @@ export const Story: React.VFC = () => {
         <div className="flex flex-col flex-wrap w-full items-center">
           <div className="flex w-full justify-center">
             <span>
-              <span className="flex text-white font-bold text-4xl text-center px-5">
+              <span className="flex text-white font-bold text-2xl ls:text-4xl text-center px-5">
                 Why Should You Buy Instagram Auto Followers?
               </span>
             </span>

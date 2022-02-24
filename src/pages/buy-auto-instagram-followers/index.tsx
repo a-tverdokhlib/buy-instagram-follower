@@ -35,11 +35,12 @@ function saveScrollPosition(
 
 function restoreScrollPosition(url: string, pos: number) {
   if (pos) {
+    console.log('Restore Position', pos)
     window.scrollTo(0, pos)
   }
 }
 
-const BuyAutoInstagramLikes: React.VFC = () => {
+const BuyAutoInstagramFollowers: React.VFC = () => {
   let scroller = Scroll.scroller
   let scroll = Scroll.animateScroll
   let Element = Scroll.Element
@@ -52,6 +53,7 @@ const BuyAutoInstagramLikes: React.VFC = () => {
   const { scrollPosition } = useAppSelector((state) => state.autoFollowers)
 
   const updatePosition = (url: string, pos: number) => {
+    console.log('Store Position', pos)
     dispatch(setScrollPosition(pos))
   }
 
@@ -138,4 +140,4 @@ const BuyAutoInstagramLikes: React.VFC = () => {
     </>
   )
 }
-export default BuyAutoInstagramLikes
+export default BuyAutoInstagramFollowers

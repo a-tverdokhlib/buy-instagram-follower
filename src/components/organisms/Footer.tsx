@@ -129,9 +129,13 @@ export const Footer: React.VFC = () => (
                 </a>
               </div>
               <div className="flex flex-row w-full">
-                <div className="w-[350px]">
-                  Company: SOCIAL JOOL LLC ( 2112727), Sharjah Media City,
-                  Sharjah, UAE
+                <div className="ls:w-[350px]">
+                  <span>
+                    <span>
+                      Company: SOCIAL JOOL LLC ( 2112727), Sharjah Media City,
+                      Sharjah, UAE
+                    </span>
+                  </span>
                 </div>
               </div>
             </div>

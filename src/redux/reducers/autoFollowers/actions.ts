@@ -9,5 +9,5 @@ export const setInstagramAccount = createAction<string>(
 )
 export const setPrice = createAction<number>('autoFollowers/setPrice')
 export const setScrollPosition = createAction<number>(
-  'autoLikes/setScrollPosition',
+  'autoFollowers/setScrollPosition',
 )

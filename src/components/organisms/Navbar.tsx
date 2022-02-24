@@ -48,7 +48,7 @@ export const Navbar: React.VFC<Props> = ({ menuClick, navShown }) => {
   return (
     <nav className={`${stickyClass}`}>
       <div>
-        <div className="min-w-min py-5 flex flex-wrap justify-between items-center mx-auto bg-black md:bg-transparent">
+        <div className="min-w-min py-5 flex flex-wrap ls:justify-between items-center mx-auto bg-black md:bg-transparent">
           <div className="ml-1 ls:ml-5 sm:ml-16">
             {/* <Image
               src="/Goreadlogo.png"
