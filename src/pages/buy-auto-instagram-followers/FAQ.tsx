@@ -11,7 +11,7 @@ const DescItem: React.FC<DescItemProps> = ({ children, title }) => {
 }
 export const FAQ: React.VFC = () => {
   return (
-    <div className="flex flex-col flex-wrap justify-center items-center rounded-2xl bg-black bg-opacity-50">
+    <div className="flex flex-col flex-wrap justify-center items-center rounded-2xl bg-black bg-opacity-30">
       <div className="flex w-full h-12"></div>
       <div className="flex flex-col flex-wrap w-full items-center">
         <div className="mt-10 flex flex-col flex-wrap w-full items-center">
