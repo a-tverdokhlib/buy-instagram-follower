@@ -17,6 +17,7 @@ import { useAppDispatch, useAppSelector } from '@/redux/store/hooks'
 
 import { Banner } from './Banner'
 import { FollowerPlan } from './FollowerPlan'
+import { InstagramAccount } from './InstagramAccount'
 import { SubscriptionPlan } from './SubscriptionPlan'
 
 function saveScrollPosition(
@@ -56,6 +57,8 @@ const BuyAutoInstagramLikes: React.VFC = () => {
   const onSubscriptionPlanSelected = (item) => {
     dispatch(setSubscriptionPlan(item))
   }
+
+  const onSubmitClicked = (name) => {}
 
   useEffect(() => {
     if ('scrollRestoration' in window.history) {
@@ -104,10 +107,16 @@ const BuyAutoInstagramLikes: React.VFC = () => {
       >
         <Banner />
         <div className="flex flex-col flex-wrap w-full p-3 bg-[#222232]">
-          <FollowerPlan planSelected={(item) => onFollowerPlanSelected(item)} />
-          <SubscriptionPlan
-            planSelected={(item) => onSubscriptionPlanSelected(item)}
-          />
+          <div className="flex flex-col flex-wrap w-full overflow-hidden rounded-2xl bg-[purple] bg-opacity-50 md:bg-[transparent]">
+            <FollowerPlan
+              planSelected={(item) => onFollowerPlanSelected(item)}
+            />
+            <SubscriptionPlan
+              planSelected={(item) => onSubscriptionPlanSelected(item)}
+            />
+            <InstagramAccount submitClicked={(name) => onSubmitClicked(name)} />
+            <div className="w-full h-16"></div>
+          </div>
         </div>
         <div className="h-32 bg-[#222232]"></div>
       </main>
