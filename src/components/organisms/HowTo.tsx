@@ -16,7 +16,7 @@ export const HowTo: React.VFC = () => {
         </span>
       </div>
       <div className="flex flex-wrap w-full flex-col justify-center p-10 space-y-5 mx:flex-row mx:flex-nowrap mx:space-x-10 mx:space-y-0">
-        <div className="overflow-visible flex flex-wrap w-full min-w-[286px] rounded-[50px] cursor-pointer">
+        <div className="overflow-visible flex flex-wrap w-full ls:min-w-[286px] rounded-[50px] cursor-pointer">
           <div className="px-3 py-10">
             <Card className="w-full min-h-[200px]">
               <h2 className="flex w-full font-bold text-2xl text-white text-center">
@@ -39,7 +39,7 @@ export const HowTo: React.VFC = () => {
             </span>
           </div>
         </div>
-        <div className="overflow-visible flex flex-wrap w-full min-w-[286px] rounded-[50px] cursor-pointer">
+        <div className="overflow-visible flex flex-wrap w-full ls:min-w-[286px] rounded-[50px] cursor-pointer">
           <div className="px-3 py-10">
             <Card className="w-full min-h-[200px]">
               <h2 className="flex w-full font-bold text-2xl text-white text-center">
@@ -63,7 +63,7 @@ export const HowTo: React.VFC = () => {
             </span>
           </div>
         </div>
-        <div className="overflow-visible flex flex-wrap w-full min-w-[286px] rounded-[50px] cursor-pointer">
+        <div className="overflow-visible flex flex-wrap w-full ls:min-w-[286px] rounded-[50px] cursor-pointer">
           <div className="px-3 py-10">
             <Card className="w-full min-h-[200px]">
               <h2 className="flex w-full font-bold text-2xl text-white text-center">
