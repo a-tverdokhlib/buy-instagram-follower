@@ -11,7 +11,7 @@ export const SubscriptionPlanCard: React.VFC<Props> = (props) => {
       }
     >
       <div className="flex flex-col flex-wrap space-y-3 w-full md:flex-row md:flex-nowrap md:space-y-0 justify-center items-center">
-        <div className="flex justify-center md:w-48">
+        <div className="flex justify-center md:ml-3 mx:ml-10">
           <span
             className={
               props.planInfo.isPopular
