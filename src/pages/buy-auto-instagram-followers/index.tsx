@@ -16,9 +16,14 @@ import {
 import { useAppDispatch, useAppSelector } from '@/redux/store/hooks'
 
 import { Banner } from './Banner'
+import { FAQ } from './FAQ'
 import { FollowerPlan } from './FollowerPlan'
 import { InstagramAccount } from './InstagramAccount'
+import { PaymentGateways } from './PaymentGateways'
+import { Statics } from './Statics'
+import { Story } from './Story'
 import { SubscriptionPlan } from './SubscriptionPlan'
+import { WhyBuy } from './WhyBuy'
 
 function saveScrollPosition(
   url: string,
@@ -107,7 +112,7 @@ const BuyAutoInstagramLikes: React.VFC = () => {
       >
         <Banner />
         <div className="flex flex-col flex-wrap w-full p-3 bg-[#222232]">
-          <div className="flex flex-col flex-wrap w-full overflow-hidden rounded-2xl bg-[purple] bg-opacity-50 md:bg-[transparent]">
+          <div className="flex flex-col flex-wrap w-full overflow-hidden rounded-2xl bg-[#222232] bg-opacity-50 md:bg-[transparent]">
             <FollowerPlan
               planSelected={(item) => onFollowerPlanSelected(item)}
             />
@@ -115,7 +120,16 @@ const BuyAutoInstagramLikes: React.VFC = () => {
               planSelected={(item) => onSubscriptionPlanSelected(item)}
             />
             <InstagramAccount submitClicked={(name) => onSubmitClicked(name)} />
+            <PaymentGateways price={0} />
             <div className="w-full h-16"></div>
+            <Statics
+              providedFollowers={'505,604,653'}
+              deliveredLikes={'65,205,708'}
+              repeatedCustomers={'25,370,876'}
+            />
+            <Story />
+            <WhyBuy />
+            <FAQ />
           </div>
         </div>
         <div className="h-32 bg-[#222232]"></div>
