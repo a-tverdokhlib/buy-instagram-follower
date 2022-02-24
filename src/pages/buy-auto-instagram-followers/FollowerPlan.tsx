@@ -35,32 +35,7 @@ export const FollowerPlan: React.VFC<Props> = (props) => {
     <div className="flex flex-col flex-wrap w-full md:bg-[#222232] rounded-2xl bg-[purple] bg-opacity-50 md:rounded-none md:bg-none md:p-0">
       <div className="flex flex-col flex-wrap w-full py-6 pr-12 md:p-16">
         <div className="flex flex-row flex-nowrap w-full bg-[#a998ff] h-[30px] md:h-[49px] rounded-tr-full bg-gradient-to-r from-indigo-700 via-purple-500 to-pink-500">
-          <div className="flex items-center icon">
-            <svg
-              className="h-5 w-5 md:h-10 md:w-10 text-yellow-500"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              {' '}
-              <polygon points="5 3 19 12 5 21 5 3" />
-            </svg>
-            <svg
-              className="-ml-3 md:-ml-6 h-5 w-5 md:h-10 md:w-10 text-yellow-500"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              {' '}
-              <polygon points="5 3 19 12 5 21 5 3" />
-            </svg>
-          </div>
+          <div className="flex w-24 items-center icon bg-[url('/img/forward.png')] bg-no-repeat bg-center"></div>
           <div className="flex items-center">
             <span>
               <span className="text-1xl md:text-2xl md:font-bold text-white">
