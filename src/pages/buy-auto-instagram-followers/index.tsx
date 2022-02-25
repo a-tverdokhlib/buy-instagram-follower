@@ -23,6 +23,7 @@ import { PaymentGateways } from './PaymentGateways'
 import { Statics } from './Statics'
 import { Story } from './Story'
 import { SubscriptionPlan } from './SubscriptionPlan'
+import { WhichOne } from './WhichOne'
 import { WhyBuy } from './WhyBuy'
 
 function saveScrollPosition(
@@ -132,6 +133,7 @@ const BuyAutoInstagramFollowers: React.VFC = () => {
             <Story />
             <WhyBuy />
             <FAQ />
+            <WhichOne />
           </div>
         </div>
         <div className="h-32 bg-[#222232]"></div>
