@@ -63,7 +63,7 @@ export const SideNavbar: React.VFC<SideProps> = ({ children }) => {
                 ></path>
               </svg>
             </a>
-            <div className="w-[300px] rounded-lg ml-auto mr-3 dropdown-content">
+            <div className="ls:w-[300px] rounded-lg ml-auto mr-0 ls:mr-3 dropdown-content">
               <div className="bg-transparent">
                 <Link href="buy-instagram-comments">
                   <a href="#">Buy Buy Instagram Comments</a>

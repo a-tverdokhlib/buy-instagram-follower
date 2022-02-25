@@ -7,7 +7,7 @@ export const Services: React.VFC = () => {
 
   return (
     <div className="flex flex-col mx-3 md:mx-20 items-center flex-wrap md:mt-20 pb-10 md:pb-0 bg-[#222232] rounded-3xl">
-      <div className="mt-24 space-x-3 flex w-full min-w-[500] text-center justify-center">
+      <div className="mt-24 space-x-3 flex w-full md:min-w-[500] text-center justify-center">
         {/* <div className="flex overflow-hidden rounded-full items-center justify-center w-16 h-16">
           <span className="animate-ping-slow z-[2] inline-flex h-6 w-6 rounded-full bg-white border-2 border-white opacity-75"></span>
           <div className="absolute z-[3] rounded-full bg-[#222232]">
@@ -36,7 +36,7 @@ export const Services: React.VFC = () => {
       {/* <div className="flex w-1/3">
         <Slider color="#f15d23" barColor="#f15d23" value={sliderVal} />
       </div> */}
-      <div className="grid grid-cols-1 gap-10 items-center justify-center mt-16 md:p-12 md:grid-cols-2 xl:grid-cols-3">
+      <div className="grid grid-cols-1 gap-10 items-center justify-center mt-16 p-2 md:p-12 md:grid-cols-2 xl:grid-cols-3">
         <ServiceCard
           img={
             <svg

@@ -17,7 +17,7 @@ const DescItem: React.FC<DescItemProps> = ({ children, title }) => {
 }
 export const Description2: React.VFC = () => {
   return (
-    <div className="flex flex-col flex-wrap space-y-8 p-10 md:px-16 bg-[#222232]">
+    <div className="flex flex-col flex-wrap space-y-8 px-5 py-10 ls:p-10 md:px-16 bg-[#222232]">
       <DescItem title="The Ultimate Guide To Instagram Likes">
         <span>
           <span>
@@ -71,21 +71,27 @@ export const Description2: React.VFC = () => {
                 <a>Kevin Systrom</a>
               </Link>
             </span>
-            . Steve Anderson, who was the founder of Baseline Ventures, invested
-            $250,000 in Systrom’s idea for an app called Burbn that allowed
-            users to share their location with friends, but he requested that
-            Systrom find a partner to work with in developing the app. Systrom
-            found Krieger, and between the two of them they simplified the
-            original idea, making it a simple photo-sharing app. Unlike most
-            apps and businesses which are built from the ground up, Instagram is
-            unique in that it was actually built from a pre-existing app taken
-            down to its most basic components.It was introduced to Apple in
-            2010, and before the app would even be introduced to Android in
-            2012, it already had more than thirty million users. Read more @
-            <span className="text-red-400">
-              <Link href="#">
-                <a>https://blog.hubspot.com/marketing/buy-instagram-likes</a>
-              </Link>
+            <span>
+              . Steve Anderson, who was the founder of Baseline Ventures,
+              invested $250,000 in Systrom’s idea for an app called Burbn that
+              allowed users to share their location with friends, but he
+              requested that Systrom find a partner to work with in developing
+              the app. Systrom found Krieger, and between the two of them they
+              simplified the original idea, making it a simple photo-sharing
+              app. Unlike most apps and businesses which are built from the
+              ground up, Instagram is unique in that it was actually built from
+              a pre-existing app taken down to its most basic components.It was
+              introduced to Apple in 2010, and before the app would even be
+              introduced to Android in 2012, it already had more than thirty
+              million users. Read more @
+              <span className="text-red-400">
+                <Link href="#">
+                  <a>
+                    https://blog.hubspot.com/<br></br>
+                    marketing/buy-instagram-likes
+                  </a>
+                </Link>
+              </span>
             </span>
           </span>
         </span>

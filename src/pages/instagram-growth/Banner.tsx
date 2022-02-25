@@ -15,8 +15,8 @@ type Props = {
 export const Banner: React.VFC<Props> = (props) => {
   return (
     <div className="flex flex-col flex-wrap w-full bg-[#222232] min-h-screen">
-      <div className="flex flex-col flex-wrap p-16 space-y-3 justify-center">
-        <div className="text-white text-4xl text-center">
+      <div className="flex flex-col flex-wrap px-3 py-16 ls:p-16 space-y-3 justify-center">
+        <div className="text-white text-2xl ls:text-4xl text-center">
           <span>
             <span className="">Buy Instagram Growth</span> with Instant Delivery
             in 2020

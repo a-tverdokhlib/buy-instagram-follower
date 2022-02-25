@@ -42,7 +42,7 @@ export const PlanConfirmation: React.VFC<Props> = (props) => {
           />
         </div>
         <div className="flex w-full">
-          <div className="flex flex-col flex-wrap w-full px-10 py-5">
+          <div className="flex flex-col flex-wrap w-full px-3 ls:px-10 py-5">
             <div className="w-full p-3">
               <input
                 className="w-full text-black"

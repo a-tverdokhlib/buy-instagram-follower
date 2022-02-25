@@ -19,7 +19,7 @@ const DescItem: React.FC<DescItemProps> = ({ children, title }) => {
 }
 export const Description4: React.VFC = () => {
   return (
-    <div className="flex flex-col flex-wrap space-y-8 p-10 md:px-16 bg-[#222232] rounded-lg">
+    <div className="flex flex-col flex-wrap space-y-8 px-5 py-10 ls:p-10 md:px-16 bg-[#222232] rounded-lg">
       <DescItem title="That Wasn’t So Hard, Was It?">
         <span>
           <span>

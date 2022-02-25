@@ -4,7 +4,7 @@ import { useState } from 'react'
 export const Description1: React.VFC = () => {
   return (
     <div className="flex flex-col flex-wrap w-full bg-[#222232]">
-      <div className="flex flex-col flex-wrap p-10 md:px-16 space-y-3 justify-center">
+      <div className="flex flex-col flex-wrap px-5 py-10 ls:p-10 md:px-16 space-y-3 justify-center">
         <div className="text-white font-bold text-xl text-center">
           <span>
             <span className="">Why People Pay for Instagram Comments</span>
@@ -72,7 +72,7 @@ export const Description1: React.VFC = () => {
           </span>
         </div>
       </div>
-      <div className="flex flex-col flex-wrap p-10 md:px-16 space-y-3 justify-center">
+      <div className="flex flex-col flex-wrap px-5 py-10 ls:p-10 md:px-16 space-y-3 justify-center">
         <div className="text-white font-bold text-xl text-center">
           <span>
             <span className="">How to Get More Instagram Comments</span>
@@ -91,7 +91,7 @@ export const Description1: React.VFC = () => {
           </span>
         </div>
       </div>
-      <div className="flex flex-col flex-wrap px-10 md:px-16 space-y-3 justify-center">
+      <div className="flex flex-col flex-wrap px-5 ls:px-10 md:px-16 space-y-3 justify-center">
         <div className="text-white font-bold text-xl text-center">
           <span>
             <span className="">1. Come up With a Contest or Giveaway</span>
@@ -128,7 +128,7 @@ export const Description1: React.VFC = () => {
           </span>
         </div>
       </div>
-      <div className="flex flex-col flex-wrap mt-5 px-10 md:px-16 space-y-3 justify-center">
+      <div className="flex flex-col flex-wrap mt-5 px-5 ls:px-10 md:px-16 space-y-3 justify-center">
         <div className="text-white font-bold text-xl text-center">
           <span>
             <span className="">2. Simply Ask for More Engagement</span>
@@ -147,7 +147,7 @@ export const Description1: React.VFC = () => {
           </span>
         </div>
       </div>
-      <div className="flex flex-col flex-wrap mt-5 px-10 md:px-16 space-y-3 justify-center">
+      <div className="flex flex-col flex-wrap mt-5 px-5 ls:px-10 md:px-16 space-y-3 justify-center">
         <div className="text-white font-bold text-xl text-center">
           <span>
             <span className="">3. Pump Up Your Visibility with Hashtags</span>
@@ -167,7 +167,7 @@ export const Description1: React.VFC = () => {
           </span>
         </div>
       </div>
-      <div className="flex flex-col flex-wrap mt-5 px-10 md:px-16 space-y-3 justify-center">
+      <div className="flex flex-col flex-wrap mt-5 px-5 ls:px-10 md:px-16 space-y-3 justify-center">
         <div className="text-white font-bold text-xl text-center">
           <span>
             <span className="">4. Find Out When Your Audience is Active</span>
@@ -185,7 +185,7 @@ export const Description1: React.VFC = () => {
           </span>
         </div>
       </div>
-      <div className="flex flex-col flex-wrap mt-10 px-10 md:px-16 space-y-3 justify-center">
+      <div className="flex flex-col flex-wrap mt-10 px-5 ls:px-10 md:px-16 space-y-3 justify-center">
         <div className="text-white font-bold text-xl text-center">
           <span>
             <span className="">5. Post Faces (Either Human or Animal)</span>

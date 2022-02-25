@@ -4,7 +4,7 @@ import { useState } from 'react'
 export const Description1: React.VFC = () => {
   return (
     <div className="flex flex-col flex-wrap w-full bg-[#222232]">
-      <div className="flex flex-col flex-wrap p-10 md:px-16 space-y-3 justify-center">
+      <div className="flex flex-col flex-wrap px-4 py-10 ls:p-10 md:px-16 space-y-3 justify-center">
         <div className="text-white font-bold text-xl text-center">
           <span>
             <span className="">
@@ -62,7 +62,7 @@ export const Description1: React.VFC = () => {
           </span>
         </div>
       </div>
-      <div className="flex flex-col flex-wrap p-10 md:px-16 space-y-3 justify-center">
+      <div className="flex flex-col flex-wrap px-4 py-10 ls:p-10 md:px-16 space-y-3 justify-center">
         <div className="text-white font-bold text-xl text-center">
           <span>
             <span className="">Why should I go with Goread.io?</span>

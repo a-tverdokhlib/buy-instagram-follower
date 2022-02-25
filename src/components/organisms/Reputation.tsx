@@ -31,7 +31,7 @@ export const Reputation: React.VFC = () => {
   }
   return (
     <div className="flex flex-col -mt-5 min-h-screen items-center flex-wrap bg-[#222232] opacity-90 rounded-3xl overflow-hidden shadow-[black] shadow-[0_0px_100px_0px_rgba(0,0,0,0.1)]">
-      <div className="mt-32 flex w-full min-w-[500] p-3 justify-center">
+      <div className="mt-32 flex w-full ls:min-w-[500] p-3 justify-center">
         <h1 className="text-4xl text-center text-white font-semibold md:text-5xl md:font-semibold">
           What People Say About Us?
         </h1>{' '}
@@ -42,7 +42,7 @@ export const Reputation: React.VFC = () => {
           trust. Read what our buyers think about our range of service.
         </span>
       </div>
-      <div className="reputation-cards mt-10 grid grid-cols-1 gap-10 justify-center p-12 md:grid-cols-2 xl:grid-cols-3">
+      <div className="reputation-cards mt-10 grid grid-cols-1 gap-10 justify-center p-3 ls:p-12 md:grid-cols-2 xl:grid-cols-3">
         <ReputationCard
           img={
             <Image

@@ -85,7 +85,9 @@ const MyComponentRenderFn: ForwardRefRenderFunction<any, Props> = (
       {children
         ? children.map((slideContent, index) => (
             <SwiperSlide key={index} virtualIndex={index}>
-              <div className="flex px-5 justify-center">{slideContent}</div>
+              <div className="flex px-2 ls:px-5 justify-center">
+                {slideContent}
+              </div>
             </SwiperSlide>
           ))
         : null}{' '}

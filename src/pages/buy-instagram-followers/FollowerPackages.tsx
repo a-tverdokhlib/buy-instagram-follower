@@ -99,7 +99,7 @@ export const FollowerPackages: React.VFC = () => {
           </div>
         </div>
       </div>
-      <div className="flex w-full flex-col flex-wrap px-10 mt-6 md:px-16 space-y-5 justify-center items-center">
+      <div className="flex w-full flex-col flex-wrap px-4 ls:px-10 mt-6 md:px-16 space-y-5 justify-center items-center">
         <div>
           <span className="text-gray-400 text-center">
             <span>

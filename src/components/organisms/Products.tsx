@@ -31,7 +31,7 @@ export const Products: React.VFC = () => {
   return (
     <div className="flex flex-col md:p-20 items-center flex-wrap min-h-screen bg-[#030304] products">
       <div className="flex flex-col items-center flex-wrap w-full bg-[#222232] rounded-3xl pb-10 shadow-[#222232] shadow-[0_0px_100px_-20px_rgba(0,0,0,0.1)]">
-        <div className="flex mt-16 w-full min-w-[500] p-12 justify-left">
+        <div className="flex mt-16 w-full ls:min-w-[500] p-12 justify-left">
           <div className="flex overflow-hidden rounded-full items-center justify-center w-16 h-16">
             <span className="animate-ping-slow z-[2] inline-flex h-6 w-6 rounded-full bg-red-600 border-2 border-red-600 opacity-75"></span>
             <div className="absolute z-[3] rounded-full bg-[#222232]">
