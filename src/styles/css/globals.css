@@ -102,6 +102,15 @@ body {
   z-index: 1001;
 }
 
+.sticky-inactive {
+  background-color: black;
+  transition: all 0.5s ease;
+  height: 5.5rem;
+  position: fixed;
+  top: -7rem;
+  z-index: 1001;
+}
+
 .samnav {
   background-color: black;
   transition: all 0.5s ease;
@@ -119,6 +128,9 @@ body {
   margin-top: 6rem;
 }
 
+.sticky-inactive + main {
+  margin-top: 5.5rem;
+}
 @media (max-width: 768px) { 
   .nav li.others {
     margin-right: 0 !important;

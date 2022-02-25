@@ -5,13 +5,15 @@ type Props = {
 
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import { kill } from 'process'
 import React, { useEffect, useRef, useState } from 'react'
 
 import { Image } from '@/components/atoms/Image'
+let isScrolling = false
 
 export const Navbar: React.VFC<Props> = ({ menuClick, navShown }) => {
   const router = useRouter()
-
+  let scrollIndex = 0
   const [stickyClass, setStickyClass] = useState(
     'nav w-full z-[1001] samnav shadow-black-400 shadow-[0_0px_20px_3px_rgba(0,0,0,1)]',
   )
@@ -27,17 +29,44 @@ export const Navbar: React.VFC<Props> = ({ menuClick, navShown }) => {
     window.addEventListener('resize', stickNavbar)
   }, [])
 
+  // useEffect(() => {
+  //   if (!isScrolling) {
+  //     setTimeout(() => {
+  //       triggerNavbarHide()
+  //     }, 5000)
+  //   }
+  // }, [isScrolling])
+
+  const triggerNavbarHide = (index: number) => {
+    if (index < scrollIndex || navShown() === true) {
+      return
+    }
+    if (isScrolling === false) {
+      const windowHeight = window.scrollY
+      if (windowHeight != 0)
+        setStickyClass(
+          'nav w-full left-0 z-[1001] sticky-inactive shadow-black-400 shadow-[0_0px_20px_3px_rgba(0,0,0,0.5)]',
+        )
+      scrollIndex = 0
+    }
+  }
   const stickNavbar = () => {
     if (window !== undefined) {
       const windowHeight = window.scrollY
-      if (windowHeight > 0 || window.innerWidth < 768)
+      if (windowHeight > 0 || window.innerWidth < 768) {
+        scrollIndex++
+        const temp = scrollIndex
         setStickyClass(
           'nav w-full left-0 z-[1001] sticky shadow-black-400 shadow-[0_0px_20px_3px_rgba(0,0,0,0.5)]',
         )
-      else
+        setTimeout(() => {
+          triggerNavbarHide(temp)
+        }, 5000)
+      } else {
         setStickyClass(
           'nav w-full z-[1001] samnav shadow-black-400 shadow-[0_0px_20px_3px_rgba(0,0,0,0.5)]',
         )
+      }
     }
   }
 
@@ -45,8 +74,21 @@ export const Navbar: React.VFC<Props> = ({ menuClick, navShown }) => {
     menuClick()
   }
 
+  const setIsScrolling = (e: boolean) => {
+    isScrolling = e
+    if (isScrolling === false) {
+      setTimeout(() => {
+        triggerNavbarHide(scrollIndex)
+      }, 1000)
+    }
+  }
+
   return (
-    <nav className={`${stickyClass}`}>
+    <nav
+      className={`${stickyClass}`}
+      onMouseEnter={() => setIsScrolling(true)}
+      onMouseLeave={() => setIsScrolling(false)}
+    >
       <div>
         <div className="min-w-min py-5 flex flex-wrap ls:justify-between items-center mx-auto bg-black md:bg-transparent">
           <div className="ml-1 ls:ml-5 sm:ml-16">
