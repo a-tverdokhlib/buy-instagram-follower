@@ -16,6 +16,7 @@ export const Header: React.VFC = () => {
   const menuClick = () => {
     setNavShown(!navShown)
   }
+
   return (
     <>
       <Head>
@@ -26,7 +27,7 @@ export const Header: React.VFC = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Navbar menuClick={menuClick} navShown={() => navShown} />
+      <Navbar menuClick={menuClick} isNavShown={navShown} />
       {navShown ? <SideNavbar>abc</SideNavbar> : null}
     </>
   )

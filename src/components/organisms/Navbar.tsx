@@ -1,6 +1,6 @@
 type Props = {
-  readonly navShown: () => boolean
   readonly menuClick: () => void
+  readonly isNavShown: boolean
 }
 
 import Link from 'next/link'
@@ -11,7 +11,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { Image } from '@/components/atoms/Image'
 let isScrolling = false
 
-export const Navbar: React.VFC<Props> = ({ menuClick, navShown }) => {
+export const Navbar: React.VFC<Props> = ({ menuClick, isNavShown }) => {
   const router = useRouter()
   let scrollIndex = 0
   const [stickyClass, setStickyClass] = useState(
@@ -38,7 +38,7 @@ export const Navbar: React.VFC<Props> = ({ menuClick, navShown }) => {
   // }, [isScrolling])
 
   const triggerNavbarHide = (index: number) => {
-    if (index < scrollIndex || navShown() === true) {
+    if (index < scrollIndex) {
       return
     }
     if (isScrolling === false) {
@@ -72,6 +72,11 @@ export const Navbar: React.VFC<Props> = ({ menuClick, navShown }) => {
 
   const handleClick = () => {
     menuClick()
+    if (isNavShown !== false) isScrolling = false
+    else isScrolling = true
+    setTimeout(() => {
+      triggerNavbarHide(scrollIndex)
+    }, 1000)
   }
 
   const setIsScrolling = (e: boolean) => {
