@@ -1,4 +1,4 @@
-import Router, { NextRouter } from 'next/router'
+import Router, { NextRouter, useRouter } from 'next/router'
 import { useEffect } from 'react'
 import * as Scroll from 'react-scroll'
 
@@ -43,7 +43,14 @@ const BuyAutoInstagramFollowers: React.VFC = () => {
   let scroll = Scroll.animateScroll
   let Element = Scroll.Element
 
+  const { pathname } = useRouter()
+
+  useEffect(() => {
+    onRouteChangeComplete(pathname)
+  }, [pathname])
+
   const dispatch = useAppDispatch()
+  var shouldScrollRestore = true
 
   const { plan } = useAppSelector((state) => state.autoFollowers)
   const { scrollPosition } = useAppSelector((state) => state.autoFollowers)
@@ -64,11 +71,14 @@ const BuyAutoInstagramFollowers: React.VFC = () => {
   }
 
   const onSubmitClicked = (name) => {}
-
+  const onRouteChangeComplete = (url: string) => {
+    if (shouldScrollRestore) {
+      shouldScrollRestore = false
+      restoreScrollPosition(url, scrollPosition)
+    }
+  }
   useEffect(() => {
     if ('scrollRestoration' in window.history) {
-      var shouldScrollRestore = true
-
       const onBeforeUnload = (event: Event) => {
         const scrollPos = window.scrollY
         saveScrollPosition(Router.asPath, scrollPos, updatePosition)
@@ -81,12 +91,6 @@ const BuyAutoInstagramFollowers: React.VFC = () => {
         saveScrollPosition(Router.asPath, scrollPos, updatePosition)
       }
 
-      const onRouteChangeComplete = (url: string) => {
-        if (shouldScrollRestore) {
-          shouldScrollRestore = false
-          restoreScrollPosition(url, scrollPosition)
-        }
-      }
       window.addEventListener('beforeunload', onBeforeUnload)
       Router.events.on('routeChangeStart', onRouteChangeStart)
       Router.events.on('routeChangeComplete', onRouteChangeComplete)

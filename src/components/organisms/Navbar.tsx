@@ -5,7 +5,6 @@ type Props = {
 
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { kill } from 'process'
 import React, { useEffect, useRef, useState } from 'react'
 
 import { Image } from '@/components/atoms/Image'
@@ -213,9 +212,13 @@ export const Navbar: React.VFC<Props> = ({ menuClick, isNavShown }) => {
                     </a>
                   </div>
                   <div>
-                    <Link href="/buy-auto-instagram-followers">
-                      Buy Automatic Instagram Followers
-                    </Link>
+                    <a
+                      onClick={() =>
+                        router.push('/buy-auto-instagram-followers')
+                      }
+                    >
+                      Buy Custom Instagram Followers
+                    </a>
                   </div>
                   <div>
                     <a
@@ -259,38 +262,44 @@ export const Navbar: React.VFC<Props> = ({ menuClick, isNavShown }) => {
                     <a href="#">Other Services</a>
                   </div>
                   <div>
-                    <Link href="#">
-                      <a>Blog</a>
-                    </Link>
+                    <a
+                      onClick={(e) => {
+                        e.preventDefault()
+                        router.push('/blog')
+                      }}
+                    >
+                      Blog
+                    </a>
                   </div>
                   <div>
-                    <Link href="#">
+                    <Link href="/faq">
                       <a>FAQ</a>
                     </Link>
                   </div>
                   <div>
-                    <Link href="#">
+                    <Link href="/contact">
                       <a>Contact</a>
                     </Link>
                   </div>
                 </div>
               </li>
               <li className="block md:hidden xl:block xl:w-16 pt-3 custom">
-                <Link href="#">
-                  <a className="flex items-center h-full py-2 pr-4 pl-3 text-white border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-[#DC39FC] md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 transition-all duration-500 delay-75">
-                    Blog
-                  </a>
-                </Link>
+                <a
+                  onClick={() => router.push('/blog')}
+                  className="flex items-center h-full py-2 pr-4 pl-3 text-white border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-[#DC39FC] md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 transition-all duration-500 delay-75 hover:cursor-pointer"
+                >
+                  Blog
+                </a>
               </li>
               <li className="block md:hidden xl:block xl:w-16 pt-3 custom">
-                <Link href="#">
+                <Link href="/faq">
                   <a className="flex items-center h-full py-2 pr-4 pl-3 text-white border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-[#DC39FC] md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 transition-all duration-500 delay-75">
                     FAQ
                   </a>
                 </Link>
               </li>
               <li className="block md:hidden xl:block xl:w-24 pt-3 custom">
-                <Link href="#">
+                <Link href="/contact">
                   <a className="flex items-center h-full py-2 pr-4 pl-3 text-white border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-[#DC39FC] md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 transition-all duration-500 delay-75">
                     Contact
                   </a>

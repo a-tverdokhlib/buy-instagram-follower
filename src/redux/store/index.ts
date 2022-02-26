@@ -10,6 +10,7 @@ import type { Reducer } from 'react'
 
 import { autoFollowersReducer } from '@/redux/reducers/autoFollowers'
 import { autoLikesReducer } from '@/redux/reducers/autoLikes'
+import { blogReducer } from '@/redux/reducers/blog'
 import { commentsReducer } from '@/redux/reducers/comments'
 import { customCommentsReducer } from '@/redux/reducers/customComments'
 import { followersReducer } from '@/redux/reducers/followers'
@@ -17,7 +18,6 @@ import { growthReducer } from '@/redux/reducers/growth'
 import { likesReducer } from '@/redux/reducers/likes'
 import { storyViewsReducer } from '@/redux/reducers/storyViews'
 import { viewsReducer } from '@/redux/reducers/views'
-
 const combinedReducer = combineReducers({
   followers: followersReducer,
   likes: likesReducer,
@@ -28,6 +28,7 @@ const combinedReducer = combineReducers({
   customComments: customCommentsReducer,
   storyViews: storyViewsReducer,
   autoFollowers: autoFollowersReducer,
+  blog: blogReducer,
 })
 
 const reducer: Reducer<ReturnType<typeof combinedReducer>, AnyAction> | any = (
