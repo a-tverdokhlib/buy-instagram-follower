@@ -6,8 +6,8 @@ export const SubscriptionPlanCard: React.VFC<Props> = (props) => {
     <div
       className={
         props.planInfo.isPopular
-          ? 'flex flex-col w-full items-center justify-center border-[1px] rounded-xl h-[110px] md:h-[150px]'
-          : 'flex flex-col w-full items-center justify-center border-[1px] rounded-xl h-[110px] md:h-[130px]'
+          ? 'flex flex-col w-full items-center justify-center border-[1px] border-black border-opacity-10 rounded-xl h-[110px] md:h-[150px] bg-black bg-opacity-30'
+          : 'flex flex-col w-full items-center justify-center border-[1px] border-black border-opacity-10 rounded-xl h-[110px] md:h-[130px] bg-black bg-opacity-30'
       }
     >
       <div className="flex flex-col flex-wrap space-y-3 w-full md:flex-row md:flex-nowrap md:space-y-0 justify-center items-center">

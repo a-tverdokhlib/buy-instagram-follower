@@ -6,8 +6,8 @@ export const FollowerPlanCard: React.VFC<Props> = (props) => {
     <div
       className={
         props.planInfo.isPopular
-          ? 'flex flex-col w-full  border-[1px] rounded-xl h-[130px] md:h-[340px]'
-          : 'flex flex-col w-full  border-[1px] rounded-xl h-[130px] md:h-[300px]'
+          ? 'flex flex-col w-full  border-[1px] border-black border-opacity-10 rounded-xl h-[130px] md:h-[340px] bg-black bg-opacity-30'
+          : 'flex flex-col w-full  border-[1px] border-black border-opacity-10 rounded-xl h-[130px] md:h-[300px] bg-black bg-opacity-30'
       }
     >
       <div className="w-full top-0 h-20">
@@ -20,7 +20,7 @@ export const FollowerPlanCard: React.VFC<Props> = (props) => {
         ></div>
       </div>
       <div className="-mt-12 flex flex-row flex-nowrap w-full space-y-0 md:flex-col md:flex-wrap md:space-y-3 justify-center items-center">
-        <div className="flex justify-center w-48 md:w-full">
+        <div className="flex justify-end w-3/12 md:w-full md:justify-center">
           <span
             className={
               props.planInfo.isPopular
@@ -32,7 +32,7 @@ export const FollowerPlanCard: React.VFC<Props> = (props) => {
         <div className="flex flex-wrap flex-col justify-center w-full">
           <div className="flex items-center justify-center">
             <span>
-              <span className="text-white text-[15px] md:text-2xl">
+              <span className="text-white text-[15px] ls:text-xl md:text-2xl">
                 {props.planInfo.followers} followers/Day
               </span>
             </span>
@@ -57,9 +57,9 @@ export const FollowerPlanCard: React.VFC<Props> = (props) => {
             </span>
           </div>
         </div>
-        <div className="flex flex-wrap flex-col items-center justify-center w-full">
+        <div className="flex flex-wrap flex-col items-center justify-start w-3/12 mr-5">
           <span className="flex">
-            <sub className="symbol text-xl">
+            <sub className="symbol text-base ls:text-xl">
               <svg
                 className="h-5 w-5 text-white"
                 viewBox="0 0 24 24"
@@ -74,12 +74,12 @@ export const FollowerPlanCard: React.VFC<Props> = (props) => {
                 <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
               </svg>
             </sub>{' '}
-            <span className="text-white text-2xl font-bold">
+            <span className="text-white text-[15px] ls:text-2xl font-bold">
               {props.planInfo.price}
             </span>
           </span>
           <span>
-            <span className="text-white text-lg line-through decoration-1">
+            <span className="text-white text-[15px] ls:text-lg line-through decoration-1">
               {props.planInfo.oldPrice}
             </span>
           </span>
