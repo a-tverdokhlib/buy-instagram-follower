@@ -11,10 +11,7 @@ export const Banner: React.VFC = () => {
           </span>
         </div>
         <div className="flex w-full md:w-5/12 justify-center items-center md:justify-start">
-          <img
-            src="/img/banner-tag.png"
-            alt="Banner Tag"
-          ></img>
+          <img src="/img/banner-tag.png" alt="Banner Tag"></img>
         </div>
       </div>
     </div>

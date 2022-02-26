@@ -2,6 +2,8 @@ type Props = {
   readonly info: any
 }
 
+import router from 'next/router'
+
 import { Image } from '@/components/atoms/Image'
 export const ProductCard: React.VFC<Props> = (props) => {
   return (
@@ -56,7 +58,10 @@ export const ProductCard: React.VFC<Props> = (props) => {
       })}
       <div className="flex p-8 w-full justify-center">
         <span>
-          <span className="flex w-full hover:cursor-pointer hover:underline font-bold text-lg text-white">
+          <span
+            onClick={() => router.push(props.info.link.target)}
+            className="flex w-full hover:cursor-pointer hover:underline font-bold text-lg text-white"
+          >
             {props.info.link.title}
           </span>
         </span>

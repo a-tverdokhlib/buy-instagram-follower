@@ -53,7 +53,7 @@ const MyComponentRenderFn: ForwardRefRenderFunction<any, Props> = (
 
   return (
     <Swiper
-      className="flex w-full -mt-[20px] md:mt-0 min-h-[580px] md:h-screen justify-center items-center"
+      className="flex w-full -mt-[20px] md:mt-0 min-h-[580px] md:h-[90%] justify-center items-center"
       modules={[Navigation, Pagination, Scrollbar, A11y]}
       spaceBetween={0}
       breakpoints={{

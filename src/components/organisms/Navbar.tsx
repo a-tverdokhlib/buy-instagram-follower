@@ -61,7 +61,7 @@ export const Navbar: React.VFC<Props> = ({ menuClick, isNavShown }) => {
         )
         setTimeout(() => {
           triggerNavbarHide(temp)
-        }, 5000)
+        }, 2000)
       } else {
         setStickyClass(
           'nav w-full z-[1001] samnav shadow-black-400 shadow-[0_0px_20px_3px_rgba(0,0,0,0.5)]',
@@ -213,13 +213,9 @@ export const Navbar: React.VFC<Props> = ({ menuClick, isNavShown }) => {
                     </a>
                   </div>
                   <div>
-                    <a
-                      onClick={() =>
-                        router.push('/buy-auto-instagram-followers')
-                      }
-                    >
-                      Buy Auto Instagram Followers
-                    </a>
+                    <Link href="/buy-auto-instagram-followers">
+                      Buy Automatic Instagram Followers
+                    </Link>
                   </div>
                   <div>
                     <a

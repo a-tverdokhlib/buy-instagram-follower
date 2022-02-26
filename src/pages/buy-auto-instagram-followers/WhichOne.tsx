@@ -13,7 +13,7 @@ const productCards = [
     ],
     link: {
       title: 'Get Instant Followers>>',
-      target: '',
+      target: '/buy-instagram-followers',
     },
     isPopular: false,
   },
@@ -63,7 +63,7 @@ export const WhichOne: React.VFC = () => {
               </span>
             </span>
           </div>
-          <div className="grid grid-cols-1 justify-center items-center md:grid-cols-2 md:gap-3 w-full">
+          <div className="grid grid-cols-1 justify-center items-center md:grid-cols-2 md:gap-5 w-full">
             {productCards.map((item, id) => {
               return <ProductCard key={id} info={item} />
             })}

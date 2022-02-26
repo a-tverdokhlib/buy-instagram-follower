@@ -1,6 +1,12 @@
 import { createReducer } from '@reduxjs/toolkit'
 
-import { setPlan, setScrollPosition } from './actions'
+import {
+  setInstagramAccount,
+  setPlan,
+  setPrice,
+  setScrollPosition,
+  setSubscriptionPlan,
+} from './actions'
 
 type AutoFollowerState = {
   plan: any
@@ -25,5 +31,14 @@ export const autoFollowersReducer = createReducer(initialState, (builder) => {
     })
     .addCase(setScrollPosition, (state, action) => {
       state.scrollPosition = action.payload
+    })
+    .addCase(setSubscriptionPlan, (state, action) => {
+      state.subscriptionPlan = action.payload
+    })
+    .addCase(setInstagramAccount, (state, action) => {
+      state.instagramAccount = action.payload
+    })
+    .addCase(setPrice, (state, action) => {
+      state.price = action.payload
     })
 })

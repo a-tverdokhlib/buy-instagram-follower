@@ -1,11 +1,9 @@
 import Router, { NextRouter } from 'next/router'
 import { useEffect } from 'react'
 import * as Scroll from 'react-scroll'
-import { animateScroll as scroll, Element, scroller } from 'react-scroll'
 
 import { Footer } from '@/components/organisms/Footer'
 import { Header } from '@/components/organisms/Header'
-import { HowTo } from '@/components/organisms/HowTo'
 import {
   setInstagramAccount,
   setPlan,
@@ -36,7 +34,6 @@ function saveScrollPosition(
 
 function restoreScrollPosition(url: string, pos: number) {
   if (pos) {
-    console.log('Restore Position', pos)
     window.scrollTo(0, pos)
   }
 }
@@ -47,14 +44,14 @@ const BuyAutoInstagramFollowers: React.VFC = () => {
   let Element = Scroll.Element
 
   const dispatch = useAppDispatch()
+
   const { plan } = useAppSelector((state) => state.autoFollowers)
+  const { scrollPosition } = useAppSelector((state) => state.autoFollowers)
   const { subscriptionPlan } = useAppSelector((state) => state.autoFollowers)
   const { instagramAccount } = useAppSelector((state) => state.autoFollowers)
   const { price } = useAppSelector((state) => state.autoFollowers)
-  const { scrollPosition } = useAppSelector((state) => state.autoFollowers)
 
   const updatePosition = (url: string, pos: number) => {
-    console.log('Store Position', pos)
     dispatch(setScrollPosition(pos))
   }
 
