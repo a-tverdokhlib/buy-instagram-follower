@@ -3,8 +3,10 @@ export type SideProps = {
 }
 
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 
 export const SideNavbar: React.VFC<SideProps> = ({ children }) => {
+  const router = useRouter()
   return (
     <div className="sidenav fixed w-full z-[1000]">
       <div
@@ -120,7 +122,7 @@ export const SideNavbar: React.VFC<SideProps> = ({ children }) => {
                 <a href="#">Other Services</a>
               </div>
               <div>
-                <a href="#">Blog</a>
+                <a onClick={() => router.push('/blog')}>Blog</a>
               </div>
               <div>
                 <a href="#">FAQ</a>
@@ -132,6 +134,7 @@ export const SideNavbar: React.VFC<SideProps> = ({ children }) => {
           </li>
           <li className="block md:hidden xl:block xl:w-16 pt-3 custom">
             <a
+              onClick={() => router.push('/blog')}
               href="#"
               className="flex items-center h-full py-2 pr-4 pl-3 text-white hover:text-[#DC39FC] md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 transition-all duration-500 delay-75"
             >

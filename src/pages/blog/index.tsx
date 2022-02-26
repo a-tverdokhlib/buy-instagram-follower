@@ -6,6 +6,9 @@ import { Header } from '@/components/organisms/Header'
 import { setScrollPosition } from '@/redux/reducers/blog'
 import { useAppDispatch, useAppSelector } from '@/redux/store/hooks'
 
+import { Banner } from './Banner'
+import { Blogs } from './Blogs'
+
 function saveScrollPosition(
   url: string,
   scrollPos: number,
@@ -15,6 +18,126 @@ function saveScrollPosition(
   savePosition(url, scrollPos)
 }
 
+const blogs = [
+  {
+    id: 0,
+    title: 'Amazing Ways to Make Your Instagram Photos Stand Out',
+    imgUrl: '/img/goreadstory.png',
+    contents: [
+      {
+        subTitle: 'SubTitle',
+        description: 'Sub Content',
+      },
+      {
+        subTitle: 'SubTitle',
+        description: 'Sub Content',
+      },
+      {
+        subTitle: 'SubTitle',
+        description: 'Sub Content',
+      },
+    ],
+  },
+  {
+    id: 1,
+    title: 'How Is Buying Instagram Followers UK Beneficial For You?',
+    imgUrl: '/img/goreadstory.png',
+    contents: [
+      {
+        subTitle: 'SubTitle',
+        description: 'Sub Content',
+      },
+      {
+        subTitle: 'SubTitle',
+        description: 'Sub Content',
+      },
+      {
+        subTitle: 'SubTitle',
+        description: 'Sub Content',
+      },
+    ],
+  },
+  {
+    id: 2,
+    title:
+      'How to make your business stand out from your competitors on Insta...',
+    imgUrl: '/img/goreadstory.png',
+    contents: [
+      {
+        subTitle: 'SubTitle',
+        description: 'Sub Content',
+      },
+      {
+        subTitle: 'SubTitle',
+        description: 'Sub Content',
+      },
+      {
+        subTitle: 'SubTitle',
+        description: 'Sub Content',
+      },
+    ],
+  },
+  {
+    id: 3,
+    title:
+      'How to make your business stand out from your competitors on Insta...',
+    imgUrl: '/img/goreadstory.png',
+    contents: [
+      {
+        subTitle: 'SubTitle',
+        description: 'Sub Content',
+      },
+      {
+        subTitle: 'SubTitle',
+        description: 'Sub Content',
+      },
+      {
+        subTitle: 'SubTitle',
+        description: 'Sub Content',
+      },
+    ],
+  },
+  {
+    id: 4,
+    title:
+      'How to make your business stand out from your competitors on Insta...',
+    imgUrl: '/img/goreadstory.png',
+    contents: [
+      {
+        subTitle: 'SubTitle',
+        description: 'Sub Content',
+      },
+      {
+        subTitle: 'SubTitle',
+        description: 'Sub Content',
+      },
+      {
+        subTitle: 'SubTitle',
+        description: 'Sub Content',
+      },
+    ],
+  },
+  {
+    id: 5,
+    title:
+      'How to make your business stand out from your competitors on Insta...',
+    imgUrl: '/img/goreadstory.png',
+    contents: [
+      {
+        subTitle: 'SubTitle',
+        description: 'Sub Content',
+      },
+      {
+        subTitle: 'SubTitle',
+        description: 'Sub Content',
+      },
+      {
+        subTitle: 'SubTitle',
+        description: 'Sub Content',
+      },
+    ],
+  },
+]
 function restoreScrollPosition(url: string, pos: number) {
   console.log('Restore Position => ', pos)
   if (pos) {
@@ -22,17 +145,21 @@ function restoreScrollPosition(url: string, pos: number) {
   }
 }
 const Blog: React.VFC = () => {
-  var shouldScrollRestore = true
+  const dispatch = useAppDispatch()
 
   const { pathname } = useRouter()
-  const dispatch = useAppDispatch()
   const { scrollPosition } = useAppSelector((state) => state.blog)
+
+  let shouldScrollRestore = true
+
   const updatePosition = (url: string, pos: number) => {
     dispatch(setScrollPosition(pos))
   }
+
   useEffect(() => {
     onRouteChangeComplete(pathname)
   }, [pathname])
+
   const onRouteChangeComplete = (url: string) => {
     console.log('Hook onRouteChangeComplete')
     if (shouldScrollRestore) {
@@ -40,6 +167,7 @@ const Blog: React.VFC = () => {
       restoreScrollPosition(url, scrollPosition)
     }
   }
+
   useEffect(() => {
     if ('scrollRestoration' in window.history) {
       const onBeforeUnload = (event: Event) => {
@@ -78,7 +206,15 @@ const Blog: React.VFC = () => {
       <main
         id="content"
         className="flex flex-1 flex-col w-full top-0 min-h-screen p-0"
-      ></main>
+      >
+        <Banner />
+        <div className="flex flex-col flex-wrap w-full p-3 bg-[#222232]">
+          <div className="flex flex-col flex-wrap w-full overflow-hidden  bg-[#222232] bg-opacity-50 md:bg-[transparent]">
+            <Blogs blogs={blogs} />
+          </div>
+        </div>
+        <div className="h-32 bg-[#222232]"></div>
+      </main>
       <Footer />
     </>
   )
