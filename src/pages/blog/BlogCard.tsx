@@ -37,22 +37,22 @@ export const BlogCard: React.VFC<Props> = (props) => {
         <div className="flex flex-col flex-wrap w-full">
           {props.info.contents.map((content, id) => {
             return (
-              <>
-                <div key={id}>
+              <div key={id}>
+                <div>
                   <span>
                     <span className="text-gray-300 text-base">
                       {content.subTitle}
                     </span>
                   </span>
                 </div>
-                <div key={id}>
+                <div>
                   <span>
                     <span className="text-gray-300 text-base">
                       {content.description}
                     </span>
                   </span>
                 </div>
-              </>
+              </div>
             )
           })}
         </div>

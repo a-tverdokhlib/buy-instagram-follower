@@ -25,14 +25,17 @@ const blogs = [
     imgUrl: '/img/goreadstory.png',
     contents: [
       {
+        id: 0,
         subTitle: 'SubTitle',
         description: 'Sub Content',
       },
       {
+        id: 1,
         subTitle: 'SubTitle',
         description: 'Sub Content',
       },
       {
+        id: 2,
         subTitle: 'SubTitle',
         description: 'Sub Content',
       },
@@ -44,14 +47,17 @@ const blogs = [
     imgUrl: '/img/goreadstory.png',
     contents: [
       {
+        id: 0,
         subTitle: 'SubTitle',
         description: 'Sub Content',
       },
       {
+        id: 1,
         subTitle: 'SubTitle',
         description: 'Sub Content',
       },
       {
+        id: 2,
         subTitle: 'SubTitle',
         description: 'Sub Content',
       },
@@ -64,14 +70,17 @@ const blogs = [
     imgUrl: '/img/goreadstory.png',
     contents: [
       {
+        id: 0,
         subTitle: 'SubTitle',
         description: 'Sub Content',
       },
       {
+        id: 1,
         subTitle: 'SubTitle',
         description: 'Sub Content',
       },
       {
+        id: 2,
         subTitle: 'SubTitle',
         description: 'Sub Content',
       },
@@ -84,14 +93,17 @@ const blogs = [
     imgUrl: '/img/goreadstory.png',
     contents: [
       {
+        id: 0,
         subTitle: 'SubTitle',
         description: 'Sub Content',
       },
       {
+        id: 1,
         subTitle: 'SubTitle',
         description: 'Sub Content',
       },
       {
+        id: 2,
         subTitle: 'SubTitle',
         description: 'Sub Content',
       },
@@ -104,14 +116,17 @@ const blogs = [
     imgUrl: '/img/goreadstory.png',
     contents: [
       {
+        id: 0,
         subTitle: 'SubTitle',
         description: 'Sub Content',
       },
       {
+        id: 1,
         subTitle: 'SubTitle',
         description: 'Sub Content',
       },
       {
+        id: 2,
         subTitle: 'SubTitle',
         description: 'Sub Content',
       },
@@ -124,14 +139,17 @@ const blogs = [
     imgUrl: '/img/goreadstory.png',
     contents: [
       {
+        id: 0,
         subTitle: 'SubTitle',
         description: 'Sub Content',
       },
       {
+        id: 1,
         subTitle: 'SubTitle',
         description: 'Sub Content',
       },
       {
+        id: 2,
         subTitle: 'SubTitle',
         description: 'Sub Content',
       },
