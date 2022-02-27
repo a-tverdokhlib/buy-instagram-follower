@@ -64,7 +64,7 @@ export const SubmitReview: React.VFC<SubmitReviewProps> = ({ onClose }) => {
       className="fixed top-[5px] md:top-[5px] left-0 flex flex-col flex-wrap p-5 items-center bg-[purple] bg-opacity-50 z-50 rounded-lg overflow-auto ease-out duration-500"
       style={style1}
     >
-      <div className="w-full md:w-1/2 bg-[#222232] rounded-xl">
+      <div className="w-full mt-20 md:w-1/2 bg-[#222232] rounded-xl">
         <div className="flex flex-col flex-wrap w-full">
           <div
             className="ml-auto -mr-[16px] -mt-[16px] w-8 h-8 rounded-full p-1 bg-white cursor-pointer hover:scale-110"
