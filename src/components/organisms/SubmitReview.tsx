@@ -25,8 +25,6 @@ export const SubmitReview: React.VFC<SubmitReviewProps> = ({ onClose }) => {
         width: window.innerWidth,
         height: window.innerHeight,
       })
-      console.log('Width: ', window.innerWidth)
-      console.log('Height: ', window.innerHeight)
     }
 
     useEffect(() => {
@@ -60,10 +58,10 @@ export const SubmitReview: React.VFC<SubmitReviewProps> = ({ onClose }) => {
     onClose()
   }
   const handleChage = () => {}
-  const style1 = { width: size.width, height: size.height - 80 }
+  const style1 = { width: size.width, height: size.height - 10 }
   return (
     <div
-      className="fixed top-[100px] md:top-[80px] left-0 flex flex-col flex-wrap p-5 items-center bg-[purple] bg-opacity-50 z-50 rounded-lg overflow-auto ease-out duration-500"
+      className="fixed top-[5px] md:top-[5px] left-0 flex flex-col flex-wrap p-5 items-center bg-[purple] bg-opacity-50 z-50 rounded-lg overflow-auto ease-out duration-500"
       style={style1}
     >
       <div className="w-full md:w-1/2 bg-[#222232] rounded-xl">
