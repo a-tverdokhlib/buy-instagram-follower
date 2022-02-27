@@ -258,18 +258,67 @@ export const Navbar: React.VFC<Props> = ({ menuClick, isNavShown }) => {
                   </svg>
                 </a>
                 <div className="dropdown-content">
-                  <div className="dm:hidden">
+                  <div className="dm:hidden sub-dropdown">
                     <a href="#">Other Services</a>
+                    <div className="sub-dropdown-content w-[320px] hover:cursor-pointer">
+                      <div>
+                        <a
+                          onClick={() => router.push('/buy-instagram-comments')}
+                        >
+                          Buy Buy Instagram Comments
+                        </a>
+                      </div>
+                      <div>
+                        <a onClick={() => router.push('/instagram-growth')}>
+                          Buy Buy Instagram Growth
+                        </a>
+                      </div>
+                      <div>
+                        <a
+                          onClick={() =>
+                            router.push('/buy-auto-instagram-likes')
+                          }
+                        >
+                          Buy Automatic Instagram Likes
+                        </a>
+                      </div>
+                      <div>
+                        <a
+                          onClick={() =>
+                            router.push('/buy-auto-instagram-followers')
+                          }
+                        >
+                          Buy Custom Instagram Followers
+                        </a>
+                      </div>
+                      <div>
+                        <a
+                          onClick={() =>
+                            router.push('/buy-custom-instagram-comments')
+                          }
+                        >
+                          Buy Custom Instagram Comments
+                        </a>
+                      </div>
+                      <div>
+                        <a
+                          onClick={() =>
+                            router.push('/buy-instagram-story-views')
+                          }
+                        >
+                          Buy Instagram Story Views
+                        </a>
+                      </div>
+                    </div>
                   </div>
-                  <div>
-                    <a
-                      onClick={(e) => {
-                        e.preventDefault()
-                        router.push('/blog')
-                      }}
-                    >
-                      Blog
-                    </a>
+                  <div
+                    onClick={(e) => {
+                      e.preventDefault()
+                      router.push('/blog')
+                    }}
+                    className="hover:cursor-pointer"
+                  >
+                    <a>Blog</a>
                   </div>
                   <div>
                     <Link href="/faq">
