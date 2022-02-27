@@ -7,14 +7,12 @@ export const Footer: React.VFC = () => (
   <footer className="flex w-full px-3 md:px-20 pt-12 flex-col flex-wrap border-t-2 border-white min-h-[400px] bg-[#222232]">
     <NewsLetter />
     <div className="mt-10 flex w-full text-[#bbbbbb]">
-      <div className="w-full flex flex-wrap space-y-10">
-        <div className="flex flex-wrap space-y-3">
-          <Image
-            className="flex"
+      <div className="w-full flex flex-wrap space-y-10 md:flex-row md:flex-nowrap md:space-y-0 items-center justify-center">
+        <div className="flex flex-wrap w-full space-y-3 md:w-1/3">
+          <img
+            className="flex max-w-52 max-h-10 min-w-52 min-h-10"
             src="/Goreadlogo.png"
             alt="Logo"
-            width="200px"
-            height="40px"
           />
           <div className="w-full text-sm">
             Goread.io is not affiliated with Instagram, Facebook, or any
@@ -86,8 +84,8 @@ export const Footer: React.VFC = () => (
             </div>
           </div>
         </div>
-        <div className="flex flex-col flex-wrap space-y-10 w-full md:flex-row md:flex-nowrap md:space-y-0">
-          <div className="w-[200px]">
+        <div className="flex flex-col flex-wrap space-y-10 w-full md:flex-row md:flex-nowrap md:space-y-0 md:space-x-8 justify-end">
+          <div className="w-full md:w-1/4">
             <h3 className="text-white w-full font-bold text-lg">Quick Links</h3>
             <ul className="mt-5 flex w-full flex-col flex-wrap">
               <li>
@@ -113,7 +111,7 @@ export const Footer: React.VFC = () => (
               </li>
             </ul>
           </div>
-          <div>
+          <div className="w-full md:w-1/4">
             <h3 className="text-white w-full font-bold text-lg">Contact</h3>
             <div className="mt-5 flex w-full flex-col flex-wrap">
               <div className="flex flex-row w-full">
@@ -140,10 +138,8 @@ export const Footer: React.VFC = () => (
               </div>
             </div>
           </div>
-          <div>
-            <h3 className="text-white w-full font-bold text-lg">
-              News &amp; Post
-            </h3>
+          <div className="w-full md:w-1/4">
+            <h3 className="text-white font-bold text-lg">News &amp; Post</h3>
             <div className="mt-5 w-full flex-col flex-wrap">
               <div className="w-full">Terms &amp; Condition</div>
               <div className="w-full">Contact</div>
