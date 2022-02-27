@@ -1,7 +1,12 @@
+const defaultTheme = require('tailwindcss/defaultTheme')
+
 module.exports = {
   content: ['./src/**/*.{js,ts,jsx,tsx}', './node_modules/flowbite/**/*.js'],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['Montserrat', ...defaultTheme.fontFamily.sans],
+      },
       animation: {
         'spin-slow': 'spin 5s linear infinite',
         'ping-slow': 'ping 2s linear infinite ',
