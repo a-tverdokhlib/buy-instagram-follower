@@ -4,10 +4,8 @@ import { useEffect, useState } from 'react'
 import { userService } from '@/services/user'
 
 import Login from './auth'
-import DashBoard from './Dashboard'
 
 const Admin: React.VFC = () => {
-  const [user, setUser] = useState(null)
   const router = useRouter()
   const [authorized, setAuthorized] = useState(false)
 
@@ -32,27 +30,16 @@ const Admin: React.VFC = () => {
   }, [])
 
   function authCheck(url) {
-    // redirect to login page if accessing a private page and not logged in
-    setUser(userService.userValue)
     const publicPaths = ['/admin']
     const path = url.split('?')[0]
     if (!userService.userValue || !publicPaths.includes(path)) {
-      setAuthorized(false)
     } else {
-      setAuthorized(true)
       router.push({
         pathname: '/admin/Dashboard',
       })
     }
   }
 
-  const logout = () => {
-    userService.logout()
-  }
-
-  // if (authorized) {
-  //   return <DashBoard logout={logout} />
-  // }
   return (
     <div className="text-white">
       <Login />

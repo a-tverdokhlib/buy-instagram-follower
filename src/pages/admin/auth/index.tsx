@@ -38,7 +38,6 @@ const Login: React.VFC = () => {
       })
       router.push({
         pathname: '/admin/Dashboard',
-        query: { forwardUrl: '/Dashboard' },
       })
     }
   }
