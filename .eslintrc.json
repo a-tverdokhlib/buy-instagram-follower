@@ -22,7 +22,8 @@
     ],
     "simple-import-sort/imports": "error",
     "simple-import-sort/exports": "error",
-    "import/no-anonymous-default-export": ["error", { "allowObject": true }],
+    // "import/no-anonymous-default-export": ["error", { "allowObject": true }],
+    "import/no-anonymous-default-export": "off",
     "functional/no-return-void": "off",
     "functional/immutable-data": [
       "off",
@@ -31,6 +32,7 @@
     "functional/prefer-readonly-type": "off",
     "functional/no-let": "off",
     "functional/no-mixed-type": "off",
-    "functional/no-class": "off"
+    "functional/no-class": "off",
+    "functional/no-throw-statement": "off"
   }
 }

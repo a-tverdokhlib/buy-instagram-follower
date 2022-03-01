@@ -1,0 +1,55 @@
+
+.login-container .gradient-login-btn {
+    text-decoration: none;
+    position: relative;
+    background-image: linear-gradient(to right, #FEAC5E 0%, #b44dc0 48%, #FEAC5E 100%);
+    -webkit-backface-visibility: hidden;
+    transition: 0.5s;
+    background-size: 200% auto;
+    text-shadow: 0px 0px 10px rgb(0 0 0 / 20%);
+    box-shadow: 0 0 10px #333;
+    z-index: 1;
+}
+.login-container .gradient-login-btn:hover {
+    /* background-position: right center; */
+    cursor: pointer;
+    text-shadow: 0px 0px 0px rgb(0 0 0 / 20%);
+    box-shadow: 0 0 0px #333;
+}
+.login-container .gradient-login-btn span {
+    position: relative;
+    z-index: 3;
+}
+
+.login-container input[type=text] {
+    width: 100%;
+    padding: 12px 3px 12px 50px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    outline: none;
+}
+.login-container input[type=text]:focus {
+    border: 2px solid #1991eb;
+    /* box-shadow: 0 0 10px #333; */
+    outline: 0;
+    box-shadow: 0 0 0 5px rgba(107, 27, 211, 0.5);
+}
+.login-container input[type=password] {
+    width: 100%;
+    padding: 12px 3px 12px 50px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    outline: none;
+}
+.login-container input[type=password]:focus {
+    border: 2px solid #1991eb;
+    /* box-shadow: 0 0 10px #333; */
+    outline: 0;
+    box-shadow: 0 0 0 5px rgba(107, 27, 211, 0.5);
+}
