@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
+import { useCookies } from 'react-cookie'
 
 import { userService } from '@/services/user'
 
@@ -7,7 +8,9 @@ import Login from './auth'
 
 const Admin: React.VFC = () => {
   const router = useRouter()
+  const user = userService.userValue
   const [authorized, setAuthorized] = useState(false)
+  const [cookie, setCookie] = useCookies(['user'])
 
   useEffect(() => {
     // on initial load - run auth check
@@ -40,11 +43,14 @@ const Admin: React.VFC = () => {
     }
   }
 
-  return (
-    <div className="text-white">
-      <Login />
-    </div>
-  )
+  if (!user) {
+    return (
+      <div className="text-white">
+        <Login />
+      </div>
+    )
+  }
+  return <></>
 }
 
 export default Admin
