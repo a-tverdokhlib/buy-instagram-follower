@@ -1,4 +1,5 @@
 import { yupResolver } from '@hookform/resolvers/yup'
+import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 import { useCookies } from 'react-cookie'
@@ -6,7 +7,6 @@ import { useForm } from 'react-hook-form'
 import * as Yup from 'yup'
 
 import { userService } from '@/services/user'
-
 const Login: React.VFC = () => {
   const [cookie, setCookie] = useCookies(['user'])
 
@@ -47,7 +47,14 @@ const Login: React.VFC = () => {
       <div className="flex w-[500px] md:h-4/5 bg-black bg-opacity-20 rounded-xl">
         <div className="flex flex-col flex-wrap w-full p-4 ls:p-12">
           <div className="mt-4 flex w-full items-center justify-center">
-            <img src="/Goreadlogo.png" alt="Logo" width="300px"></img>
+            <div className="w-[220px] h-[50px] ls:w-[250px] ls:h-[70px] relative">
+              <Image
+                src="/Goreadlogo.png"
+                alt="Logo"
+                layout="fill"
+                objectFit="contain"
+              />
+            </div>
           </div>
           <form onSubmit={handleSubmit((d) => onSubmit(d))}>
             <div className="mt-10 flex flex-col flex-wrap w-full form-group">

@@ -1,10 +1,10 @@
 type Props = {
   readonly info: any
 }
+import Image from 'next/image'
 import { useEffect, useState } from 'react'
 
 import useIsInViewport from '@/redux/store/use-is-in-viewport'
-
 export const BlogCard: React.VFC<Props> = (props) => {
   const { elementRef, isInViewPort } = useIsInViewport()
   const [shouldFade, setShouldFade] = useState(false)
@@ -22,7 +22,14 @@ export const BlogCard: React.VFC<Props> = (props) => {
       className="flex flex-col flex-wrap w-full md:flex-row md:flex-nowrap justify-center md:px-20 py-5"
     >
       <div className="flex w-full md:w-1/2 items-start justify-center">
-        <img src={props.info.imgUrl} alt="Blog Image" />
+        <div className="w-full h-[150px] ls:h-[210px] md:h-[250px] relative">
+          <Image
+            src={props.info.imgUrl}
+            alt="Blog Image"
+            layout="fill"
+            objectFit="contain"
+          />
+        </div>
       </div>
       <div
         className={

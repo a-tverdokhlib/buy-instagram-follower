@@ -1,19 +1,21 @@
-import { Image } from '@/components/atoms/Image'
+import Image from 'next/image'
+
 import { Layout } from '@/components/atoms/Layout'
 
 export const Idea: React.VFC = () => {
   return (
     <div className="flex flex-col flex-wrap md:flex-row rounded-3xl">
-      <div className="hidden md:flex flex-none w-full min-w-[500] p-12 max-w-xl items-center md:w-5/12 ">
-        <img
-          src="/best_service.png"
-          alt="Best Services"
-          width="100%"
-          height="100%"
-        />
-        {/* <img src="/best_service.png" alt="Best Services" layout="include"/> */}
+      <div className="hidden md:flex flex-none w-full p-12 max-w-xl items-center md:w-5/12">
+        <div className="w-full md:w-5/12 h-[70vh] absolute">
+          <Image
+            src="/best_service.png"
+            alt="Best Services"
+            layout="fill"
+            objectFit="contain"
+          />
+        </div>
       </div>
-      <div className="flex-1 p-4 ls:p-12 md:w-7/12 md:mr-16 md:mt-20">
+      <div className="flex-1 p-4 ls:p-12 ml-auto md:w-7/12 md:mr-16 md:mt-20">
         <h1 className="text-4xl md:text-5xl font-medium max-w-full flex flex-wrap">
           <span className="text-white text-center">
             See why we are the best!

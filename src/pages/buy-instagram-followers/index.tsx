@@ -1,22 +1,21 @@
 import Router, { NextRouter } from 'next/router'
 import { useEffect, useRef, useState } from 'react'
 
+import { ActiveFollowerPackages } from '@/components/Buy-Instagram-Followers/ActiveFollowerPackages'
+import { Banner } from '@/components/Buy-Instagram-Followers/Banner'
+import { Description1 } from '@/components/Buy-Instagram-Followers/Description1'
+import { Description2 } from '@/components/Buy-Instagram-Followers/Description2'
+import { Description3 } from '@/components/Buy-Instagram-Followers/Description3'
+import { Description4 } from '@/components/Buy-Instagram-Followers/Description4'
+import { FAQ } from '@/components/Buy-Instagram-Followers/FAQ'
+import { Feedback } from '@/components/Buy-Instagram-Followers/Feedback'
+import { FollowerPackages } from '@/components/Buy-Instagram-Followers/FollowerPackages'
+import { LikePackages } from '@/components/Buy-Instagram-Followers/LikesPackages'
 import { Footer } from '@/components/organisms/Footer'
 import { Header } from '@/components/organisms/Header'
 import { HowTo } from '@/components/organisms/HowTo'
 import { setScrollPosition, setType } from '@/redux/reducers/followers'
 import { useAppDispatch, useAppSelector } from '@/redux/store/hooks'
-
-import { ActiveFollowerPackages } from './ActiveFollowerPackages'
-import { Banner } from './Banner'
-import { Description1 } from './Description1'
-import { Description2 } from './Description2'
-import { Description3 } from './Description3'
-import { Description4 } from './Description4'
-import { FAQ } from './FAQ'
-import { Feedback } from './Feedback'
-import { FollowerPackages } from './FollowerPackages'
-import { LikePackages } from './LikesPackages'
 
 function saveScrollPosition(
   url: string,
@@ -120,3 +119,10 @@ const BuyInstagramFollowers: React.VFC = () => {
 }
 
 export default BuyInstagramFollowers
+
+export async function getStaticProps({ params }) {
+  return {
+    props: {},
+    revalidate: false, // One year in seconds
+  }
+}

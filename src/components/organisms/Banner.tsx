@@ -1,3 +1,5 @@
+import Image from 'next/image'
+
 export const Banner: React.VFC = () => (
   <div className="flex flex-col w-full min-h-screen items-center justify-center flex-wrap md:flex-row md:flex-nowrap md:space-x-2 bg-[#222232]">
     <div className="flex flex-col pt-20 md:pt-0 px-4 ls:px-10 md:px-20 z-[20]">
@@ -89,14 +91,12 @@ export const Banner: React.VFC = () => (
       <br></br>
     </div>
     <div className="hidden md:flex md:w-2/5 justify-center bannerimg right-10 mt-16">
-      <div className="w-full">
-        <img
-          // className=""
-          // className="absolute"
+      <div className="w-full h-[70vh]">
+        <Image
           src="/img/header_top.png"
           alt="bannerImage"
-          width="100%"
-          height="100%"
+          layout="fill"
+          objectFit="contain"
         />
       </div>
     </div>

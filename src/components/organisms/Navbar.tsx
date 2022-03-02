@@ -3,11 +3,10 @@ type Props = {
   readonly isNavShown: boolean
 }
 
+import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useEffect, useRef, useState } from 'react'
-
-import { Image } from '@/components/atoms/Image'
 let isScrolling = false
 
 export const Navbar: React.VFC<Props> = ({ menuClick, isNavShown }) => {
@@ -96,13 +95,14 @@ export const Navbar: React.VFC<Props> = ({ menuClick, isNavShown }) => {
       <div>
         <div className="min-w-min py-5 flex flex-wrap ls:justify-between items-center mx-auto bg-black md:bg-transparent">
           <div className="ml-1 ls:ml-5 sm:ml-16">
-            {/* <Image
-              src="/Goreadlogo.png"
-              width="190px"
-              height="40px"
-              alt="Logo"
-            /> */}
-            <img src="/Goreadlogo.png" width="190px" height="40px" alt="Logo" />
+            <div className="w-[190px] h-[40px] relative">
+              <Image
+                src="/Goreadlogo.png"
+                alt="Logo"
+                layout="fill"
+                objectFit="contain"
+              />
+            </div>
           </div>
           <button
             data-collapse-toggle="mobile-menu"
@@ -217,7 +217,7 @@ export const Navbar: React.VFC<Props> = ({ menuClick, isNavShown }) => {
                         router.push('/buy-auto-instagram-followers')
                       }
                     >
-                      Buy Custom Instagram Followers
+                      Buy Auto Instagram Followers
                     </a>
                   </div>
                   <div>

@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useCookies } from 'react-cookie'
@@ -152,7 +153,14 @@ const Panel: React.VFC = () => {
     <div className="flex flex-col md:flex-row flex-1">
       <aside className="admin-sidenav fixed bg-fuchsia-100 w-full md:w-60 overflow-y-scroll">
         <div className="flex fixed top-0 w-full md:w-60 bg-fuchsia-200 p-2">
-          <img src="/img/admin/logo.png" alt="Logo" className="w-60" />
+          <div className="w-full md:w-56 h-[45px]">
+            <Image
+              src="/img/admin/logo.png"
+              alt="Logo"
+              layout="fill"
+              objectFit="contain"
+            />
+          </div>
         </div>
         <nav className="mt-[68px] h-screen">
           <ul>

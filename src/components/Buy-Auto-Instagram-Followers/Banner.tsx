@@ -1,4 +1,4 @@
-import { Image } from '@/components/atoms/Image'
+import Image from 'next/image'
 export const Banner: React.VFC = () => {
   return (
     <div className="flex flex-wrap flex-col w-full bg-[#222232]">
@@ -11,7 +11,14 @@ export const Banner: React.VFC = () => {
           </span>
         </div>
         <div className="flex w-full md:w-5/12 justify-center items-center md:justify-start">
-          <img src="/img/banner-tag.png" alt="Banner Tag"></img>
+          <div className="w-full h-24 relative">
+            <Image
+              src="/img/banner-tag.png"
+              alt="Banner Tag"
+              layout="fill"
+              objectFit="contain"
+            />
+          </div>
         </div>
       </div>
     </div>

@@ -1,6 +1,7 @@
 type Props = {
   readonly price: number
 }
+import Image from 'next/image'
 export const PaymentGateways: React.VFC<Props> = (props) => {
   return (
     <div className="flex flex-col flex-wrap w-full md:p-0 ml:px-14">
@@ -20,11 +21,14 @@ export const PaymentGateways: React.VFC<Props> = (props) => {
           </span>
         </div>
         <div className="mt-24 flex w-full justify-center">
-          <img
-            className="w-full"
-            src="/img/payments.png"
-            alt="Payment Gateways"
-          />
+          <div className="w-full h-24 relative">
+            <Image
+              src="/img/payments.png"
+              alt="Payment Gateways"
+              layout="fill"
+              objectFit="contain"
+            />
+          </div>
         </div>
       </div>
     </div>

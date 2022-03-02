@@ -2,6 +2,16 @@ import Router, { NextRouter, useRouter } from 'next/router'
 import { useEffect } from 'react'
 import * as Scroll from 'react-scroll'
 
+import { Banner } from '@/components/Buy-Auto-Instagram-Followers/Banner'
+import { FAQ } from '@/components/Buy-Auto-Instagram-Followers/FAQ'
+import { FollowerPlan } from '@/components/Buy-Auto-Instagram-Followers/FollowerPlan'
+import { InstagramAccount } from '@/components/Buy-Auto-Instagram-Followers/InstagramAccount'
+import { PaymentGateways } from '@/components/Buy-Auto-Instagram-Followers/PaymentGateways'
+import { Statics } from '@/components/Buy-Auto-Instagram-Followers/Statics'
+import { Story } from '@/components/Buy-Auto-Instagram-Followers/Story'
+import { SubscriptionPlan } from '@/components/Buy-Auto-Instagram-Followers/SubscriptionPlan'
+import { WhichOne } from '@/components/Buy-Auto-Instagram-Followers/WhichOne'
+import { WhyBuy } from '@/components/Buy-Auto-Instagram-Followers/WhyBuy'
 import { Footer } from '@/components/organisms/Footer'
 import { Header } from '@/components/organisms/Header'
 import {
@@ -12,17 +22,6 @@ import {
   setSubscriptionPlan,
 } from '@/redux/reducers/autoFollowers'
 import { useAppDispatch, useAppSelector } from '@/redux/store/hooks'
-
-import { Banner } from './Banner'
-import { FAQ } from './FAQ'
-import { FollowerPlan } from './FollowerPlan'
-import { InstagramAccount } from './InstagramAccount'
-import { PaymentGateways } from './PaymentGateways'
-import { Statics } from './Statics'
-import { Story } from './Story'
-import { SubscriptionPlan } from './SubscriptionPlan'
-import { WhichOne } from './WhichOne'
-import { WhyBuy } from './WhyBuy'
 
 function saveScrollPosition(
   url: string,

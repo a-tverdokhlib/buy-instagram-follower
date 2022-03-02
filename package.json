@@ -5,7 +5,7 @@
     "dev": "next dev -p 3001",
     "dev-ssl": "(local-ssl-proxy --source 3000 --target 3001) & next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "next start -p 3001",
     "lint": "next lint"
   },
   "dependencies": {
@@ -32,12 +32,12 @@
     "react-dom": "17.0.2",
     "react-google-recaptcha": "^2.1.0",
     "react-hook-form": "^7.27.1",
-    "react-progressive-image-loading": "^3.0.3",
     "react-range": "^1.8.12",
     "react-redux": "^7.2.6",
     "react-scroll": "^1.8.5",
     "react-youtube": "^7.14.0",
     "rxjs": "^7.5.4",
+    "sharp": "^0.30.2",
     "swiper": "^8.0.5",
     "yup": "^0.32.11"
   },

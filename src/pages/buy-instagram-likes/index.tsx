@@ -1,22 +1,21 @@
 import Router, { NextRouter } from 'next/router'
 import { useEffect } from 'react'
 
+import { ActiveLikePackages } from '@/components/Buy-Instagram-Likes/ActiveLikePackages'
+import { Banner } from '@/components/Buy-Instagram-Likes/Banner'
+import { Description1 } from '@/components/Buy-Instagram-Likes/Description1'
+import { Description2 } from '@/components/Buy-Instagram-Likes/Description2'
+import { Description3 } from '@/components/Buy-Instagram-Likes/Description3'
+import { Description4 } from '@/components/Buy-Instagram-Likes/Description4'
+import { FAQ } from '@/components/Buy-Instagram-Likes/FAQ'
+import { Feedback } from '@/components/Buy-Instagram-Likes/Feedback'
+import { FollowerPackages } from '@/components/Buy-Instagram-Likes/FollowerPackages'
+import { LikePackages } from '@/components/Buy-Instagram-Likes/LikesPackages'
 import { Footer } from '@/components/organisms/Footer'
 import { Header } from '@/components/organisms/Header'
 import { HowTo } from '@/components/organisms/HowTo'
 import { setScrollPosition, setType } from '@/redux/reducers/likes'
 import { useAppDispatch, useAppSelector } from '@/redux/store/hooks'
-
-import { ActiveLikePackages } from './ActiveLikePackages'
-import { Banner } from './Banner'
-import { Description1 } from './Description1'
-import { Description2 } from './Description2'
-import { Description3 } from './Description3'
-import { Description4 } from './Description4'
-import { FAQ } from './FAQ'
-import { Feedback } from './Feedback'
-import { FollowerPackages } from './FollowerPackages'
-import { LikePackages } from './LikesPackages'
 
 function saveScrollPosition(
   url: string,

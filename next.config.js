@@ -13,4 +13,7 @@ module.exports = {
   images: {
     domains: ['instagram.com', 'images.firstpost.com'],
   },
+  typescript: {
+    ignoreBuildErrors: true,
+  },
 }

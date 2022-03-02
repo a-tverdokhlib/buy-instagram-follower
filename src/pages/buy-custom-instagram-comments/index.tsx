@@ -1,18 +1,17 @@
 import Router, { NextRouter } from 'next/router'
 import { useEffect } from 'react'
 
+import { Banner } from '@/components/Buy-Custom-Instagram-Comments/Banner'
+import { Description1 } from '@/components/Buy-Custom-Instagram-Comments/Description1'
+import { Description2 } from '@/components/Buy-Custom-Instagram-Comments/Description2'
+import { FAQ } from '@/components/Buy-Custom-Instagram-Comments/FAQ'
+import { Feedback } from '@/components/Buy-Custom-Instagram-Comments/Feedback'
+import { ViewPackages } from '@/components/Buy-Custom-Instagram-Comments/ViewPackages'
 import { Footer } from '@/components/organisms/Footer'
 import { Header } from '@/components/organisms/Header'
 import { HowTo } from '@/components/organisms/HowTo'
 import { setScrollPosition, setType } from '@/redux/reducers/customComments'
 import { useAppDispatch, useAppSelector } from '@/redux/store/hooks'
-
-import { Banner } from './Banner'
-import { Description1 } from './Description1'
-import { Description2 } from './Description2'
-import { FAQ } from './FAQ'
-import { Feedback } from './Feedback'
-import { ViewPackages } from './ViewPackages'
 
 function saveScrollPosition(
   url: string,

@@ -3,15 +3,14 @@ import { useEffect } from 'react'
 import * as Scroll from 'react-scroll'
 import { animateScroll as scroll, Element, scroller } from 'react-scroll'
 
+import { Banner } from '@/components/Buy-Instagram-Story-Views/Banner'
+import { Feedback } from '@/components/Buy-Instagram-Story-Views/Feedback'
+import { PlanConfirmation } from '@/components/Buy-Instagram-Story-Views/PlanConfirmation'
 import { Footer } from '@/components/organisms/Footer'
 import { Header } from '@/components/organisms/Header'
 import { HowTo } from '@/components/organisms/HowTo'
 import { setPlan, setScrollPosition } from '@/redux/reducers/storyViews'
 import { useAppDispatch, useAppSelector } from '@/redux/store/hooks'
-
-import { Banner } from './Banner'
-import { Feedback } from './Feedback'
-import { PlanConfirmation } from './PlanConfirmation'
 
 function saveScrollPosition(
   url: string,

@@ -1,6 +1,6 @@
+import Image from 'next/image'
 import Link from 'next/link'
 
-import { Image } from '@/components/atoms/Image'
 import { NewsLetter } from '@/components/organisms/NewsLetter'
 
 export const Footer: React.VFC = () => (
@@ -9,10 +9,12 @@ export const Footer: React.VFC = () => (
     <div className="mt-10 flex w-full text-[#bbbbbb]">
       <div className="w-full flex flex-wrap space-y-10 md:flex-row md:flex-nowrap md:space-y-0 items-center justify-center">
         <div className="flex flex-wrap w-full space-y-3 md:w-1/3">
-          <img
-            className="flex max-w-52 max-h-10 min-w-52 min-h-10"
+          <Image
+            className="flex"
             src="/Goreadlogo.png"
             alt="Logo"
+            width="200"
+            height="40"
           />
           <div className="w-full text-sm">
             Goread.io is not affiliated with Instagram, Facebook, or any

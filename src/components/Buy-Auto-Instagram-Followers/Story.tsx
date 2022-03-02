@@ -1,6 +1,7 @@
 type DescItemProps = {
   readonly title: string
 }
+import Image from 'next/image'
 const DescItem: React.FC<DescItemProps> = ({ children, title }) => {
   return (
     <>
@@ -45,7 +46,14 @@ export const Story: React.VFC = () => {
           <div className="flex flex-col flex-wrap w-full">
             <div className="inline-block">
               <p className="float-right w-full ss:w-1/2">
-                <img src="/img/reason-bg.svg" alt="Reason"></img>
+                <div className="w-full h-[270px] relative">
+                  <Image
+                    src="/img/reason-bg.svg"
+                    alt="Reason"
+                    layout="fill"
+                    objectFit="contain"
+                  />
+                </div>
               </p>
               <div>
                 <DescItem title={'Grow Followers Organically'}>

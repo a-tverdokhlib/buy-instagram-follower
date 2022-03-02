@@ -1,13 +1,12 @@
 import Router, { NextRouter, useRouter } from 'next/router'
 import { useEffect } from 'react'
 
+import { Banner } from '@/components/Blog/Banner'
+import { Blogs } from '@/components/Blog/Blogs'
 import { Footer } from '@/components/organisms/Footer'
 import { Header } from '@/components/organisms/Header'
 import { setScrollPosition } from '@/redux/reducers/blog'
 import { useAppDispatch, useAppSelector } from '@/redux/store/hooks'
-
-import { Banner } from './Banner'
-import { Blogs } from './Blogs'
 
 function saveScrollPosition(
   url: string,

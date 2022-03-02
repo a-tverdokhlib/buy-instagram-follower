@@ -1,18 +1,15 @@
 import Router, { NextRouter } from 'next/router'
 import { useEffect } from 'react'
 
+import { Banner } from '@/components/Buy-Instagram-Comments/Banner'
+import { Description1 } from '@/components/Buy-Instagram-Comments/Description1'
+import { FAQ } from '@/components/Buy-Instagram-Comments/FAQ'
+import { Feedback } from '@/components/Buy-Instagram-Comments/Feedback'
 import { Footer } from '@/components/organisms/Footer'
 import { Header } from '@/components/organisms/Header'
 import { HowTo } from '@/components/organisms/HowTo'
 import { setScrollPosition, setType } from '@/redux/reducers/comments'
 import { useAppDispatch, useAppSelector } from '@/redux/store/hooks'
-
-import { Banner } from './Banner'
-import { Description1 } from './Description1'
-import { Description2 } from './Description2'
-import { FAQ } from './FAQ'
-import { Feedback } from './Feedback'
-import { ViewPackages } from './ViewPackages'
 
 function saveScrollPosition(
   url: string,
