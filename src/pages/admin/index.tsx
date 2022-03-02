@@ -4,7 +4,7 @@ import { useCookies } from 'react-cookie'
 
 import { userService } from '@/services/user'
 
-import Login from './auth'
+import Panel from './panel'
 
 const Admin: React.VFC = () => {
   const router = useRouter()
@@ -36,19 +36,16 @@ const Admin: React.VFC = () => {
     const publicPaths = ['/admin']
     const path = url.split('?')[0]
     if (!userService.userValue || !publicPaths.includes(path)) {
-    } else {
       router.push({
-        pathname: '/admin/Dashboard',
+        pathname: '/admin/auth',
       })
+    } else {
+      setAuthorized(true)
     }
   }
 
-  if (!user) {
-    return (
-      <div className="text-white">
-        <Login />
-      </div>
-    )
+  if (user) {
+    return <Panel />
   }
   return <></>
 }

@@ -53,3 +53,10 @@
     outline: 0;
     box-shadow: 0 0 0 5px rgba(107, 27, 211, 0.5);
 }
+.fa-chart:before {
+    content: '\f080';
+}
+.admin-sidenav::-webkit-scrollbar {
+    width: 0;  /* Remove scrollbar space */
+    background: transparent;  /* Optional: just make scrollbar invisible */
+  }

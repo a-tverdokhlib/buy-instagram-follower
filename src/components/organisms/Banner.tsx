@@ -1,6 +1,6 @@
 export const Banner: React.VFC = () => (
   <div className="flex flex-col w-full min-h-screen items-center justify-center flex-wrap md:flex-row md:flex-nowrap md:space-x-2 bg-[#222232]">
-    <div className="flex flex-col pt-20 md:pt-0 px-4 ls:px-10 z-[20]">
+    <div className="flex flex-col pt-20 md:pt-0 px-4 ls:px-10 md:px-20 z-[20]">
       <div className="flex-none md:w-5/12 md:h-auto">
         <h1 className="text-3xl ls:text-4xl font-medium max-w-full flex flex-wrap">
           <span>
@@ -19,7 +19,7 @@ export const Banner: React.VFC = () => (
           </span>
         </h1>
       </div>
-      <div className="flex w-full md:w-5/12 text-white">
+      <div className="flex w-full md:w-7/12 text-white">
         <span>
           <span>
             Instagram is one of the best social media platforms to reach

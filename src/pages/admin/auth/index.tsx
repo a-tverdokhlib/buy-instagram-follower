@@ -37,7 +37,7 @@ const Login: React.VFC = () => {
         sameSite: true,
       })
       router.push({
-        pathname: '/admin/Dashboard',
+        pathname: '/admin',
       })
     }
   }

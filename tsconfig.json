@@ -32,7 +32,8 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "pages/_app.js"  
+    "pages/_app.js",
+    "src/helpers/api/config/config.js",
   ],
   "exclude": [
     "node_modules"
