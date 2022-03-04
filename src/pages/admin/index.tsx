@@ -11,8 +11,10 @@ const Admin: React.VFC = () => {
   const user = userService.userValue
   const [authorized, setAuthorized] = useState(false)
   const [cookie, setCookie] = useCookies(['user'])
+  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
+    setMounted(true)
     // on initial load - run auth check
     authCheck(router.asPath)
 
@@ -33,7 +35,32 @@ const Admin: React.VFC = () => {
   }, [])
 
   function authCheck(url) {
-    const publicPaths = ['/admin']
+    const publicPaths = [
+      '/admin',
+      '/admin/statistics',
+      '/admin/orders',
+      '/admin/auto-followers',
+      '/admin/subscription-orders',
+      '/admin/socials',
+      '/admin/block-emails',
+      '/admin/block-countries',
+      '/admin/block-users',
+      '/admin/category',
+      '/admin/reviews',
+      '/admin/package-faq',
+      '/admin/services',
+      '/admin/growth-packs',
+      '/admin/auto-packs',
+      '/admin/other-services',
+      '/admin/customers',
+      '/admin/settings',
+      '/admin/blog',
+      '/admin/faq',
+      '/admin/provider',
+      '/admin/language',
+      '/admin/module',
+      '/admin/theme-customizer',
+    ]
     const path = url.split('?')[0]
     if (!userService.userValue || !publicPaths.includes(path)) {
       router.push({
@@ -45,7 +72,7 @@ const Admin: React.VFC = () => {
   }
 
   if (user) {
-    return <Panel />
+    return mounted === true ? <Panel /> : <></>
   }
   return <></>
 }

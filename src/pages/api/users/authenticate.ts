@@ -3,18 +3,21 @@ const bcrypt = require('bcryptjs')
 import { apiHandler, usersRepo } from 'helpers/api'
 import getConfig from 'next/config'
 
-import dbConnect from '@/helpers/api/lib/dbConnect'
+// import dbConnect from '@/helpers/api/lib/dbConnect'
+import connectDB from '@/helpers/api/lib/mongodb'
+
 const { serverRuntimeConfig } = getConfig()
 
-export default apiHandler({
-  post: authenticate,
-})
+export default connectDB(
+  apiHandler({
+    post: authenticate,
+  }),
+)
 
 async function authenticate(req, res) {
-  await dbConnect()
-
   const { email, password } = req.body
-
+  console.log('Email =>', email)
+  console.log('Password =>', password)
   const admin = await usersRepo.find({ email: 'support@goread.io' })
   if (!admin) {
     const hashString = await bcrypt.hash('123456', 12)
