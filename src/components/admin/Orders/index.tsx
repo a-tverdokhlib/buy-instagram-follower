@@ -8,7 +8,7 @@ const Orders: React.VFC<OrdersProps> = (props) => {
       <Head>
         <title>Admin Order Logs</title>
       </Head>
-      <div className="flex flex-col flex-wrap w-full min-h-screen px-3 md:px-5 ">
+      <div className="flex flex-col flex-wrap w-full min-h-screen px-3 md:px-5 bg-fuchsia-100">
         <Header />
       </div>
     </>

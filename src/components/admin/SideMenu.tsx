@@ -157,8 +157,12 @@ const SideMenu: React.VFC<Props> = (props) => {
 
     function handleResize() {
       // Set window width/height to state
+      const calcWidth = screen.width
+
+      const calcedWidth = calcWidth < 768 ? calcWidth : 240
+      console.log('Window Size =>', calcedWidth)
       setWindowSize({
-        width: window.innerWidth,
+        width: calcedWidth,
         height: window.innerHeight,
       })
     }
@@ -183,13 +187,16 @@ const SideMenu: React.VFC<Props> = (props) => {
 
   const handleChage = () => {}
   const style1 = { width: size.width, height: size.height - 10 }
-
+  const style2 = { width: size.width, height: 'auto' }
   return (
     <aside
-      className="admin-sidenav fixed bg-fuchsia-100 w-full md:w-60 overflow-y-scroll"
+      className="admin-sidenav fixed bg-fuchsia-100 w-full md:w-60 overflow-y-scroll z-[99]"
       style={style1}
     >
-      <div className="flex fixed z-50 top-0 w-full md:w-60 p-2 bg-[#343444] hover:translate-x-2 hover:shadow-lg hover:shadow-cyan-700/50  transition-all duration-300 rounded-xl">
+      <div
+        style={style2}
+        className="flex fixed z-50 top-0 w-full md:w-60 p-2 bg-[#343444] hover:translate-x-2 hover:shadow-lg hover:shadow-cyan-700/50  transition-all duration-300 rounded-xl"
+      >
         <div className="w-full relative md:w-56 h-[45px]">
           <Image
             src="/img/admin/logo.png"

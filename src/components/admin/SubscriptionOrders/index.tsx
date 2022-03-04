@@ -8,7 +8,7 @@ const SubscriptionOrders: React.VFC<SubscriptionOrdersProps> = (props) => {
       <Head>
         <title>Admin Subscription Orders</title>
       </Head>
-      <div className="flex flex-col flex-wrap w-full min-h-screen px-3 md:px-5 ">
+      <div className="flex flex-col flex-wrap w-full min-h-screen px-3 md:px-5 bg-fuchsia-100">
         <Header />
       </div>
     </>

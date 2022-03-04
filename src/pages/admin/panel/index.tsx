@@ -115,7 +115,7 @@ const Panel: React.VFC = () => {
       </Head>
       <div className="flex flex-col md:flex-row flex-1">
         <SideMenu selectedTitle="" />
-        <main className="flex-1 ml-60 text-white bg-[#f5f7fb]">
+        <main className="flex-1 md:ml-60 text-white bg-[#f5f7fb]">
           {switchComponent(router.query['p'])}
         </main>
       </div>
