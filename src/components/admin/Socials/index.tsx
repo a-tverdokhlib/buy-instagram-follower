@@ -1,11 +1,18 @@
+import Head from 'next/head'
+
+import Header from './Header'
+
 export type SocialsProps = {}
 const Socials: React.VFC<SocialsProps> = (props) => {
   return (
-    <div className="flex flex-col flex-wrap w-full">
-      <span>
-        <span className="text-white">Socials</span>
-      </span>
-    </div>
+    <>
+      <Head>
+        <title>Admin Social Network</title>
+      </Head>
+      <div className="flex flex-col flex-wrap w-full min-h-screen px-3 md:px-5 ">
+        <Header />
+      </div>
+    </>
   )
 }
 export default Socials

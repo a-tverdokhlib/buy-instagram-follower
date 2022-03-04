@@ -59,4 +59,22 @@
 .admin-sidenav::-webkit-scrollbar {
     width: 0;  /* Remove scrollbar space */
     background: transparent;  /* Optional: just make scrollbar invisible */
-  }
+}
+
+
+.admin-services input[type=text] {
+    width: 100%;
+    padding: 8px 3px 8px 50px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    outline: none;
+}
+.admin-services input[type=text]:focus {
+    border: 2px solid #1991eb;
+    /* box-shadow: 0 0 10px #333; */
+    outline: 0;
+    box-shadow: 0 0 0 5px rgba(107, 27, 211, 0.5);
+}

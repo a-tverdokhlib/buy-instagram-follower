@@ -33,7 +33,7 @@ export const Banner: React.VFC = () => (
         </span>
       </div>
       <div className="flex flex-wrap items-center mt-10 md:mt-24 px-2 flex-col space-y-2 dm:flex-row dm:flex-nowrap dm:items-center dm:space-x-2 dm:space-y-0 lg:px-0">
-        <div className="flex space-x-2 absolute ls:w-[250px] dm:w-[240px] rounded-full p-3 gradient-btn items-center justify-center hover:cursor-pointer">
+        <div className="flex space-x-2 absolute ls:w-[250px] dm:w-[240px] rounded-full p-3 gradient-ani-btn items-center justify-center hover:cursor-pointer">
           <svg
             className="h-5 w-5 text-white z-10"
             width="24"
@@ -51,7 +51,7 @@ export const Banner: React.VFC = () => (
           </svg>
           <span className="text-sm md:text-base">Buy Instagram Followers</span>
         </div>{' '}
-        <div className="flex space-x-2 absolute ls:w-[250px] dm:w-[210px] rounded-full p-3 gradient-btn items-center justify-center hover:cursor-pointer">
+        <div className="flex space-x-2 absolute ls:w-[250px] dm:w-[210px] rounded-full p-3 gradient-ani-btn items-center justify-center hover:cursor-pointer">
           <svg
             className="h-5 w-5 text-white z-10"
             width="24"
@@ -69,7 +69,7 @@ export const Banner: React.VFC = () => (
           </svg>
           <span className="text-sm md:text-base">Buy Instagram Likes</span>
         </div>{' '}
-        <div className="flex space-x-2 absolute ls:w-[250px] dm:w-[240px] rounded-full p-3 gradient-btn items-center justify-center hover:cursor-pointer">
+        <div className="flex space-x-2 absolute ls:w-[250px] dm:w-[240px] rounded-full p-3 gradient-ani-btn items-center justify-center hover:cursor-pointer">
           <svg
             className="h-5 w-5 text-white z-10"
             width="24"

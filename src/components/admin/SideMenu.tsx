@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
 import { useCookies } from 'react-cookie'
 
 import { userService } from '@/services/user'
@@ -130,6 +131,8 @@ const SideMenu: React.VFC<Props> = (props) => {
   const [cookie, setCookie] = useCookies(['user'])
   const router = useRouter()
   const user = userService.userValue
+  const size = useWindowSize()
+
   if (!user) {
     return <></>
   }
@@ -143,9 +146,50 @@ const SideMenu: React.VFC<Props> = (props) => {
     userService.logout()
   }
 
+  // Hook
+  function useWindowSize() {
+    // Initialize state with undefined width/height so server and client renders match
+    // Learn more here: https://joshwcomeau.com/react/the-perils-of-rehydration/
+    const [windowSize, setWindowSize] = useState({
+      width: 0,
+      height: 0,
+    })
+
+    function handleResize() {
+      // Set window width/height to state
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      })
+    }
+
+    useEffect(() => {
+      // only execute all the code below in client side
+      if (typeof window !== 'undefined') {
+        // Handler to call on window resize
+
+        // Add event listener
+        window.addEventListener('resize', handleResize)
+
+        // Call handler right away so state gets updated with initial window size
+        handleResize()
+
+        // Remove event listener on cleanup
+        return () => window.removeEventListener('resize', handleResize)
+      }
+    }, []) // Empty array ensures that effect is only run on mount
+    return windowSize
+  }
+
+  const handleChage = () => {}
+  const style1 = { width: size.width, height: size.height - 10 }
+
   return (
-    <aside className="admin-sidenav fixed bg-fuchsia-100 w-full md:w-60 overflow-y-scroll">
-      <div className="flex fixed top-0 w-full md:w-60 bg-fuchsia-200 p-2">
+    <aside
+      className="admin-sidenav fixed bg-fuchsia-100 w-full md:w-60 overflow-y-scroll"
+      style={style1}
+    >
+      <div className="flex fixed z-50 top-0 w-full md:w-60 p-2 bg-[#343444] hover:translate-x-2 hover:shadow-lg hover:shadow-cyan-700/50  transition-all duration-300 rounded-xl">
         <div className="w-full relative md:w-56 h-[45px]">
           <Image
             src="/img/admin/logo.png"
@@ -155,13 +199,13 @@ const SideMenu: React.VFC<Props> = (props) => {
           />
         </div>
       </div>
-      <nav className="mt-[68px] h-screen">
+      <nav className="mt-[68px] w-full md:w-60 h-screen">
         <ul>
           {menuItems.map(({ subMenus, title }) => (
             <li className="m-2" key={title}>
               <span
                 className={
-                  'flex p-2 bg-fuchsia-200 rounded hover:bg-fuchsia-400 cursor-pointer font-bold'
+                  'flex p-2 bg-fuchsia-200 rounded cursor-pointer font-bold'
                 }
               >
                 {title}
@@ -180,8 +224,8 @@ const SideMenu: React.VFC<Props> = (props) => {
                       <a
                         className={
                           item.title === props.selectedTitle
-                            ? 'flex p-2 bg-fuchsia-400 rounded hover:bg-fuchsia-400 cursor-pointer'
-                            : 'flex p-2 bg-fuchsia-200 rounded hover:bg-fuchsia-400 cursor-pointer'
+                            ? 'flex p-2 bg-fuchsia-400 rounded hover:bg-fuchsia-400 cursor-pointer  hover:translate-x-1 hover:shadow-lg hover:shadow-cyan-700/50  transition-all duration-300'
+                            : 'flex p-2 bg-fuchsia-200 rounded hover:bg-fuchsia-400 cursor-pointer  hover:translate-x-1 hover:shadow-lg hover:shadow-cyan-700/50  transition-all duration-300'
                         }
                       >
                         <svg
@@ -207,31 +251,33 @@ const SideMenu: React.VFC<Props> = (props) => {
             </li>
           ))}
         </ul>
-        <div className="w-full h-16"></div>
+        <div className="w-full h-11"></div>
       </nav>
       <div
         onClick={() => signout()}
-        className="flex fixed bottom-0 w-full md:w-60 bg-fuchsia-200 p-2 hover:bg-fuchsia-400 cursor-pointer"
+        className="flex fixed bottom-0 w-full md:w-60 bg-fuchsia-100 p-2 cursor-pointer"
       >
-        <span className="flex px-2 w-full rounded ">
-          <svg
-            className="h-5 w-5 text-red-500 mt-[2px] mr-1"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            strokeWidth="2"
-            stroke="currentColor"
-            fill="none"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            {' '}
-            <path stroke="none" d="M0 0h24v24H0z" />{' '}
-            <path d="M7 6a7.75 7.75 0 1 0 10 0" />{' '}
-            <line x1="12" y1="4" x2="12" y2="12" />
-          </svg>
-          <span>Logout</span>
-        </span>
+        <div className="w-full bg-fuchsia-200 rounded hover:bg-fuchsia-400 cursor-pointer  hover:translate-x-1 hover:shadow-lg hover:shadow-cyan-700/50  transition-all duration-300">
+          <span className="flex p-2 w-full rounded">
+            <svg
+              className="h-5 w-5 text-red-500 mt-[2px] mr-1"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              strokeWidth="2"
+              stroke="currentColor"
+              fill="none"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              {' '}
+              <path stroke="none" d="M0 0h24v24H0z" />{' '}
+              <path d="M7 6a7.75 7.75 0 1 0 10 0" />{' '}
+              <line x1="12" y1="4" x2="12" y2="12" />
+            </svg>
+            <span>Logout</span>
+          </span>
+        </div>
       </div>
     </aside>
   )

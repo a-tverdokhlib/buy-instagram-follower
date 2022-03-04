@@ -97,7 +97,7 @@ export const Navbar: React.VFC<Props> = ({ menuClick, isNavShown }) => {
           <div className="ml-1 ls:ml-5 sm:ml-16">
             <div className="w-[190px] h-[40px] relative">
               <Image
-                src="/Goreadlogo.png"
+                src="/Goreadnewlogo.png"
                 alt="Logo"
                 layout="fill"
                 objectFit="contain"

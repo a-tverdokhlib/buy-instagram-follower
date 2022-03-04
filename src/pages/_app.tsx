@@ -11,7 +11,7 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   return (
     <>
       <Head>
-        <link rel="icon" href="/Logo.png" />
+        <link rel="icon" href="/vercel.svg" />
       </Head>
       <Component {...pageProps} />
     </>
