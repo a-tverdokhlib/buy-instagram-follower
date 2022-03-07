@@ -9,7 +9,7 @@ const Services: React.VFC<ServicesProps> = (props) => {
       <Head>
         <title>Admin Services</title>
       </Head>
-      <div className="flex flex-col flex-wrap w-full min-h-screen px-3 md:px-5 ">
+      <div className="flex flex-col flex-wrap w-full min-h-screen px-3 md:px-5 bg-fuchsia-100">
         <Header />
       </div>
     </>

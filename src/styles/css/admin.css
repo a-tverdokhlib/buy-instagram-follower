@@ -60,8 +60,35 @@
     width: 0;  /* Remove scrollbar space */
     background: transparent;  /* Optional: just make scrollbar invisible */
 }
-
-
+.admin-sidenav-wrapper::-webkit-scrollbar {
+    width: 0;  /* Remove scrollbar space */
+    background: transparent;  /* Optional: just make scrollbar invisible */
+}
+.admin-sidenav-wrapper .tooltip {
+    display: inline-block;
+    /* border-bottom: 1px dotted black; */
+}
+  
+  /* Tooltip text */
+.admin-sidenav-wrapper .tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    /* background-color: black; */
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+   
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
+    z-index: 1000;
+}
+  
+  /* Show the tooltip text when you mouse over the tooltip container */
+  .admin-sidenav-wrapper .tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+  
 .admin-services input[type=text] {
     width: 100%;
     padding: 8px 3px 8px 50px;
@@ -77,4 +104,15 @@
     /* box-shadow: 0 0 10px #333; */
     outline: 0;
     box-shadow: 0 0 0 5px rgba(107, 27, 211, 0.5);
+}
+.theme-customizer .check-mark:after {
+    display: block;
+    position: relative;
+    left: 5px;
+    top: 5px;
+    content: '';
+    border-radius: 100%;
+    background-color: white;
+    width: 10px;
+    height: 10px;
 }

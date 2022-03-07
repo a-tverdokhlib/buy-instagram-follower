@@ -11,9 +11,9 @@ export const Footer: React.VFC = () => (
         <div className="flex flex-wrap w-full space-y-3 md:w-1/3">
           <Image
             className="flex"
-            src="/Goreadlogo.png"
+            src="/Goreadnewlogo.png"
             alt="Logo"
-            width="200"
+            width="190"
             height="40"
           />
           <div className="w-full text-sm">

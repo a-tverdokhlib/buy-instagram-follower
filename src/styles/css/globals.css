@@ -448,7 +448,7 @@ body {
   transition: all 0.5s ease;
 }
 .product-card:hover .btn-buyit {
-  top: 50%;
+  top: 60%;
   opacity: 1;
   -webkit-transition: all 0.3s ease;
   -moz-transition: all 0.3s ease;

@@ -8,6 +8,8 @@ import {
 import { createWrapper, HYDRATE } from 'next-redux-wrapper'
 import type { Reducer } from 'react'
 
+import { adminPanelReducer } from '@/redux/reducers/admin/panel'
+import { sideMenuReducer } from '@/redux/reducers/admin/sideMenu'
 import { autoFollowersReducer } from '@/redux/reducers/autoFollowers'
 import { autoLikesReducer } from '@/redux/reducers/autoLikes'
 import { blogReducer } from '@/redux/reducers/blog'
@@ -29,6 +31,8 @@ const combinedReducer = combineReducers({
   storyViews: storyViewsReducer,
   autoFollowers: autoFollowersReducer,
   blog: blogReducer,
+  sideMenu: sideMenuReducer,
+  adminPanel: adminPanelReducer,
 })
 
 const reducer: Reducer<ReturnType<typeof combinedReducer>, AnyAction> | any = (

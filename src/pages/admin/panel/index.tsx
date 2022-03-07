@@ -30,12 +30,27 @@ import Socials from '@/components/admin/Socials'
 import Statistics from '@/components/admin/Statistics'
 import SubscriptionOrders from '@/components/admin/SubscriptionOrders'
 import ThemeCustomizer from '@/components/admin/ThemeCustomizer'
+import { setThemeMode } from '@/redux/reducers/admin/panel'
+import {
+  setSidebarColor,
+  setSideMenuLayout,
+} from '@/redux/reducers/admin/sideMenu'
+import { useAppDispatch, useAppSelector } from '@/redux/store/hooks'
 import { userService } from '@/services/user'
 
 const Panel: React.VFC = () => {
+  const dispatch = useAppDispatch()
+  const { themeMode } = useAppSelector((state) => state.adminPanel)
+  const { layout } = useAppSelector((state) => state.sideMenu)
+  const { sidebarColor } = useAppSelector((state) => state.sideMenu)
+
   const [cookie, setCookie] = useCookies(['user'])
   const [mounted, setMounted] = useState(false)
+  const [themeCustomizerShown, setThemeCustomizerShown] = useState(false)
   const router = useRouter()
+  const onCloseThemeCustomizer = () => {
+    setThemeCustomizerShown(false)
+  }
   const getDynamicComponent = (name) => {
     // const component = dynamic<StatisticsProps>(() =>
     //   import(`@/components/admin/${name}`).then((mod) => mod.default),
@@ -86,13 +101,27 @@ const Panel: React.VFC = () => {
       case 'module':
         return <Module />
       case 'theme-customizer':
-        return <ThemeCustomizer />
+        return <ThemeCustomizer onClose={onCloseThemeCustomizer} />
       default:
         return <Statistics />
     }
   }
   const switchComponent = (param) => {
     return getDynamicComponent(param)
+  }
+
+  const onEvent = (e) => {
+    switch (e) {
+      case 'theme-customizer':
+        setThemeCustomizerShown(!themeCustomizerShown)
+        break
+      case 'menu-click':
+        dispatch(
+          setSideMenuLayout(layout === 'expanded' ? 'collapsed' : 'expanded'),
+        )
+        break
+    }
+    console.log('Event Name =>', e)
   }
 
   useEffect(() => {
@@ -114,10 +143,26 @@ const Panel: React.VFC = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="flex flex-col md:flex-row flex-1">
-        <SideMenu selectedTitle="" />
-        <main className="flex-1 md:ml-60 text-white bg-[#f5f7fb]">
+        <SideMenu
+          mode={layout}
+          color={sidebarColor}
+          selectedTitle=""
+          onEvent={(e) => onEvent(e)}
+        />
+        <main
+          className={
+            layout === 'expanded'
+              ? 'flex-1 md:ml-[270px] text-white bg-[#f5f7fb]'
+              : 'flex-1 md:ml-[80px] text-white bg-[#f5f7fb]'
+          }
+        >
           {switchComponent(router.query['p'])}
         </main>
+        {themeCustomizerShown ? (
+          <ThemeCustomizer onClose={onCloseThemeCustomizer} />
+        ) : (
+          <></>
+        )}
       </div>
     </>
   ) : (
