@@ -209,6 +209,8 @@ const SideMenu: React.VFC<Props> = (props) => {
   const style2 = { width: size.width, height: 'auto' }
   const bgColor =
     props.color === 'light' ? 'bg-fuchsia-100' : 'bg-gray-700 bg-opacity-10'
+  const bgColorZeroOpacity =
+    props.color === 'light' ? 'bg-fuchsia-100' : 'bg-[#161515]'
   const textColor = props.color === 'light' ? 'text-gray-800' : 'text-gray-300'
   const borderColor =
     props.color === 'light' ? 'border-gray-300' : 'border-gray-900'
@@ -329,14 +331,24 @@ const SideMenu: React.VFC<Props> = (props) => {
         onClick={() => signout()}
         className={
           props.mode === 'expanded'
-            ? 'flex fixed bottom-0 w-full md:w-[270px] bg-fuchsia-100 p-2 cursor-pointer'
-            : 'flex fixed bottom-0 w-[80px] bg-fuchsia-100 p-2 cursor-pointer'
+            ? `flex fixed bottom-0 w-full md:w-[270px] ${bgColorZeroOpacity} p-2 cursor-pointer`
+            : `flex fixed bottom-0 w-[80px] ${bgColorZeroOpacity} p-2 cursor-pointer`
         }
       >
-        <div className="w-full bg-fuchsia-200 rounded hover:bg-fuchsia-400 cursor-pointer  hover:translate-x-1 hover:shadow-lg hover:shadow-cyan-700/50  transition-all duration-300">
-          <span className="flex p-2 w-full rounded">
+        <div
+          className={
+            props.color === 'light'
+              ? 'w-full justify-center items-center bg-fuchsia-200 rounded hover:bg-fuchsia-400 cursor-pointer  hover:translate-x-1 hover:shadow-lg hover:shadow-cyan-700/50  transition-all duration-300'
+              : 'w-full justify-center items-center rounded hover:bg-fuchsia-400 cursor-pointer  hover:translate-x-1 hover:shadow-lg hover:shadow-cyan-700/50  transition-all duration-300'
+          }
+        >
+          <span className={`flex p-2 w-full rounded ${textColor}`}>
             <svg
-              className="h-5 w-5 text-red-500 mt-[2px] mr-1"
+              className={
+                props.mode === 'expanded'
+                  ? 'h-5 w-5 text-red-500 mt-[2px] mr-1'
+                  : 'h-8 w-8 text-red-500 mt-[2px] mr-1'
+              }
               width="24"
               height="24"
               viewBox="0 0 24 24"
