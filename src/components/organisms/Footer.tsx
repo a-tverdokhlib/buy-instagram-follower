@@ -11,10 +11,10 @@ export const Footer: React.VFC = () => (
         <div className="flex flex-wrap w-full space-y-3 md:w-1/3">
           <Image
             className="flex"
-            src="/Goreadnewlogo.png"
+            src="/Goread_Logo.png"
             alt="Logo"
             width="190"
-            height="40"
+            height="42"
           />
           <div className="w-full text-sm">
             Goread.io is not affiliated with Instagram, Facebook, or any

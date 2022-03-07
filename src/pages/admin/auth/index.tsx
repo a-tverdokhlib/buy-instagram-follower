@@ -1,7 +1,7 @@
 import { yupResolver } from '@hookform/resolvers/yup'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { useCookies } from 'react-cookie'
 import { useForm } from 'react-hook-form'
 import * as Yup from 'yup'
@@ -23,13 +23,18 @@ const Login: React.VFC = () => {
   const formOptions = { resolver: yupResolver(validationSchema) }
 
   // get functions to build form with useForm() hook
-  const { register, handleSubmit, reset, formState } = useForm(formOptions)
+  const { register, handleSubmit, reset, formState } = useForm()
   const { errors } = formState
-
+  const submitRef = useRef<HTMLButtonElement>(null)
   const handleChange = () => {}
-
-  const onSubmit = async (data) => {
-    let user = await userService.login(data.email, data.password)
+  // const keyPressEvent = (e) => {
+  //   if (e.key === 'Enter' || e.keyCode === 13) {
+  //     handleSubmit(onSubmit) // this won't be triggered
+  //   }
+  // }
+  const onSubmit = async () => {
+    console.log('Submitted')
+    let user = await userService.login(email, password)
     if (user) {
       setCookie('user', JSON.stringify(user), {
         path: '/',
@@ -49,14 +54,14 @@ const Login: React.VFC = () => {
           <div className="mt-4 flex w-full items-center justify-center">
             <div className="w-[220px] h-[50px] ls:w-[250px] ls:h-[70px] relative">
               <Image
-                src="/Goreadlogo.png"
+                src="/Goread_Logo.png"
                 alt="Logo"
                 layout="fill"
                 objectFit="contain"
               />
             </div>
           </div>
-          <form onSubmit={handleSubmit((d) => onSubmit(d))}>
+          <form onSubmit={handleSubmit(() => onSubmit())}>
             <div className="mt-10 flex flex-col flex-wrap w-full form-group">
               <div className="w-full">
                 <span className="absolute z-10 mt-6 ml-4">
