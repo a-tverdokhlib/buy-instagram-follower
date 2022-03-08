@@ -18,8 +18,10 @@ const Category: React.VFC<CategoryProps> = (props) => {
         <title>Admin Services</title>
       </Head>
       <div className="flex flex-col flex-wrap w-full min-h-screen px-3 md:px-5 bg-fuchsia-100">
-        <Header isMobile={props.isMobile} />
-        <div className="flex flex-row flex-nowrap w-full p-8 mt-0">
+        <div className="flex mt-5 lg:mt-0 w-full">
+          <Header />
+        </div>
+        <div className="flex flex-row flex-nowrap w-full p-8">
           <div className="w-full flex items-center">
             <span className="h-6 w-6 rounded-full flex items-center justify-center bg-[#dd80d6]">
               <svg
