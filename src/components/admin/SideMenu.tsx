@@ -184,9 +184,6 @@ const SideMenu: React.VFC<Props> = (props) => {
           ? `admin-sidenav fixed w-full lg:visible lg:w-[80px] xl:w-[270px] ${bgColor} overflow-visible z-[99]`
           : `admin-sidenav fixed w-full lg:visible lg:w-[80px] ${bgColor} overflow-visible z-[99]`
       }
-      // style={
-      //   props.isMobileDevice && props.mode === 'collapsed' ? style2 : style1
-      // }
     >
       <div
         // style={style2}
@@ -289,22 +286,13 @@ const SideMenu: React.VFC<Props> = (props) => {
                           <span
                             className={
                               props.mode === 'expanded'
-                                ? 'hidden xl:flex'
-                                : 'flex lg:hidden'
+                                ? `hidden xl:flex ${textColor}`
+                                : `flex lg:hidden ${textColor}`
                             }
                           >
                             {item.title}
                           </span>
                         </div>
-                        {/* <div className="tooltip">
-                          {props.mode === 'collapsed' ? (
-                            <span className="z-[10] tooltiptext">
-                              Tooltip text
-                            </span>
-                          ) : (
-                            <></>
-                          )}
-                        </div> */}
                       </div>
                     </li>
                   )
@@ -317,7 +305,6 @@ const SideMenu: React.VFC<Props> = (props) => {
       </nav>
       <div
         onClick={() => signout()}
-        // style={style2}
         className={
           props.mode === 'expanded'
             ? `fixed bottom-0 w-full hidden lg:block lg:w-[80px] xl:w-[270px] ${bgColorZeroOpacity} p-2 cursor-pointer`
