@@ -3,7 +3,7 @@ import { useState } from 'react'
 const Header: React.VFC = () => {
   const [keyword, setKeyword] = useState('')
   return (
-    <div className="admin-services flex flex-row flex-nowrap w-full h-16 items-center">
+    <div className="admin-services fixed top-0 flex flex-row flex-nowrap w-full h-16 items-center bg-fuchsia-100">
       <div className="flex h-full items-center">
         <span>
           <span className="flex text-black text-2xl">Services</span>

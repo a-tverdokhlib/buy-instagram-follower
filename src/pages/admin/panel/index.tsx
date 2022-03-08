@@ -1,9 +1,11 @@
+import type { NextPageContext } from 'next'
+import { GetServerSideProps, GetStaticPaths, GetStaticProps } from 'next'
 import dynamic from 'next/dynamic'
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Router, useRouter } from 'next/router'
-import { lazy, Suspense, useEffect, useState } from 'react'
+import { lazy, Suspense, useCallback, useEffect, useState } from 'react'
 import { useCookies } from 'react-cookie'
 
 import AutoFollowers from '@/components/admin/AutoFollowers'
@@ -30,6 +32,7 @@ import Socials from '@/components/admin/Socials'
 import Statistics from '@/components/admin/Statistics'
 import SubscriptionOrders from '@/components/admin/SubscriptionOrders'
 import ThemeCustomizer from '@/components/admin/ThemeCustomizer'
+import useMobileDetect from '@/helpers/hooks/useMobileDetect'
 import { setThemeMode } from '@/redux/reducers/admin/panel'
 import {
   setSidebarColor,
@@ -43,11 +46,14 @@ const Panel: React.VFC = () => {
   const { themeMode } = useAppSelector((state) => state.adminPanel)
   const { layout } = useAppSelector((state) => state.sideMenu)
   const { sidebarColor } = useAppSelector((state) => state.sideMenu)
-
   const [cookie, setCookie] = useCookies(['user'])
   const [mounted, setMounted] = useState(false)
   const [themeCustomizerShown, setThemeCustomizerShown] = useState(false)
   const router = useRouter()
+  const currentDevice = useMobileDetect()
+  const [startPosition, setStartPosition] = useState(0)
+  const [dragable, setDragable] = useState(true)
+  const isMobile = currentDevice.isMobile()
   const onCloseThemeCustomizer = () => {
     setThemeCustomizerShown(false)
   }
@@ -73,7 +79,7 @@ const Panel: React.VFC = () => {
       case 'block-users':
         return <BlockUsers />
       case 'category':
-        return <Category />
+        return <Category isMobile={isMobile} />
       case 'reviews':
         return <Reviews />
       case 'package-faq':
@@ -132,6 +138,8 @@ const Panel: React.VFC = () => {
     console.log('Path changed =>', router.query)
   }, [router.query])
 
+  console.log('Is Mobile Device =>', isMobile)
+
   return mounted ? (
     <>
       <Head>
@@ -152,8 +160,8 @@ const Panel: React.VFC = () => {
         <main
           className={
             layout === 'expanded'
-              ? 'flex-1 md:ml-[270px] text-white bg-[#f5f7fb]'
-              : 'flex-1 md:ml-[80px] text-white bg-[#f5f7fb]'
+              ? 'flex-1 mt-[60px] lg:ml-[80px] lg:mt-0 xl:ml-[270px] w-full text-white bg-[#f5f7fb]'
+              : 'flex-1 w-full ml:ml-0 lg:ml-[80px] xl:ml-[80px]  text-white bg-[#f5f7fb]'
           }
         >
           {switchComponent(router.query['p'])}
