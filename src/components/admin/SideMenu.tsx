@@ -215,8 +215,8 @@ const SideMenu: React.VFC<Props> = (props) => {
           <div
             className={
               props.mode === 'expanded'
-                ? 'flex mx-auto bg-[url(\'/img/admin/logo.png\')] bg-cover w-[120px] h-[22px] ls:w-[180px] ls:h-[32px] lg:h-[38px] lg:bg-[url(\'/img/admin/small-logo.png\')] lg:w-[40px] xl:bg-[url(\'/img/admin/logo.png\')] xl:w-[200px]'
-                : 'flex mx-auto bg-[url(\'/img/admin/logo.png\')] bg-cover w-[120px] h-[22px] ls:w-[180px] ls:h-[32px] lg:h-[38px] lg:bg-[url(\'/img/admin/small-logo.png\')] lg:w-[40px] xl:bg-[url(\'/img/admin/logo.png\')] xl:w-[40px]'
+                ? "flex mx-auto bg-[url('/img/admin/logo.png')] bg-cover w-[120px] h-[22px] ls:w-[180px] ls:h-[32px] lg:h-[38px] lg:bg-[url('/img/admin/small-logo.png')] lg:w-[40px] xl:bg-[url('/img/admin/logo.png')] xl:w-[200px]"
+                : "flex mx-auto bg-[url('/img/admin/logo.png')] bg-cover w-[120px] h-[22px] ls:w-[180px] ls:h-[32px] lg:h-[38px] lg:bg-[url('/img/admin/small-logo.png')] lg:w-[40px] xl:bg-[url('/img/admin/logo.png')] xl:w-[40px]"
             }
           ></div>
         </div>
