@@ -88,8 +88,8 @@ const Category: React.VFC<CategoryProps> = (props) => {
         <div
           className={
             !collapse
-              ? 'flex flex-col flex-wrap w-full bg-gray-300 bg-opacity-30 h-screen shadow-lg shadow-slate-400'
-              : 'flex flex-col flex-wrap w-full bg-gray-300 bg-opacity-30 h-16 shadow-lg shadow-slate-400'
+              ? 'flex-col flex-wrap w-full bg-gray-300 bg-opacity-30 h-screen shadow-lg shadow-slate-400'
+              : 'flex-col flex-wrap w-full bg-gray-300 bg-opacity-30 h-16 shadow-lg shadow-slate-400'
           }
         >
           <div className="w-full flex flex-row flex-nowrap p-5">
