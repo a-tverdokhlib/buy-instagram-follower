@@ -13,7 +13,12 @@ export const Table: React.FC<Props> = (props) => (
             scope="col"
             className="w-[20px] text-sm font-medium text-white px-6 py-4  border border-slate-700"
           >
-            <input className="h-4 w-4" type="checkbox" checked={false} />
+            <input
+              className="h-4 w-4"
+              type="checkbox"
+              checked={false}
+              readOnly
+            />
           </th>
         ) : (
           <></>

@@ -138,11 +138,7 @@ const Panel: React.VFC = () => {
     setMounted(true)
   }, [])
 
-  useEffect(() => {
-    console.log('Path changed =>', router.query)
-  }, [router.query])
-
-  console.log('Is Mobile Device =>', isMobile)
+  useEffect(() => {}, [router.query])
 
   return mounted ? (
     <>

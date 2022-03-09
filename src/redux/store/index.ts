@@ -8,6 +8,7 @@ import {
 import { createWrapper, HYDRATE } from 'next-redux-wrapper'
 import type { Reducer } from 'react'
 
+import { adminCategoryReducer } from '@/redux/reducers/admin/categories'
 import { adminPanelReducer } from '@/redux/reducers/admin/panel'
 import { sideMenuReducer } from '@/redux/reducers/admin/sideMenu'
 import { autoFollowersReducer } from '@/redux/reducers/autoFollowers'
@@ -33,6 +34,7 @@ const combinedReducer = combineReducers({
   blog: blogReducer,
   sideMenu: sideMenuReducer,
   adminPanel: adminPanelReducer,
+  adminCategory: adminCategoryReducer,
 })
 
 const reducer: Reducer<ReturnType<typeof combinedReducer>, AnyAction> | any = (

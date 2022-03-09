@@ -1,29 +1,55 @@
 import Head from 'next/head'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+
+import { categoryService } from '@/services/category'
 
 import { CategoryList } from './CategoryList'
 import EditDialog from './EditDialog'
 import Header from './Header'
-
 export type CategoryProps = {
   readonly isMobile: boolean
   readonly showOverlay: (b) => void
 }
+import { Loading } from '@/components/atoms/Loading'
+import {
+  addCategory,
+  removeCategory,
+  setCategories,
+} from '@/redux/reducers/admin/categories'
+import { useAppDispatch, useAppSelector } from '@/redux/store/hooks'
 const Category: React.VFC<CategoryProps> = (props) => {
+  const dispatch = useAppDispatch()
+  const { categories } = useAppSelector((state) => state.adminCategory)
+
   const [collapse, setCollapse] = useState(false)
   const [editDlgShow, setEditDlgShow] = useState(false)
+  const [loading, setLoading] = useState(false)
 
+  useEffect(() => {
+    setLoading(true)
+    getCategories()
+  }, [])
+
+  const getCategories = async () => {
+    const categories = await categoryService.search('')
+    dispatch(setCategories(categories.data))
+    setTimeout(() => {
+      setLoading(false)
+    }, 100)
+  }
   const toggleCollapse = () => {
     setCollapse(!collapse)
   }
   const onAddNewClicked = () => {
-    console.log('Add new clicked')
     props.showOverlay(true)
     setEditDlgShow(true)
   }
   const onCloseEditDialog = () => {
     props.showOverlay(false)
     setEditDlgShow(false)
+  }
+  const onCategoryCreated = (category) => {
+    dispatch(addCategory(category))
   }
   return (
     <>
@@ -128,10 +154,28 @@ const Category: React.VFC<CategoryProps> = (props) => {
               </span>
             </div>
           </div>
-          {!collapse ? <CategoryList /> : <></>}
+          {!collapse && categories ? (
+            <CategoryList categories={categories} />
+          ) : (
+            <></>
+          )}
         </div>
-        {editDlgShow ? <EditDialog onClose={onCloseEditDialog} /> : <></>}
+        {editDlgShow ? (
+          <EditDialog
+            onClose={onCloseEditDialog}
+            onCategoryCreated={(d) => onCategoryCreated(d)}
+          />
+        ) : (
+          <></>
+        )}
       </div>
+      {loading ? (
+        <div className="fixed top-0 xl:-ml-[200px] flex items-center justify-center w-full h-full bg-opacity-0 bg-black">
+          <Loading />
+        </div>
+      ) : (
+        <></>
+      )}
     </>
   )
 }

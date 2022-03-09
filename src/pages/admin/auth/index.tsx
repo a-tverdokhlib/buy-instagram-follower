@@ -33,7 +33,6 @@ const Login: React.VFC = () => {
   //   }
   // }
   const onSubmit = async () => {
-    console.log('Submitted')
     let user = await userService.login(email, password)
     if (user) {
       setCookie('user', JSON.stringify(user), {
