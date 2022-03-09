@@ -1,4 +1,4 @@
-export type ThemeCustomizerProps = {
+type ThemeCustomizerProps = {
   readonly onClose: () => void
 }
 
@@ -24,7 +24,7 @@ const ThemeCustomizer: React.VFC<ThemeCustomizerProps> = (props) => {
   }
 
   return (
-    <div className="theme-customizer fixed right-1 top-1 flex flex-col flex-wrap w-[400px] bg-fuchsia-300 shadow-lg shadow-cyan-700/50 rounded-xl">
+    <div className="theme-customizer fixed right-1 top-16 flex flex-col flex-wrap w-[400px] bg-fuchsia-300 shadow-lg shadow-cyan-700/50 rounded-xl z-[1001]">
       <div className="flex border-b-2 w-full p-5">
         <span className="font-semibold text-black">
           <svg
@@ -47,7 +47,12 @@ const ThemeCustomizer: React.VFC<ThemeCustomizerProps> = (props) => {
         <span className="text-gray-900 font-semibold ml-2">
           THEME CUSTOMIZER
         </span>
-        <span className="ml-auto hover:cursor-pointer" onClick={props.onClose}>
+        <span
+          className="ml-auto hover:cursor-pointer"
+          onClick={() => {
+            props.onClose()
+          }}
+        >
           <svg
             className="h-6 w-6 text-gray-500"
             width="24"

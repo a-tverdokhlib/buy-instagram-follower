@@ -60,6 +60,10 @@
     width: 0;  /* Remove scrollbar space */
     background: transparent;  /* Optional: just make scrollbar invisible */
 }
+.admin-edit-category::-webkit-scrollbar {
+    width: 0;
+    background: transparent;
+}
 .admin-sidenav-wrapper::-webkit-scrollbar {
     width: 0;  /* Remove scrollbar space */
     background: transparent;  /* Optional: just make scrollbar invisible */

@@ -49,13 +49,16 @@ const Panel: React.VFC = () => {
   const [cookie, setCookie] = useCookies(['user'])
   const [mounted, setMounted] = useState(false)
   const [themeCustomizerShown, setThemeCustomizerShown] = useState(false)
+  const [overlay, setOverlay] = useState(false)
   const router = useRouter()
   const currentDevice = useMobileDetect()
   const [startPosition, setStartPosition] = useState(0)
   const [dragable, setDragable] = useState(true)
   const isMobile = currentDevice.isMobile()
+
   const onCloseThemeCustomizer = () => {
     setThemeCustomizerShown(false)
+    setOverlay(false)
   }
   const getDynamicComponent = (name) => {
     // const component = dynamic<StatisticsProps>(() =>
@@ -79,7 +82,9 @@ const Panel: React.VFC = () => {
       case 'block-users':
         return <BlockUsers />
       case 'category':
-        return <Category isMobile={isMobile} />
+        return (
+          <Category isMobile={isMobile} showOverlay={(b) => setOverlay(b)} />
+        )
       case 'reviews':
         return <Reviews />
       case 'package-faq':
@@ -106,8 +111,6 @@ const Panel: React.VFC = () => {
         return <Language />
       case 'module':
         return <Module />
-      case 'theme-customizer':
-        return <ThemeCustomizer onClose={onCloseThemeCustomizer} />
       default:
         return <Statistics />
     }
@@ -119,6 +122,7 @@ const Panel: React.VFC = () => {
   const onEvent = (e) => {
     switch (e) {
       case 'theme-customizer':
+        setOverlay(true)
         setThemeCustomizerShown(!themeCustomizerShown)
         break
       case 'menu-click':
@@ -171,6 +175,13 @@ const Panel: React.VFC = () => {
         ) : (
           <></>
         )}
+        <div
+          className={
+            !overlay
+              ? 'hidden fixed w-full h-full bg-opacity-50 bg-gray-800 z-[1000]'
+              : 'fixed w-full h-full bg-opacity-50 bg-gray-800 z-[1000]'
+          }
+        ></div>
       </div>
     </>
   ) : (
