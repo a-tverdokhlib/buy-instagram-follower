@@ -91,7 +91,7 @@ const EditDialog: React.VFC<EditDialogProps> = (props) => {
 
   const onSubmit = async (data) => {
     setAwaiting(true)
-    if (data._id === '-1') {
+    if (data._id === '-1' || data._id === '') {
       const category = await categoryService.create({
         ...data,
         content: 'contents',
