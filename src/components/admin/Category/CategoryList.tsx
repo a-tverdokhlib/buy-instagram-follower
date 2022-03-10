@@ -16,7 +16,8 @@ export const CategoryList: React.VFC<Props> = (props) => {
   const [confirmOpen, setConfirmOpen] = useState(false)
   const [categoryToDelete, setCategoryToDelete] = useState({})
   const [awaiting, setAwaiting] = useState(false)
-
+  const [checkedList, setCheckedList] = useState([''])
+  const [allChecked, setAllChecked] = useState(false)
   const onEditClick = (category) => {
     props.onEditClicked(category)
   }
@@ -30,6 +31,27 @@ export const CategoryList: React.VFC<Props> = (props) => {
   const deleteConfirmed = () => {
     props.onRemoveConfirmed(categoryToDelete)
   }
+  const onAllCheckClicked = (e) => {
+    // if (e.target.checked === false) {
+    // }
+    console.log('CheckedList Length=>', checkedList.length)
+    if (checkedList.length === 1) {
+      setCheckedList([
+        ...checkedList,
+        ...props.categories.map((item) => item._id),
+      ])
+    } else if (checkedList.length - 1 === props.categories.length) {
+      setCheckedList([''])
+    } else {
+      setCheckedList([''])
+    }
+  }
+  const onCheckClicked = (e, category) => {
+    if (checkedList.indexOf(category._id) !== -1)
+      setCheckedList([...checkedList.filter((item) => item !== category._id)])
+    else setCheckedList([...checkedList, category._id])
+  }
+  console.log('Props Length=>', props.categories.length)
   const handleChange = () => {}
   return (
     <div className="flex flex-col w-full">
@@ -51,8 +73,12 @@ export const CategoryList: React.VFC<Props> = (props) => {
                     <input
                       className="h-4 w-4"
                       type="checkbox"
-                      checked={false}
-                      readOnly
+                      checked={
+                        props.categories.length === checkedList.length - 1
+                          ? true
+                          : false
+                      }
+                      onChange={(e) => onAllCheckClicked(e)}
                     />
                   </th>
                   <th
@@ -95,8 +121,12 @@ export const CategoryList: React.VFC<Props> = (props) => {
                         <input
                           className="h-4 w-4"
                           type="checkbox"
-                          checked={false}
-                          readOnly
+                          checked={
+                            checkedList.indexOf(category._id) !== -1
+                              ? true
+                              : false
+                          }
+                          onChange={(e) => onCheckClicked(e, category)}
                         />
                       </td>
                       <td className="text-sm text-gray-900 px-6 py-4 whitespace-nowrap border border-slate-300">
