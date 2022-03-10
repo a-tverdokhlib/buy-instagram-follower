@@ -70,12 +70,10 @@ export const QualityFollowers: React.VFC = () => {
   const [swiperReachEnded, setSwiperReachEnded] = useState(0)
 
   const prevClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    console.log('Prev Button Clicked')
     prevRef.current?.click()
   }
 
   const nextClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    console.log('Next Button Clicked')
     nextRef.current?.click()
   }
 

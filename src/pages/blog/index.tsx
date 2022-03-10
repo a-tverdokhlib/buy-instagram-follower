@@ -13,7 +13,6 @@ function saveScrollPosition(
   scrollPos: number,
   savePosition: (url: string, pos: number) => void,
 ) {
-  console.log('Store Position => ', scrollPos)
   savePosition(url, scrollPos)
 }
 
@@ -156,7 +155,6 @@ const blogs = [
   },
 ]
 function restoreScrollPosition(url: string, pos: number) {
-  console.log('Restore Position => ', pos)
   if (pos) {
     window.scrollTo(0, pos)
   }
@@ -178,7 +176,6 @@ const Blog: React.VFC = () => {
   }, [pathname])
 
   const onRouteChangeComplete = (url: string) => {
-    console.log('Hook onRouteChangeComplete')
     if (shouldScrollRestore) {
       shouldScrollRestore = false
       restoreScrollPosition(url, scrollPosition)
@@ -188,7 +185,6 @@ const Blog: React.VFC = () => {
   useEffect(() => {
     if ('scrollRestoration' in window.history) {
       const onBeforeUnload = (event: Event) => {
-        console.log('Hook onBeforeUnload')
         const scrollPos = window.scrollY
         saveScrollPosition(Router.asPath, scrollPos, updatePosition)
         event.preventDefault()
@@ -196,7 +192,6 @@ const Blog: React.VFC = () => {
       }
 
       const onRouteChangeStart = () => {
-        console.log('Hook onRouteChangeStart')
         const scrollPos = window.scrollY
         saveScrollPosition(Router.asPath, scrollPos, updatePosition)
       }

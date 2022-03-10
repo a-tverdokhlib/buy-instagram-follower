@@ -34,17 +34,15 @@ function create(data) {
 
 function update(data) {
   return fetchWrapper
-    .put(`${publicRuntimeConfig.apiUrl}/category`, {
-      data,
-    })
+    .put(`${publicRuntimeConfig.apiUrl}/category`, data)
     .then((category) => {
       return category
     })
 }
 
-function _delete(id) {
+function _delete(_id) {
   return fetchWrapper
-    .delete(`${publicRuntimeConfig.apiUrl}/category/${id}`)
+    .delete(`${publicRuntimeConfig.apiUrl}/category?_id=${_id}`)
     .then((data) => {
       return data
     })

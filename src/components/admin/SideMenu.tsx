@@ -168,7 +168,6 @@ const SideMenu: React.VFC<Props> = (props) => {
     props.color === 'light' ? 'border-gray-300' : 'border-gray-900'
   const menuItemClick = (item) => {
     if (item.href !== '') {
-      console.log('Screen Width =>', window.innerWidth)
       if (window.innerWidth < 1024) dispatch(setSideMenuLayout('expanded'))
       router.push(`/admin/${item.href}`, undefined, {
         shallow: true,

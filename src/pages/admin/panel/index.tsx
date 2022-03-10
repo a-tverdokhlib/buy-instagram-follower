@@ -131,7 +131,6 @@ const Panel: React.VFC = () => {
         )
         break
     }
-    console.log('Event Name =>', e)
   }
 
   useEffect(() => {

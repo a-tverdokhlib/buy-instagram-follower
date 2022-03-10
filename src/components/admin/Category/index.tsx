@@ -15,6 +15,7 @@ import {
   addCategory,
   removeCategory,
   setCategories,
+  updateCategory,
 } from '@/redux/reducers/admin/categories'
 import { useAppDispatch, useAppSelector } from '@/redux/store/hooks'
 const Category: React.VFC<CategoryProps> = (props) => {
@@ -24,6 +25,7 @@ const Category: React.VFC<CategoryProps> = (props) => {
   const [collapse, setCollapse] = useState(false)
   const [editDlgShow, setEditDlgShow] = useState(false)
   const [loading, setLoading] = useState(false)
+  const [categoryToEdit, setCategoryToEdit] = useState({})
 
   useEffect(() => {
     setLoading(true)
@@ -42,6 +44,7 @@ const Category: React.VFC<CategoryProps> = (props) => {
   }
   const onAddNewClicked = () => {
     props.showOverlay(true)
+    setCategoryToEdit({})
     setEditDlgShow(true)
   }
   const onCloseEditDialog = () => {
@@ -50,6 +53,27 @@ const Category: React.VFC<CategoryProps> = (props) => {
   }
   const onCategoryCreated = (category) => {
     dispatch(addCategory(category))
+  }
+  const onCategoryUpdated = (category) => {
+    dispatch(updateCategory(category))
+  }
+  const onRemoveConfirmed = async (category) => {
+    setLoading(true)
+    const resp = await categoryService._delete(category._id)
+    if (resp) {
+      setLoading(false)
+      if (resp.status === 'success') dispatch(removeCategory(category))
+    } else {
+      setLoading(false)
+    }
+  }
+  const onEditClicked = (category) => {
+    props.showOverlay(true)
+    setCategoryToEdit(category)
+    setEditDlgShow(true)
+  }
+  const onViewClicked = (category) => {
+    window.open(category.urlSlug)
   }
   return (
     <>
@@ -63,7 +87,7 @@ const Category: React.VFC<CategoryProps> = (props) => {
             onClick={onAddNewClicked}
             className="w-full flex items-center hover:cursor-pointer"
           >
-            <span className="h-6 w-6 rounded-full flex items-center justify-center bg-[#dd80d6]">
+            <span className="h-6 w-6 rounded-full flex items-center justify-center bg-gray-500 hover:bg-blue-500">
               <svg
                 className="h-5 w-5 text-white "
                 viewBox="0 0 24 24"
@@ -155,22 +179,29 @@ const Category: React.VFC<CategoryProps> = (props) => {
             </div>
           </div>
           {!collapse && categories ? (
-            <CategoryList categories={categories} />
+            <CategoryList
+              categories={categories}
+              onEditClicked={(data) => onEditClicked(data)}
+              onViewClicked={(data) => onViewClicked(data)}
+              onRemoveConfirmed={(data) => onRemoveConfirmed(data)}
+            />
           ) : (
             <></>
           )}
         </div>
         {editDlgShow ? (
           <EditDialog
+            category={categoryToEdit}
             onClose={onCloseEditDialog}
             onCategoryCreated={(d) => onCategoryCreated(d)}
+            onCategoryUpdated={(d) => onCategoryUpdated(d)}
           />
         ) : (
           <></>
         )}
       </div>
       {loading ? (
-        <div className="fixed top-0 xl:-ml-[200px] flex items-center justify-center w-full h-full bg-opacity-0 bg-black">
+        <div className="fixed inset-0 flex items-center justify-center w-full h-full bg-opacity-0 bg-black">
           <Loading />
         </div>
       ) : (

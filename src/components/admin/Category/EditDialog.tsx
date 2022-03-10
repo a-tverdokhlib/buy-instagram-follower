@@ -1,6 +1,8 @@
 export type EditDialogProps = {
+  readonly category: any
   readonly onClose: () => void
   readonly onCategoryCreated: (d) => void
+  readonly onCategoryUpdated: (d) => void
 }
 import 'suneditor/dist/css/suneditor.min.css' // Import Sun Editor's CSS File
 
@@ -35,14 +37,40 @@ const EditDialog: React.VFC<EditDialogProps> = (props) => {
   const { sidebarColor } = useAppSelector((state) => state.sideMenu)
   const [code, setCode] = useState('myMonacoEditor')
 
-  const [name, setName] = useState('')
-  const [checkoutCode, setCheckoutCode] = useState('')
-  const [nameOfRequiredField, setNameOfRequiredField] = useState('')
+  const [_id, set_Id] = useState(props.category ? props.category._id : '-1')
+  const [name, setName] = useState(props.category ? props.category.name : '')
+  const [checkoutCode, setCheckoutCode] = useState(
+    props.category ? props.category.checkoutCode : '',
+  )
+  const [requiredField, setRequiredField] = useState(
+    props.category ? props.category.requiredField : '',
+  )
   const [socialNetwork, setSocialNetwork] = useState('Instagram')
-  const [defaultSortingNumber, setDefaultSortingNumber] = useState(0)
-  const [status, setStatus] = useState('Active')
-  const [offerDiscount, setOfferDiscount] = useState(0)
-  const [urlSlug, setUrlSlug] = useState('')
+  const [defaultSortingNumber, setDefaultSortingNumber] = useState(
+    props.category ? props.category.defaultSortingNumber : 0,
+  )
+  const [status, setStatus] = useState(
+    props.category
+      ? props.category.isActive
+        ? 'active'
+        : 'inactive'
+      : 'active',
+  )
+  const [offerDiscount, setOfferDiscount] = useState(
+    props.category ? props.category.offerDiscount : 0,
+  )
+  const [pageTitle, setPageTitle] = useState(
+    props.category ? props.category.pageTitle : '',
+  )
+  const [urlSlug, setUrlSlug] = useState(
+    props.category ? props.category.urlSlug : '',
+  )
+  const [metaKeywords, setMetaKeywords] = useState(
+    props.category ? props.category.metaKeywords : '',
+  )
+  const [metaDescription, setMetaDescription] = useState(
+    props.category ? props.category.metaDescription : '',
+  )
 
   const [awaiting, setAwaiting] = useState(false)
 
@@ -63,17 +91,32 @@ const EditDialog: React.VFC<EditDialogProps> = (props) => {
 
   const onSubmit = async (data) => {
     setAwaiting(true)
-    const category = await categoryService.create({
-      ...data,
-      content: 'contents',
-    })
-    if (category) {
-      setAwaiting(false)
-      props.onClose()
-      props.onCategoryCreated(category.data)
+    if (data._id === '-1') {
+      const category = await categoryService.create({
+        ...data,
+        content: 'contents',
+      })
+      if (category) {
+        setAwaiting(false)
+        props.onClose()
+        props.onCategoryCreated(category.data)
+      } else {
+        setAwaiting(false)
+        props.onClose()
+      }
     } else {
-      setAwaiting(false)
-      props.onClose()
+      const category = await categoryService.update({
+        ...data,
+        content: 'contents',
+      })
+      if (category) {
+        setAwaiting(false)
+        props.onClose()
+        props.onCategoryUpdated(category.data)
+      } else {
+        setAwaiting(false)
+        props.onClose()
+      }
     }
   }
 
@@ -123,10 +166,18 @@ const EditDialog: React.VFC<EditDialogProps> = (props) => {
             <div className="text-black">Name</div>
             <div className="flex w-full">
               <input
+                {...register('_id')}
+                className="hidden"
+                type="text"
+                value={_id}
+              />
+              <input
                 {...register('name')}
-                className="w-full h-12 p-3 bg-transparent border-[1px] border-gray-300 text-gray-500"
+                className="w-full h-12 p-3 bg-transparent border-[1px] border-gray-300 text-gray-900"
                 type="text"
                 placeholder="Instagram Followers (Must be greater than 2 words)"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
               />
             </div>
           </div>
@@ -155,6 +206,8 @@ const EditDialog: React.VFC<EditDialogProps> = (props) => {
                 className="w-full h-12 p-3 bg-transparent border-[1px] border-gray-300 text-black"
                 type="text"
                 placeholder=""
+                value={checkoutCode}
+                onChange={(e) => setCheckoutCode(e.target.value)}
               />
             </div>
           </div>
@@ -166,6 +219,8 @@ const EditDialog: React.VFC<EditDialogProps> = (props) => {
                 className="w-full h-12 p-3 bg-transparent border-[1px] border-gray-300 text-black"
                 type="text"
                 placeholder="link"
+                value={requiredField}
+                onChange={(e) => setRequiredField(e.target.value)}
               />
             </div>
           </div>
@@ -190,6 +245,8 @@ const EditDialog: React.VFC<EditDialogProps> = (props) => {
                   type="number"
                   className="w-full h-12 p-3 bg-transparent border-[1px] border-gray-300 text-gray-500"
                   placeholder=""
+                  value={defaultSortingNumber}
+                  onChange={(e) => setDefaultSortingNumber(e.target.value)}
                 ></input>
               </div>
             </div>
@@ -200,9 +257,11 @@ const EditDialog: React.VFC<EditDialogProps> = (props) => {
                   {...register('status')}
                   className="w-full h-12 p-3 bg-transparent border-[1px] border-gray-300 text-gray-500"
                   placeholder="link"
+                  value={status}
+                  onChange={(e) => setStatus(e.target.value)}
                 >
                   <option value="active">Active</option>
-                  <option value="deactive">Deactive</option>
+                  <option value="inactive">Deactive</option>
                 </select>
               </div>
             </div>
@@ -215,6 +274,8 @@ const EditDialog: React.VFC<EditDialogProps> = (props) => {
                 type="number"
                 className="w-full h-12 p-3 bg-transparent border-[1px] border-gray-300 text-black"
                 placeholder=""
+                value={offerDiscount}
+                onChange={(e) => setOfferDiscount(e.target.value)}
               />
             </div>
           </div>
@@ -250,6 +311,8 @@ const EditDialog: React.VFC<EditDialogProps> = (props) => {
                   type="text"
                   className="w-full h-12 p-3 bg-transparent border-[1px] border-gray-300 text-black"
                   placeholder="buy-instagram-followers"
+                  value={urlSlug}
+                  onChange={(e) => setUrlSlug(e.target.value)}
                 />
               </div>
               <div className="w-full">
@@ -268,6 +331,8 @@ const EditDialog: React.VFC<EditDialogProps> = (props) => {
                   type="text"
                   className="w-full h-12 p-3 bg-transparent border-[1px] border-gray-300 text-black"
                   placeholder=""
+                  value={pageTitle}
+                  onChange={(e) => setPageTitle(e.target.value)}
                 />
               </div>
             </div>
@@ -279,6 +344,8 @@ const EditDialog: React.VFC<EditDialogProps> = (props) => {
                   className="w-full p-3 bg-transparent border-[1px] border-gray-300 text-black"
                   placeholder=""
                   rows={3}
+                  value={metaKeywords}
+                  onChange={(e) => setMetaKeywords(e.target.value)}
                 />
               </div>
             </div>
@@ -290,6 +357,8 @@ const EditDialog: React.VFC<EditDialogProps> = (props) => {
                   className="w-full p-3 bg-transparent border-[1px] border-gray-300 text-black"
                   placeholder=""
                   rows={3}
+                  value={metaDescription}
+                  onChange={(e) => setMetaDescription(e.target.value)}
                 />
               </div>
             </div>

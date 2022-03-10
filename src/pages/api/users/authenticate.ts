@@ -16,8 +16,6 @@ export default connectDB(
 
 async function authenticate(req, res) {
   const { email, password } = req.body
-  console.log('Email =>', email)
-  console.log('Password =>', password)
   const admin = await usersRepo.find({ email: 'support@goread.io' })
   if (!admin) {
     const hashString = await bcrypt.hash('123456', 12)
@@ -41,7 +39,6 @@ async function authenticate(req, res) {
   const user = await usersRepo.find({ email })
 
   if (!user) throw 'User not found.'
-  console.log('User => ', user)
   if (!(user && bcrypt.compareSync(password, user.hash))) {
     throw 'Email or password is incorrect'
   }

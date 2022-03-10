@@ -23,12 +23,31 @@ async function findCategory(where) {
 
 async function create(category) {
   const newCategory = new categoryModel(category)
-  console.log('New Category to Create =>', newCategory)
   const addedOne = await newCategory.save()
   return addedOne
 }
 
-async function update(id, params) {}
+async function update(_id, params) {
+  const updateOne = await categoryModel.findOne({ _id: _id })
+  updateOne.name = params.name
+  updateOne.content = params.content
+  updateOne.checkoutCode = params.checkoutCode
+  updateOne.requiredField = params.requiredField
+  updateOne.socialNetwork = params.socialNetwork
+  updateOne.defaultSortingNumber = params.defaultSortingNumber
+  updateOne.isActive = params.isActive
+  updateOne.offerDiscount = params.offerDiscount
+  updateOne.urlSlug = params.urlSlug
+  updateOne.pageTitle = params.pageTitle
+  updateOne.metaKeywords = params.metaKeywords
+  updateOne.metaDescription = params.metaDescription
+  await updateOne.save()
+  return updateOne
+}
 
 // prefixed with underscore '_' because 'delete' is a reserved word in javascript
-async function _delete(id) {}
+async function _delete(_id) {
+  const category = await categoryModel.findOne({ _id: _id })
+  category.remove()
+  return true
+}

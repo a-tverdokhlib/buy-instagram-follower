@@ -25,7 +25,6 @@ async function findUser(credentials) {
 
 async function create(user) {
   const newUser = new userModel(user)
-  console.log('New User to Create =>', newUser)
   newUser.save()
 }
 
