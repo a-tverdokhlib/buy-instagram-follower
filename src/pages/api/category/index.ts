@@ -76,7 +76,7 @@ async function updateCategory(req, res) {
     requiredField,
     socialNetwork,
     defaultSortingNumber,
-    status,
+    isActive,
     offerDiscount,
     urlSlug,
     pageTitle,
@@ -91,14 +91,13 @@ async function updateCategory(req, res) {
     requiredField: requiredField,
     socialNetwork: socialNetwork,
     defaultSortingNumber: defaultSortingNumber,
-    isActive: status === 'active' ? true : false,
+    isActive: isActive,
     offerDiscount: offerDiscount,
     urlSlug: urlSlug,
     pageTitle: pageTitle,
     metaKeywords: metaKeywords,
     metaDescription: metaDescription,
   })
-  console.log('Updated Category =>', updatedOne)
   return res.status(200).json({
     status: 'success',
     data: updatedOne,

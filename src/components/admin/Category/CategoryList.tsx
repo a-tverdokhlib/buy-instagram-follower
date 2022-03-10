@@ -3,19 +3,16 @@ type Props = {
   readonly onRemoveConfirmed: (data) => void
   readonly onEditClicked: (data) => void
   readonly onViewClicked: (data) => void
+  readonly onSwitchChanged: (e, data) => void
 }
 import { useState } from 'react'
 import Switch from 'react-switch'
 
 import ConfirmDialog from '@/components/atoms/ConfirmDialog'
-import IconButton from '@/components/atoms/IconButton'
-import { Table } from '@/components/atoms/Table'
-import { categoryService } from '@/services/category'
 
 export const CategoryList: React.VFC<Props> = (props) => {
   const [confirmOpen, setConfirmOpen] = useState(false)
   const [categoryToDelete, setCategoryToDelete] = useState({})
-  const [awaiting, setAwaiting] = useState(false)
   const [checkedList, setCheckedList] = useState([''])
   const [allChecked, setAllChecked] = useState(false)
   const onEditClick = (category) => {
@@ -32,9 +29,6 @@ export const CategoryList: React.VFC<Props> = (props) => {
     props.onRemoveConfirmed(categoryToDelete)
   }
   const onAllCheckClicked = (e) => {
-    // if (e.target.checked === false) {
-    // }
-    console.log('CheckedList Length=>', checkedList.length)
     if (checkedList.length === 1) {
       setCheckedList([
         ...checkedList,
@@ -51,8 +45,9 @@ export const CategoryList: React.VFC<Props> = (props) => {
       setCheckedList([...checkedList.filter((item) => item !== category._id)])
     else setCheckedList([...checkedList, category._id])
   }
-  console.log('Props Length=>', props.categories.length)
-  const handleChange = () => {}
+  const onSwitchChange = async (e, category) => {
+    props.onSwitchChanged(e, category)
+  }
   return (
     <div className="flex flex-col w-full">
       <div className="overflow-x-auto">
@@ -142,7 +137,7 @@ export const CategoryList: React.VFC<Props> = (props) => {
                         <Switch
                           height={20}
                           width={50}
-                          onChange={handleChange}
+                          onChange={(e) => onSwitchChange(e, category)}
                           checked={category.isActive}
                         />
                       </td>

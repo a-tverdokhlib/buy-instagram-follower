@@ -67,6 +67,15 @@ const Category: React.VFC<CategoryProps> = (props) => {
       setLoading(false)
     }
   }
+  const onSwitchChanged = async (e, data) => {
+    const category = { ...data }
+    category.isActive = e
+    const updatedCategory = await categoryService.update({ ...category })
+    if (updatedCategory) {
+      dispatch(updateCategory(updatedCategory.data))
+    } else {
+    }
+  }
   const onEditClicked = (category) => {
     props.showOverlay(true)
     setCategoryToEdit(category)
@@ -184,6 +193,7 @@ const Category: React.VFC<CategoryProps> = (props) => {
               onEditClicked={(data) => onEditClicked(data)}
               onViewClicked={(data) => onViewClicked(data)}
               onRemoveConfirmed={(data) => onRemoveConfirmed(data)}
+              onSwitchChanged={(e, data) => onSwitchChanged(e, data)}
             />
           ) : (
             <></>
