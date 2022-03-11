@@ -1,9 +1,9 @@
 type ReviewItemProps = {
   readonly feedbackInfo: any
 }
+import Image from 'next/image'
 import { useState } from 'react'
 
-import { Image } from '@/components/atoms/Image'
 import SubmitReview from '@/components/organisms/SubmitReview'
 const stars = [1, 2, 3, 4, 5]
 const ReviewItem: React.FC<ReviewItemProps> = (props) => {

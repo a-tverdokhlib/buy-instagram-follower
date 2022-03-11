@@ -14,6 +14,8 @@ export const categoryService = {
   update,
   _delete,
   search,
+  deleteMany,
+  deleteInactive,
 }
 
 function search(keyword) {
@@ -42,7 +44,25 @@ function update(data) {
 
 function _delete(_id) {
   return fetchWrapper
-    .delete(`${publicRuntimeConfig.apiUrl}/category?_id=${_id}`)
+    .delete(
+      `${publicRuntimeConfig.apiUrl}/category/delete?_type=one&_id=${_id}`,
+    )
+    .then((data) => {
+      return data
+    })
+}
+
+function deleteInactive() {
+  return fetchWrapper
+    .delete(`${publicRuntimeConfig.apiUrl}/category/delete?_type=inactive`)
+    .then((data) => {
+      return data
+    })
+}
+
+function deleteMany(_ids) {
+  return fetchWrapper
+    .post(`${publicRuntimeConfig.apiUrl}/category/delete`, { _ids: _ids })
     .then((data) => {
       return data
     })

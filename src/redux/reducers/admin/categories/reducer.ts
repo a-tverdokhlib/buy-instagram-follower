@@ -2,6 +2,7 @@ import { createReducer } from '@reduxjs/toolkit'
 
 import {
   addCategory,
+  removeCategories,
   removeCategory,
   setCategories,
   updateCategory,
@@ -26,6 +27,13 @@ export const adminCategoryReducer = createReducer(initialState, (builder) => {
     const category = action.payload
     const categoryList = [
       ...state.categories.filter((item) => item._id !== category._id),
+    ]
+    state.categories = categoryList
+  })
+  builder.addCase(removeCategories, (state, action) => {
+    const removedIds = action.payload
+    const categoryList = [
+      ...state.categories.filter((item) => !removedIds.includes(item._id)),
     ]
     state.categories = categoryList
   })

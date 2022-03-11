@@ -1,10 +1,8 @@
+import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react'
 import React from 'react'
 
-import { Image } from '@/components/atoms/Image'
-
 import { ProductItem } from './ProductItem'
-
 export const Products: React.VFC = () => {
   const swiperRef = useRef<any>(null)
   const prevRef = useRef<any>(null)

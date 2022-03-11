@@ -1,7 +1,6 @@
+import Image from 'next/image'
 import React, { useEffect } from 'react'
 import { useState } from 'react'
-
-import { Image } from '@/components/atoms/Image'
 
 export const Chat: React.VFC = () => {
   const [showDlg, setShowDlg] = useState(false)

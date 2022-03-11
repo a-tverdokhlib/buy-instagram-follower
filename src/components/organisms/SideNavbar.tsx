@@ -8,7 +8,7 @@ import { useRouter } from 'next/router'
 export const SideNavbar: React.VFC<SideProps> = ({ children }) => {
   const router = useRouter()
   return (
-    <div className="sidenav fixed w-full z-[1000]">
+    <div className="sidenav nav fixed w-full z-[1000]">
       <div
         className="fixed md:hidden w-full z-[100] bg-black nav top-24 bottom-0 overflow-y-scroll overflow-x-hidden"
         id="mobile-menu"

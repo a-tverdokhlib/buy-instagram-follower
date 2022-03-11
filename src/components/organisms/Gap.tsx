@@ -1,4 +1,5 @@
-import { Image } from '@/components/atoms/Image'
+import Image from 'next/image'
+
 import { Layout } from '@/components/atoms/Layout'
 
 export const Gap: React.VFC = () => {

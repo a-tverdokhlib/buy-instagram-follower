@@ -5,6 +5,9 @@ export const addCategory = createAction<any>('admin/categories/addCategory')
 export const removeCategory = createAction<any>(
   'admin/categories/removeCategory',
 )
+export const removeCategories = createAction<any>(
+  'admin/categories/removeCategories',
+)
 export const updateCategory = createAction<any>(
   'admin/categories/updateCategory',
 )

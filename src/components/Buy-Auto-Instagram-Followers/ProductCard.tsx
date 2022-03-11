@@ -2,9 +2,8 @@ type Props = {
   readonly info: any
 }
 
+import Image from 'next/image'
 import router from 'next/router'
-
-import { Image } from '@/components/atoms/Image'
 export const ProductCard: React.VFC<Props> = (props) => {
   return (
     <div

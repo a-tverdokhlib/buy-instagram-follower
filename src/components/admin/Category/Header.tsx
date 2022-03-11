@@ -3,12 +3,12 @@ type Props = {}
 const Header: React.VFC<Props> = (props) => {
   const [keyword, setKeyword] = useState('')
   return (
-    <div className="admin-services top-0 flex flex-row flex-nowrap w-full h-16 items-center bg-fuchsia-100">
-      <div className="fixed w-full bg-fuchsia-100 h-[44px] py-10"></div>
-      <div className="fixed flex items-center">
+    <div className="admin-services top-0 flex flex-row flex-nowrap w-full h-16 items-center bg-fuchsia-100 z-[10]">
+      <div className="fixed w-full px-3 bg-fuchsia-100 h-[44px] py-10"></div>
+      <div className="fixed flex px-3 items-center">
         <div className="flex items-center">
           <span>
-            <span className="flex text-black text-2xl">Category</span>
+            <span className="hidden ls:flex text-black text-2xl">Category</span>
           </span>
         </div>
         <div className="flex w-full max-w-[600px] items-center p-3">

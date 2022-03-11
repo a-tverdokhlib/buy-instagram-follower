@@ -33,12 +33,12 @@ body {
 .nav li.custom {
   margin-left: -0.5rem !important;
 }
-.dropdown {
+.nav .dropdown {
   position: relative;
   /* display: inline-block; */
 }
 
-.dropdown-content {
+.nav .dropdown-content {
   right: 0;
   display: none;
   position: absolute;
@@ -48,7 +48,7 @@ body {
   z-index: 1;
 }
 
-.dropdown-content a {
+.nav .dropdown-content a {
   color: #bbbbbb;
   padding: 12px 16px;
   text-decoration: none;
@@ -57,7 +57,7 @@ body {
 }
 
 /* Change color of dropdown links on hover */
-.dropdown-content a:hover {
+.nav .dropdown-content a:hover {
   color:#DC39FC; 
   background-color: transparent;
   transition-delay: 0.5s;
@@ -65,12 +65,12 @@ body {
 }
 
 /* Show the dropdown menu on hover */
-.dropdown:hover .dropdown-content {display: block;}
+.nav .dropdown:hover .dropdown-content {display: block;}
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
-.dropdown:hover .dropbtn {background-color: #3e8e41;}
+.nav .dropdown:hover .dropbtn {background-color: #3e8e41;}
 
-.sub-dropdown-content {
+.nav .sub-dropdown-content {
   right: 165px;
   top: 0px;
   display: none;
@@ -81,7 +81,7 @@ body {
   z-index: 1;
 }
 
-.sub-dropdown-content a {
+.nav .sub-dropdown-content a {
   color: #bbbbbb;
   padding: 12px 16px;
   text-decoration: none;
@@ -90,7 +90,7 @@ body {
 }
 
 /* Change color of dropdown links on hover */
-.sub-dropdown-content a:hover {
+.nav .sub-dropdown-content a:hover {
   color:#DC39FC; 
   background-color: transparent;
   transition-delay: 0.5s;
@@ -98,7 +98,7 @@ body {
 }
 
 /* Show the dropdown menu on hover */
-.sub-dropdown:hover .sub-dropdown-content {display: block;}
+.nav .sub-dropdown:hover .sub-dropdown-content {display: block;}
 
 * {
   box-sizing: border-box;

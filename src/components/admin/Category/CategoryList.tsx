@@ -4,8 +4,9 @@ type Props = {
   readonly onEditClicked: (data) => void
   readonly onViewClicked: (data) => void
   readonly onSwitchChanged: (e, data) => void
+  readonly onCheckedListUpdated: (data) => void
 }
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Switch from 'react-switch'
 
 import ConfirmDialog from '@/components/atoms/ConfirmDialog'
@@ -13,7 +14,7 @@ import ConfirmDialog from '@/components/atoms/ConfirmDialog'
 export const CategoryList: React.VFC<Props> = (props) => {
   const [confirmOpen, setConfirmOpen] = useState(false)
   const [categoryToDelete, setCategoryToDelete] = useState({})
-  const [checkedList, setCheckedList] = useState([''])
+  const [checkedList, setCheckedList] = useState<String[]>([])
   const [allChecked, setAllChecked] = useState(false)
   const onEditClick = (category) => {
     props.onEditClicked(category)
@@ -29,15 +30,15 @@ export const CategoryList: React.VFC<Props> = (props) => {
     props.onRemoveConfirmed(categoryToDelete)
   }
   const onAllCheckClicked = (e) => {
-    if (checkedList.length === 1) {
+    if (checkedList.length === 0) {
       setCheckedList([
         ...checkedList,
-        ...props.categories.map((item) => item._id),
+        ...props.categories.map((item: { _id: any }) => item._id),
       ])
-    } else if (checkedList.length - 1 === props.categories.length) {
-      setCheckedList([''])
+    } else if (checkedList.length === props.categories.length) {
+      setCheckedList([])
     } else {
-      setCheckedList([''])
+      setCheckedList([])
     }
   }
   const onCheckClicked = (e, category) => {
@@ -48,6 +49,9 @@ export const CategoryList: React.VFC<Props> = (props) => {
   const onSwitchChange = async (e, category) => {
     props.onSwitchChanged(e, category)
   }
+  useEffect(() => {
+    props.onCheckedListUpdated(checkedList)
+  }, [checkedList])
   return (
     <div className="flex flex-col w-full">
       <div className="overflow-x-auto">
@@ -69,7 +73,7 @@ export const CategoryList: React.VFC<Props> = (props) => {
                       className="h-4 w-4"
                       type="checkbox"
                       checked={
-                        props.categories.length === checkedList.length - 1
+                        props.categories.length === checkedList.length
                           ? true
                           : false
                       }

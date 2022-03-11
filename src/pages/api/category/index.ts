@@ -11,7 +11,6 @@ export default connectDB(
   apiHandler({
     post: createCategory,
     get: searchCategories,
-    delete: deleteCategory,
     put: updateCategory,
   }),
 )
@@ -123,18 +122,5 @@ async function searchCategories(req, res) {
   }
   return res.status(200).json({
     data: categoryOne,
-  })
-}
-async function deleteCategory(req, res) {
-  console.log('Cookies =>', req.cookies)
-  const { _id } = req.query
-  if (_id === '' || _id === undefined) {
-    throw 'The id of Category is not defined'
-  }
-
-  await categoryRepo.delete(_id)
-  return res.status(200).json({
-    status: 'success',
-    removedId: _id,
   })
 }

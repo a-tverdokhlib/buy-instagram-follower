@@ -1,7 +1,7 @@
+import Image from 'next/image'
 import { useRef, useState } from 'react'
 
 import { Card } from '@/components/atoms/Card'
-import { Image } from '@/components/atoms/Image'
 import { MySwipper } from '@/components/atoms/MySwipper'
 
 import { ReputationCard } from './ReputationCard'
