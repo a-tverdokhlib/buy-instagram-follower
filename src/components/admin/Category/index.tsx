@@ -172,10 +172,10 @@ const Category: React.VFC<CategoryProps> = (props) => {
       <div className="admin-category flex flex-col flex-wrap w-full min-h-screen bg-fuchsia-100">
         <Header />
         <div className="top-32 lg:top-16 h-[48px] flex items-center flex-row flex-nowrap bg-fuchsia-100">
-          <div className="fixed w-full bg-fuchsia-100 h-[48px] p-3 ss:p-8 bg-opacity-90 z-10 rounded-b-lg drop-shadow-lg drop-shadow-gray-700"></div>
+          <div className="fixed w-full  h-[48px] p-3 ss:p-8 bg-opacity-90 z-10 "></div>
           <div className="fixed w-full h-[48px] z-[11] flex items-center p-3 ss:p-8 hover:cursor-pointer">
             <div
-              className="flex items-center -ml-5 px-5 py-3 rounded-full bg-fuchsia-100 bg-opacity-100"
+              className="flex items-center -ml-5 px-5 py-2 rounded-full bg-fuchsia-100 bg-opacity-100"
               onClick={onAddNewClicked}
             >
               <span className="h-6 w-6 rounded-full flex items-center justify-center bg-gray-500 hover:bg-blue-500">
