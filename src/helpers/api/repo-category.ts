@@ -11,6 +11,7 @@ export const categoryRepo = {
   delete: _delete,
   deleteMany: deleteMany,
   deleteInactive: deleteInactive,
+  setStatus: setStatus,
 }
 
 async function allCategories() {
@@ -65,4 +66,12 @@ async function deleteInactive() {
     .select('_id')
   await categoryModel.deleteMany({ isActive: false })
   return inactiveIds
+}
+
+async function setStatus(_ids, status) {
+  await categoryModel.update(
+    { _id: { $in: _ids } },
+    { $set: { isActive: status } },
+  )
+  return true
 }

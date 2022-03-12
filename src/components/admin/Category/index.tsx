@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 import { categoryService } from '@/services/category'
 
@@ -13,7 +13,9 @@ export type CategoryProps = {
 import AlertDialog from '@/components/atoms/AlertDialog'
 import { Loading } from '@/components/atoms/Loading'
 import {
+  activeCategories,
   addCategory,
+  deactiveCategories,
   removeCategories,
   removeCategory,
   setCategories,
@@ -32,6 +34,7 @@ const Category: React.VFC<CategoryProps> = (props) => {
   const [dropdownActionVisible, setDropdownActionVisible] = useState(false)
   const [dropdownSortbyVisible, setDropdownSortbyVisible] = useState(false)
   const [alertDescription, setAlertDescription] = useState('')
+  const refClearCheckedList = useRef<HTMLDivElement>(null)
   useEffect(() => {
     if (categories.length === 0) setLoading(true)
     getCategories()
@@ -93,10 +96,21 @@ const Category: React.VFC<CategoryProps> = (props) => {
     window.open(category.urlSlug)
   }
 
-  const onActivateClick = () => {
+  const onActivateClick = async () => {
     if (!isActionAvailable()) {
       setAlertDescription('Please select any categories to do action.')
       setShowAlert(true)
+    }
+    setLoading(true)
+    const resp = await categoryService.setStatus(checkedList, true)
+    if (resp) {
+      setLoading(false)
+      if (resp.status === 'success') {
+        dispatch(activeCategories(resp.data))
+        refClearCheckedList.current!.click()
+      }
+    } else {
+      setLoading(false)
     }
   }
   const onDeleteAllDeactivedClick = async () => {
@@ -115,10 +129,21 @@ const Category: React.VFC<CategoryProps> = (props) => {
       setLoading(false)
     }
   }
-  const onDeactiveClick = () => {
+  const onDeactiveClick = async () => {
     if (!isActionAvailable()) {
       setAlertDescription('Please select any categories to do action.')
       setShowAlert(true)
+    }
+    setLoading(true)
+    const resp = await categoryService.setStatus(checkedList, false)
+    if (resp) {
+      setLoading(false)
+      if (resp.status === 'success') {
+        dispatch(deactiveCategories(resp.data))
+        refClearCheckedList.current!.click()
+      }
+    } else {
+      setLoading(false)
     }
   }
   const onDeleteClick = async () => {
@@ -136,7 +161,7 @@ const Category: React.VFC<CategoryProps> = (props) => {
     }
   }
   const isActionAvailable = () => {
-    if (checkedList!.length <= 1) return false
+    if (checkedList!.length <= 0) return false
     return true
   }
   return (
@@ -146,9 +171,13 @@ const Category: React.VFC<CategoryProps> = (props) => {
       </Head>
       <div className="admin-category flex flex-col flex-wrap w-full min-h-screen bg-fuchsia-100">
         <Header />
-        <div className="fixed top-32 lg:top-16 flex flex-row flex-nowrap p-3 ss:p-8">
-          <div className="w-full flex items-center hover:cursor-pointer">
-            <div className="flex items-center" onClick={onAddNewClicked}>
+        <div className="top-32 lg:top-16 h-[48px] flex items-center flex-row flex-nowrap bg-fuchsia-100">
+          <div className="fixed w-full bg-fuchsia-100 h-[48px] p-3 ss:p-8 bg-opacity-90 z-10 rounded-b-lg drop-shadow-lg drop-shadow-gray-700"></div>
+          <div className="fixed w-full h-[48px] z-[11] flex items-center p-3 ss:p-8 hover:cursor-pointer">
+            <div
+              className="flex items-center -ml-5 px-5 py-3 rounded-full bg-fuchsia-100 bg-opacity-100"
+              onClick={onAddNewClicked}
+            >
               <span className="h-6 w-6 rounded-full flex items-center justify-center bg-gray-500 hover:bg-blue-500">
                 <svg
                   className="h-5 w-5 text-white "
@@ -169,14 +198,14 @@ const Category: React.VFC<CategoryProps> = (props) => {
               </span>
             </div>
           </div>
-          <div className="fixed right-3 ls:right-8 flex flex-row flex-nowrap ls:space-x-3">
+          <div className="fixed  z-[11] bg-fuchsia-100 bg-opacity-100 right-3 ss:right-8 flex flex-row flex-nowrap ls:space-x-3">
             <div
               tabIndex={0}
               onClick={() => setDropdownSortbyVisible(!dropdownSortbyVisible)}
               onBlur={() => {
                 setDropdownSortbyVisible(false)
               }}
-              className="dropdown"
+              className="dropdown mt-auto"
             >
               <div
                 className={
@@ -228,7 +257,7 @@ const Category: React.VFC<CategoryProps> = (props) => {
               </div>
               {dropdownSortbyVisible ? (
                 <div className="dropdown-content hover:cursor-pointer w-24 !bg-gray-200 left-0">
-                  <div className="flex flex-col flex-wrap text-sm ">
+                  <div className="flex flex-col flex-wrap text-sm">
                     <a className="flex flex-row flex-nowrap w-full !text-black hover:!bg-gray-300">
                       <span className="flex items-center">
                         <svg
@@ -284,7 +313,7 @@ const Category: React.VFC<CategoryProps> = (props) => {
               onBlur={() => {
                 setDropdownActionVisible(false)
               }}
-              className="dropdown"
+              className="dropdown mt-auto"
             >
               <div
                 className={
@@ -441,7 +470,7 @@ const Category: React.VFC<CategoryProps> = (props) => {
             </div>
           </div>
         </div>
-        <div className="mt-16 w-full p-3 md:p-3">
+        <div className="w-full p-3 md:p-3">
           <div
             className={
               !collapse
@@ -513,6 +542,7 @@ const Category: React.VFC<CategoryProps> = (props) => {
             </div>
             {!collapse && categories ? (
               <CategoryList
+                ref={refClearCheckedList}
                 categories={categories}
                 onEditClicked={(data) => onEditClicked(data)}
                 onViewClicked={(data) => onViewClicked(data)}

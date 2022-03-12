@@ -1,7 +1,9 @@
 import { createReducer } from '@reduxjs/toolkit'
 
 import {
+  activeCategories,
   addCategory,
+  deactiveCategories,
   removeCategories,
   removeCategory,
   setCategories,
@@ -53,6 +55,32 @@ export const adminCategoryReducer = createReducer(initialState, (builder) => {
           item.urlSlug = category.urlSlug
           item.metaKeywords = category.metaKeywords
           item.metaDescription = category.metaDescription
+          return item
+        } else {
+          return item
+        }
+      }),
+    ]
+  })
+  builder.addCase(deactiveCategories, (state, action) => {
+    const deactivatedIds = action.payload
+    const categoryList = [
+      ...state.categories.map((item) => {
+        if (deactivatedIds.includes(item._id)) {
+          item.isActive = false
+          return item
+        } else {
+          return item
+        }
+      }),
+    ]
+  })
+  builder.addCase(activeCategories, (state, action) => {
+    const activatedIds = action.payload
+    const categoryList = [
+      ...state.categories.map((item) => {
+        if (activatedIds.includes(item._id)) {
+          item.isActive = true
           return item
         } else {
           return item

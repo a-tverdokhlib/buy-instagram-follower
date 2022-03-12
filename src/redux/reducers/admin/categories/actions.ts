@@ -11,3 +11,9 @@ export const removeCategories = createAction<any>(
 export const updateCategory = createAction<any>(
   'admin/categories/updateCategory',
 )
+export const deactiveCategories = createAction<any>(
+  'admin/categories/deactiveCategories',
+)
+export const activeCategories = createAction<any>(
+  'admin/categories/activeCategories',
+)

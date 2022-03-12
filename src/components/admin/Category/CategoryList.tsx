@@ -6,16 +6,23 @@ type Props = {
   readonly onSwitchChanged: (e, data) => void
   readonly onCheckedListUpdated: (data) => void
 }
-import { useEffect, useState } from 'react'
+import { ForwardRefRenderFunction, useEffect, useState } from 'react'
+import React from 'react'
 import Switch from 'react-switch'
 
 import ConfirmDialog from '@/components/atoms/ConfirmDialog'
 
-export const CategoryList: React.VFC<Props> = (props) => {
+const MyComponentRenderFn: ForwardRefRenderFunction<any, Props> = (
+  props,
+  ref,
+) => {
   const [confirmOpen, setConfirmOpen] = useState(false)
   const [categoryToDelete, setCategoryToDelete] = useState({})
   const [checkedList, setCheckedList] = useState<String[]>([])
   const [allChecked, setAllChecked] = useState(false)
+  const clearCheckedList = () => {
+    setCheckedList([])
+  }
   const onEditClick = (category) => {
     props.onEditClicked(category)
   }
@@ -220,6 +227,11 @@ export const CategoryList: React.VFC<Props> = (props) => {
               >
                 Are you sure you want to delete this category?
               </ConfirmDialog>
+              <div
+                ref={ref}
+                onClick={() => setCheckedList([])}
+                className="hidden"
+              ></div>
             </div>
           </div>
         </div>
@@ -227,3 +239,4 @@ export const CategoryList: React.VFC<Props> = (props) => {
     </div>
   )
 }
+export const CategoryList = React.forwardRef(MyComponentRenderFn)

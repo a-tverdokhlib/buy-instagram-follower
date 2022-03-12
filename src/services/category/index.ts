@@ -16,6 +16,7 @@ export const categoryService = {
   search,
   deleteMany,
   deleteInactive,
+  setStatus,
 }
 
 function search(keyword) {
@@ -63,6 +64,17 @@ function deleteInactive() {
 function deleteMany(_ids) {
   return fetchWrapper
     .post(`${publicRuntimeConfig.apiUrl}/category/delete`, { _ids: _ids })
+    .then((data) => {
+      return data
+    })
+}
+
+function setStatus(_ids, status) {
+  return fetchWrapper
+    .post(`${publicRuntimeConfig.apiUrl}/category/setStatus`, {
+      _ids: _ids,
+      status: status,
+    })
     .then((data) => {
       return data
     })
