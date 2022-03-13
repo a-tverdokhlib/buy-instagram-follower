@@ -62,7 +62,7 @@ const MyComponentRenderFn: ForwardRefRenderFunction<any, Props> = (
   return (
     <div className="flex flex-col w-full">
       <div className="overflow-x-auto">
-        <div className="py-4 inline-block min-w-full">
+        <div className="py-0 inline-block min-w-full">
           <div className="overflow-hidden">
             {/* <Table
               checkable={true}
