@@ -55,6 +55,7 @@ export const adminCategoryReducer = createReducer(initialState, (builder) => {
           item.urlSlug = category.urlSlug
           item.metaKeywords = category.metaKeywords
           item.metaDescription = category.metaDescription
+          item.content = category.content
           return item
         } else {
           return item

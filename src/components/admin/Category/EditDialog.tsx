@@ -195,7 +195,7 @@ const EditDialog: React.VFC<EditDialogProps> = (props) => {
                   // plugins: [font] set plugins, all plugins are set by default
                   // Other option
                 }}
-                defaultValue={content}
+                setContents={content}
                 onChange={(content) => {
                   // setToggle((value) => !value)
                   console.log('Content =>', content)
