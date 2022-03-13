@@ -46,6 +46,7 @@ const Panel: React.VFC = () => {
   const { themeMode } = useAppSelector((state) => state.adminPanel)
   const { layout } = useAppSelector((state) => state.sideMenu)
   const { sidebarColor } = useAppSelector((state) => state.sideMenu)
+  const [path, setPath] = useState('')
   const [cookie, setCookie] = useCookies(['user'])
   const [mounted, setMounted] = useState(false)
   const [themeCustomizerShown, setThemeCustomizerShown] = useState(false)
@@ -137,7 +138,11 @@ const Panel: React.VFC = () => {
     setMounted(true)
   }, [])
 
-  useEffect(() => {}, [router.query])
+  useEffect(() => {
+    const pa = router.query['p']
+    setPath(`?p=${pa}`)
+    console.log(`?p=${pa}`)
+  }, [router.query])
 
   return mounted ? (
     <>
@@ -151,6 +156,7 @@ const Panel: React.VFC = () => {
       </Head>
       <div className="flex flex-col md:flex-row flex-1">
         <SideMenu
+          path={path}
           mode={layout}
           color={sidebarColor}
           selectedTitle=""

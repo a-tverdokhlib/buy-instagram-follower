@@ -122,7 +122,10 @@ const MyComponentRenderFn: ForwardRefRenderFunction<any, Props> = (
               <tbody>
                 {props.categories.map((category, id) => {
                   return (
-                    <tr key={category._id} className="bg-white border-b">
+                    <tr
+                      key={category._id}
+                      className="bg-white border-b hover:bg-gray-100"
+                    >
                       <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 border border-slate-300">
                         <input
                           className="h-4 w-4"

@@ -130,6 +130,7 @@ const menuItems = [
   },
 ]
 type Props = {
+  readonly path: string
   readonly selectedTitle: string
   readonly mode: string
   readonly color: string
@@ -144,9 +145,6 @@ const SideMenu: React.VFC<Props> = (props) => {
   const { layout } = useAppSelector((state) => state.sideMenu)
   const { sidebarColor } = useAppSelector((state) => state.sideMenu)
   const [sideMenuAutoHide, setSideMenuAutoHide] = useState(false)
-  const [selectedMenuItemHref, setSelectedMenuItemHref] =
-    useState('?p=statistics')
-
   const handleChage = () => {}
 
   const signout = () => {
@@ -170,7 +168,6 @@ const SideMenu: React.VFC<Props> = (props) => {
     props.color === 'light' ? 'border-gray-300' : 'border-gray-900'
   const menuItemClick = (item) => {
     if (item.href !== '') {
-      setSelectedMenuItemHref(item.href)
       if (window.innerWidth < 1024) dispatch(setSideMenuLayout('expanded'))
       router.push(`/admin/${item.href}`, undefined, {
         shallow: true,
@@ -262,7 +259,7 @@ const SideMenu: React.VFC<Props> = (props) => {
                       <div
                         className={
                           props.mode === 'expanded'
-                            ? selectedMenuItemHref === item.href
+                            ? props.path === item.href
                               ? `flex p-2 ${bgColor} ${textColor} rounded bg-fuchsia-400 cursor-pointer  translate-x-1 shadow-lg shadow-cyan-700/50  transition-all duration-300`
                               : `flex p-2 ${bgColor} ${textColor} rounded hover:bg-fuchsia-400 cursor-pointer  hover:translate-x-1 hover:shadow-lg hover:shadow-cyan-700/50  transition-all duration-300`
                             : `flex p-2 ${bgColor} rounded hover:bg-fuchsia-400 cursor-pointer  hover:translate-x-1 hover:shadow-lg hover:shadow-cyan-700/50  transition-all duration-300`

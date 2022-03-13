@@ -35,8 +35,10 @@ const EditDialog: React.VFC<EditDialogProps> = (props) => {
   const { themeMode } = useAppSelector((state) => state.adminPanel)
   const { layout } = useAppSelector((state) => state.sideMenu)
   const { sidebarColor } = useAppSelector((state) => state.sideMenu)
-  const [code, setCode] = useState('myMonacoEditor')
-
+  // const [code, setCode] = useState('myMonacoEditor')
+  const [content, setContent] = useState(
+    props.category ? props.category.content : '',
+  )
   const [_id, set_Id] = useState(props.category ? props.category._id : '-1')
   const [name, setName] = useState(props.category ? props.category.name : '')
   const [checkoutCode, setCheckoutCode] = useState(
@@ -49,12 +51,8 @@ const EditDialog: React.VFC<EditDialogProps> = (props) => {
   const [defaultSortingNumber, setDefaultSortingNumber] = useState(
     props.category ? props.category.defaultSortingNumber : 0,
   )
-  const [status, setStatus] = useState(
-    props.category
-      ? props.category.isActive
-        ? 'active'
-        : 'inactive'
-      : 'active',
+  const [isActive, setIsActive] = useState(
+    props.category ? props.category.isActive : false,
   )
   const [offerDiscount, setOfferDiscount] = useState(
     props.category ? props.category.offerDiscount : 0,
@@ -92,9 +90,10 @@ const EditDialog: React.VFC<EditDialogProps> = (props) => {
   const onSubmit = async (data) => {
     setAwaiting(true)
     if (data._id === '-1' || data._id === '') {
+      data['isActive'] = data['isActive'] === 'active' ? true : false
       const category = await categoryService.create({
         ...data,
-        content: 'contents',
+        content: content,
       })
       if (category) {
         setAwaiting(false)
@@ -105,9 +104,10 @@ const EditDialog: React.VFC<EditDialogProps> = (props) => {
         props.onClose()
       }
     } else {
+      data['isActive'] = data['isActive'] === 'active' ? true : false
       const category = await categoryService.update({
         ...data,
-        content: 'contents',
+        content: content,
       })
       if (category) {
         setAwaiting(false)
@@ -195,6 +195,12 @@ const EditDialog: React.VFC<EditDialogProps> = (props) => {
                   // plugins: [font] set plugins, all plugins are set by default
                   // Other option
                 }}
+                defaultValue={content}
+                onChange={(content) => {
+                  // setToggle((value) => !value)
+                  console.log('Content =>', content)
+                  setContent(content)
+                }}
               />
             </div>
           </div>
@@ -254,11 +260,13 @@ const EditDialog: React.VFC<EditDialogProps> = (props) => {
               <div className="text-black">Status</div>
               <div className="flex w-full">
                 <select
-                  {...register('status')}
+                  {...register('isActive')}
                   className="w-full h-12 p-3 bg-transparent border-[1px] border-gray-300 text-gray-500"
                   placeholder="link"
-                  value={status}
-                  onChange={(e) => setStatus(e.target.value)}
+                  value={isActive === true ? 'active' : 'inactive'}
+                  onChange={(e) =>
+                    setIsActive(e.target.value === 'active' ? true : false)
+                  }
                 >
                   <option value="active">Active</option>
                   <option value="inactive">Deactive</option>
