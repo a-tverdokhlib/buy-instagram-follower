@@ -110,7 +110,7 @@
     outline: 0;
     box-shadow: 0 0 0 5px rgba(107, 27, 211, 0.5);
 }
-.theme-customizer .check-mark:after {
+.check-mark:after {
     display: block;
     position: relative;
     left: 5px;

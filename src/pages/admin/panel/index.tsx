@@ -91,7 +91,9 @@ const Panel: React.VFC = () => {
       case 'package-faq':
         return <PackageFAQ />
       case 'services':
-        return <Services />
+        return (
+          <Services isMobile={isMobile} showOverlay={(b) => setOverlay(b)} />
+        )
       case 'growth-packs':
         return <GrowthPacks />
       case 'auto-packs':
