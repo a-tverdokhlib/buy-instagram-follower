@@ -327,7 +327,9 @@ const EditDialog: React.VFC<EditDialogProps> = (props) => {
           </div>
           <div className="flex flex-col flex-wrap w-full">
             <div className="text-gray-700 font-semibold">
-              Coupan Discount (In percentage %)
+              <span>
+                <span>Coupan Discount (In percentage %)</span>
+              </span>
             </div>
             <div className="flex w-full">
               <input
@@ -364,31 +366,34 @@ const EditDialog: React.VFC<EditDialogProps> = (props) => {
             </div>
           </div>
 
-          <div className="flex flex-row flex-nowrap w-full space-x-3">
-            <div className="flex flex-col flex-wrap w-full">
-              <div className="text-gray-700 font-semibold">Quantity</div>
-              <div className="flex w-full">
-                <input
-                  {...register('quantity')}
-                  className="w-full h-12 p-3 bg-transparent border-[1px] border-gray-300 text-black"
-                  type="number"
-                  value={quantity}
-                  onChange={(e) => setQuantity(e.target.value)}
-                />
+          <div className="flex flex-col flex-wrap ss:flex-row ss:flex-nowrap w-full space-y-3 ss:space-x-3 ss:space-y-0">
+            <div className="flex flex-row flex-nowrap w-full space-x-3">
+              <div className="flex flex-col flex-wrap w-full">
+                <div className="text-gray-700 font-semibold">Quantity</div>
+                <div className="flex w-full">
+                  <input
+                    {...register('quantity')}
+                    className="w-full h-12 p-3 bg-transparent border-[1px] border-gray-300 text-black"
+                    type="number"
+                    value={quantity}
+                    onChange={(e) => setQuantity(e.target.value)}
+                  />
+                </div>
+              </div>
+              <div className="flex flex-col flex-wrap w-full">
+                <div className="text-gray-700 font-semibold">Price</div>
+                <div className="flex w-full">
+                  <input
+                    {...register('price')}
+                    className="w-full h-12 p-3 bg-transparent border-[1px] border-gray-300 text-black"
+                    type="number"
+                    value={price}
+                    onChange={(e) => setPrice(e.target.value)}
+                  />
+                </div>
               </div>
             </div>
-            <div className="flex flex-col flex-wrap w-full">
-              <div className="text-gray-700 font-semibold">Price</div>
-              <div className="flex w-full">
-                <input
-                  {...register('price')}
-                  className="w-full h-12 p-3 bg-transparent border-[1px] border-gray-300 text-black"
-                  type="number"
-                  value={price}
-                  onChange={(e) => setPrice(e.target.value)}
-                />
-              </div>
-            </div>
+
             <div className="flex flex-col flex-wrap w-full">
               <div className="text-gray-700 font-semibold">Status</div>
               <div className="flex w-full">
@@ -446,8 +451,10 @@ const EditDialog: React.VFC<EditDialogProps> = (props) => {
                   <path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3" />{' '}
                   <line x1="8" y1="12" x2="16" y2="12" />
                 </svg>
-                <span className="ml-3 text-lg font-semibold">
-                  Page SEO informations
+                <span>
+                  <span className="ml-3 text-lg font-semibold">
+                    Page SEO informations
+                  </span>
                 </span>
               </span>
             </div>

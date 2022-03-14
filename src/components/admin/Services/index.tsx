@@ -184,8 +184,8 @@ const Services: React.VFC<ServiceProps> = (props) => {
               <div
                 className={
                   dropdownSortbyVisible
-                    ? 'flex px-2 ls:px-3 py-2 flex-row flex-nowrap space-x-2 ls:space-x-3 items-center text-black border-[1px] border-gray-300 bg-gray-200 hover:cursor-pointer hover:bg-gray-200 transition-all duration-500'
-                    : 'flex px-2 ls:px-3 py-2 flex-row flex-nowrap space-x-2 ls:space-x-3 items-center text-black border-[1px] border-gray-300 hover:cursor-pointer hover:bg-gray-200 transition-all duration-500'
+                    ? 'flex px-2 ls:px-3 py-2 h-full flex-row flex-nowrap space-x-2 ls:space-x-3 items-center text-black border-[1px] border-gray-300 bg-gray-200 hover:cursor-pointer hover:bg-gray-200 transition-all duration-500'
+                    : 'flex px-2 ls:px-3 py-2 h-full flex-row flex-nowrap space-x-2 ls:space-x-3 items-center text-black border-[1px] border-gray-300 hover:cursor-pointer hover:bg-gray-200 transition-all duration-500'
                 }
               >
                 <span>
@@ -333,7 +333,10 @@ const Services: React.VFC<ServiceProps> = (props) => {
                     />
                   </svg>
                 </span>
-                <span className="text-sm">Action</span>
+                <span className="text-sm">
+                  <span className="ls:hidden">&nbsp;</span>
+                  <span className="hidden ls:block">Action</span>
+                </span>
                 <span>
                   <svg
                     className="h-4 w-4 text-gray-500"
