@@ -234,7 +234,7 @@ const Services: React.VFC<ServiceProps> = (props) => {
                 </span>
               </div>
               {dropdownSortbyVisible ? (
-                <div className="dropdown-content hover:cursor-pointer w-60 !bg-gray-200 left-0">
+                <div className="dropdown-content hover:cursor-pointer w-[270px] !bg-gray-200 left-0">
                   <div className="flex flex-col flex-wrap text-sm">
                     <a
                       onClick={() => setFilteredCategoryID('all')}
