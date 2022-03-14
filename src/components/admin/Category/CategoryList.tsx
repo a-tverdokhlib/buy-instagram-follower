@@ -70,11 +70,11 @@ const MyComponentRenderFn: ForwardRefRenderFunction<any, Props> = (
               data={props.categories}
             /> */}
             <table className="min-w-full text-center border-collapse border border-slate-400">
-              <thead className="border-b bg-gray-900">
+              <thead className="border-b bg-gray-500">
                 <tr>
                   <th
                     scope="col"
-                    className="w-[20px] text-sm font-medium text-white px-6 py-4  border border-slate-700"
+                    className="w-[20px] text-sm font-medium text-white px-6 py-4  border border-slate-400"
                   >
                     <input
                       className="h-4 w-4"
@@ -89,31 +89,31 @@ const MyComponentRenderFn: ForwardRefRenderFunction<any, Props> = (
                   </th>
                   <th
                     scope="col"
-                    className="w-[280px] text-sm font-medium text-white px-6 py-4 border border-slate-700"
+                    className="w-[280px] text-sm font-medium text-white px-6 py-4 border border-slate-400"
                   >
                     Name
                   </th>
                   <th
                     scope="col"
-                    className="w-[300px] text-sm font-medium text-white px-6 py-4 border border-slate-700"
+                    className="w-[300px] text-sm font-medium text-white px-6 py-4 border border-slate-400"
                   >
                     Url Slug
                   </th>
                   <th
                     scope="col"
-                    className="w-[20px] text-sm font-medium text-white px-6 py-4 border border-slate-700"
+                    className="w-[20px] text-sm font-medium text-white px-6 py-4 border border-slate-400"
                   >
                     Sort
                   </th>
                   <th
                     scope="col"
-                    className="text-sm font-medium text-white px-6 py-4 border border-slate-700"
+                    className="text-sm font-medium text-white px-6 py-4 border border-slate-400"
                   >
                     Status
                   </th>
                   <th
                     scope="col"
-                    className="text-sm font-medium text-white px-6 py-4 border border-slate-700"
+                    className="text-sm font-medium text-white px-6 py-4 border border-slate-400"
                   >
                     Action
                   </th>
