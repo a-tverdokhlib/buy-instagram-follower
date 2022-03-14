@@ -69,12 +69,12 @@ const MyComponentRenderFn: ForwardRefRenderFunction<any, Props> = (
               headers={['Name', 'Url Slug', 'Sort', 'Status', 'Action']}
               data={props.categories}
             /> */}
-            <table className="min-w-full text-center border-collapse border border-slate-400">
+            <table className="min-w-full text-center border-collapse border border-gray-600 border-opacity-50">
               <thead className="border-b bg-gray-500">
                 <tr>
                   <th
                     scope="col"
-                    className="w-[20px] text-sm font-medium text-white px-3 py-3  border border-slate-400"
+                    className="w-[20px] text-sm font-medium text-white px-3 py-3  border border-gray-600 border-opacity-50"
                   >
                     <input
                       className="h-4 w-4"
@@ -90,55 +90,55 @@ const MyComponentRenderFn: ForwardRefRenderFunction<any, Props> = (
                   </th>
                   <th
                     scope="col"
-                    className="w-[100px] text-sm font-medium text-white px-6 py-3 border border-slate-400"
+                    className="w-[100px] text-sm font-medium text-white px-6 py-3 border border-gray-600 border-opacity-50"
                   >
                     ID
                   </th>
                   <th
                     scope="col"
-                    className="min-w-[200px] w-[280px] text-sm font-medium text-white px-6 py-3 border border-slate-400"
+                    className="min-w-[200px] w-[280px] text-sm font-medium text-white px-6 py-3 border border-gray-600 border-opacity-50"
                   >
                     Name
                   </th>
                   <th
                     scope="col"
-                    className="w-[60px] text-sm font-medium text-white px-6 py-3 border border-slate-400"
+                    className="w-[60px] text-sm font-medium text-white px-6 py-3 border border-gray-600 border-opacity-50"
                   >
                     Price
                   </th>
                   <th
                     scope="col"
-                    className="w-[40px] text-sm font-medium text-white px-2 py-3 border border-slate-400"
+                    className="w-[40px] text-sm font-medium text-white px-2 py-3 border border-gray-600 border-opacity-50"
                   >
                     Quantity
                   </th>
                   <th
                     scope="col"
-                    className="w-[30px] text-sm font-medium text-white px-2 py-3 border border-slate-400"
+                    className="w-[30px] text-sm font-medium text-white px-2 py-3 border border-gray-600 border-opacity-50"
                   >
                     Discount
                   </th>
                   <th
                     scope="col"
-                    className="min-w-[100px] text-sm font-medium text-white px-2 py-3 border border-slate-400"
+                    className="min-w-[100px] text-sm font-medium text-white px-2 py-3 border border-gray-600 border-opacity-50"
                   >
                     Start Date
                   </th>
                   <th
                     scope="col"
-                    className="min-w-[100px] text-sm font-medium text-white px-2 py-3 border border-slate-400"
+                    className="min-w-[100px] text-sm font-medium text-white px-2 py-3 border border-gray-600 border-opacity-50"
                   >
                     End Date
                   </th>
                   <th
                     scope="col"
-                    className="min-w-[80px] text-sm font-medium text-white px-2 py-3 border border-slate-400"
+                    className="min-w-[80px] text-sm font-medium text-white px-2 py-3 border border-gray-600 border-opacity-50"
                   >
                     Status
                   </th>
                   <th
                     scope="col"
-                    className="text-sm font-medium text-white px-6 py-3 border border-slate-400"
+                    className="text-sm font-medium text-white px-6 py-3 border border-gray-600 border-opacity-50"
                   >
                     Action
                   </th>
