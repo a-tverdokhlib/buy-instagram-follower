@@ -499,7 +499,10 @@ const Services: React.VFC<ServiceProps> = (props) => {
           >
             {filteredCategories.map((item, id) => {
               return (
-                <div key={id}>
+                <div
+                  key={id}
+                  className="mt-2 rounded-lg shadow-lg shadow-gray-600"
+                >
                   <ServiceBlock category={item} />
                 </div>
               )
