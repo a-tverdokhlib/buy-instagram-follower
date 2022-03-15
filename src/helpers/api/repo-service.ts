@@ -59,6 +59,9 @@ async function update(_id, params) {
   updateOne.metaKeywords = params.metaKeywords
   updateOne.metaDescription = params.metaDescription
   updateOne.apiType = params.apiType
+  updateOne.variationDays = params.variationDays
+  updateOne.offPercent = params.offPercent
+  updateOne.isDefaultActive = params.isDefaultActive
   await updateOne.save()
   return updateOne
 }

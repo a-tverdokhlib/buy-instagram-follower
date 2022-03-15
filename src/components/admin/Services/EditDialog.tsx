@@ -85,6 +85,15 @@ const EditDialog: React.VFC<EditDialogProps> = (props) => {
   const [apiType, setApiType] = useState(
     props.service ? props.service.apiType : 'manual',
   )
+  const [variationDays, setVariationDays] = useState(
+    props.service ? props.service.variationDays : '',
+  )
+  const [offPercent, setOffPercent] = useState(
+    props.service ? props.service.offPercent : '',
+  )
+  const [isDefaultActive, setIsDefaultActive] = useState(
+    props.service ? props.service.isDefaultActive : false,
+  )
   const [_id, set_Id] = useState(props.service ? props.service._id : '-1')
 
   const [awaiting, setAwaiting] = useState(false)
@@ -103,7 +112,7 @@ const EditDialog: React.VFC<EditDialogProps> = (props) => {
       data['isMostPopular'] = isMostPopular
       data['isShownInActiveTab'] = isShownInActiveTab
       data['isInstagramSaves'] = isInstagramSaves
-      console.log('Service Data =>', data)
+      data['isDefaultActive'] = isDefaultActive
       const service = await serviceService.create({
         ...data,
         content: content,
@@ -122,6 +131,7 @@ const EditDialog: React.VFC<EditDialogProps> = (props) => {
       data['isMostPopular'] = isMostPopular
       data['isShownInActiveTab'] = isShownInActiveTab
       data['isInstagramSaves'] = isInstagramSaves
+      data['isDefaultActive'] = isDefaultActive
       const service = await serviceService.update({
         ...data,
         content: content,
@@ -372,7 +382,6 @@ const EditDialog: React.VFC<EditDialogProps> = (props) => {
                 setContents={content}
                 onChange={(content) => {
                   // setToggle((value) => !value)
-                  console.log('Content =>', content)
                   setContent(content)
                 }}
               />
@@ -551,10 +560,12 @@ const EditDialog: React.VFC<EditDialogProps> = (props) => {
                   <div className="text-gray-700 font-semibold">Days</div>
                   <div className="flex w-full">
                     <input
+                      {...register('variationDays')}
                       className="w-full h-12 p-3 bg-transparent border-[1px] border-gray-300 text-black"
                       type="number"
-                      value={quantity}
-                      onChange={(e) => setQuantity(e.target.value)}
+                      step="0.01"
+                      value={variationDays}
+                      onChange={(e) => setVariationDays(e.target.value)}
                     />
                   </div>
                 </div>
@@ -562,10 +573,12 @@ const EditDialog: React.VFC<EditDialogProps> = (props) => {
                   <div className="text-gray-700 font-semibold">Off %</div>
                   <div className="flex w-full">
                     <input
+                      {...register('offPercent')}
                       className="w-full h-12 p-3 bg-transparent border-[1px] border-gray-300 text-black"
                       type="number"
-                      value={price}
-                      onChange={(e) => setPrice(e.target.value)}
+                      step="0.01"
+                      value={offPercent}
+                      onChange={(e) => setOffPercent(e.target.value)}
                     />
                   </div>
                 </div>
@@ -579,8 +592,8 @@ const EditDialog: React.VFC<EditDialogProps> = (props) => {
                     <Switch
                       height={25}
                       width={50}
-                      onChange={(e) => setIsMostPopular(e)}
-                      checked={isMostPopular}
+                      onChange={(e) => setIsDefaultActive(e)}
+                      checked={isDefaultActive}
                     />
                   </div>
                 </div>
