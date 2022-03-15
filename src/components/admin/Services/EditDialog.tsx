@@ -255,6 +255,7 @@ const EditDialog: React.VFC<EditDialogProps> = (props) => {
                 {...register('categoryId')}
                 className="w-full h-12 p-3 bg-transparent border-[1px] border-gray-300 text-gray-500"
                 value={categoryId}
+                onChange={(e) => setCategoryId(e.target.value)}
               >
                 {props.categories.map((item, id) => {
                   return (
