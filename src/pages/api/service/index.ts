@@ -37,6 +37,7 @@ async function createService(req, res) {
     pageTitle,
     metaKeywords,
     metaDescription,
+    apiType,
     _id,
   } = req.body
   const categoryOne = await serviceRepo.find({ name: name })
@@ -62,6 +63,7 @@ async function createService(req, res) {
         pageTitle: pageTitle,
         metaKeywords: metaKeywords,
         metaDescription: metaDescription,
+        apiType: apiType,
       })
       .catch((err) => {
         return res.status(500).json({
@@ -71,6 +73,7 @@ async function createService(req, res) {
       })
     return res.status(200).json({
       data: categoryAdded,
+      categoryId: categoryId,
     })
   } else {
     return res.status(417).json({
@@ -102,8 +105,10 @@ async function updateService(req, res) {
     pageTitle,
     metaKeywords,
     metaDescription,
+    apiType,
     _id,
   } = req.body
+  const oldOne = await serviceRepo.find({ _id: _id })
   const updatedOne = await serviceRepo.update(_id, {
     name: name,
     isMostPopular: isMostPopular,
@@ -124,17 +129,18 @@ async function updateService(req, res) {
     pageTitle: pageTitle,
     metaKeywords: metaKeywords,
     metaDescription: metaDescription,
+    apiType: apiType,
   })
   return res.status(200).json({
     status: 'success',
     data: updatedOne,
+    oldCategoryId: oldOne.categoryId,
   })
 }
 
 async function searchServices(req, res) {
   console.log('Cookies =>', req.cookies)
-  const { keyword } = req.query
-  if (keyword === '') {
+  if (req.query === undefined) {
     const services = await serviceRepo.getAll()
     return res.status(200).json({
       data: services,
@@ -142,13 +148,13 @@ async function searchServices(req, res) {
     })
   }
 
-  const serviceOne = await serviceRepo.find({ name: keyword })
-  if (!serviceOne) {
+  const services = await serviceRepo.findServices(req.query)
+  if (!services) {
     return res.status(200).json({
       data: {},
     })
   }
   return res.status(200).json({
-    data: serviceOne,
+    data: services,
   })
 }

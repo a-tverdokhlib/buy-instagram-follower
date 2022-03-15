@@ -21,7 +21,7 @@ export const serviceService = {
 
 function search(keyword) {
   return fetchWrapper
-    .get(`${publicRuntimeConfig.apiUrl}/service?keyword=${keyword}`)
+    .get(`${publicRuntimeConfig.apiUrl}/service/search?${keyword}`)
     .then((categories) => {
       return categories
     })

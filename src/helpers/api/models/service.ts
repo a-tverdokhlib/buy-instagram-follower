@@ -20,6 +20,7 @@ const ServiceSchema = new mongoose.Schema({
   pageTitle: String,
   metaKeywords: String,
   metaDescription: String,
+  apiType: String,
 })
 
 module.exports =

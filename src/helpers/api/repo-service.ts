@@ -6,6 +6,7 @@ var serviceModel = require('./models/service')
 export const serviceRepo = {
   getAll: () => allServices(),
   find: (x) => findService(x),
+  findServices: (x) => findServices(x),
   create,
   update,
   delete: _delete,
@@ -24,7 +25,13 @@ async function findService(where) {
   return service
 }
 
+async function findServices(where) {
+  const services = await serviceModel.find(where)
+  return services
+}
+
 async function create(service) {
+  console.log('Service to Create =>', service)
   const newService = new serviceModel(service)
   const addedOne = await newService.save()
   return addedOne
@@ -51,6 +58,7 @@ async function update(_id, params) {
   updateOne.pageTitle = params.pageTitle
   updateOne.metaKeywords = params.metaKeywords
   updateOne.metaDescription = params.metaDescription
+  updateOne.apiType = params.apiType
   await updateOne.save()
   return updateOne
 }

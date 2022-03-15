@@ -14,6 +14,11 @@ export type ServiceProps = {
 import AlertDialog from '@/components/atoms/AlertDialog'
 import { Loading } from '@/components/atoms/Loading'
 import { setCategories } from '@/redux/reducers/admin/categories'
+import {
+  addService,
+  removeService,
+  updateService,
+} from '@/redux/reducers/admin/services'
 import { useAppDispatch, useAppSelector } from '@/redux/store/hooks'
 
 import { ServiceBlock } from './ServiceBlock'
@@ -25,7 +30,7 @@ const Services: React.VFC<ServiceProps> = (props) => {
   const [editDlgShow, setEditDlgShow] = useState(false)
   const [loading, setLoading] = useState(false)
   const [showAlert, setShowAlert] = useState(false)
-  const [categoryToEdit, setCategoryToEdit] = useState({})
+  const [serviceToEdit, setServiceToEdit] = useState({})
   const [dropdownActionVisible, setDropdownActionVisible] = useState(false)
   const [dropdownSortbyVisible, setDropdownSortbyVisible] = useState(false)
   const [alertDescription, setAlertDescription] = useState('')
@@ -56,20 +61,43 @@ const Services: React.VFC<ServiceProps> = (props) => {
   }
   const onAddNewClicked = () => {
     props.showOverlay(true)
-    setCategoryToEdit({})
+    setServiceToEdit({})
     setEditDlgShow(true)
   }
   const onCloseEditDialog = () => {
     props.showOverlay(false)
     setEditDlgShow(false)
   }
-  const onServiceCreated = (category) => {
-    // dispatch(addCategory(category))
+  const onServiceCreated = (service) => {
+    dispatch(addService(service))
   }
-  const onServiceUpdated = (category) => {
-    // dispatch(updateCategory(category))
+  const onServiceUpdated = (service) => {
+    dispatch(updateService(service))
   }
-
+  const onEditClicked = (service) => {
+    props.showOverlay(true)
+    setServiceToEdit(service)
+    setEditDlgShow(true)
+  }
+  const onSwitchChanged = async (e, data) => {
+    const service = { ...data }
+    service.isActive = e
+    const updatedService = await serviceService.update({ ...service })
+    if (updatedService) {
+      dispatch(updateService(updatedService))
+    } else {
+    }
+  }
+  const onRemoveConfirmed = async (service) => {
+    setLoading(true)
+    const resp = await serviceService._delete(service._id)
+    if (resp) {
+      setLoading(false)
+      if (resp.status === 'success') dispatch(removeService(service))
+    } else {
+      setLoading(false)
+    }
+  }
   const onActivateClick = async () => {
     // if (!isActionAvailable()) {
     //   setAlertDescription('Please select any categories to do action.')
@@ -501,9 +529,15 @@ const Services: React.VFC<ServiceProps> = (props) => {
               return (
                 <div
                   key={id}
-                  className="mt-2 rounded-lg shadow-lg shadow-gray-600"
+                  className="mt-10 ml-1 mr-1 rounded-lg shadow-lg shadow-gray-600"
                 >
-                  <ServiceBlock category={item} />
+                  <ServiceBlock
+                    category={item}
+                    onEditClicked={(d) => onEditClicked(d)}
+                    onRemoveConfirmed={(d) => onRemoveConfirmed(d)}
+                    onSwitchChanged={(e, data) => onSwitchChanged(e, data)}
+                    setLoading={(b) => setLoading(b)}
+                  />
                 </div>
               )
             })}
@@ -512,7 +546,7 @@ const Services: React.VFC<ServiceProps> = (props) => {
 
         {editDlgShow ? (
           <EditDialog
-            service={categoryToEdit}
+            service={serviceToEdit}
             categories={categories}
             onClose={onCloseEditDialog}
             onServiceCreated={(d) => onServiceCreated(d)}

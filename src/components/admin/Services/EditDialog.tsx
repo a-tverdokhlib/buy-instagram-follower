@@ -82,10 +82,12 @@ const EditDialog: React.VFC<EditDialogProps> = (props) => {
   const [metaDescription, setMetaDescription] = useState(
     props.service ? props.service.metaDescription : '',
   )
+  const [apiType, setApiType] = useState(
+    props.service ? props.service.apiType : 'manual',
+  )
   const [_id, set_Id] = useState(props.service ? props.service._id : '-1')
 
   const [awaiting, setAwaiting] = useState(false)
-  const [apiType, setApiType] = useState('manual')
 
   const validationSchema = Yup.object().shape({})
   const formOptions = { resolver: yupResolver(validationSchema) }
@@ -98,28 +100,37 @@ const EditDialog: React.VFC<EditDialogProps> = (props) => {
     setAwaiting(true)
     if (data._id === '-1' || data._id === '') {
       data['isActive'] = data['isActive'] === 'active' ? true : false
+      data['isMostPopular'] = isMostPopular
+      data['isShownInActiveTab'] = isShownInActiveTab
+      data['isInstagramSaves'] = isInstagramSaves
+      console.log('Service Data =>', data)
       const service = await serviceService.create({
         ...data,
         content: content,
+        apiType: apiType,
       })
       if (service) {
         setAwaiting(false)
         props.onClose()
-        props.onServiceCreated(service.data)
+        props.onServiceCreated(service)
       } else {
         setAwaiting(false)
         props.onClose()
       }
     } else {
       data['isActive'] = data['isActive'] === 'active' ? true : false
+      data['isMostPopular'] = isMostPopular
+      data['isShownInActiveTab'] = isShownInActiveTab
+      data['isInstagramSaves'] = isInstagramSaves
       const service = await serviceService.update({
         ...data,
         content: content,
+        apiType: apiType,
       })
       if (service) {
         setAwaiting(false)
         props.onClose()
-        props.onServiceUpdated(service.data)
+        props.onServiceUpdated(service)
       } else {
         setAwaiting(false)
         props.onClose()
@@ -129,7 +140,7 @@ const EditDialog: React.VFC<EditDialogProps> = (props) => {
 
   return (
     <div className="admin-edit-category fixed right-0 ls:right-1 top-1 h-[97vh] flex-col flex-wrap sm:w-[600px] bg-[#e8e8e9] shadow-lg shadow-cyan-700/50 rounded-xl z-[1001] overflow-y-scroll ease-out duration-500">
-      <div className="flex border-b-2 w-full p-5">
+      <div className="flex fixed w-full z-[100] sm:w-[600px] top-1 ls:right-1 border-b-[1px] border-gray-300 bg-gray-100 p-5 rounded-t-xl">
         <span className="font-semibold text-black">
           <svg
             className="h-6 w-6 text-gray-800"
@@ -168,7 +179,7 @@ const EditDialog: React.VFC<EditDialogProps> = (props) => {
         </span>
       </div>
       <form onSubmit={handleSubmit((d) => onSubmit(d))}>
-        <div className="flex flex-col flex-wrap w-full p-5 space-y-5">
+        <div className="flex mt-14 flex-col flex-wrap w-full p-5 space-y-5">
           <div className="flex flex-col flex-wrap w-full">
             <div className="text-gray-700 font-semibold">Package Name</div>
             <div className="flex w-full">
@@ -243,6 +254,7 @@ const EditDialog: React.VFC<EditDialogProps> = (props) => {
               <select
                 {...register('categoryId')}
                 className="w-full h-12 p-3 bg-transparent border-[1px] border-gray-300 text-gray-500"
+                value={categoryId}
               >
                 {props.categories.map((item, id) => {
                   return (
@@ -387,6 +399,7 @@ const EditDialog: React.VFC<EditDialogProps> = (props) => {
                     {...register('price')}
                     className="w-full h-12 p-3 bg-transparent border-[1px] border-gray-300 text-black"
                     type="number"
+                    step=".01"
                     value={price}
                     onChange={(e) => setPrice(e.target.value)}
                   />

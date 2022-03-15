@@ -7,6 +7,10 @@ import { serviceService } from '@/services/service'
 import { ServiceList } from './ServiceList'
 type Props = {
   readonly category: any
+  readonly setLoading: (b) => void
+  readonly onEditClicked: (any) => void
+  readonly onRemoveConfirmed: (any) => void
+  readonly onSwitchChanged: (e, any) => void
 }
 export const ServiceBlock: React.VFC<Props> = (props) => {
   const dispatch = useAppDispatch()
@@ -17,38 +21,23 @@ export const ServiceBlock: React.VFC<Props> = (props) => {
     getServices()
   }, [])
   const getServices = async () => {
-    const resp = await serviceService.search(`${props.category.name}`)
-    dispatch(setServices(resp.data))
+    const resp = await serviceService.search(`categoryId=${props.category._id}`)
+    dispatch(setServices(resp))
   }
   const toggleCollapse = () => {
     setCollapse(!collapse)
   }
-  const onRemoveConfirmed = async (category) => {
-    // setLoading(true)
-    // const resp = await categoryService._delete(category._id)
-    // if (resp) {
-    //   setLoading(false)
-    //   if (resp.status === 'success') dispatch(removeCategory(category))
-    // } else {
-    //   setLoading(false)
-    // }
+  const onRemoveConfirmed = (service) => {
+    props.onRemoveConfirmed(service)
   }
   const onCheckedListUpdated = (data) => {
     // setCheckedList(data)
   }
   const onSwitchChanged = async (e, data) => {
-    // const category = { ...data }
-    // category.isActive = e
-    // const updatedCategory = await categoryService.update({ ...category })
-    // if (updatedCategory) {
-    //   dispatch(updateCategory(updatedCategory.data))
-    // } else {
-    // }
+    props.onSwitchChanged(e, data)
   }
-  const onEditClicked = (category) => {
-    // props.showOverlay(true)
-    // setCategoryToEdit(category)
-    // setEditDlgShow(true)
+  const onEditClicked = (service) => {
+    props.onEditClicked(service)
   }
   const onViewClicked = (category) => {
     window.open(category.urlSlug)
@@ -59,7 +48,7 @@ export const ServiceBlock: React.VFC<Props> = (props) => {
       <div className="w-full flex flex-row flex-nowrap pt-5 px-5 pb-0">
         <div className="flex">
           <span>
-            <span className="text-black text-sm ls:text-base ss:text-lg">
+            <span className="text-gray-700 text-sm font-semibold ls:text-base ss:text-lg">
               {props.category.name}
             </span>
           </span>
@@ -120,7 +109,7 @@ export const ServiceBlock: React.VFC<Props> = (props) => {
       {!collapse ? (
         <ServiceList
           ref={refClearCheckedList}
-          services={services[`${props.category.name}`] || []}
+          services={services[`${props.category._id}`] || []}
           onEditClicked={(data) => onEditClicked(data)}
           onViewClicked={(data) => onViewClicked(data)}
           onRemoveConfirmed={(data) => onRemoveConfirmed(data)}

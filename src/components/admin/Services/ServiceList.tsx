@@ -17,24 +17,21 @@ const MyComponentRenderFn: ForwardRefRenderFunction<any, Props> = (
   ref,
 ) => {
   const [confirmOpen, setConfirmOpen] = useState(false)
-  const [categoryToDelete, setCategoryToDelete] = useState({})
+  const [serviceToDelete, setServiceToDelete] = useState({})
   const [checkedList, setCheckedList] = useState<String[]>([])
   const [allChecked, setAllChecked] = useState(false)
   const clearCheckedList = () => {
     setCheckedList([])
   }
-  const onEditClick = (category) => {
-    props.onEditClicked(category)
+  const onEditClick = (service) => {
+    props.onEditClicked(service)
   }
-  const onViewClick = (category) => {
-    props.onViewClicked(category)
-  }
-  const onRemoveClick = (category) => {
-    setCategoryToDelete(category)
+  const onRemoveClick = (service) => {
+    setServiceToDelete(service)
     setConfirmOpen(true)
   }
   const deleteConfirmed = () => {
-    props.onRemoveConfirmed(categoryToDelete)
+    props.onRemoveConfirmed(serviceToDelete)
   }
   const onAllCheckClicked = (e) => {
     if (checkedList.length === 0) {
@@ -48,13 +45,13 @@ const MyComponentRenderFn: ForwardRefRenderFunction<any, Props> = (
       setCheckedList([])
     }
   }
-  const onCheckClicked = (e, category) => {
-    if (checkedList.indexOf(category._id) !== -1)
-      setCheckedList([...checkedList.filter((item) => item !== category._id)])
-    else setCheckedList([...checkedList, category._id])
+  const onCheckClicked = (e, service) => {
+    if (checkedList.indexOf(service._id) !== -1)
+      setCheckedList([...checkedList.filter((item) => item !== service._id)])
+    else setCheckedList([...checkedList, service._id])
   }
-  const onSwitchChange = async (e, category) => {
-    props.onSwitchChanged(e, category)
+  const onSwitchChange = async (e, service) => {
+    props.onSwitchChanged(e, service)
   }
   useEffect(() => {
     props.onCheckedListUpdated(checkedList)
@@ -64,17 +61,12 @@ const MyComponentRenderFn: ForwardRefRenderFunction<any, Props> = (
       <div className="overflow-x-auto">
         <div className="py-0 inline-block min-w-full">
           <div className="overflow-hidden">
-            {/* <Table
-              checkable={true}
-              headers={['Name', 'Url Slug', 'Sort', 'Status', 'Action']}
-              data={props.categories}
-            /> */}
             <table className="min-w-full text-center border-collapse border border-gray-600 border-opacity-50">
               <thead className="border-b bg-gray-500">
                 <tr>
                   <th
                     scope="col"
-                    className="w-[20px] text-sm font-medium text-white px-3 py-3  border border-gray-600 border-opacity-50"
+                    className="w-[25px] text-sm font-medium text-white px-3 py-3  border border-gray-600 border-opacity-50"
                   >
                     <input
                       className="h-4 w-4"
@@ -90,13 +82,13 @@ const MyComponentRenderFn: ForwardRefRenderFunction<any, Props> = (
                   </th>
                   <th
                     scope="col"
-                    className="w-[100px] text-sm font-medium text-white px-6 py-3 border border-gray-600 border-opacity-50"
+                    className="w-[120px] text-sm font-medium text-white px-6 py-3 border border-gray-600 border-opacity-50"
                   >
                     ID
                   </th>
                   <th
                     scope="col"
-                    className="min-w-[200px] w-[280px] text-sm font-medium text-white px-6 py-3 border border-gray-600 border-opacity-50"
+                    className="min-w-[200px] w-[250px] text-sm font-medium text-white px-6 py-3 border border-gray-600 border-opacity-50"
                   >
                     Name
                   </th>
@@ -145,45 +137,59 @@ const MyComponentRenderFn: ForwardRefRenderFunction<any, Props> = (
                 </tr>
               </thead>
               <tbody>
-                {props.services.map((category, id) => {
+                {props.services.map((service, id) => {
                   return (
                     <tr
-                      key={category._id}
+                      key={service._id}
                       className="bg-white border-b hover:bg-gray-100"
                     >
-                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-white border border-slate-300">
+                      <td className="w-[25px] px-3 py-4 text-sm font-medium text-gray-700 border border-slate-300">
                         <input
                           className="h-4 w-4"
                           type="checkbox"
                           checked={
-                            checkedList.indexOf(category._id) !== -1
+                            checkedList.indexOf(service._id) !== -1
                               ? true
                               : false
                           }
-                          onChange={(e) => onCheckClicked(e, category)}
+                          onChange={(e) => onCheckClicked(e, service)}
                         />
                       </td>
-                      <td className="text-sm text-white px-6 py-4 whitespace-nowrap border border-slate-300">
-                        {category.name}
+                      <td className="text-sm max-w-[100px] px-1 text-gray-700 border border-slate-300">
+                        <span className="w-full break-words">
+                          {service._id}
+                        </span>
                       </td>
-                      <td className="text-sm text-white px-6 py-4 whitespace-nowrap border border-slate-300">
-                        {category.urlSlug}
+                      <td className="text-sm text-gray-700 px-6 py-4 whitespace-nowrap border border-slate-300">
+                        {service.name}
                       </td>
-                      <td className="text-sm text-white px-6 py-4 whitespace-nowrap border border-slate-300">
-                        {category.defaultSortingNumber}
+                      <td className="text-sm text-gray-700 px-6 py-4 whitespace-nowrap border border-slate-300">
+                        {service.price}
                       </td>
-                      <td className="text-sm text-white px-6 py-4 whitespace-nowrap border border-slate-300">
+                      <td className="text-sm text-gray-700 px-6 py-4 whitespace-nowrap border border-slate-300">
+                        {service.quantity}
+                      </td>
+                      <td className="text-sm text-gray-700 px-6 py-4 whitespace-nowrap border border-slate-300">
+                        {service.coupanDiscount}
+                      </td>
+                      <td className="text-sm text-gray-700 px-6 py-4 whitespace-nowrap border border-slate-300">
+                        {' '}
+                      </td>
+                      <td className="text-sm text-gray-700 px-6 py-4 whitespace-nowrap border border-slate-300">
+                        {' '}
+                      </td>
+                      <td className="text-sm text-gray-700 px-6 py-4 whitespace-nowrap border border-slate-300">
                         <Switch
-                          height={20}
+                          height={25}
                           width={50}
-                          onChange={(e) => onSwitchChange(e, category)}
-                          checked={category.isActive}
+                          onChange={(e) => onSwitchChange(e, service)}
+                          checked={service.isActive}
                         />
                       </td>
-                      <td className="text-sm text-white whitespace-nowrap border border-slate-300 px-3">
+                      <td className="text-sm text-gray-700 whitespace-nowrap border border-slate-300 px-3">
                         <div className="flex flex-row flex-nowrap w-full justify-center items-center">
                           <span
-                            onClick={() => onEditClick(category)}
+                            onClick={() => onEditClick(service)}
                             className="flex w-10 h-full justify-center items-center py-3 border-[1px] border-blue-600 hover:cursor-pointer hover:bg-blue-600 text-blue-600 hover:text-white  transition-all duration-500 delay-100"
                           >
                             <svg
@@ -202,26 +208,8 @@ const MyComponentRenderFn: ForwardRefRenderFunction<any, Props> = (
                             </svg>
                           </span>
                           <span
-                            onClick={() => onViewClick(category)}
-                            className="flex w-10 h-full justify-center items-center py-3 border-b-[1px] border-t-[1px] border-blue-600 hover:cursor-pointer hover:bg-blue-600 text-blue-600 hover:text-white transition-all duration-500 delay-100"
-                          >
-                            <svg
-                              className="h-4 w-4"
-                              fill="none"
-                              viewBox="0 0 24 24"
-                              stroke="currentColor"
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth="2"
-                                d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"
-                              />
-                            </svg>
-                          </span>
-                          <span
-                            onClick={() => onRemoveClick(category)}
-                            className="flex w-10 h-full justify-center items-center py-3 border-[1px] border-red-600 hover:cursor-pointer hover:bg-red-600 text-red-600 hover:text-white  transition-all duration-500 delay-100"
+                            onClick={() => onRemoveClick(service)}
+                            className="flex -ml-[1px] w-10 h-full justify-center items-center py-3 border-[1px] border-red-600 hover:cursor-pointer hover:bg-red-600 text-red-600 hover:text-white  transition-all duration-500 delay-100"
                           >
                             <svg
                               className="h-4 w-4"
@@ -248,12 +236,12 @@ const MyComponentRenderFn: ForwardRefRenderFunction<any, Props> = (
             </table>
             <div>
               <ConfirmDialog
-                title="Delete Category?"
+                title="Delete Service?"
                 open={confirmOpen}
                 onClose={() => setConfirmOpen(false)}
                 onConfirm={deleteConfirmed}
               >
-                Are you sure you want to delete this category?
+                Are you sure you want to delete this service?
               </ConfirmDialog>
               <div
                 ref={ref}

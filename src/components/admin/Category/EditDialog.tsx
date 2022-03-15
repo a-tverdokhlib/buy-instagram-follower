@@ -122,7 +122,7 @@ const EditDialog: React.VFC<EditDialogProps> = (props) => {
 
   return (
     <div className="admin-edit-category fixed right-0 ls:right-1 top-1 h-[97vh] flex-col flex-wrap sm:w-[600px] bg-[#e8e8e9] shadow-lg shadow-cyan-700/50 rounded-xl z-[1001] overflow-y-scroll ease-out duration-500">
-      <div className="flex border-b-2 w-full p-5">
+      <div className="flex fixed w-full z-[100] sm:w-[600px] top-1 ls:right-1 border-b-[1px] border-gray-300 bg-gray-100 p-5 rounded-t-xl">
         <span className="font-semibold text-black">
           <svg
             className="h-6 w-6 text-gray-800"
@@ -161,7 +161,7 @@ const EditDialog: React.VFC<EditDialogProps> = (props) => {
         </span>
       </div>
       <form onSubmit={handleSubmit((d) => onSubmit(d))}>
-        <div className="flex flex-col flex-wrap w-full p-5 space-y-5">
+        <div className="flex mt-14 flex-col flex-wrap w-full p-5 space-y-5">
           <div className="flex flex-col flex-wrap w-full">
             <div className="text-black">Name</div>
             <div className="flex w-full">
