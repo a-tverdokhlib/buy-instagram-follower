@@ -470,7 +470,7 @@ const Category: React.VFC<CategoryProps> = (props) => {
             </div>
           </div>
         </div>
-        <div className="admin-category-content -mt-1 w-full p-3 md:p-3">
+        <div className="admin-category-content mt-8 w-full p-3 md:p-3">
           <div
             className={
               !collapse
@@ -478,7 +478,7 @@ const Category: React.VFC<CategoryProps> = (props) => {
                 : 'flex-col flex-wrap w-full bg-gray-300 bg-opacity-30 h-16 shadow-lg shadow-slate-400'
             }
           >
-            {/* <div className="w-full flex flex-row flex-nowrap pt-5 px-5 pb-0">
+            <div className="w-full flex flex-row flex-nowrap pt-5 px-5 pb-0">
               <div className="flex">
                 <span>
                   <span className="text-black text-xl">Instagram</span>
@@ -539,7 +539,7 @@ const Category: React.VFC<CategoryProps> = (props) => {
                   </svg>
                 </span>
               </div>
-            </div> */}
+            </div>
             {!collapse && categories ? (
               <CategoryList
                 ref={refClearCheckedList}
