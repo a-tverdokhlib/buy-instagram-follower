@@ -19,6 +19,7 @@ export const userService = {
 }
 
 function login(email, password) {
+  // fetchWrapper.get(`${publicRuntimeConfig.apiUrl}/dummy`)
   return fetchWrapper
     .post(`${publicRuntimeConfig.apiUrl}/users/authenticate`, {
       email,

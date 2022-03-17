@@ -20,6 +20,8 @@ const initialState: AdminServiceState = {
 
 export const adminServiceReducer = createReducer(initialState, (builder) => {
   builder.addCase(setServices, (state, action) => {
+    console.log('CategoryID =>', action.payload.categoryId)
+    console.log('ServiceData =>', action.payload.data)
     state.services = {
       ...state.services,
       [action.payload.categoryId]: action.payload.data,
@@ -46,12 +48,20 @@ export const adminServiceReducer = createReducer(initialState, (builder) => {
       [action.payload.categoryId]: serviceList,
     }
   })
+  builder.addCase(removeServices, (state, action) => {
+    const removedIds = action.payload
+    removedIds.map((removedItem, id) => {
+      state.services = {
+        ...state.services,
+        [removedItem.categoryId]: state.services[
+          `${removedItem.categoryId}`
+        ].filter((item) => item._id !== removedItem._id),
+      }
+    })
+  })
   builder.addCase(updateService, (state, action) => {
     const oldCategoryId = action.payload.oldCategoryId
     const service = action.payload.data
-
-    console.log('Old CategoryID =>', oldCategoryId)
-    console.log('Service =>', service)
 
     if (oldCategoryId !== service.categoryId) {
       const oldServiceList = [
@@ -90,6 +100,9 @@ export const adminServiceReducer = createReducer(initialState, (builder) => {
             item.isShownInActiveTab = service.isShownInActiveTab
             item.isInstagramSaves = service.isInstagramSaves
             item.apiType = service.apiType
+            item.variationDays = service.variationDays
+            item.offPercent = service.offPercent
+            item.isDefaultActive = service.isDefaultActive
             return item
           } else {
             return item
@@ -97,5 +110,35 @@ export const adminServiceReducer = createReducer(initialState, (builder) => {
         }),
       ]
     }
+  })
+  builder.addCase(deactiveServices, (state, action) => {
+    const deactiveIds = action.payload
+    deactiveIds.map((deactiveItem, id) => {
+      const serviceList = [
+        ...state.services[`${deactiveItem.categoryId}`].map((item) => {
+          if (item._id === deactiveItem._id) {
+            item.isActive = false
+            return item
+          } else {
+            return item
+          }
+        }),
+      ]
+    })
+  })
+  builder.addCase(activeServices, (state, action) => {
+    const deactiveIds = action.payload
+    deactiveIds.map((deactiveItem, id) => {
+      const serviceList = [
+        ...state.services[`${deactiveItem.categoryId}`].map((item) => {
+          if (item._id === deactiveItem._id) {
+            item.isActive = true
+            return item
+          } else {
+            return item
+          }
+        }),
+      ]
+    })
   })
 })

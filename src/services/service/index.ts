@@ -17,6 +17,8 @@ export const serviceService = {
   deleteMany,
   deleteInactive,
   setStatus,
+  orderFors,
+  parentPacks,
 }
 
 function search(keyword) {
@@ -75,5 +77,21 @@ function setStatus(_ids, status) {
     })
     .then((data) => {
       return data
+    })
+}
+
+function orderFors() {
+  return fetchWrapper
+    .get(`${publicRuntimeConfig.apiUrl}/service/orderFors`)
+    .then((orderFors) => {
+      return orderFors
+    })
+}
+
+function parentPacks() {
+  return fetchWrapper
+    .get(`${publicRuntimeConfig.apiUrl}/service/parentPacks`)
+    .then((parentPacks) => {
+      return parentPacks
     })
 }

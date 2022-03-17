@@ -16,6 +16,9 @@ function jwtMiddleware(req, res) {
       '/api/users/register',
       '/api/users/authenticate',
       '/api/category',
+      '/api/dummy',
+      '/api/service/parentPacks',
+      '/api/service/orderFors',
     ],
   })
 

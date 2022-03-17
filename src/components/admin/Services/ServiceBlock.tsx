@@ -1,4 +1,5 @@
-import { useEffect, useRef, useState } from 'react'
+import { ForwardRefRenderFunction, useEffect, useRef, useState } from 'react'
+import React from 'react'
 
 import { setServices } from '@/redux/reducers/admin/services'
 import { useAppDispatch, useAppSelector } from '@/redux/store/hooks'
@@ -11,8 +12,12 @@ type Props = {
   readonly onEditClicked: (any) => void
   readonly onRemoveConfirmed: (any) => void
   readonly onSwitchChanged: (e, any) => void
+  readonly onCheckedListUpdated: (String, any) => void
 }
-export const ServiceBlock: React.VFC<Props> = (props) => {
+const MyComponentRenderFn: ForwardRefRenderFunction<any, Props> = (
+  props,
+  ref,
+) => {
   const dispatch = useAppDispatch()
   const { services } = useAppSelector((state) => state.adminService)
   const [collapse, setCollapse] = useState(false)
@@ -24,6 +29,10 @@ export const ServiceBlock: React.VFC<Props> = (props) => {
     const resp = await serviceService.search(`categoryId=${props.category._id}`)
     dispatch(setServices(resp))
   }
+  const clearCheckedList = () => {
+    console.log('Please clear')
+    refClearCheckedList.current!.click()
+  }
   const toggleCollapse = () => {
     setCollapse(!collapse)
   }
@@ -31,7 +40,7 @@ export const ServiceBlock: React.VFC<Props> = (props) => {
     props.onRemoveConfirmed(service)
   }
   const onCheckedListUpdated = (data) => {
-    // setCheckedList(data)
+    props.onCheckedListUpdated(props.category._id, data)
   }
   const onSwitchChanged = async (e, data) => {
     props.onSwitchChanged(e, data)
@@ -119,6 +128,12 @@ export const ServiceBlock: React.VFC<Props> = (props) => {
       ) : (
         <></>
       )}
+      <div
+        ref={ref}
+        onClick={() => clearCheckedList()}
+        className="hidden"
+      ></div>
     </>
   )
 }
+export const ServiceBlock = React.forwardRef(MyComponentRenderFn)

@@ -1,6 +1,8 @@
 export type EditDialogProps = {
   readonly service: any
   readonly categories: any
+  readonly orderFors: any
+  readonly parentPacks: any
   readonly onClose: () => void
   readonly onServiceCreated: (d) => void
   readonly onServiceUpdated: (d) => void
@@ -149,8 +151,8 @@ const EditDialog: React.VFC<EditDialogProps> = (props) => {
   }
 
   return (
-    <div className="admin-edit-category fixed right-0 ls:right-1 top-1 h-[97vh] flex-col flex-wrap sm:w-[600px] bg-[#e8e8e9] shadow-lg shadow-cyan-700/50 rounded-xl z-[1001] overflow-y-scroll ease-out duration-500">
-      <div className="flex fixed w-full z-[100] sm:w-[600px] top-1 ls:right-1 border-b-[1px] border-gray-300 bg-gray-100 p-5 rounded-t-xl">
+    <div className="admin-edit-category fixed w-[98%] right-0 ls:right-1 top-1 h-[97vh] flex-col flex-wrap sm:w-[600px] bg-[#e8e8e9] shadow-lg shadow-cyan-700/50 rounded-xl z-[1001] overflow-y-scroll ease-out duration-500">
+      <div className="flex fixed w-[98%] z-[100] sm:w-[600px] top-1 ls:right-1 border-b-[1px] border-gray-300 bg-gray-100 p-5 rounded-t-xl">
         <span className="font-semibold text-black">
           <svg
             className="h-6 w-6 text-gray-800"
@@ -311,10 +313,16 @@ const EditDialog: React.VFC<EditDialogProps> = (props) => {
               <select
                 {...register('parentPackId')}
                 className="w-full h-12 p-3 bg-transparent border-[1px] border-gray-300 text-gray-500"
+                onChange={(e) => setParentPackId(e.target.value)}
+                value={parentPackId}
               >
-                <option value="0">300 Instagram Likes</option>
-                <option value="1">500 Instagram Likes</option>
-                <option value="2">700 Instagram Likes</option>
+                {props.parentPacks.map((item, id) => {
+                  return (
+                    <option key={id} value={item._id}>
+                      {item.name}
+                    </option>
+                  )
+                })}
               </select>
             </div>
           </div>
@@ -328,10 +336,16 @@ const EditDialog: React.VFC<EditDialogProps> = (props) => {
               <select
                 {...register('orderForId')}
                 className="w-full h-12 p-3 bg-transparent border-[1px] border-gray-300 text-gray-500"
+                onChange={(e) => setOrderForId(e.target.value)}
+                value={orderForId}
               >
-                <option value="0">Followers</option>
-                <option value="1">Likes</option>
-                <option value="2">Views</option>
+                {props.orderFors.map((item, id) => {
+                  return (
+                    <option key={id} value={item._id}>
+                      {item.name}
+                    </option>
+                  )
+                })}
               </select>
             </div>
           </div>

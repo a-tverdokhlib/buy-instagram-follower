@@ -1,6 +1,9 @@
 import '@/styles/css/globals.css'
 import '@/styles/css/admin.css'
 import '@/styles/css/BuyInstagramFollowers.css'
+import '@/styles/css/Calendar.css'
+import '@/styles/css/Clock.css'
+import '@/styles/css/DateTimePicker.css'
 
 import type { AppProps } from 'next/app'
 import Head from 'next/head'

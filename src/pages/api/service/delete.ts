@@ -22,7 +22,10 @@ async function deleteMany(req, res) {
     throw 'The ids is not defined'
   }
   console.log('_IDS =>', _ids)
-  await serviceRepo.deleteMany(_ids)
+  const ids = _ids.map((item, id) => {
+    return item._id
+  })
+  await serviceRepo.deleteMany(ids)
   return res.status(200).json({
     status: 'success',
     removedIds: _ids,
@@ -42,6 +45,7 @@ async function _delete(req, res) {
     })
   } else if (_type === 'inactive') {
     const inactiveIds = await serviceRepo.deleteInactive()
+    console.log('InActiveIDS=>', inactiveIds)
     return res.status(200).json({
       status: 'success',
       data: inactiveIds,

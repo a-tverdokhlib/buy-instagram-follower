@@ -38,6 +38,7 @@ async function create(service) {
 }
 
 async function update(_id, params) {
+  console.log('Params=>', params)
   const updateOne = await serviceModel.findOne({ _id: _id })
   updateOne.name = params.name
   updateOne.isMostPopular = params.isMostPopular
@@ -79,7 +80,9 @@ async function deleteMany(_ids) {
 }
 
 async function deleteInactive() {
-  const inactiveIds = await serviceModel.find({ isActive: false }).select('_id')
+  const inactiveIds = await serviceModel
+    .find({ isActive: false })
+    .select('_id, categoryId')
   await serviceModel.deleteMany({ isActive: false })
   return inactiveIds
 }

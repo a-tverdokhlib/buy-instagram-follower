@@ -3,8 +3,6 @@ const fs = require('fs')
 import dbConnect from './lib/dbConnect'
 var userModel = require('./models/user')
 
-// dbConnect()
-
 export const usersRepo = {
   getAll: () => users,
   find: (x) => findUser(x),

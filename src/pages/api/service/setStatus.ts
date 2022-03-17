@@ -21,7 +21,10 @@ async function setStatus(req, res) {
     throw 'The ids is not defined'
   }
   console.log('_IDS =>', _ids)
-  await serviceRepo.setStatus(_ids, status)
+  const ids = _ids.map((item, id) => {
+    return item._id
+  })
+  await serviceRepo.setStatus(ids, status)
   if (status)
     return res.status(200).json({
       status: 'success',

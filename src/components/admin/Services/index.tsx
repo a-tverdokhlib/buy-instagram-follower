@@ -15,19 +15,24 @@ import AlertDialog from '@/components/atoms/AlertDialog'
 import { Loading } from '@/components/atoms/Loading'
 import { setCategories } from '@/redux/reducers/admin/categories'
 import {
+  activeServices,
   addService,
+  deactiveServices,
   removeService,
+  removeServices,
   updateService,
 } from '@/redux/reducers/admin/services'
 import { useAppDispatch, useAppSelector } from '@/redux/store/hooks'
 
+import OfferDialog from './OfferDialog'
 import { ServiceBlock } from './ServiceBlock'
 const Services: React.VFC<ServiceProps> = (props) => {
   const dispatch = useAppDispatch()
   const { categories } = useAppSelector((state) => state.adminCategory)
-  const [checkedList, setCheckedList] = useState([''])
+  const [checkedList, setCheckedList] = useState<any[]>([])
   const [collapse, setCollapse] = useState(false)
   const [editDlgShow, setEditDlgShow] = useState(false)
+  const [offerDlgShow, setOfferDlgShow] = useState(false)
   const [loading, setLoading] = useState(false)
   const [showAlert, setShowAlert] = useState(false)
   const [serviceToEdit, setServiceToEdit] = useState({})
@@ -37,9 +42,13 @@ const Services: React.VFC<ServiceProps> = (props) => {
   const refClearCheckedList = useRef<HTMLDivElement>(null)
   const [filteredCategoryID, setFilteredCategoryID] = useState('all')
   const [filteredCategories, setFilteredCategories] = useState(categories)
+  const [orderFors, setOrderFors] = useState([])
+  const [parentPacks, setParentPacks] = useState([])
   useEffect(() => {
     if (categories.length === 0) setLoading(true)
     getCategories()
+    getOrderFors()
+    getParentPacks()
   }, [])
 
   useEffect(() => {
@@ -56,6 +65,20 @@ const Services: React.VFC<ServiceProps> = (props) => {
       setLoading(false)
     }, 100)
   }
+  const getOrderFors = async () => {
+    const resp = await serviceService.orderFors()
+    setOrderFors(resp.data)
+    setTimeout(() => {
+      setLoading(false)
+    }, 100)
+  }
+  const getParentPacks = async () => {
+    const resp = await serviceService.parentPacks()
+    setParentPacks(resp.data)
+    setTimeout(() => {
+      setLoading(false)
+    }, 100)
+  }
   const toggleCollapse = () => {
     setCollapse(!collapse)
   }
@@ -67,6 +90,10 @@ const Services: React.VFC<ServiceProps> = (props) => {
   const onCloseEditDialog = () => {
     props.showOverlay(false)
     setEditDlgShow(false)
+  }
+  const onCloseOfferDialog = () => {
+    props.showOverlay(false)
+    setOfferDlgShow(false)
   }
   const onServiceCreated = (service) => {
     dispatch(addService(service))
@@ -98,69 +125,91 @@ const Services: React.VFC<ServiceProps> = (props) => {
       setLoading(false)
     }
   }
+  const onCheckedListUpdated = (categoryId, d) => {
+    console.log('Oh! I see =>', categoryId)
+    console.log('Oh! I see data =>', d)
+    let list = [...checkedList]
+    list = [...list.filter((item) => item.categoryId !== categoryId)]
+    d.map((serviceId: string, id) => {
+      const serviceIdList = [
+        ...list.map((item, id) => {
+          return item._id
+        }),
+      ]
+      if (serviceIdList.indexOf(serviceId) >= 0) {
+        // list = [...list.filter((item) => item.serviceId !== serviceId)]
+      } else list = [...list, { _id: serviceId, categoryId: categoryId }]
+    })
+    setCheckedList(list)
+  }
   const onActivateClick = async () => {
-    // if (!isActionAvailable()) {
-    //   setAlertDescription('Please select any categories to do action.')
-    //   setShowAlert(true)
-    // }
-    // setLoading(true)
-    // const resp = await categoryService.setStatus(checkedList, true)
-    // if (resp) {
-    //   setLoading(false)
-    //   if (resp.status === 'success') {
-    //     dispatch(activeCategories(resp.data))
-    //     refClearCheckedList.current!.click()
-    //   }
-    // } else {
-    //   setLoading(false)
-    // }
+    if (!isActionAvailable()) {
+      setAlertDescription('Please select any services to do action.')
+      setShowAlert(true)
+    }
+    setLoading(true)
+    const resp = await serviceService.setStatus(checkedList, true)
+    if (resp) {
+      setLoading(false)
+      if (resp.status === 'success') {
+        dispatch(activeServices(resp.data))
+        // refClearCheckedList.current!.click()
+      }
+    } else {
+      setLoading(false)
+    }
   }
   const onDeleteAllDeactivedClick = async () => {
-    // setLoading(true)
-    // const resp = await categoryService.deleteInactive()
-    // if (resp) {
-    //   setLoading(false)
-    //   if (resp.status === 'success') {
-    //     dispatch(removeCategories(JSON.stringify(resp.data)))
-    //     setAlertDescription(
-    //       `You have removed ${resp.data.length} deactivated services.`,
-    //     )
-    //     setShowAlert(true)
-    //   }
-    // } else {
-    //   setLoading(false)
-    // }
+    setLoading(true)
+    const resp = await serviceService.deleteInactive()
+    if (resp) {
+      setLoading(false)
+      if (resp.status === 'success') {
+        dispatch(removeServices(resp.data))
+        setAlertDescription(
+          `You have removed ${resp.data.length} deactivated services.`,
+        )
+        setShowAlert(true)
+      }
+    } else {
+      setLoading(false)
+    }
   }
   const onDeactiveClick = async () => {
-    // if (!isActionAvailable()) {
-    //   setAlertDescription('Please select any categories to do action.')
-    //   setShowAlert(true)
-    // }
-    // setLoading(true)
-    // const resp = await categoryService.setStatus(checkedList, false)
-    // if (resp) {
-    //   setLoading(false)
-    //   if (resp.status === 'success') {
-    //     dispatch(deactiveCategories(resp.data))
-    //     refClearCheckedList.current!.click()
-    //   }
-    // } else {
-    //   setLoading(false)
-    // }
+    if (!isActionAvailable()) {
+      setAlertDescription('Please select any services to do action.')
+      setShowAlert(true)
+    }
+    setLoading(true)
+    const resp = await serviceService.setStatus(checkedList, false)
+    if (resp) {
+      setLoading(false)
+      if (resp.status === 'success') {
+        dispatch(deactiveServices(resp.data))
+        // refClearCheckedList.current!.click()
+      }
+    } else {
+      setLoading(false)
+    }
   }
   const onDeleteClick = async () => {
-    // if (!isActionAvailable()) {
-    //   setAlertDescription('Please select any categories to do action.')
-    //   setShowAlert(true)
-    // }
-    // setLoading(true)
-    // const resp = await categoryService.deleteMany(checkedList)
-    // if (resp) {
-    //   setLoading(false)
-    //   if (resp.status === 'success') dispatch(removeCategories(checkedList))
-    // } else {
-    //   setLoading(false)
-    // }
+    if (!isActionAvailable()) {
+      setAlertDescription('Please select any services to do action.')
+      setShowAlert(true)
+    }
+    console.log('Service List to Delete =>', checkedList)
+    setLoading(true)
+    const resp = await serviceService.deleteMany(checkedList)
+    if (resp) {
+      setLoading(false)
+      if (resp.status === 'success') dispatch(removeServices(checkedList))
+    } else {
+      setLoading(false)
+    }
+  }
+  const onOfferClick = () => {
+    props.showOverlay(true)
+    setOfferDlgShow(true)
   }
   const isActionAvailable = () => {
     if (checkedList!.length <= 0) return false
@@ -486,7 +535,7 @@ const Services: React.VFC<ServiceProps> = (props) => {
                       </span>
                     </a>
                     <a
-                      onClick={onActivateClick}
+                      onClick={onOfferClick}
                       className="w-full !text-black hover:!bg-gray-300"
                     >
                       <span className="flex items-center">
@@ -532,8 +581,12 @@ const Services: React.VFC<ServiceProps> = (props) => {
                   className="mt-10 ml-1 mr-1 rounded-lg shadow-lg shadow-gray-600"
                 >
                   <ServiceBlock
+                    ref={refClearCheckedList}
                     category={item}
                     onEditClicked={(d) => onEditClicked(d)}
+                    onCheckedListUpdated={(categoryId, d) =>
+                      onCheckedListUpdated(categoryId, d)
+                    }
                     onRemoveConfirmed={(d) => onRemoveConfirmed(d)}
                     onSwitchChanged={(e, data) => onSwitchChanged(e, data)}
                     setLoading={(b) => setLoading(b)}
@@ -548,6 +601,8 @@ const Services: React.VFC<ServiceProps> = (props) => {
           <EditDialog
             service={serviceToEdit}
             categories={categories}
+            orderFors={orderFors}
+            parentPacks={parentPacks}
             onClose={onCloseEditDialog}
             onServiceCreated={(d) => onServiceCreated(d)}
             onServiceUpdated={(d) => onServiceUpdated(d)}
@@ -555,6 +610,7 @@ const Services: React.VFC<ServiceProps> = (props) => {
         ) : (
           <></>
         )}
+        {offerDlgShow ? <OfferDialog onClose={onCloseOfferDialog} /> : <></>}
       </div>
       {loading ? (
         <div className="fixed inset-0 flex items-center justify-center w-full h-full bg-opacity-0 bg-black">
