@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import { useEffect, useRef, useState } from 'react'
+import { Ref, RefObject, useEffect, useRef, useState } from 'react'
 
 import { categoryService } from '@/services/category'
 import { serviceService } from '@/services/service'
@@ -11,6 +11,8 @@ export type ServiceProps = {
   readonly isMobile: boolean
   readonly showOverlay: (b) => void
 }
+import React from 'react'
+
 import AlertDialog from '@/components/atoms/AlertDialog'
 import { Loading } from '@/components/atoms/Loading'
 import { setCategories } from '@/redux/reducers/admin/categories'
@@ -39,9 +41,12 @@ const Services: React.VFC<ServiceProps> = (props) => {
   const [dropdownActionVisible, setDropdownActionVisible] = useState(false)
   const [dropdownSortbyVisible, setDropdownSortbyVisible] = useState(false)
   const [alertDescription, setAlertDescription] = useState('')
-  const refClearCheckedList = useRef<HTMLDivElement>(null)
+  const [refClearCheckedList, setRefClearCheckedList] = useState<
+    RefObject<HTMLDivElement>[]
+  >([])
   const [filteredCategoryID, setFilteredCategoryID] = useState('all')
   const [filteredCategories, setFilteredCategories] = useState(categories)
+
   const [orderFors, setOrderFors] = useState([])
   const [parentPacks, setParentPacks] = useState([])
   useEffect(() => {
@@ -52,12 +57,20 @@ const Services: React.VFC<ServiceProps> = (props) => {
   }, [])
 
   useEffect(() => {
-    if (filteredCategoryID === 'all') setFilteredCategories(categories)
-    else
+    if (filteredCategoryID === 'all') {
+      setFilteredCategories(categories)
+    } else {
       setFilteredCategories(
         categories.filter((category) => category._id === filteredCategoryID),
       )
+    }
   }, [categories, filteredCategoryID])
+  useEffect(() => {
+    filteredCategories.map((item, id) => {
+      const refClearCheckedList1 = React.createRef<HTMLDivElement>()
+      setRefClearCheckedList([...refClearCheckedList, refClearCheckedList1])
+    })
+  }, [filteredCategories])
   const getCategories = async () => {
     const resp = await categoryService.search('')
     dispatch(setCategories(resp.data))
@@ -126,8 +139,6 @@ const Services: React.VFC<ServiceProps> = (props) => {
     }
   }
   const onCheckedListUpdated = (categoryId, d) => {
-    console.log('Oh! I see =>', categoryId)
-    console.log('Oh! I see data =>', d)
     let list = [...checkedList]
     list = [...list.filter((item) => item.categoryId !== categoryId)]
     d.map((serviceId: string, id) => {
@@ -153,7 +164,10 @@ const Services: React.VFC<ServiceProps> = (props) => {
       setLoading(false)
       if (resp.status === 'success') {
         dispatch(activeServices(resp.data))
-        // refClearCheckedList.current!.click()
+        refClearCheckedList.map((item, id) => {
+          const ref: RefObject<HTMLDivElement> = item
+          ref.current!.click()
+        })
       }
     } else {
       setLoading(false)
@@ -186,7 +200,10 @@ const Services: React.VFC<ServiceProps> = (props) => {
       setLoading(false)
       if (resp.status === 'success') {
         dispatch(deactiveServices(resp.data))
-        // refClearCheckedList.current!.click()
+        refClearCheckedList.map((item, id) => {
+          const ref: RefObject<HTMLDivElement> = item
+          ref.current!.click()
+        })
       }
     } else {
       setLoading(false)
@@ -211,6 +228,7 @@ const Services: React.VFC<ServiceProps> = (props) => {
     props.showOverlay(true)
     setOfferDlgShow(true)
   }
+  const onOfferDlgSubmit = (data) => {}
   const isActionAvailable = () => {
     if (checkedList!.length <= 0) return false
     return true
@@ -575,13 +593,14 @@ const Services: React.VFC<ServiceProps> = (props) => {
             }
           >
             {filteredCategories.map((item, id) => {
+              const refClearCheckedList1 = refClearCheckedList.at(id)
               return (
                 <div
                   key={id}
                   className="mt-10 ml-1 mr-1 rounded-lg shadow-lg shadow-gray-600"
                 >
                   <ServiceBlock
-                    ref={refClearCheckedList}
+                    ref={refClearCheckedList1}
                     category={item}
                     onEditClicked={(d) => onEditClicked(d)}
                     onCheckedListUpdated={(categoryId, d) =>
@@ -610,7 +629,14 @@ const Services: React.VFC<ServiceProps> = (props) => {
         ) : (
           <></>
         )}
-        {offerDlgShow ? <OfferDialog onClose={onCloseOfferDialog} /> : <></>}
+        {offerDlgShow ? (
+          <OfferDialog
+            onSubmit={onOfferDlgSubmit}
+            onClose={onCloseOfferDialog}
+          />
+        ) : (
+          <></>
+        )}
       </div>
       {loading ? (
         <div className="fixed inset-0 flex items-center justify-center w-full h-full bg-opacity-0 bg-black">

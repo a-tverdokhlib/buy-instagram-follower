@@ -1,5 +1,6 @@
 export type OfferDialogProps = {
   readonly onClose: () => void
+  readonly onSubmit: (any) => void
 }
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useState } from 'react'
@@ -23,7 +24,9 @@ const OfferDialog: React.VFC<OfferDialogProps> = (props) => {
   const { register, handleSubmit, reset, formState } = useForm(formOptions)
   const { errors } = formState
 
-  const onSubmit = async (data) => {}
+  const onSubmit = async (data) => {
+    props.onSubmit({ discount: data['discount'], startDate, endDate })
+  }
   return (
     <div className="admin-edit-category w-[98%] fixed right-0 ls:right-1 top-1 h-[97vh] flex-col flex-wrap sm:w-[600px] bg-[#e8e8e9] shadow-lg shadow-cyan-700/50 rounded-xl z-[1001] overflow-y-scroll ease-out duration-500">
       <div className="flex fixed w-[98%] z-[100] sm:w-[600px] top-1 ls:right-1 border-b-[1px] border-gray-300 bg-gray-100 p-5 rounded-t-xl">
@@ -65,7 +68,7 @@ const OfferDialog: React.VFC<OfferDialogProps> = (props) => {
         </span>
       </div>
       <form onSubmit={handleSubmit((d) => onSubmit(d))}>
-        <div className="flex mt-14 flex-col flex-wrap w-full p-5 space-y-5">
+        <div className="flex mt-14 flex-col flex-wrap w-full p-5 space-y-12">
           <div className="flex flex-col flex-wrap w-full">
             <div className="text-gray-700 font-semibold">Discount %</div>
             <div className="flex w-full">

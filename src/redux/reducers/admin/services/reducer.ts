@@ -20,8 +20,6 @@ const initialState: AdminServiceState = {
 
 export const adminServiceReducer = createReducer(initialState, (builder) => {
   builder.addCase(setServices, (state, action) => {
-    console.log('CategoryID =>', action.payload.categoryId)
-    console.log('ServiceData =>', action.payload.data)
     state.services = {
       ...state.services,
       [action.payload.categoryId]: action.payload.data,
