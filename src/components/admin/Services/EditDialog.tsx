@@ -45,7 +45,7 @@ const EditDialog: React.VFC<EditDialogProps> = (props) => {
     props.service ? props.service.isInstagramSaves : false,
   )
   const [parentPackId, setParentPackId] = useState(
-    props.service ? props.service.isMostPopular : false,
+    props.service ? props.service.parentPackId : '',
   )
   const [orderForId, setOrderForId] = useState(
     props.service ? props.service.orderForId : '',
