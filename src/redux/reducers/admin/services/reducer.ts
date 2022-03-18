@@ -4,6 +4,7 @@ import {
   activeServices,
   addService,
   deactiveServices,
+  offerServices,
   removeService,
   removeServices,
   setServices,
@@ -138,5 +139,55 @@ export const adminServiceReducer = createReducer(initialState, (builder) => {
         }),
       ]
     })
+  })
+  builder.addCase(offerServices, (state, action) => {
+    const { _ids, startDate, endDate, discount } = action.payload.data
+    const categories = action.payload.filteredCategories
+    console.log('Data =>', action.payload.data)
+    console.log('Categories =>', categories)
+    if (_ids.length === 0) {
+      categories.map((category, id) => {
+        const serviceList = [
+          ...state.services[`${category._id}`].map((item) => {
+            if (item.offer.length > 0) {
+              item.offer[0].discount = discount
+              item.offer[0].startDate = startDate
+              item.offer[0].endDate = endDate
+            } else {
+              item.offer = [
+                { discount: discount, startDate: startDate, endDate: endDate },
+              ]
+            }
+            return item
+          }),
+        ]
+      })
+    } else {
+      _ids.map((offeredService, id) => {
+        const serviceList = [
+          ...state.services[`${offeredService.categoryId}`].map((item) => {
+            if (item._id === offeredService._id) {
+              console.log('Item =>', item)
+              if (item.offer.length > 0) {
+                item.offer[0].discount = discount
+                item.offer[0].startDate = startDate
+                item.offer[0].endDate = endDate
+              } else {
+                item.offer = [
+                  {
+                    discount: discount,
+                    startDate: startDate,
+                    endDate: endDate,
+                  },
+                ]
+              }
+              return item
+            } else {
+              return item
+            }
+          }),
+        ]
+      })
+    }
   })
 })

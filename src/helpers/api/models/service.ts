@@ -24,6 +24,7 @@ const ServiceSchema = new mongoose.Schema({
   variationDays: Number,
   offPercent: Number,
   isDefaultActive: Boolean,
+  offer: { type: [mongoose.Schema.Types.ObjectId], ref: 'Offer' },
 })
 
 module.exports =

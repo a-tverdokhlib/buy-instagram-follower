@@ -20,6 +20,7 @@ import {
   activeServices,
   addService,
   deactiveServices,
+  offerServices,
   removeService,
   removeServices,
   updateService,
@@ -214,7 +215,6 @@ const Services: React.VFC<ServiceProps> = (props) => {
       setAlertDescription('Please select any services to do action.')
       setShowAlert(true)
     }
-    console.log('Service List to Delete =>', checkedList)
     setLoading(true)
     const resp = await serviceService.deleteMany(checkedList)
     if (resp) {
@@ -228,7 +228,29 @@ const Services: React.VFC<ServiceProps> = (props) => {
     props.showOverlay(true)
     setOfferDlgShow(true)
   }
-  const onOfferDlgSubmit = (data) => {}
+  const onOfferDlgSubmit = async (data) => {
+    setLoading(true)
+    const resp = await serviceService.createOffer({
+      _ids: checkedList,
+      startDate: data.startDate,
+      endDate: data.endDate,
+      discount: data.discount,
+    })
+    if (resp) {
+      setLoading(false)
+      setOfferDlgShow(false)
+      if (resp.status === 'success') {
+        dispatch(offerServices({ data: resp.data, filteredCategories }))
+        refClearCheckedList.map((item, id) => {
+          const ref: RefObject<HTMLDivElement> = item
+          ref.current!.click()
+        })
+      }
+    } else {
+      setOfferDlgShow(false)
+      setLoading(false)
+    }
+  }
   const isActionAvailable = () => {
     if (checkedList!.length <= 0) return false
     return true

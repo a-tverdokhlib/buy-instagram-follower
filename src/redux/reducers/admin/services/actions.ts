@@ -9,3 +9,4 @@ export const deactiveServices = createAction<any>(
   'admin/services/deactiveServices',
 )
 export const activeServices = createAction<any>('admin/services/activeServices')
+export const offerServices = createAction<any>('admin/services/offerServices')

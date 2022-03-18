@@ -170,13 +170,23 @@ const MyComponentRenderFn: ForwardRefRenderFunction<any, Props> = (
                         {service.quantity}
                       </td>
                       <td className="text-sm text-gray-700 px-6 py-4 whitespace-nowrap border border-slate-300">
-                        {service.coupanDiscount}
+                        {service.offer.length > 0
+                          ? service.offer[0].discount
+                          : ''}
                       </td>
-                      <td className="text-sm text-gray-700 px-6 py-4 whitespace-nowrap border border-slate-300">
-                        {' '}
+                      <td className="text-sm max-w-[100px] text-gray-700 px-1 py-4 border border-slate-300">
+                        <span className="w-full break-words">
+                          {service.offer.length > 0
+                            ? service.offer[0].startDate
+                            : ''}
+                        </span>
                       </td>
-                      <td className="text-sm text-gray-700 px-6 py-4 whitespace-nowrap border border-slate-300">
-                        {' '}
+                      <td className="text-sm max-w-[100px] text-gray-700 px-1 py-4 border border-slate-300">
+                        <span className="w-full break-words">
+                          {service.offer.length > 0
+                            ? service.offer[0].endDate
+                            : ''}
+                        </span>
                       </td>
                       <td className="text-sm text-gray-700 px-6 py-4 whitespace-nowrap border border-slate-300">
                         <Switch

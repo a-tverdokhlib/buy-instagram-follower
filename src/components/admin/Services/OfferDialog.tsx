@@ -25,6 +25,7 @@ const OfferDialog: React.VFC<OfferDialogProps> = (props) => {
   const { errors } = formState
 
   const onSubmit = async (data) => {
+    props.onClose()
     props.onSubmit({ discount: data['discount'], startDate, endDate })
   }
   return (

@@ -11,6 +11,7 @@ const userSubject = new BehaviorSubject(
 
 export const serviceService = {
   create,
+  createOffer,
   update,
   _delete,
   search,
@@ -32,6 +33,14 @@ function search(keyword) {
 function create(data) {
   return fetchWrapper
     .post(`${publicRuntimeConfig.apiUrl}/service`, data)
+    .then((category) => {
+      return category
+    })
+}
+
+function createOffer(data) {
+  return fetchWrapper
+    .post(`${publicRuntimeConfig.apiUrl}/service/offer`, data)
     .then((category) => {
       return category
     })

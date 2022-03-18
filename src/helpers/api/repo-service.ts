@@ -2,6 +2,7 @@ const fs = require('fs')
 
 import dbConnect from './lib/dbConnect'
 var serviceModel = require('./models/service')
+var offerModel = require('./models/offer')
 
 export const serviceRepo = {
   getAll: () => allServices(),
@@ -16,17 +17,23 @@ export const serviceRepo = {
 }
 
 async function allServices() {
-  const services = await serviceModel.find({})
+  const services = await serviceModel
+    .find({})
+    .populate({ path: 'offer', model: 'Offer' })
   return services
 }
 
 async function findService(where) {
-  const service = await serviceModel.findOne(where)
+  const service = await serviceModel
+    .findOne(where)
+    .populate({ path: 'offer', model: 'Offer' })
   return service
 }
 
 async function findServices(where) {
-  const services = await serviceModel.find(where)
+  const services = await serviceModel
+    .find(where)
+    .populate({ path: 'offer', model: 'Offer' })
   return services
 }
 
