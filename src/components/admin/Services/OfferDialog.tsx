@@ -3,7 +3,6 @@ export type OfferDialogProps = {
   readonly onSubmit: (any) => void
 }
 import { yupResolver } from '@hookform/resolvers/yup'
-import moment from 'moment'
 import { useState } from 'react'
 // import DateTimePicker from 'react-datetime-picker'
 import DateTimePicker from 'react-datetime-picker/dist/entry.nostyle'

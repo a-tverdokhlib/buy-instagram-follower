@@ -6,6 +6,7 @@ type Props = {
   readonly onSwitchChanged: (e, data) => void
   readonly onCheckedListUpdated: (data) => void
 }
+import moment from 'moment'
 import { ForwardRefRenderFunction, useEffect, useState } from 'react'
 import React from 'react'
 import Switch from 'react-switch'
@@ -177,14 +178,20 @@ const MyComponentRenderFn: ForwardRefRenderFunction<any, Props> = (
                       <td className="text-sm max-w-[100px] text-gray-700 px-1 py-4 border border-slate-300">
                         <span className="w-full break-words">
                           {service.offer.length > 0
-                            ? service.offer[0].startDate
+                            ? moment
+                                .utc(service.offer[0].startDate)
+                                .local()
+                                .format('Y-MM-DD hh:mm a')
                             : ''}
                         </span>
                       </td>
                       <td className="text-sm max-w-[100px] text-gray-700 px-1 py-4 border border-slate-300">
                         <span className="w-full break-words">
                           {service.offer.length > 0
-                            ? service.offer[0].endDate
+                            ? moment
+                                .utc(service.offer[0].endDate)
+                                .local()
+                                .format('Y-MM-DD hh:mm a')
                             : ''}
                         </span>
                       </td>
