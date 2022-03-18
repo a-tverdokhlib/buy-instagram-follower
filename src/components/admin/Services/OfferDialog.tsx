@@ -3,6 +3,7 @@ export type OfferDialogProps = {
   readonly onSubmit: (any) => void
 }
 import { yupResolver } from '@hookform/resolvers/yup'
+import moment from 'moment'
 import { useState } from 'react'
 // import DateTimePicker from 'react-datetime-picker'
 import DateTimePicker from 'react-datetime-picker/dist/entry.nostyle'
@@ -13,8 +14,10 @@ import { Loading } from '@/components/atoms/Loading'
 
 const OfferDialog: React.VFC<OfferDialogProps> = (props) => {
   const [discount, setDiscount] = useState('')
-  const [startDate, setStartDate] = useState('')
-  const [endDate, setEndDate] = useState('')
+  const [startDate, setStartDate] = useState(
+    moment().format('y-MM-DD hh:mm:ss a'),
+  )
+  const [endDate, setEndDate] = useState(moment().format('y-MM-DD hh:mm:ss a'))
   const [awaiting, setAwaiting] = useState(false)
 
   const validationSchema = Yup.object().shape({})
