@@ -58,6 +58,7 @@ const Services: React.VFC<ServiceProps> = (props) => {
   }, [])
 
   useEffect(() => {
+    clearChecks()
     if (filteredCategoryID === 'all') {
       setFilteredCategories(categories)
     } else {
@@ -72,6 +73,14 @@ const Services: React.VFC<ServiceProps> = (props) => {
       setRefClearCheckedList([...refClearCheckedList, refClearCheckedList1])
     })
   }, [filteredCategories])
+  const clearChecks = () => {
+    setCheckedList([])
+    refClearCheckedList.map((item, id) => {
+      const ref: RefObject<HTMLDivElement> = item
+      if (ref.current !== null && ref.current !== undefined)
+        ref.current!.click()
+    })
+  }
   const getCategories = async () => {
     const resp = await categoryService.search('')
     dispatch(setCategories(resp.data))
@@ -165,10 +174,7 @@ const Services: React.VFC<ServiceProps> = (props) => {
       setLoading(false)
       if (resp.status === 'success') {
         dispatch(activeServices(resp.data))
-        refClearCheckedList.map((item, id) => {
-          const ref: RefObject<HTMLDivElement> = item
-          ref.current!.click()
-        })
+        clearChecks()
       }
     } else {
       setLoading(false)
@@ -201,10 +207,7 @@ const Services: React.VFC<ServiceProps> = (props) => {
       setLoading(false)
       if (resp.status === 'success') {
         dispatch(deactiveServices(resp.data))
-        refClearCheckedList.map((item, id) => {
-          const ref: RefObject<HTMLDivElement> = item
-          ref.current!.click()
-        })
+        clearChecks()
       }
     } else {
       setLoading(false)
@@ -235,16 +238,14 @@ const Services: React.VFC<ServiceProps> = (props) => {
       startDate: data.startDate,
       endDate: data.endDate,
       discount: data.discount,
+      filteredCategoryID: filteredCategoryID,
     })
     if (resp) {
       setLoading(false)
       setOfferDlgShow(false)
       if (resp.status === 'success') {
         dispatch(offerServices({ data: resp.data, filteredCategories }))
-        refClearCheckedList.map((item, id) => {
-          const ref: RefObject<HTMLDivElement> = item
-          ref.current!.click()
-        })
+        clearChecks()
       }
     } else {
       setOfferDlgShow(false)
