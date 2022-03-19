@@ -10,6 +10,7 @@ import type { Reducer } from 'react'
 
 import { adminCategoryReducer } from '@/redux/reducers/admin/categories'
 import { adminPanelReducer } from '@/redux/reducers/admin/panel'
+import { adminProviderReducer } from '@/redux/reducers/admin/providers'
 import { adminServiceReducer } from '@/redux/reducers/admin/services'
 import { sideMenuReducer } from '@/redux/reducers/admin/sideMenu'
 import { autoFollowersReducer } from '@/redux/reducers/autoFollowers'
@@ -36,6 +37,7 @@ const combinedReducer = combineReducers({
   sideMenu: sideMenuReducer,
   adminPanel: adminPanelReducer,
   adminCategory: adminCategoryReducer,
+  adminProvider: adminProviderReducer,
   adminService: adminServiceReducer,
 })
 

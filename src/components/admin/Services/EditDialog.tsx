@@ -87,14 +87,12 @@ const EditDialog: React.VFC<EditDialogProps> = (props) => {
   const [apiType, setApiType] = useState(
     props.service ? props.service.apiType : 'manual',
   )
-  const [variationDays, setVariationDays] = useState(
-    props.service ? props.service.variationDays : '',
-  )
-  const [offPercent, setOffPercent] = useState(
-    props.service ? props.service.offPercent : '',
-  )
-  const [isDefaultActive, setIsDefaultActive] = useState(
-    props.service ? props.service.isDefaultActive : false,
+  const [variations, setVariations] = useState(
+    props.service
+      ? props.service.variations !== undefined
+        ? [...props.service.variations]
+        : [{ variationDays: '', offPercent: '', isDefaultActive: false }]
+      : [{ variationDays: '', offPercent: '', isDefaultActive: false }],
   )
   const [_id, set_Id] = useState(props.service ? props.service._id : '-1')
 
@@ -108,13 +106,14 @@ const EditDialog: React.VFC<EditDialogProps> = (props) => {
   const { errors } = formState
 
   const onSubmit = async (data) => {
+    console.log('Variations =>', variations)
     setAwaiting(true)
     if (data._id === '-1' || data._id === '') {
       data['isActive'] = data['isActive'] === 'active' ? true : false
       data['isMostPopular'] = isMostPopular
       data['isShownInActiveTab'] = isShownInActiveTab
       data['isInstagramSaves'] = isInstagramSaves
-      data['isDefaultActive'] = isDefaultActive
+      data['variations'] = variations
       const service = await serviceService.create({
         ...data,
         content: content,
@@ -133,7 +132,7 @@ const EditDialog: React.VFC<EditDialogProps> = (props) => {
       data['isMostPopular'] = isMostPopular
       data['isShownInActiveTab'] = isShownInActiveTab
       data['isInstagramSaves'] = isInstagramSaves
-      data['isDefaultActive'] = isDefaultActive
+      data['variations'] = variations
       const service = await serviceService.update({
         ...data,
         content: content,
@@ -149,7 +148,18 @@ const EditDialog: React.VFC<EditDialogProps> = (props) => {
       }
     }
   }
+  const onAddSubClick = () => {
+    setVariations([
+      ...variations,
+      { variationDays: '', offPercent: '', isDefaultActive: false },
+    ])
+  }
 
+  const onRemoveSubClick = (id) => {
+    let newVariations = [...variations]
+    newVariations.splice(id, 1)
+    setVariations(newVariations)
+  }
   return (
     <div className="admin-edit-category fixed w-[98%] right-0 ls:right-1 top-1 h-[97vh] flex-col flex-wrap sm:w-[600px] bg-[#e8e8e9] shadow-lg shadow-cyan-700/50 rounded-xl z-[1001] overflow-y-scroll ease-out duration-500">
       <div className="flex fixed w-[98%] z-[100] sm:w-[600px] top-1 ls:right-1 border-b-[1px] border-gray-300 bg-gray-100 p-5 rounded-t-xl">
@@ -568,58 +578,122 @@ const EditDialog: React.VFC<EditDialogProps> = (props) => {
                 </span>
               </span>
             </div>
-            <div className="flex flex-col flex-wrap w-full ss:flex-row ss:flex-nowrap ss:space-x-3 px-3 py-5 border-[1px] border-gray-300">
-              <div className="flex flex-row flex-nowrap w-full space-x-3">
-                <div className="flex flex-col flex-wrap w-full">
-                  <div className="text-gray-700 font-semibold">Days</div>
-                  <div className="flex w-full">
-                    <input
-                      {...register('variationDays')}
-                      className="w-full h-12 p-3 bg-transparent border-[1px] border-gray-300 text-black"
-                      type="number"
-                      step="0.01"
-                      value={variationDays}
-                      onChange={(e) => setVariationDays(e.target.value)}
-                    />
-                  </div>
-                </div>
-                <div className="flex flex-col flex-wrap w-full">
-                  <div className="text-gray-700 font-semibold">Off %</div>
-                  <div className="flex w-full">
-                    <input
-                      {...register('offPercent')}
-                      className="w-full h-12 p-3 bg-transparent border-[1px] border-gray-300 text-black"
-                      type="number"
-                      step="0.01"
-                      value={offPercent}
-                      onChange={(e) => setOffPercent(e.target.value)}
-                    />
-                  </div>
-                </div>
-              </div>
-              <div className="flex flex-row flex-nowrap w-full space-x-3">
-                <div className="flex flex-col flex-wrap w-full">
-                  <span className="text-gray-700 w-10 font-semibold">
-                    Default Active
-                  </span>
-                  <div className="flex w-full">
-                    <Switch
-                      height={25}
-                      width={50}
-                      onChange={(e) => setIsDefaultActive(e)}
-                      checked={isDefaultActive}
-                    />
-                  </div>
-                </div>
-                <div className="flex flex-col flex-wrap items-center justify-center w-full">
-                  <div className="w-full flex">
-                    <span className="m-auto items-center">
-                      <span className="text-white text-sm ls:text-base px-2 ls:px-3 py-2 rounded-full hover:cursor-pointer hover:text-gray-700 bg-[#45aaf2] font-semibold transition-all duration-500">
-                        Add Subs
-                      </span>
-                    </span>
-                  </div>
-                </div>
+            <div className="flex flex-col flex-wrap w-full px-3 py-5 border-[1px] border-gray-300">
+              <div className="flex flex-col flex-wrap w-full">
+                {variations.map((variation, id) => {
+                  console.log('ID ==>', id)
+                  return (
+                    <div
+                      key={id}
+                      className="flex flex-col flex-wrap w-full ss:flex-row ss:flex-nowrap ss:space-x-3 px-3 py-3"
+                    >
+                      <div className="flex flex-row flex-nowrap w-full space-x-3">
+                        <div className="flex flex-col flex-wrap w-full">
+                          <div className="text-gray-700 font-semibold">
+                            Days
+                          </div>
+                          <div className="flex w-full">
+                            <input
+                              className="w-full h-12 p-3 bg-transparent border-[1px] border-gray-300 text-black"
+                              type="number"
+                              step="0.01"
+                              value={variation.variationDays}
+                              onChange={(e) =>
+                                setVariations([
+                                  ...variations.map((item, key) => {
+                                    if (key === id) {
+                                      return {
+                                        variationDays: e.target.value,
+                                        offPercent: item.offPercent,
+                                        isDefaultActive: item.isDefaultActive,
+                                      }
+                                    } else return item
+                                  }),
+                                ])
+                              }
+                            />
+                          </div>
+                        </div>
+                        <div className="flex flex-col flex-wrap w-full">
+                          <div className="text-gray-700 font-semibold">
+                            Off %
+                          </div>
+                          <div className="flex w-full">
+                            <input
+                              className="w-full h-12 p-3 bg-transparent border-[1px] border-gray-300 text-black"
+                              type="number"
+                              step="0.01"
+                              value={variation.offPercent}
+                              onChange={(e) =>
+                                setVariations([
+                                  ...variations.map((item, key) => {
+                                    if (key === id) {
+                                      return {
+                                        variationDays: item.variationDays,
+                                        offPercent: e.target.value,
+                                        isDefaultActive: item.isDefaultActive,
+                                      }
+                                    } else return item
+                                  }),
+                                ])
+                              }
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <div className="flex flex-row flex-nowrap w-full space-x-3">
+                        <div className="flex flex-col flex-wrap w-full">
+                          <span className="text-gray-700 w-10 font-semibold">
+                            Default Active
+                          </span>
+                          <div className="flex w-full">
+                            <Switch
+                              height={25}
+                              width={50}
+                              checked={variation.isDefaultActive}
+                              onChange={(e) =>
+                                setVariations([
+                                  ...variations.map((item, key) => {
+                                    if (key === id) {
+                                      return {
+                                        variationDays: item.variationDays,
+                                        offPercent: item.offPercent,
+                                        isDefaultActive: e,
+                                      }
+                                    } else return item
+                                  }),
+                                ])
+                              }
+                            />
+                          </div>
+                        </div>
+                        <div className="flex flex-col flex-wrap items-center justify-center w-full">
+                          <div className="w-full flex">
+                            {id === 0 ? (
+                              <span
+                                onClick={onAddSubClick}
+                                className="m-auto items-center"
+                              >
+                                <span className="text-white text-sm ls:text-base px-2 ls:px-3 py-2 rounded-full hover:cursor-pointer hover:text-gray-700 bg-[#45aaf2] font-semibold transition-all duration-500">
+                                  Add Subs
+                                </span>
+                              </span>
+                            ) : (
+                              <span
+                                onClick={() => onRemoveSubClick(id)}
+                                className="m-auto items-center"
+                              >
+                                <span className="text-white text-sm ls:text-base px-2 ls:px-3 py-2 rounded-full hover:cursor-pointer hover:text-gray-400 bg-[#d81212] font-semibold transition-all duration-500">
+                                  Remove
+                                </span>
+                              </span>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )
+                })}
               </div>
             </div>
           </div>

@@ -38,9 +38,7 @@ async function createService(req, res) {
     metaKeywords,
     metaDescription,
     apiType,
-    variationDays,
-    offPercent,
-    isDefaultActive,
+    variations,
     _id,
   } = req.body
   const categoryOne = await serviceRepo.find({ name: name })
@@ -67,9 +65,7 @@ async function createService(req, res) {
         metaKeywords: metaKeywords,
         metaDescription: metaDescription,
         apiType: apiType,
-        variationDays: variationDays,
-        offPercent: offPercent,
-        isDefaultActive: isDefaultActive,
+        variations: variations,
       })
       .catch((err) => {
         return res.status(500).json({
@@ -112,9 +108,7 @@ async function updateService(req, res) {
     metaKeywords,
     metaDescription,
     apiType,
-    variationDays,
-    offPercent,
-    isDefaultActive,
+    variations,
     _id,
   } = req.body
   const oldOne = await serviceRepo.find({ _id: _id })
@@ -139,9 +133,7 @@ async function updateService(req, res) {
     metaKeywords: metaKeywords,
     metaDescription: metaDescription,
     apiType: apiType,
-    variationDays: variationDays,
-    offPercent: offPercent,
-    isDefaultActive: isDefaultActive,
+    variations: variations,
   })
   return res.status(200).json({
     status: 'success',

@@ -21,9 +21,9 @@ const ServiceSchema = new mongoose.Schema({
   metaKeywords: String,
   metaDescription: String,
   apiType: String,
-  variationDays: Number,
-  offPercent: Number,
-  isDefaultActive: Boolean,
+  variations: [
+    { variationDays: Number, offPercent: Number, isDefaultActive: Boolean },
+  ],
   offer: { type: [mongoose.Schema.Types.ObjectId], ref: 'Offer' },
 })
 
