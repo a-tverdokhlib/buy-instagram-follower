@@ -166,7 +166,7 @@ const Provider: React.VFC<ProviderProps> = (props) => {
       <Head>
         <title>Admin Services</title>
       </Head>
-      <div className="admin-category flex flex-col flex-wrap w-full min-h-screen bg-fuchsia-100">
+      <div className="admin-panel flex flex-col flex-wrap w-full min-h-screen bg-fuchsia-100">
         {/* <Header /> */}
         <div className="lg:top-16 h-[56px] flex items-center flex-row flex-nowrap bg-fuchsia-100">
           <div className="fixed w-full h-[56px] p-3 ss:p-8 z-10 bg-fuchsia-100 rounded-b-lg shadow-lg shadow-gray-700"></div>
@@ -359,7 +359,7 @@ const Provider: React.VFC<ProviderProps> = (props) => {
             </div>
           </div>
         </div>
-        <div className="admin-category-content mt-8 w-full p-3 md:p-3">
+        <div className="admin-provider-content mt-8 w-full p-3 md:p-3">
           <div
             className={
               !collapse
@@ -446,10 +446,10 @@ const Provider: React.VFC<ProviderProps> = (props) => {
 
         {editDlgShow ? (
           <EditDialog
-            category={providerToEdit}
+            provider={providerToEdit}
             onClose={onCloseEditDialog}
-            onCategoryCreated={(d) => onProviderCreated(d)}
-            onCategoryUpdated={(d) => onProviderUpdated(d)}
+            onProviderCreated={(d) => onProviderCreated(d)}
+            onProviderUpdated={(d) => onProviderUpdated(d)}
           />
         ) : (
           <></>

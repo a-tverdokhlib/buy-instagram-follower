@@ -109,7 +109,9 @@ const Panel: React.VFC = () => {
       case 'faq':
         return <FAQ />
       case 'provider':
-        return <Providers />
+        return (
+          <Providers isMobile={isMobile} showOverlay={(b) => setOverlay(b)} />
+        )
       case 'language':
         return <Language />
       case 'module':

@@ -91,7 +91,7 @@ const MyComponentRenderFn: ForwardRefRenderFunction<any, Props> = (
                   </th>
                   <th
                     scope="col"
-                    className="w-[300px] text-sm font-medium text-white px-6 py-4 border border-slate-400"
+                    className="w-[150px] text-sm font-medium text-white px-6 py-4 border border-slate-400"
                   >
                     Balance
                   </th>
@@ -151,11 +151,17 @@ const MyComponentRenderFn: ForwardRefRenderFunction<any, Props> = (
                           checked={category.isActive}
                         />
                       </td>
-                      <td className="text-sm text-gray-900 whitespace-nowrap border border-slate-300 px-3">
+                      <td
+                        className={
+                          id === props.categories.length - 1
+                            ? 'last-row text-sm text-gray-900 whitespace-nowrap border border-slate-300 px-3'
+                            : 'middle-row text-sm text-gray-900 whitespace-nowrap border border-slate-300 px-3'
+                        }
+                      >
                         <div className="flex flex-row flex-nowrap w-full justify-center items-center">
                           <span
                             onClick={() => onEditClick(category)}
-                            className="flex w-10 h-full justify-center items-center py-3 border-[1px] border-blue-600 hover:cursor-pointer hover:bg-blue-600 text-blue-600 hover:text-white  transition-all duration-500 delay-100"
+                            className="tooltip flex w-10 h-full justify-center items-center py-3 border-[1px] border-blue-600 hover:cursor-pointer hover:bg-blue-600 text-blue-600 hover:text-white  transition-all duration-500 delay-100"
                           >
                             <svg
                               className="h-4 w-4"
@@ -171,25 +177,69 @@ const MyComponentRenderFn: ForwardRefRenderFunction<any, Props> = (
                               <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />{' '}
                               <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
                             </svg>
+                            <span className="tooltiptext px-3">Edit API</span>
                           </span>
-                          <span className="flex w-10 h-full justify-center items-center py-3 border-b-[1px] border-t-[1px] border-blue-600 hover:cursor-pointer hover:bg-blue-600 text-blue-600 hover:text-white transition-all duration-500 delay-100">
+                          <span className="tooltip flex w-10 h-full justify-center items-center py-3 border-b-[1px] border-t-[1px] border-blue-600 hover:cursor-pointer hover:bg-blue-600 text-blue-600 hover:text-white transition-all duration-500 delay-100">
                             <svg
                               className="h-4 w-4"
-                              fill="none"
                               viewBox="0 0 24 24"
+                              fill="none"
                               stroke="currentColor"
+                              strokeWidth="2"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
                             >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth="2"
-                                d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"
-                              />
+                              {' '}
+                              <line x1="12" y1="1" x2="12" y2="23" />{' '}
+                              <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
                             </svg>
+                            <span className="tooltiptext">Update Balance</span>
+                          </span>
+                          <span className="tooltip flex w-10 h-full justify-center items-center py-3 border-b-[1px] border-l-[1px] border-t-[1px] border-blue-600 hover:cursor-pointer hover:bg-blue-600 text-blue-600 hover:text-white transition-all duration-500 delay-100">
+                            <svg
+                              className="h-4 w-4"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              strokeWidth="2"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            >
+                              {' '}
+                              <polyline points="23 4 23 10 17 10" />{' '}
+                              <polyline points="1 20 1 14 7 14" />{' '}
+                              <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15" />
+                            </svg>
+                            <span className="tooltiptext">Sync Services</span>
+                          </span>
+                          <span className="tooltip flex w-10 h-full justify-center items-center py-3 border-b-[1px] border-l-[1px] border-t-[1px] border-blue-600 hover:cursor-pointer hover:bg-blue-600 text-blue-600 hover:text-white transition-all duration-500 delay-100">
+                            <svg
+                              className="h-4 w-4"
+                              width="24"
+                              height="24"
+                              viewBox="0 0 24 24"
+                              strokeWidth="2"
+                              stroke="currentColor"
+                              fill="none"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            >
+                              {' '}
+                              <path stroke="none" d="M0 0h24v24H0z" />{' '}
+                              <line x1="9" y1="6" x2="20" y2="6" />{' '}
+                              <line x1="9" y1="12" x2="20" y2="12" />{' '}
+                              <line x1="9" y1="18" x2="20" y2="18" />{' '}
+                              <line x1="5" y1="6" x2="5" y2="6.01" />{' '}
+                              <line x1="5" y1="12" x2="5" y2="12.01" />{' '}
+                              <line x1="5" y1="18" x2="5" y2="18.01" />
+                            </svg>
+                            <span className="tooltiptext">
+                              Services list via API
+                            </span>
                           </span>
                           <span
                             onClick={() => onRemoveClick(category)}
-                            className="flex w-10 h-full justify-center items-center py-3 border-[1px] border-red-600 hover:cursor-pointer hover:bg-red-600 text-red-600 hover:text-white  transition-all duration-500 delay-100"
+                            className="tooltip flex w-10 h-full justify-center items-center py-3 border-[1px] border-red-600 hover:cursor-pointer hover:bg-red-600 text-red-600 hover:text-white  transition-all duration-500 delay-100"
                           >
                             <svg
                               className="h-4 w-4"
@@ -206,6 +256,7 @@ const MyComponentRenderFn: ForwardRefRenderFunction<any, Props> = (
                               <line x1="10" y1="11" x2="10" y2="17" />{' '}
                               <line x1="14" y1="11" x2="14" y2="17" />
                             </svg>
+                            <span className="tooltiptext">Delete</span>
                           </span>
                         </div>
                       </td>
@@ -216,12 +267,12 @@ const MyComponentRenderFn: ForwardRefRenderFunction<any, Props> = (
             </table>
             <div>
               <ConfirmDialog
-                title="Delete Category?"
+                title="Delete Provider?"
                 open={confirmOpen}
                 onClose={() => setConfirmOpen(false)}
                 onConfirm={deleteConfirmed}
               >
-                Are you sure you want to delete this category?
+                Are you sure you want to delete this provider?
               </ConfirmDialog>
               <div
                 ref={ref}

@@ -165,19 +165,19 @@
     animation: rotating 2s linear infinite reverse;
 }
 
-.admin-category .dropdown {
+.admin-panel .dropdown {
     position: relative;
     /* display: inline-block; */
 }
   
-.admin-category .dropdown-content {
+.admin-panel .dropdown-content {
     position: absolute;
     min-width: 170px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
 }
   
-.admin-category .dropdown-content a {
+.admin-panel .dropdown-content a {
     padding: 5px 16px;
     text-decoration: none;
     display: block;
@@ -185,18 +185,86 @@
 }
   
   /* Change color of dropdown links on hover */
-.admin-category .dropdown-content a:hover {
+.admin-panel .dropdown-content a:hover {
     background-color: transparent;
     transition-delay: 0.5s;
     transition: all 0.5s ease;
 }
   
   /* Show the dropdown menu on hover */
-/* .admin-category .dropdown:hover .dropdown-content {display: block;} */
+/* .admin-panel .dropdown:hover .dropdown-content {display: block;} */
 
-.admin-category-content {
+.admin-panel-content {
     position: -webkit-sticky;
     position: sticky;
     z-index: 1; 
 }
 
+.admin-provider-content .middle-row .tooltip {
+    position: relative;
+    border-bottom: 1px dotted black;
+    text-align:center;
+}
+  
+.admin-provider-content .middle-row .tooltip .tooltiptext {
+    visibility: hidden;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 8px;
+    margin-top:80px;
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+}
+  
+.admin-provider-content .middle-row .tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+
+.admin-provider-content .middle-row .tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: -27%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent  transparent black transparent ;
+}
+
+
+.admin-provider-content .last-row .tooltip {
+    position: relative;
+    border-bottom: 1px dotted black;
+    text-align:center;
+}
+  
+.admin-provider-content .last-row .tooltip .tooltiptext {
+    visibility: hidden;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 8px;
+    margin-top:-80px;
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+}
+  
+.admin-provider-content .last-row .tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+
+.admin-provider-content .last-row .tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: black transparent  transparent transparent ;
+}

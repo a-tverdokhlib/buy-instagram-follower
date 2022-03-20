@@ -1,8 +1,8 @@
 export type EditDialogProps = {
-  readonly category: any
+  readonly provider: any
   readonly onClose: () => void
-  readonly onCategoryCreated: (d) => void
-  readonly onCategoryUpdated: (d) => void
+  readonly onProviderCreated: (d) => void
+  readonly onProviderUpdated: (d) => void
 }
 import 'suneditor/dist/css/suneditor.min.css' // Import Sun Editor's CSS File
 
@@ -24,7 +24,7 @@ import {
   setSideMenuLayout,
 } from '@/redux/reducers/admin/sideMenu'
 import { useAppDispatch, useAppSelector } from '@/redux/store/hooks'
-import { categoryService } from '@/services/category'
+import { providerService } from '@/services/provider'
 
 const SunEditor = dynamic(() => import('suneditor-react'), {
   ssr: false,
@@ -36,38 +36,17 @@ const EditDialog: React.VFC<EditDialogProps> = (props) => {
   const { layout } = useAppSelector((state) => state.sideMenu)
   const { sidebarColor } = useAppSelector((state) => state.sideMenu)
   // const [code, setCode] = useState('myMonacoEditor')
-  const [content, setContent] = useState(
-    props.category ? props.category.content : '',
-  )
-  const [_id, set_Id] = useState(props.category ? props.category._id : '-1')
-  const [name, setName] = useState(props.category ? props.category.name : '')
-  const [checkoutCode, setCheckoutCode] = useState(
-    props.category ? props.category.checkoutCode : '',
-  )
-  const [requiredField, setRequiredField] = useState(
-    props.category ? props.category.requiredField : '',
-  )
-  const [socialNetwork, setSocialNetwork] = useState('Instagram')
-  const [defaultSortingNumber, setDefaultSortingNumber] = useState(
-    props.category ? props.category.defaultSortingNumber : 0,
+  const [_id, set_Id] = useState(props.provider ? props.provider._id : '-1')
+  const [name, setName] = useState(props.provider ? props.provider.name : '')
+  const [url, setUrl] = useState(props.provider ? props.provider.url : '')
+  const [apiKey, setApiKey] = useState(
+    props.provider ? props.provider.apiKey : '',
   )
   const [isActive, setIsActive] = useState(
-    props.category ? props.category.isActive : false,
+    props.provider ? props.provider.isActive : false,
   )
-  const [offerDiscount, setOfferDiscount] = useState(
-    props.category ? props.category.offerDiscount : 0,
-  )
-  const [pageTitle, setPageTitle] = useState(
-    props.category ? props.category.pageTitle : '',
-  )
-  const [urlSlug, setUrlSlug] = useState(
-    props.category ? props.category.urlSlug : '',
-  )
-  const [metaKeywords, setMetaKeywords] = useState(
-    props.category ? props.category.metaKeywords : '',
-  )
-  const [metaDescription, setMetaDescription] = useState(
-    props.category ? props.category.metaDescription : '',
+  const [description, setDescription] = useState(
+    props.provider ? props.provider.description : '',
   )
 
   const [awaiting, setAwaiting] = useState(false)
@@ -91,28 +70,28 @@ const EditDialog: React.VFC<EditDialogProps> = (props) => {
     setAwaiting(true)
     if (data._id === '-1' || data._id === '') {
       data['isActive'] = data['isActive'] === 'active' ? true : false
-      const category = await categoryService.create({
+      const provider = await providerService.create({
         ...data,
-        content: content,
+        description: description,
       })
-      if (category) {
+      if (provider) {
         setAwaiting(false)
         props.onClose()
-        props.onCategoryCreated(category.data)
+        props.onProviderCreated(provider.data)
       } else {
         setAwaiting(false)
         props.onClose()
       }
     } else {
       data['isActive'] = data['isActive'] === 'active' ? true : false
-      const category = await categoryService.update({
+      const provider = await providerService.update({
         ...data,
-        content: content,
+        description: description,
       })
-      if (category) {
+      if (provider) {
         setAwaiting(false)
         props.onClose()
-        props.onCategoryUpdated(category.data)
+        props.onProviderUpdated(provider.data)
       } else {
         setAwaiting(false)
         props.onClose()
@@ -140,7 +119,7 @@ const EditDialog: React.VFC<EditDialogProps> = (props) => {
             <line x1="16" y1="5" x2="19" y2="8" />
           </svg>
         </span>
-        <span className="text-gray-900 font-semibold ml-2">Edit Category</span>
+        <span className="text-gray-900 font-semibold ml-2">Edit API</span>
         <span className="ml-auto hover:cursor-pointer" onClick={props.onClose}>
           <svg
             className="h-6 w-6 text-gray-500"
@@ -163,7 +142,16 @@ const EditDialog: React.VFC<EditDialogProps> = (props) => {
       <form onSubmit={handleSubmit((d) => onSubmit(d))}>
         <div className="flex mt-14 flex-col flex-wrap w-full p-5 space-y-5">
           <div className="flex flex-col flex-wrap w-full">
-            <div className="text-black">Name</div>
+            <div className="text-red-500 text-sm">
+              <span>
+                <span>
+                  Note: This script supports most of all API Providers like:
+                  justanotherpanel.com, followiz.com etc. So it doesnt support
+                  another API provider which have different API Parameters
+                </span>
+              </span>
+            </div>
+            <div className="mt-3 text-gray-700 font-semibold">Name</div>
             <div className="flex w-full">
               <input
                 {...register('_id')}
@@ -175,16 +163,58 @@ const EditDialog: React.VFC<EditDialogProps> = (props) => {
                 {...register('name')}
                 className="w-full h-12 p-3 bg-transparent border-[1px] border-gray-300 text-gray-900"
                 type="text"
-                placeholder="Instagram Followers (Must be greater than 2 words)"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
               />
             </div>
           </div>
           <div className="flex flex-col flex-wrap w-full">
+            <div className="text-gray-700 font-semibold">URL</div>
+            <div className="flex w-full">
+              <input
+                {...register('url')}
+                className="w-full h-12 p-3 bg-transparent border-[1px] border-gray-300 text-black"
+                type="text"
+                placeholder=""
+                value={url}
+                onChange={(e) => setUrl(e.target.value)}
+              />
+            </div>
+          </div>
+          <div className="flex flex-col flex-wrap w-full">
+            <div className="text-gray-700 font-semibold">API Key</div>
+            <div className="flex w-full">
+              <input
+                {...register('apiKey')}
+                className="w-full h-12 p-3 bg-transparent border-[1px] border-gray-300 text-black"
+                type="text"
+                placeholder=""
+                value={apiKey}
+                onChange={(e) => setApiKey(e.target.value)}
+              />
+            </div>
+          </div>
+          <div className="flex flex-col flex-wrap w-full">
+            <div className="text-gray-700 font-semibold">Status</div>
+            <div className="flex w-full">
+              <select
+                {...register('isActive')}
+                className="w-full h-12 p-3 bg-transparent border-[1px] border-gray-300 text-gray-500"
+                placeholder="link"
+                value={isActive === true ? 'active' : 'inactive'}
+                onChange={(e) =>
+                  setIsActive(e.target.value === 'active' ? true : false)
+                }
+              >
+                <option value="active">Active</option>
+                <option value="inactive">Deactive</option>
+              </select>
+            </div>
+          </div>
+          <div className="flex flex-col flex-wrap w-full">
             <div className="flex">
               <span>
-                <span className="text-black">Content</span>
+                <span className="text-gray-700 font-semibold">Description</span>
               </span>
             </div>
             <div className="flex">
@@ -195,180 +225,12 @@ const EditDialog: React.VFC<EditDialogProps> = (props) => {
                   // plugins: [font] set plugins, all plugins are set by default
                   // Other option
                 }}
-                setContents={content}
+                setContents={description}
                 onChange={(content) => {
                   // setToggle((value) => !value)
-                  console.log('Content =>', content)
-                  setContent(content)
+                  setDescription(content)
                 }}
               />
-            </div>
-          </div>
-          <div className="flex flex-col flex-wrap w-full">
-            <div className="text-black">2checkout Product Code</div>
-            <div className="flex w-full">
-              <input
-                {...register('checkoutCode')}
-                className="w-full h-12 p-3 bg-transparent border-[1px] border-gray-300 text-black"
-                type="text"
-                placeholder=""
-                value={checkoutCode}
-                onChange={(e) => setCheckoutCode(e.target.value)}
-              />
-            </div>
-          </div>
-          <div className="flex flex-col flex-wrap w-full">
-            <div className="text-black">Name of Required Field</div>
-            <div className="flex w-full">
-              <input
-                {...register('requiredField')}
-                className="w-full h-12 p-3 bg-transparent border-[1px] border-gray-300 text-black"
-                type="text"
-                placeholder="link"
-                value={requiredField}
-                onChange={(e) => setRequiredField(e.target.value)}
-              />
-            </div>
-          </div>
-          <div className="flex flex-col flex-wrap w-full">
-            <div className="text-black">Social Network Service</div>
-            <div className="flex w-full">
-              <select
-                {...register('socialNetwork')}
-                className="w-full h-12 p-3 bg-transparent border-[1px] border-gray-300 text-gray-500"
-                placeholder="link"
-              >
-                <option value="instagram">Instagram</option>
-              </select>
-            </div>
-          </div>
-          <div className="flex flex-row flex-nowrap w-full space-x-3">
-            <div className="flex flex-col flex-wrap w-full">
-              <div className="text-black">Default Sorting number</div>
-              <div className="flex w-full">
-                <input
-                  {...register('defaultSortingNumber')}
-                  type="number"
-                  className="w-full h-12 p-3 bg-transparent border-[1px] border-gray-300 text-gray-500"
-                  placeholder=""
-                  value={defaultSortingNumber}
-                  onChange={(e) => setDefaultSortingNumber(e.target.value)}
-                ></input>
-              </div>
-            </div>
-            <div className="flex flex-col flex-wrap w-full">
-              <div className="text-black">Status</div>
-              <div className="flex w-full">
-                <select
-                  {...register('isActive')}
-                  className="w-full h-12 p-3 bg-transparent border-[1px] border-gray-300 text-gray-500"
-                  placeholder="link"
-                  value={isActive === true ? 'active' : 'inactive'}
-                  onChange={(e) =>
-                    setIsActive(e.target.value === 'active' ? true : false)
-                  }
-                >
-                  <option value="active">Active</option>
-                  <option value="inactive">Deactive</option>
-                </select>
-              </div>
-            </div>
-          </div>
-          <div className="flex flex-col flex-wrap w-full">
-            <div className="text-black">Set Offer Discount</div>
-            <div className="flex w-full">
-              <input
-                {...register('offerDiscount')}
-                type="number"
-                className="w-full h-12 p-3 bg-transparent border-[1px] border-gray-300 text-black"
-                placeholder=""
-                value={offerDiscount}
-                onChange={(e) => setOfferDiscount(e.target.value)}
-              />
-            </div>
-          </div>
-          <div className="flex flex-col flex-wrap w-full">
-            <div className="text-black">
-              <span className="flex items-center">
-                <svg
-                  className="h-6 w-6 text-gray-800"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  {' '}
-                  <path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3" />{' '}
-                  <line x1="8" y1="12" x2="16" y2="12" />
-                </svg>
-                <span className="ml-3 text-lg font-semibold">
-                  Page SEO informations
-                </span>
-              </span>
-            </div>
-            <div className="flex flex-col flex-wrap w-full">
-              <div className="text-black">URL Slug</div>
-              <div className="flex w-full">
-                <span className="h-12 p-3 bg-transparent border-[1px] border-gray-300 text-black">
-                  https://goread.io/
-                </span>
-                <input
-                  {...register('urlSlug')}
-                  type="text"
-                  className="w-full h-12 p-3 bg-transparent border-[1px] border-gray-300 text-black"
-                  placeholder="buy-instagram-followers"
-                  value={urlSlug}
-                  onChange={(e) => setUrlSlug(e.target.value)}
-                />
-              </div>
-              <div className="w-full">
-                <span>
-                  <span className="text-[#45aaf2] text-sm">
-                    Ex: buy-instagram-followers, facebook-likes-buy etc
-                  </span>
-                </span>
-              </div>
-            </div>
-            <div className="flex flex-col flex-wrap w-full">
-              <div className="text-black">Page Title</div>
-              <div className="flex w-full">
-                <input
-                  {...register('pageTitle')}
-                  type="text"
-                  className="w-full h-12 p-3 bg-transparent border-[1px] border-gray-300 text-black"
-                  placeholder=""
-                  value={pageTitle}
-                  onChange={(e) => setPageTitle(e.target.value)}
-                />
-              </div>
-            </div>
-            <div className="flex flex-col flex-wrap w-full">
-              <div className="text-black">Meta Keywords</div>
-              <div className="flex w-full">
-                <textarea
-                  {...register('metaKeywords')}
-                  className="w-full p-3 bg-transparent border-[1px] border-gray-300 text-black"
-                  placeholder=""
-                  rows={3}
-                  value={metaKeywords}
-                  onChange={(e) => setMetaKeywords(e.target.value)}
-                />
-              </div>
-            </div>
-            <div className="flex flex-col flex-wrap w-full">
-              <div className="text-black">Meta description</div>
-              <div className="flex w-full">
-                <textarea
-                  {...register('metaDescription')}
-                  className="w-full p-3 bg-transparent border-[1px] border-gray-300 text-black"
-                  placeholder=""
-                  rows={3}
-                  value={metaDescription}
-                  onChange={(e) => setMetaDescription(e.target.value)}
-                />
-              </div>
             </div>
           </div>
         </div>

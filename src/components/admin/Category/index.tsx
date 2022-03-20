@@ -169,7 +169,7 @@ const Category: React.VFC<CategoryProps> = (props) => {
       <Head>
         <title>Admin Services</title>
       </Head>
-      <div className="admin-category flex flex-col flex-wrap w-full min-h-screen bg-fuchsia-100">
+      <div className="admin-panel flex flex-col flex-wrap w-full min-h-screen bg-fuchsia-100">
         {/* <Header /> */}
         <div className="lg:top-16 h-[56px] flex items-center flex-row flex-nowrap bg-fuchsia-100">
           <div className="fixed w-full h-[56px] p-3 ss:p-8 z-10 bg-fuchsia-100 rounded-b-lg shadow-lg shadow-gray-700"></div>
@@ -470,7 +470,7 @@ const Category: React.VFC<CategoryProps> = (props) => {
             </div>
           </div>
         </div>
-        <div className="admin-category-content mt-8 w-full p-3 md:p-3">
+        <div className="admin-panel-content mt-8 w-full p-3 md:p-3">
           <div
             className={
               !collapse
