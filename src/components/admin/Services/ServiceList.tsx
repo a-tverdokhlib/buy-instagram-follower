@@ -67,7 +67,7 @@ const MyComponentRenderFn: ForwardRefRenderFunction<any, Props> = (
                 <tr>
                   <th
                     scope="col"
-                    className="w-[25px] text-sm font-medium text-white px-3 py-3  border border-gray-600 border-opacity-50"
+                    className="w-[25px] text-base font-medium text-white px-3 py-3  border border-gray-600 border-opacity-50"
                   >
                     <input
                       className="h-4 w-4"
@@ -83,55 +83,55 @@ const MyComponentRenderFn: ForwardRefRenderFunction<any, Props> = (
                   </th>
                   <th
                     scope="col"
-                    className="w-[120px] text-sm font-medium text-white px-6 py-3 border border-gray-600 border-opacity-50"
+                    className="w-[120px] text-base font-medium text-white px-6 py-3 border border-gray-600 border-opacity-50"
                   >
                     ID
                   </th>
                   <th
                     scope="col"
-                    className="min-w-[200px] w-[250px] text-sm font-medium text-white px-6 py-3 border border-gray-600 border-opacity-50"
+                    className="min-w-[200px] w-[250px] text-base font-medium text-white px-6 py-3 border border-gray-600 border-opacity-50"
                   >
                     Name
                   </th>
                   <th
                     scope="col"
-                    className="w-[60px] text-sm font-medium text-white px-6 py-3 border border-gray-600 border-opacity-50"
+                    className="w-[60px] text-base font-medium text-white px-6 py-3 border border-gray-600 border-opacity-50"
                   >
                     Price
                   </th>
                   <th
                     scope="col"
-                    className="w-[40px] text-sm font-medium text-white px-2 py-3 border border-gray-600 border-opacity-50"
+                    className="w-[40px] text-base font-medium text-white px-2 py-3 border border-gray-600 border-opacity-50"
                   >
                     Quantity
                   </th>
                   <th
                     scope="col"
-                    className="w-[30px] text-sm font-medium text-white px-2 py-3 border border-gray-600 border-opacity-50"
+                    className="w-[30px] text-base font-medium text-white px-2 py-3 border border-gray-600 border-opacity-50"
                   >
                     Discount
                   </th>
                   <th
                     scope="col"
-                    className="min-w-[100px] text-sm font-medium text-white px-2 py-3 border border-gray-600 border-opacity-50"
+                    className="min-w-[100px] text-base font-medium text-white px-2 py-3 border border-gray-600 border-opacity-50"
                   >
                     Start Date
                   </th>
                   <th
                     scope="col"
-                    className="min-w-[100px] text-sm font-medium text-white px-2 py-3 border border-gray-600 border-opacity-50"
+                    className="min-w-[100px] text-base font-medium text-white px-2 py-3 border border-gray-600 border-opacity-50"
                   >
                     End Date
                   </th>
                   <th
                     scope="col"
-                    className="min-w-[80px] text-sm font-medium text-white px-2 py-3 border border-gray-600 border-opacity-50"
+                    className="min-w-[80px] text-base font-medium text-white px-2 py-3 border border-gray-600 border-opacity-50"
                   >
                     Status
                   </th>
                   <th
                     scope="col"
-                    className="text-sm font-medium text-white px-6 py-3 border border-gray-600 border-opacity-50"
+                    className="text-base font-medium text-white px-6 py-3 border border-gray-600 border-opacity-50"
                   >
                     Action
                   </th>
@@ -144,7 +144,7 @@ const MyComponentRenderFn: ForwardRefRenderFunction<any, Props> = (
                       key={service._id}
                       className="bg-white border-b hover:bg-gray-100"
                     >
-                      <td className="w-[25px] px-3 py-4 text-sm font-medium text-gray-700 border border-slate-300">
+                      <td className="w-[25px] px-3 py-4 text-base font-medium text-gray-700 border border-slate-300">
                         <input
                           className="h-4 w-4"
                           type="checkbox"
@@ -156,26 +156,26 @@ const MyComponentRenderFn: ForwardRefRenderFunction<any, Props> = (
                           onChange={(e) => onCheckClicked(e, service)}
                         />
                       </td>
-                      <td className="text-sm max-w-[100px] px-1 text-gray-700 border border-slate-300">
+                      <td className="text-base max-w-[100px] px-1 text-gray-700 border border-slate-300">
                         <span className="w-full break-words">
                           {service._id}
                         </span>
                       </td>
-                      <td className="text-sm text-gray-700 px-6 py-4 whitespace-nowrap border border-slate-300">
+                      <td className="text-base text-gray-700 px-6 py-4 whitespace-nowrap border border-slate-300">
                         {service.name}
                       </td>
-                      <td className="text-sm text-gray-700 px-6 py-4 whitespace-nowrap border border-slate-300">
+                      <td className="text-base text-gray-700 px-6 py-4 whitespace-nowrap border border-slate-300">
                         {service.price}
                       </td>
-                      <td className="text-sm text-gray-700 px-6 py-4 whitespace-nowrap border border-slate-300">
+                      <td className="text-base text-gray-700 px-6 py-4 whitespace-nowrap border border-slate-300">
                         {service.quantity}
                       </td>
-                      <td className="text-sm text-gray-700 px-6 py-4 whitespace-nowrap border border-slate-300">
+                      <td className="text-base text-gray-700 px-6 py-4 whitespace-nowrap border border-slate-300">
                         {service.offer.length > 0
                           ? service.offer[0].discount
                           : ''}
                       </td>
-                      <td className="text-sm max-w-[100px] text-gray-700 px-1 py-4 border border-slate-300">
+                      <td className="text-base max-w-[100px] text-gray-700 px-1 py-4 border border-slate-300">
                         <span className="w-full break-words">
                           {service.offer.length > 0
                             ? moment
@@ -185,7 +185,7 @@ const MyComponentRenderFn: ForwardRefRenderFunction<any, Props> = (
                             : ''}
                         </span>
                       </td>
-                      <td className="text-sm max-w-[100px] text-gray-700 px-1 py-4 border border-slate-300">
+                      <td className="text-base max-w-[100px] text-gray-700 px-1 py-4 border border-slate-300">
                         <span className="w-full break-words">
                           {service.offer.length > 0
                             ? moment
@@ -195,7 +195,7 @@ const MyComponentRenderFn: ForwardRefRenderFunction<any, Props> = (
                             : ''}
                         </span>
                       </td>
-                      <td className="text-sm text-gray-700 px-6 py-4 whitespace-nowrap border border-slate-300">
+                      <td className="text-base text-gray-700 px-6 py-4 whitespace-nowrap border border-slate-300">
                         <Switch
                           height={25}
                           width={50}
@@ -203,7 +203,7 @@ const MyComponentRenderFn: ForwardRefRenderFunction<any, Props> = (
                           checked={service.isActive}
                         />
                       </td>
-                      <td className="text-sm text-gray-700 whitespace-nowrap border border-slate-300 px-3">
+                      <td className="text-base text-gray-700 whitespace-nowrap border border-slate-300 px-3">
                         <div className="flex flex-row flex-nowrap w-full justify-center items-center">
                           <span
                             onClick={() => onEditClick(service)}
