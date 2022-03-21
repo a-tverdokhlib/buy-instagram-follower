@@ -1,6 +1,7 @@
 export type EditDialogProps = {
   readonly service: any
   readonly categories: any
+  readonly providers: any
   readonly orderFors: any
   readonly parentPacks: any
   readonly onClose: () => void
@@ -11,7 +12,7 @@ import 'suneditor/dist/css/suneditor.min.css' // Import Sun Editor's CSS File
 
 import { yupResolver } from '@hookform/resolvers/yup'
 import dynamic from 'next/dynamic'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import Switch from 'react-switch'
 import {
@@ -22,8 +23,10 @@ import {
 import * as Yup from 'yup'
 
 import { Loading } from '@/components/atoms/Loading'
+import service from '@/pages/api/service'
 import { setThemeMode } from '@/redux/reducers/admin/panel'
 import { useAppDispatch, useAppSelector } from '@/redux/store/hooks'
+import { providerService } from '@/services/provider'
 import { serviceService } from '@/services/service'
 
 const SunEditor = dynamic(() => import('suneditor-react'), {
@@ -87,6 +90,18 @@ const EditDialog: React.VFC<EditDialogProps> = (props) => {
   const [apiType, setApiType] = useState(
     props.service ? props.service.apiType : 'manual',
   )
+  const [apiProviderId, setApiProviderId] = useState(
+    props.service ? props.service.apiProviderId : '0',
+  )
+  const [serviceItem, setServiceItem] = useState(
+    props.service ? props.service.serviceItem : '',
+  )
+  const [reelApiProviderId, setReelApiProviderId] = useState(
+    props.service ? props.service.reelApiProviderId : '0',
+  )
+  const [reelServiceItem, setReelServiceItem] = useState(
+    props.service ? props.service.reelServiceItem : '',
+  )
   const [variations, setVariations] = useState(
     props.service
       ? props.service.variations !== undefined
@@ -94,10 +109,16 @@ const EditDialog: React.VFC<EditDialogProps> = (props) => {
         : [{ variationDays: '', offPercent: '', isDefaultActive: false }]
       : [{ variationDays: '', offPercent: '', isDefaultActive: false }],
   )
+  const [serviceList, setServiceList] = useState<any>([])
+  const [reelServiceList, setReelServiceList] = useState<any>([])
+  const [rate, setRate] = useState(props.service ? props.service.rate : '')
+  const [min, setMin] = useState(props.service ? props.service.min : '')
+  const [max, setMax] = useState(props.service ? props.service.max : '')
   const [_id, set_Id] = useState(props.service ? props.service._id : '-1')
 
   const [awaiting, setAwaiting] = useState(false)
-
+  const [loadingServices, setLoadingServices] = useState(false)
+  const [loadingReelServices, setLoadingReelServices] = useState(false)
   const validationSchema = Yup.object().shape({})
   const formOptions = { resolver: yupResolver(validationSchema) }
 
@@ -105,8 +126,20 @@ const EditDialog: React.VFC<EditDialogProps> = (props) => {
   const { register, handleSubmit, reset, formState } = useForm(formOptions)
   const { errors } = formState
 
+  useEffect(() => {
+    if (apiProviderId !== '') onApiProviderChange(apiProviderId)
+  }, [apiProviderId])
+  useEffect(() => {
+    console.log('Service Item =>', serviceItem)
+    if (serviceItem !== '') onServiceItemChanged(serviceItem)
+  }, [serviceItem])
+  useEffect(() => {
+    if (reelApiProviderId !== '') onReelApiProviderChange(apiProviderId)
+  }, [reelApiProviderId])
+  useEffect(() => {
+    if (reelServiceItem !== '') onReelServiceItemChanged(serviceItem)
+  }, [reelServiceItem])
   const onSubmit = async (data) => {
-    console.log('Variations =>', variations)
     setAwaiting(true)
     if (data._id === '-1' || data._id === '') {
       data['isActive'] = data['isActive'] === 'active' ? true : false
@@ -114,6 +147,11 @@ const EditDialog: React.VFC<EditDialogProps> = (props) => {
       data['isShownInActiveTab'] = isShownInActiveTab
       data['isInstagramSaves'] = isInstagramSaves
       data['variations'] = variations
+      data['rate'] = rate
+      data['min'] = min
+      data['max'] = max
+      data['serviceItem'] = serviceItem
+      data['reelServiceItem'] = reelServiceItem
       const service = await serviceService.create({
         ...data,
         content: content,
@@ -133,6 +171,11 @@ const EditDialog: React.VFC<EditDialogProps> = (props) => {
       data['isShownInActiveTab'] = isShownInActiveTab
       data['isInstagramSaves'] = isInstagramSaves
       data['variations'] = variations
+      data['rate'] = rate
+      data['min'] = min
+      data['max'] = max
+      data['serviceItem'] = serviceItem
+      data['reelServiceItem'] = reelServiceItem
       const service = await serviceService.update({
         ...data,
         content: content,
@@ -160,6 +203,49 @@ const EditDialog: React.VFC<EditDialogProps> = (props) => {
     newVariations.splice(id, 1)
     setVariations(newVariations)
   }
+  const onApiProviderChange = async (_id) => {
+    if (_id === '0' || _id === undefined) setServiceList([])
+    else {
+      setLoadingServices(true)
+      const resp = await providerService.getServiceList(_id)
+      if (resp) {
+        if (resp.status === 'success') {
+          setServiceList(resp.data)
+          setServiceItem(props.service.serviceItem)
+          setLoadingServices(false)
+        }
+      } else {
+        setLoadingServices(false)
+      }
+    }
+  }
+  const onServiceItemChanged = async (service) => {
+    const selectedServices = serviceList.filter(
+      (item) => item.service === service,
+    )
+    if (selectedServices.length > 0) {
+      setRate(selectedServices[0].rate)
+      setMin(selectedServices[0].min)
+      setMax(selectedServices[0].max)
+    }
+  }
+  const onReelApiProviderChange = async (_id) => {
+    if (_id === '0' || _id === undefined) setReelServiceList([])
+    else {
+      setLoadingReelServices(true)
+      const resp = await providerService.getServiceList(_id)
+      if (resp) {
+        if (resp.status === 'success') {
+          setReelServiceList(resp.data)
+          setReelServiceItem(props.service.reelServiceItem)
+          setLoadingReelServices(false)
+        }
+      } else {
+        setLoadingReelServices(false)
+      }
+    }
+  }
+  const onReelServiceItemChanged = async (service) => {}
   return (
     <div className="admin-edit-category fixed w-[98%] right-0 ls:right-1 top-1 h-[97vh] flex-col flex-wrap sm:w-[600px] bg-[#e8e8e9] shadow-lg shadow-cyan-700/50 rounded-xl z-[1001] overflow-y-scroll ease-out duration-500">
       <div className="flex fixed w-[98%] z-[100] sm:w-[600px] top-1 ls:right-1 border-b-[1px] border-gray-300 bg-gray-100 p-5 rounded-t-xl">
@@ -581,7 +667,6 @@ const EditDialog: React.VFC<EditDialogProps> = (props) => {
             <div className="flex flex-col flex-wrap w-full px-3 py-5 border-[1px] border-gray-300">
               <div className="flex flex-col flex-wrap w-full">
                 {variations.map((variation, id) => {
-                  console.log('ID ==>', id)
                   return (
                     <div
                       key={id}
@@ -738,18 +823,87 @@ const EditDialog: React.VFC<EditDialogProps> = (props) => {
                 </div>
                 <div className="flex w-full">
                   <select
+                    {...register('apiProviderId')}
                     className="w-full h-12 p-3 bg-transparent border-[1px] border-gray-400 text-gray-500"
-                    onChange={(e) => {}}
+                    onChange={(e) => {
+                      setApiProviderId(e.target.value)
+                      // onApiProviderChange(e.target.value)
+                    }}
+                    value={apiProviderId}
                   >
-                    <option value="any">Choose a Provider</option>
-                    <option value="justanotherpanel">
-                      justanotherpanel.com
-                    </option>
-                    <option value="perfectsmm">perfectssm</option>
-                    <option value="followiz">followiz</option>
-                    <option value="cheappanel">cheap panel</option>
-                    <option value="peakerr">peakerr</option>
+                    <option value="0">Choose a Provider</option>
+                    {props.providers.map((provider, id) => {
+                      return (
+                        <option key={id} value={provider._id}>
+                          {provider.name}
+                        </option>
+                      )
+                    })}
                   </select>
+                </div>
+                <div className="mt-5 text-gray-700 font-semibold">
+                  <span>
+                    <span>Provider Listing Services</span>
+                  </span>
+                </div>
+                <div className="flex w-full">
+                  <select
+                    className="w-full h-12 p-3 bg-transparent border-[1px] border-gray-400 text-gray-500"
+                    onChange={(e) => {
+                      setServiceItem(e.target.value)
+                      // onServiceItemChanged(e.target.value)
+                    }}
+                    value={serviceItem}
+                  >
+                    {serviceList.map((serviceItem, id) => {
+                      return (
+                        <option key={id} value={serviceItem.service}>
+                          {serviceItem.service} - {serviceItem.name}
+                        </option>
+                      )
+                    })}
+                  </select>
+                  <div
+                    className={
+                      !loadingServices
+                        ? 'awaiting hidden absolute w-[85%] h-full bg-opacity-50 bg-transparent rounded-lg z-[1002]'
+                        : 'awaiting absolute flex items-center justify-center w-[85%] bg-opacity-50 bg-transparent rounded-lg z-[1002]'
+                    }
+                  >
+                    <Loading />
+                  </div>
+                </div>
+                <div className="mt-5 flex flex-col flex-wrap w-full space-y-2 md:flex-row md:flex-nowrap md:space-x-3 md:space-y-0">
+                  <div className="flex flex-col flex-wrap w-full">
+                    <span>
+                      <span className="text-gray-700 font-semibold">
+                        Rate per 1000($)
+                      </span>
+                    </span>
+                    <span className="w-full border-gray-400 border-[1px] text-gray-700 p-3">
+                      <span>{rate}</span>
+                    </span>
+                  </div>
+                  <div className="flex flex-col flex-wrap w-full">
+                    <span>
+                      <span className="text-gray-700 font-semibold">
+                        Minimum Amount
+                      </span>
+                    </span>
+                    <span className="w-full border-gray-400 border-[1px] text-gray-700 p-3">
+                      <span>{min}</span>
+                    </span>
+                  </div>
+                  <div className="flex flex-col flex-wrap w-full">
+                    <span>
+                      <span className="text-gray-700 font-semibold">
+                        Maximum Amount
+                      </span>
+                    </span>
+                    <span className="w-full border-gray-400 border-[1px] text-gray-700 p-3">
+                      <span>{max}</span>
+                    </span>
+                  </div>
                 </div>
               </div>
               <div className="flex flex-col flex-wrap w-full rounded-lg px-3 pt-3 pb-7 ss:px-5 ss:pt-5 ss:pb-10 border-[1px] border-gray-300 bg-gray-300">
@@ -758,18 +912,57 @@ const EditDialog: React.VFC<EditDialogProps> = (props) => {
                 </div>
                 <div className="flex w-full">
                   <select
+                    {...register('reelApiProviderId')}
                     className="w-full h-12 p-3 bg-transparent border-[1px] border-gray-400 text-gray-500"
-                    onChange={(e) => {}}
+                    onChange={(e) => {
+                      setReelApiProviderId(e.target.value)
+                      // onApiProviderChange(e.target.value)
+                    }}
+                    value={reelApiProviderId}
                   >
-                    <option value="any">Choose a Provider</option>
-                    <option value="justanotherpanel">
-                      justanotherpanel.com
-                    </option>
-                    <option value="perfectsmm">perfectssm</option>
-                    <option value="followiz">followiz</option>
-                    <option value="cheappanel">cheap panel</option>
-                    <option value="peakerr">peakerr</option>
+                    <option value="0">Choose a Provider</option>
+                    {props.providers.map((provider, id) => {
+                      return (
+                        <option key={id} value={provider._id}>
+                          {provider.name}
+                        </option>
+                      )
+                    })}
                   </select>
+                </div>
+                <div className="mt-5 text-gray-700 font-semibold">
+                  <span>
+                    <span>
+                      Provider Listing Services(Try Again only reel views)
+                    </span>
+                  </span>
+                </div>
+                <div className="flex w-full">
+                  <select
+                    className="w-full h-12 p-3 bg-transparent border-[1px] border-gray-400 text-gray-500"
+                    onChange={(e) => {
+                      setReelServiceItem(e.target.value)
+                      // onServiceItemChanged(e.target.value)
+                    }}
+                    value={reelServiceItem}
+                  >
+                    {reelServiceList.map((serviceItem, id) => {
+                      return (
+                        <option key={id} value={serviceItem.service}>
+                          {serviceItem.service} - {serviceItem.name}
+                        </option>
+                      )
+                    })}
+                  </select>
+                  <div
+                    className={
+                      !loadingReelServices
+                        ? 'awaiting hidden absolute w-[85%] h-full bg-opacity-50 bg-transparent rounded-lg z-[1002]'
+                        : 'awaiting absolute flex items-center justify-center w-[85%] bg-opacity-50 bg-transparent rounded-lg z-[1002]'
+                    }
+                  >
+                    <Loading />
+                  </div>
                 </div>
               </div>
             </div>

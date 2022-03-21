@@ -17,6 +17,8 @@ export const providerService = {
   deleteMany,
   deleteInactive,
   setStatus,
+  getBalance,
+  getServiceList,
 }
 
 function search(keyword) {
@@ -75,6 +77,22 @@ function setStatus(_ids, status) {
       _ids: _ids,
       status: status,
     })
+    .then((data) => {
+      return data
+    })
+}
+
+function getBalance(_id) {
+  return fetchWrapper
+    .get(`${publicRuntimeConfig.apiUrl}/provider/getBalance?_id=${_id}`)
+    .then((data) => {
+      return data
+    })
+}
+
+function getServiceList(_id) {
+  return fetchWrapper
+    .get(`${publicRuntimeConfig.apiUrl}/provider/getServices?_id=${_id}`)
     .then((data) => {
       return data
     })

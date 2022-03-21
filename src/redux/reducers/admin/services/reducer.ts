@@ -99,6 +99,13 @@ export const adminServiceReducer = createReducer(initialState, (builder) => {
             item.isShownInActiveTab = service.isShownInActiveTab
             item.isInstagramSaves = service.isInstagramSaves
             item.apiType = service.apiType
+            item.apiProviderId = service.apiProviderId
+            item.serviceItem = service.serviceItem
+            item.reelApiProviderId = service.reelApiProviderId
+            item.reelServiceItem = service.reelServiceItem
+            item.rate = service.rate
+            item.min = service.min
+            item.max = service.max
             item.variations = service.variations
             return item
           } else {

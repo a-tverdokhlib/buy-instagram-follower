@@ -17,3 +17,6 @@ export const deactiveProviders = createAction<any>(
 export const activeProviders = createAction<any>(
   'admin/providers/activeProviders',
 )
+export const updateProviderBalance = createAction<any>(
+  'admin/providers/updateProviderBalance',
+)

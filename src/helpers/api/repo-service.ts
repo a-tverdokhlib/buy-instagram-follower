@@ -67,6 +67,13 @@ async function update(_id, params) {
   updateOne.metaKeywords = params.metaKeywords
   updateOne.metaDescription = params.metaDescription
   updateOne.apiType = params.apiType
+  updateOne.apiProviderId = params.apiProviderId
+  updateOne.serviceItem = params.serviceItem
+  updateOne.reelApiProviderId = params.reelApiProviderId
+  updateOne.reelServiceItem = params.reelServiceItem
+  updateOne.rate = params.rate
+  updateOne.min = params.min
+  updateOne.max = params.max
   updateOne.variations = params.variations
   await updateOne.save()
   return updateOne

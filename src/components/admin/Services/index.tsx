@@ -2,6 +2,7 @@ import Head from 'next/head'
 import { Ref, RefObject, useEffect, useRef, useState } from 'react'
 
 import { categoryService } from '@/services/category'
+import { providerService } from '@/services/provider'
 import { serviceService } from '@/services/service'
 
 import EditDialog from './EditDialog'
@@ -48,6 +49,7 @@ const Services: React.VFC<ServiceProps> = (props) => {
   const [filteredCategoryID, setFilteredCategoryID] = useState('all')
   const [filteredCategories, setFilteredCategories] = useState(categories)
 
+  const [providers, setProviders] = useState([])
   const [orderFors, setOrderFors] = useState([])
   const [parentPacks, setParentPacks] = useState([])
   useEffect(() => {
@@ -55,6 +57,7 @@ const Services: React.VFC<ServiceProps> = (props) => {
     getCategories()
     getOrderFors()
     getParentPacks()
+    getProviders()
   }, [])
 
   useEffect(() => {
@@ -80,6 +83,10 @@ const Services: React.VFC<ServiceProps> = (props) => {
       if (ref.current !== null && ref.current !== undefined)
         ref.current!.click()
     })
+  }
+  const getProviders = async () => {
+    const resp = await providerService.search('')
+    setProviders(resp.data)
   }
   const getCategories = async () => {
     const resp = await categoryService.search('')
@@ -643,6 +650,7 @@ const Services: React.VFC<ServiceProps> = (props) => {
           <EditDialog
             service={serviceToEdit}
             categories={categories}
+            providers={providers}
             orderFors={orderFors}
             parentPacks={parentPacks}
             onClose={onCloseEditDialog}

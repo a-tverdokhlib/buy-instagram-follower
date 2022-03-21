@@ -20,17 +20,22 @@ import {
   removeProviders,
   setProviders,
   updateProvider,
+  updateProviderBalance,
 } from '@/redux/reducers/admin/providers'
 import { useAppDispatch, useAppSelector } from '@/redux/store/hooks'
+
+import ServiceListDialog from './ServiceListDialog'
 const Provider: React.VFC<ProviderProps> = (props) => {
   const dispatch = useAppDispatch()
   const { providers } = useAppSelector((state) => state.adminProvider)
   const [checkedList, setCheckedList] = useState([''])
   const [collapse, setCollapse] = useState(false)
   const [editDlgShow, setEditDlgShow] = useState(false)
+  const [serviceListDlgShow, setServiceListDlgShow] = useState(false)
   const [loading, setLoading] = useState(false)
   const [showAlert, setShowAlert] = useState(false)
   const [providerToEdit, setProviderToEdit] = useState({})
+  const [serviceList, setServiceList] = useState([])
   const [dropdownActionVisible, setDropdownActionVisible] = useState(false)
   const [dropdownSortbyVisible, setDropdownSortbyVisible] = useState(false)
   const [alertDescription, setAlertDescription] = useState('')
@@ -40,6 +45,21 @@ const Provider: React.VFC<ProviderProps> = (props) => {
     getProviders()
   }, [])
 
+  useEffect(() => {
+    if (providers !== null && providers.length > 0)
+      providers.map(async (provider) => {
+        const resp = await providerService.getBalance(provider._id)
+        if (resp) {
+          if (resp.status === 'success')
+            dispatch(
+              updateProviderBalance({
+                balanceInfo: resp.data,
+                provider: provider,
+              }),
+            )
+        }
+      })
+  }, [])
   const getProviders = async () => {
     const resp = await providerService.search('')
     dispatch(setProviders(resp.data))
@@ -58,6 +78,10 @@ const Provider: React.VFC<ProviderProps> = (props) => {
   const onCloseEditDialog = () => {
     props.showOverlay(false)
     setEditDlgShow(false)
+  }
+  const onCloseServiceListDialog = () => {
+    props.showOverlay(false)
+    setServiceListDlgShow(false)
   }
   const onProviderCreated = (provider) => {
     dispatch(addProvider(provider))
@@ -83,6 +107,7 @@ const Provider: React.VFC<ProviderProps> = (props) => {
     provider.isActive = e
     const updatedProvider = await providerService.update({ ...provider })
     if (updatedProvider) {
+      console.log('Updated Provider =>', updatedProvider)
       dispatch(updateProvider(updatedProvider.data))
     } else {
     }
@@ -92,7 +117,32 @@ const Provider: React.VFC<ProviderProps> = (props) => {
     setProviderToEdit(provider)
     setEditDlgShow(true)
   }
-
+  const onUpdateBalanceClicked = async (provider, callback) => {
+    const resp = await providerService.getBalance(provider._id)
+    if (resp) {
+      if (resp.status === 'success')
+        dispatch(
+          updateProviderBalance({ balanceInfo: resp.data, provider: provider }),
+        )
+      callback()
+    } else {
+      callback()
+    }
+  }
+  const onServiceListClicked = async (provider) => {
+    props.showOverlay(true)
+    setLoading(true)
+    const resp = await providerService.getServiceList(provider._id)
+    if (resp) {
+      setLoading(false)
+      if (resp.status === 'success') {
+        setServiceList(resp.data)
+        setServiceListDlgShow(true)
+      }
+    } else {
+      setLoading(false)
+    }
+  }
   const onActivateClick = async () => {
     if (!isActionAvailable()) {
       setAlertDescription('Please select any categories to do action.')
@@ -432,8 +482,12 @@ const Provider: React.VFC<ProviderProps> = (props) => {
             {!collapse && providers ? (
               <ProviderList
                 ref={refClearCheckedList}
-                categories={providers}
+                providers={providers}
                 onEditClicked={(data) => onEditClicked(data)}
+                onUpdateBalanceClicked={(data, callback) =>
+                  onUpdateBalanceClicked(data, callback)
+                }
+                onServiceListClicked={(data) => onServiceListClicked(data)}
                 onRemoveConfirmed={(data) => onRemoveConfirmed(data)}
                 onSwitchChanged={(e, data) => onSwitchChanged(e, data)}
                 onCheckedListUpdated={(data) => onCheckedListUpdated(data)}
@@ -450,6 +504,14 @@ const Provider: React.VFC<ProviderProps> = (props) => {
             onClose={onCloseEditDialog}
             onProviderCreated={(d) => onProviderCreated(d)}
             onProviderUpdated={(d) => onProviderUpdated(d)}
+          />
+        ) : (
+          <></>
+        )}
+        {serviceListDlgShow ? (
+          <ServiceListDialog
+            serviceList={serviceList}
+            onClose={onCloseServiceListDialog}
           />
         ) : (
           <></>

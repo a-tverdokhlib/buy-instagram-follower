@@ -1,7 +1,9 @@
 type Props = {
-  readonly categories: any
+  readonly providers: any
   readonly onRemoveConfirmed: (data) => void
   readonly onEditClicked: (data) => void
+  readonly onUpdateBalanceClicked: (data, callback) => void
+  readonly onServiceListClicked: (data) => void
   readonly onSwitchChanged: (e, data) => void
   readonly onCheckedListUpdated: (data) => void
 }
@@ -10,7 +12,9 @@ import React from 'react'
 import Switch from 'react-switch'
 
 import ConfirmDialog from '@/components/atoms/ConfirmDialog'
-
+import { Loading } from '@/components/atoms/Loading'
+import { SmallLoading } from '@/components/atoms/SmallLoading'
+import { providerService } from '@/services/provider'
 const MyComponentRenderFn: ForwardRefRenderFunction<any, Props> = (
   props,
   ref,
@@ -19,6 +23,8 @@ const MyComponentRenderFn: ForwardRefRenderFunction<any, Props> = (
   const [categoryToDelete, setCategoryToDelete] = useState({})
   const [checkedList, setCheckedList] = useState<String[]>([])
   const [allChecked, setAllChecked] = useState(false)
+  const [updateingBalance, setUpdatingBalance] = useState(false)
+  const [updatingBalanceId, setUpdatingBalanceId] = useState('')
   const clearCheckedList = () => {
     setCheckedList([])
   }
@@ -36,9 +42,9 @@ const MyComponentRenderFn: ForwardRefRenderFunction<any, Props> = (
     if (checkedList.length === 0) {
       setCheckedList([
         ...checkedList,
-        ...props.categories.map((item: { _id: any }) => item._id),
+        ...props.providers.map((item: { _id: any }) => item._id),
       ])
-    } else if (checkedList.length === props.categories.length) {
+    } else if (checkedList.length === props.providers.length) {
       setCheckedList([])
     } else {
       setCheckedList([])
@@ -48,6 +54,16 @@ const MyComponentRenderFn: ForwardRefRenderFunction<any, Props> = (
     if (checkedList.indexOf(category._id) !== -1)
       setCheckedList([...checkedList.filter((item) => item !== category._id)])
     else setCheckedList([...checkedList, category._id])
+  }
+  const updateBalance = async (provider) => {
+    setUpdatingBalance(true)
+    setUpdatingBalanceId(provider._id)
+    props.onUpdateBalanceClicked(provider, () => {
+      setUpdatingBalance(false)
+    })
+  }
+  const onServiceList = (provider) => {
+    props.onServiceListClicked(provider)
   }
   const onSwitchChange = async (e, category) => {
     props.onSwitchChanged(e, category)
@@ -60,11 +76,6 @@ const MyComponentRenderFn: ForwardRefRenderFunction<any, Props> = (
       <div className="overflow-x-auto">
         <div className="py-0 inline-block min-w-full">
           <div className="overflow-hidden">
-            {/* <Table
-              checkable={true}
-              headers={['Name', 'Url Slug', 'Sort', 'Status', 'Action']}
-              data={props.categories}
-            /> */}
             <table className="min-w-full text-center border-collapse border border-slate-400">
               <thead className="border-b bg-gray-500">
                 <tr>
@@ -76,7 +87,7 @@ const MyComponentRenderFn: ForwardRefRenderFunction<any, Props> = (
                       className="h-4 w-4"
                       type="checkbox"
                       checked={
-                        props.categories.length === checkedList.length
+                        props.providers.length === checkedList.length
                           ? true
                           : false
                       }
@@ -116,10 +127,10 @@ const MyComponentRenderFn: ForwardRefRenderFunction<any, Props> = (
                 </tr>
               </thead>
               <tbody>
-                {props.categories.map((category, id) => {
+                {props.providers.map((provider, id) => {
                   return (
                     <tr
-                      key={category._id}
+                      key={provider._id}
                       className="bg-white border-b hover:bg-gray-100"
                     >
                       <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 border border-slate-300">
@@ -127,40 +138,52 @@ const MyComponentRenderFn: ForwardRefRenderFunction<any, Props> = (
                           className="h-4 w-4"
                           type="checkbox"
                           checked={
-                            checkedList.indexOf(category._id) !== -1
+                            checkedList.indexOf(provider._id) !== -1
                               ? true
                               : false
                           }
-                          onChange={(e) => onCheckClicked(e, category)}
+                          onChange={(e) => onCheckClicked(e, provider)}
                         />
                       </td>
                       <td className="text-sm text-gray-900 px-6 py-4 whitespace-nowrap border border-slate-300">
-                        {category.name}
+                        {provider.name}
                       </td>
-                      <td className="text-sm text-gray-900 px-6 py-4 whitespace-nowrap border border-slate-300">
-                        {category.urlSlug}
+                      <td className="text-sm text-gray-900 px-6 border border-slate-300">
+                        <div className="flex w-full items-center">
+                          <span className="flex">
+                            <span>
+                              {provider.balance
+                                ? parseFloat(provider.balance).toFixed(2)
+                                : ''}
+                            </span>
+                          </span>
+                          {updateingBalance &&
+                          updatingBalanceId === provider._id ? (
+                            <SmallLoading />
+                          ) : (
+                            <></>
+                          )}
+                        </div>
                       </td>
-                      <td className="text-sm text-gray-900 px-6 py-4 whitespace-nowrap border border-slate-300">
-                        {category.defaultSortingNumber}
-                      </td>
+                      <td className="text-sm text-gray-900 px-6 py-4 whitespace-nowrap border border-slate-300"></td>
                       <td className="text-sm text-gray-900 px-6 py-4 whitespace-nowrap border border-slate-300">
                         <Switch
                           height={20}
                           width={50}
-                          onChange={(e) => onSwitchChange(e, category)}
-                          checked={category.isActive}
+                          onChange={(e) => onSwitchChange(e, provider)}
+                          checked={provider.isActive}
                         />
                       </td>
                       <td
                         className={
-                          id === props.categories.length - 1
+                          id === props.providers.length - 1
                             ? 'last-row text-sm text-gray-900 whitespace-nowrap border border-slate-300 px-3'
                             : 'middle-row text-sm text-gray-900 whitespace-nowrap border border-slate-300 px-3'
                         }
                       >
                         <div className="flex flex-row flex-nowrap w-full justify-center items-center">
                           <span
-                            onClick={() => onEditClick(category)}
+                            onClick={() => onEditClick(provider)}
                             className="tooltip flex w-10 h-full justify-center items-center py-3 border-[1px] border-blue-600 hover:cursor-pointer hover:bg-blue-600 text-blue-600 hover:text-white  transition-all duration-500 delay-100"
                           >
                             <svg
@@ -179,7 +202,10 @@ const MyComponentRenderFn: ForwardRefRenderFunction<any, Props> = (
                             </svg>
                             <span className="tooltiptext px-3">Edit API</span>
                           </span>
-                          <span className="tooltip flex w-10 h-full justify-center items-center py-3 border-b-[1px] border-t-[1px] border-blue-600 hover:cursor-pointer hover:bg-blue-600 text-blue-600 hover:text-white transition-all duration-500 delay-100">
+                          <span
+                            onClick={() => updateBalance(provider)}
+                            className="tooltip flex w-10 h-full justify-center items-center py-3 border-b-[1px] border-t-[1px] border-blue-600 hover:cursor-pointer hover:bg-blue-600 text-blue-600 hover:text-white transition-all duration-500 delay-100"
+                          >
                             <svg
                               className="h-4 w-4"
                               viewBox="0 0 24 24"
@@ -212,7 +238,10 @@ const MyComponentRenderFn: ForwardRefRenderFunction<any, Props> = (
                             </svg>
                             <span className="tooltiptext">Sync Services</span>
                           </span>
-                          <span className="tooltip flex w-10 h-full justify-center items-center py-3 border-b-[1px] border-l-[1px] border-t-[1px] border-blue-600 hover:cursor-pointer hover:bg-blue-600 text-blue-600 hover:text-white transition-all duration-500 delay-100">
+                          <span
+                            onClick={() => onServiceList(provider)}
+                            className="tooltip flex w-10 h-full justify-center items-center py-3 border-b-[1px] border-l-[1px] border-t-[1px] border-blue-600 hover:cursor-pointer hover:bg-blue-600 text-blue-600 hover:text-white transition-all duration-500 delay-100"
+                          >
                             <svg
                               className="h-4 w-4"
                               width="24"
@@ -238,7 +267,7 @@ const MyComponentRenderFn: ForwardRefRenderFunction<any, Props> = (
                             </span>
                           </span>
                           <span
-                            onClick={() => onRemoveClick(category)}
+                            onClick={() => onRemoveClick(provider)}
                             className="tooltip flex w-10 h-full justify-center items-center py-3 border-[1px] border-red-600 hover:cursor-pointer hover:bg-red-600 text-red-600 hover:text-white  transition-all duration-500 delay-100"
                           >
                             <svg

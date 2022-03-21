@@ -21,6 +21,13 @@ const ServiceSchema = new mongoose.Schema({
   metaKeywords: String,
   metaDescription: String,
   apiType: String,
+  apiProviderId: String,
+  serviceItem: String,
+  rate: Number,
+  min: Number,
+  max: Number,
+  reelApiProviderId: String,
+  reelServiceItem: String,
   variations: [
     { variationDays: Number, offPercent: Number, isDefaultActive: Boolean },
   ],
