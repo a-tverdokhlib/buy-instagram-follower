@@ -89,6 +89,7 @@ export const adminProviderReducer = createReducer(initialState, (builder) => {
       ...state.providers.map((item) => {
         if (item._id === provider._id) {
           item.balance = balanceInfo.balance
+          item.currency = balanceInfo.currency
           return item
         } else {
           return item

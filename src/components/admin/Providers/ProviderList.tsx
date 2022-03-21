@@ -81,7 +81,7 @@ const MyComponentRenderFn: ForwardRefRenderFunction<any, Props> = (
                 <tr>
                   <th
                     scope="col"
-                    className="w-[20px] text-sm font-medium text-white px-6 py-4  border border-slate-400"
+                    className="w-[20px] text-base font-medium text-white px-6 py-4  border border-slate-400"
                   >
                     <input
                       className="h-4 w-4"
@@ -96,31 +96,31 @@ const MyComponentRenderFn: ForwardRefRenderFunction<any, Props> = (
                   </th>
                   <th
                     scope="col"
-                    className="w-[280px] text-sm font-medium text-white px-6 py-4 border border-slate-400"
+                    className="w-[280px] text-base font-medium text-white px-6 py-4 border border-slate-400"
                   >
                     Name
                   </th>
                   <th
                     scope="col"
-                    className="w-[150px] text-sm font-medium text-white px-6 py-4 border border-slate-400"
+                    className="w-[150px] text-base font-medium text-white px-6 py-4 border border-slate-400"
                   >
                     Balance
                   </th>
                   <th
                     scope="col"
-                    className="w-[20px] text-sm font-medium text-white px-6 py-4 border border-slate-400"
+                    className="w-[20px] text-base font-medium text-white px-6 py-4 border border-slate-400"
                   >
                     Description
                   </th>
                   <th
                     scope="col"
-                    className="text-sm font-medium text-white px-6 py-4 border border-slate-400"
+                    className="text-base font-medium text-white px-6 py-4 border border-slate-400"
                   >
                     Status
                   </th>
                   <th
                     scope="col"
-                    className="text-sm font-medium text-white px-6 py-4 border border-slate-400"
+                    className="text-base font-medium text-white px-6 py-4 border border-slate-400"
                   >
                     Action
                   </th>
@@ -133,7 +133,7 @@ const MyComponentRenderFn: ForwardRefRenderFunction<any, Props> = (
                       key={provider._id}
                       className="bg-white border-b hover:bg-gray-100"
                     >
-                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 border border-slate-300">
+                      <td className="px-6 py-4 whitespace-nowrap text-base font-medium text-gray-900 border border-slate-300">
                         <input
                           className="h-4 w-4"
                           type="checkbox"
@@ -145,28 +145,29 @@ const MyComponentRenderFn: ForwardRefRenderFunction<any, Props> = (
                           onChange={(e) => onCheckClicked(e, provider)}
                         />
                       </td>
-                      <td className="text-sm text-gray-900 px-6 py-4 whitespace-nowrap border border-slate-300">
+                      <td className="text-base text-gray-900 px-6 py-4 whitespace-nowrap border border-slate-300">
                         {provider.name}
                       </td>
-                      <td className="text-sm text-gray-900 px-6 border border-slate-300">
-                        <div className="flex w-full items-center">
-                          <span className="flex">
-                            <span>
-                              {provider.balance
-                                ? parseFloat(provider.balance).toFixed(2)
-                                : ''}
-                            </span>
-                          </span>
+                      <td className="text-base text-gray-900 px-2 border border-slate-300">
+                        <div className="flex w-full justify-end items-center">
                           {updateingBalance &&
                           updatingBalanceId === provider._id ? (
                             <SmallLoading />
                           ) : (
                             <></>
                           )}
+                          <span className="flex">
+                            <span>
+                              {provider.balance
+                                ? parseFloat(provider.balance).toFixed(2)
+                                : ''}{' '}
+                              {provider.currency}
+                            </span>
+                          </span>
                         </div>
                       </td>
-                      <td className="text-sm text-gray-900 px-6 py-4 whitespace-nowrap border border-slate-300"></td>
-                      <td className="text-sm text-gray-900 px-6 py-4 whitespace-nowrap border border-slate-300">
+                      <td className="text-base text-gray-900 px-6 py-4 whitespace-nowrap border border-slate-300"></td>
+                      <td className="text-base text-gray-900 px-6 py-4 whitespace-nowrap border border-slate-300">
                         <Switch
                           height={20}
                           width={50}
@@ -177,8 +178,8 @@ const MyComponentRenderFn: ForwardRefRenderFunction<any, Props> = (
                       <td
                         className={
                           id === props.providers.length - 1
-                            ? 'last-row text-sm text-gray-900 whitespace-nowrap border border-slate-300 px-3'
-                            : 'middle-row text-sm text-gray-900 whitespace-nowrap border border-slate-300 px-3'
+                            ? 'last-row text-base text-gray-900 whitespace-nowrap border border-slate-300 px-3'
+                            : 'middle-row text-base text-gray-900 whitespace-nowrap border border-slate-300 px-3'
                         }
                       >
                         <div className="flex flex-row flex-nowrap w-full justify-center items-center">
