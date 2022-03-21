@@ -89,7 +89,7 @@ const MyComponentRenderFn: ForwardRefRenderFunction<any, Props> = (
                   </th>
                   <th
                     scope="col"
-                    className="min-w-[200px] w-[250px] text-base font-medium text-white px-6 py-3 border border-gray-600 border-opacity-50"
+                    className="min-w-[200px] w-[230px] text-base font-medium text-white px-6 py-3 border border-gray-600 border-opacity-50"
                   >
                     Name
                   </th>
@@ -125,7 +125,7 @@ const MyComponentRenderFn: ForwardRefRenderFunction<any, Props> = (
                   </th>
                   <th
                     scope="col"
-                    className="min-w-[80px] text-base font-medium text-white px-2 py-3 border border-gray-600 border-opacity-50"
+                    className="min-w-[80px] text-base font-medium text-white px-0 py-3 border border-gray-600 border-opacity-50"
                   >
                     Status
                   </th>
@@ -161,16 +161,16 @@ const MyComponentRenderFn: ForwardRefRenderFunction<any, Props> = (
                           {service._id}
                         </span>
                       </td>
-                      <td className="text-base text-gray-700 px-6 py-4 whitespace-nowrap border border-slate-300">
+                      <td className="text-base text-gray-700 px-2 py-4 border border-slate-300">
                         {service.name}
                       </td>
-                      <td className="text-base text-gray-700 px-6 py-4 whitespace-nowrap border border-slate-300">
+                      <td className="text-base text-gray-700 px-2 py-4 whitespace-nowrap border border-slate-300">
                         {service.price}
                       </td>
-                      <td className="text-base text-gray-700 px-6 py-4 whitespace-nowrap border border-slate-300">
+                      <td className="text-base text-gray-700 px-2 py-4 whitespace-nowrap border border-slate-300">
                         {service.quantity}
                       </td>
-                      <td className="text-base text-gray-700 px-6 py-4 whitespace-nowrap border border-slate-300">
+                      <td className="text-base text-gray-700 px-2 py-4 whitespace-nowrap border border-slate-300">
                         {service.offer.length > 0
                           ? service.offer[0].discount
                           : ''}
@@ -195,7 +195,7 @@ const MyComponentRenderFn: ForwardRefRenderFunction<any, Props> = (
                             : ''}
                         </span>
                       </td>
-                      <td className="text-base text-gray-700 px-6 py-4 whitespace-nowrap border border-slate-300">
+                      <td className="text-base text-gray-700 px-0 py-4 whitespace-nowrap border border-slate-300">
                         <Switch
                           height={25}
                           width={50}
