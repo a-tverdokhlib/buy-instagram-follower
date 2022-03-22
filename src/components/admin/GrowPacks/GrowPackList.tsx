@@ -149,10 +149,10 @@ const MyComponentRenderFn: ForwardRefRenderFunction<any, Props> = (
                       <td className="text-base text-gray-700 px-1 border border-slate-300">
                         {growPack._id}
                       </td>
-                      <td className="text-base font-semibold text-gray-700 px-1 py-4 border border-slate-300">
+                      <td className="text-base text-gray-900 px-1 py-4 border border-slate-300">
                         {growPack.name}
                       </td>
-                      <td className="text-base font-semibold text-gray-700 px-1 py-4 border border-slate-300">
+                      <td className="text-base text-gray-900 px-1 py-4 border border-slate-300">
                         {growPack.price}
                       </td>
                       <td className="text-base text-gray-700 px-1 py-4 border border-slate-300">
