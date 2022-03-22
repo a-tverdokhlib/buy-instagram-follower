@@ -161,13 +161,13 @@ const MyComponentRenderFn: ForwardRefRenderFunction<any, Props> = (
                           {service._id}
                         </span>
                       </td>
-                      <td className="text-base text-gray-700 px-2 py-4 border border-slate-300">
+                      <td className="text-base text-gray-700 font-semibold px-2 py-4 border border-slate-300">
                         {service.name}
                       </td>
-                      <td className="text-base text-gray-700 px-2 py-4 whitespace-nowrap border border-slate-300">
+                      <td className="text-base text-gray-700 font-semibold px-2 py-4 whitespace-nowrap border border-slate-300">
                         {service.price}
                       </td>
-                      <td className="text-base text-gray-700 px-2 py-4 whitespace-nowrap border border-slate-300">
+                      <td className="text-base text-gray-700 font-semibold px-2 py-4 whitespace-nowrap border border-slate-300">
                         {service.quantity}
                       </td>
                       <td className="text-base text-gray-700 px-2 py-4 whitespace-nowrap border border-slate-300">
