@@ -121,8 +121,8 @@ const EditDialog: React.VFC<EditDialogProps> = (props) => {
   }
 
   return (
-    <div className="admin-edit-category fixed right-0 ls:right-1 top-1 h-[97vh] flex-col flex-wrap sm:w-[600px] bg-[#e8e8e9] shadow-lg shadow-cyan-700/50 rounded-xl z-[1001] overflow-y-scroll ease-out duration-500">
-      <div className="flex fixed w-full z-[100] sm:w-[600px] top-1 ls:right-1 border-b-[1px] border-gray-300 bg-gray-100 p-5 rounded-t-xl">
+    <div className="admin-edit-category fixed right-0 right-1 top-1 h-[97vh] w-[98%] flex-col flex-wrap sm:w-[600px] bg-[#e8e8e9] shadow-lg shadow-cyan-700/50 rounded-xl z-[1001] overflow-y-scroll ease-out duration-500">
+      <div className="flex fixed w-[98%] z-[100] sm:w-[600px] top-1 right-1 border-b-[1px] border-gray-300 bg-gray-100 p-5 rounded-t-xl">
         <span className="font-semibold text-black">
           <svg
             className="h-6 w-6 text-gray-800"

@@ -49,7 +49,7 @@ const Admin: React.VFC = () => {
       '/admin/reviews',
       '/admin/package-faq',
       '/admin/services',
-      '/admin/growth-packs',
+      '/admin/subscription-packs',
       '/admin/auto-packs',
       '/admin/other-services',
       '/admin/customers',

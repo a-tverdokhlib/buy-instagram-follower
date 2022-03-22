@@ -68,7 +68,7 @@ const menuItems = [
         title: 'Services',
       },
       {
-        href: '?p=growth-packs',
+        href: '?p=subscription-packs',
         title: 'Instagram Growth Packs',
       },
       {

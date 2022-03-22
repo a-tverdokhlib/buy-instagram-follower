@@ -9,6 +9,7 @@ import { createWrapper, HYDRATE } from 'next-redux-wrapper'
 import type { Reducer } from 'react'
 
 import { adminCategoryReducer } from '@/redux/reducers/admin/categories'
+import { adminGrowPackReducer } from '@/redux/reducers/admin/growPacks'
 import { adminPanelReducer } from '@/redux/reducers/admin/panel'
 import { adminProviderReducer } from '@/redux/reducers/admin/providers'
 import { adminServiceReducer } from '@/redux/reducers/admin/services'
@@ -39,6 +40,7 @@ const combinedReducer = combineReducers({
   adminCategory: adminCategoryReducer,
   adminProvider: adminProviderReducer,
   adminService: adminServiceReducer,
+  adminGrowPack: adminGrowPackReducer,
 })
 
 const reducer: Reducer<ReturnType<typeof combinedReducer>, AnyAction> | any = (

@@ -17,7 +17,7 @@ import Blog from '@/components/admin/Blog'
 import Category from '@/components/admin/Category'
 import Customers from '@/components/admin/Customers'
 import FAQ from '@/components/admin/FAQ'
-import GrowthPacks from '@/components/admin/GrowthPacks'
+import GrowPacks from '@/components/admin/GrowPacks'
 import Language from '@/components/admin/Language'
 import Module from '@/components/admin/Module'
 import Orders from '@/components/admin/Orders'
@@ -94,8 +94,10 @@ const Panel: React.VFC = () => {
         return (
           <Services isMobile={isMobile} showOverlay={(b) => setOverlay(b)} />
         )
-      case 'growth-packs':
-        return <GrowthPacks />
+      case 'subscription-packs':
+        return (
+          <GrowPacks isMobile={isMobile} showOverlay={(b) => setOverlay(b)} />
+        )
       case 'auto-packs':
         return <AutoPacks />
       case 'other-services':
