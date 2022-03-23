@@ -72,7 +72,7 @@ const menuItems = [
         title: 'Instagram Growth Packs',
       },
       {
-        href: '?p=auto-packs',
+        href: '?p=autolike-packs',
         title: 'Autolikes Packs',
       },
       {
