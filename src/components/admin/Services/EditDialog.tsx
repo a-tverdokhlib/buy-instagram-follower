@@ -211,7 +211,6 @@ const EditDialog: React.VFC<EditDialogProps> = (props) => {
       if (resp) {
         if (resp.status === 'success') {
           setServiceList(resp.data)
-          setServiceItem(props.service.serviceItem)
           setLoadingServices(false)
         }
       } else {
@@ -237,7 +236,6 @@ const EditDialog: React.VFC<EditDialogProps> = (props) => {
       if (resp) {
         if (resp.status === 'success') {
           setReelServiceList(resp.data)
-          setReelServiceItem(props.service.reelServiceItem)
           setLoadingReelServices(false)
         }
       } else {
@@ -855,6 +853,7 @@ const EditDialog: React.VFC<EditDialogProps> = (props) => {
                     }}
                     value={serviceItem}
                   >
+                    <option value="0">Select an Item</option>
                     {serviceList.map((serviceItem, id) => {
                       return (
                         <option key={id} value={serviceItem.service}>
@@ -946,6 +945,7 @@ const EditDialog: React.VFC<EditDialogProps> = (props) => {
                     }}
                     value={reelServiceItem}
                   >
+                    <option value="0">Select an Item</option>
                     {reelServiceList.map((serviceItem, id) => {
                       return (
                         <option key={id} value={serviceItem.service}>

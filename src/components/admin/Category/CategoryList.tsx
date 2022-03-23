@@ -149,7 +149,7 @@ const MyComponentRenderFn: ForwardRefRenderFunction<any, Props> = (
                       </td>
                       <td className="text-base text-gray-700 px-6 py-4 whitespace-nowrap border border-slate-300">
                         <Switch
-                          height={20}
+                          height={25}
                           width={50}
                           onChange={(e) => onSwitchChange(e, category)}
                           checked={category.isActive}

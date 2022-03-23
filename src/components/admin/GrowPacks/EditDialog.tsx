@@ -9,7 +9,7 @@ import 'suneditor/dist/css/suneditor.min.css' // Import Sun Editor's CSS File
 
 import { yupResolver } from '@hookform/resolvers/yup'
 import dynamic from 'next/dynamic'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import {
   basic,
@@ -19,6 +19,7 @@ import {
 import * as Yup from 'yup'
 
 import { Loading } from '@/components/atoms/Loading'
+import { SmallLoading } from '@/components/atoms/SmallLoading'
 import { setThemeMode } from '@/redux/reducers/admin/panel'
 import {
   setSidebarColor,
@@ -26,6 +27,7 @@ import {
 } from '@/redux/reducers/admin/sideMenu'
 import { useAppDispatch, useAppSelector } from '@/redux/store/hooks'
 import { growPackService } from '@/services/growPack'
+import { providerService } from '@/services/provider'
 
 const SunEditor = dynamic(() => import('suneditor-react'), {
   ssr: false,
@@ -98,6 +100,25 @@ const EditDialog: React.VFC<EditDialogProps> = (props) => {
   const { register, handleSubmit, reset, formState } = useForm(formOptions)
   const { errors } = formState
 
+  useEffect(() => {
+    onApiProviderChange(apiProviderId)
+  }, [apiProviderId])
+
+  const onApiProviderChange = async (_id) => {
+    if (_id === '0' || _id === undefined) setServiceList([])
+    else {
+      setLoadingServices(true)
+      const resp = await providerService.getServiceList(_id)
+      if (resp) {
+        if (resp.status === 'success') {
+          setServiceList(resp.data)
+          setLoadingServices(false)
+        }
+      } else {
+        setLoadingServices(false)
+      }
+    }
+  }
   const onSubmit = async (data) => {
     setAwaiting(true)
     if (data._id === '-1' || data._id === '') {
@@ -135,6 +156,19 @@ const EditDialog: React.VFC<EditDialogProps> = (props) => {
     }
   }
 
+  const onAddServiceClick = () => {
+    console.log('Add Service Clicked')
+    setServiceItems([
+      ...serviceItems,
+      { serviceItem: '', minQuantity: '', maxQuantity: '' },
+    ])
+  }
+
+  const onRemoveServiceClick = (id) => {
+    let newItems = [...serviceItems]
+    newItems.splice(id, 1)
+    setServiceItems(newItems)
+  }
   return (
     <div className="admin-edit-category fixed right-0 right-1 top-1 h-[97vh] w-[98%] flex-col flex-wrap sm:w-[640px] bg-[#e8e8e9] shadow-lg shadow-cyan-700/50 rounded-xl z-[1001] overflow-y-scroll ease-out duration-500">
       <div className="flex fixed w-[98%] z-[100] sm:w-[640px] top-1 right-1 border-b-[1px] border-gray-300 bg-gray-100 p-5 rounded-t-xl">
@@ -450,73 +484,130 @@ const EditDialog: React.VFC<EditDialogProps> = (props) => {
                 <div className="h-4"></div>
                 {serviceItems.map((serviceItem, id) => {
                   return (
-                    <div
-                      key={id}
-                      className="flex flex-col flex-wrap w-full space-y-2 md:flex-row md:flex-nowrap md:space-x-2 md:space-y-0"
-                    >
-                      <div className="flex w-full text-gray-700 font-semibold">
-                        <div className="w-full">
-                          <span>
-                            <span>Provider Listing Services</span>
-                          </span>
-                          <select
-                            className="w-full h-12 p-3 bg-transparent border-[1px] border-gray-400 text-gray-500"
-                            onChange={(e) => {
-                              // setServiceItem(e.target.value)
-                              // onServiceItemChanged(e.target.value)
-                            }}
-                            value={serviceItem}
-                          >
-                            {serviceList.map((serviceItem, id) => {
-                              return (
-                                <option key={id} value={serviceItem.service}>
-                                  {serviceItem.service} - {serviceItem.name}
-                                </option>
-                              )
-                            })}
-                          </select>
-                          <div
-                            className={
-                              !loadingServices
-                                ? 'awaiting hidden absolute w-[85%] h-full bg-opacity-50 bg-transparent rounded-lg z-[1002]'
-                                : 'awaiting absolute flex items-center justify-center w-[85%] bg-opacity-50 bg-transparent rounded-lg z-[1002]'
-                            }
-                          >
-                            <Loading />
+                    <div key={id} className="flex flex-col flex-wrap w-full">
+                      <div className="flex flex-col flex-wrap w-full space-y-2 md:flex-row md:flex-nowrap md:space-x-2 md:space-y-0">
+                        <div className="flex w-full text-gray-700 font-semibold">
+                          <div className="w-full">
+                            <span>
+                              <span>Provider Listing Services</span>
+                            </span>
+                            <div>
+                              <select
+                                className="w-full h-12 p-3 bg-transparent border-[1px] border-gray-400 text-gray-500"
+                                onChange={(e) =>
+                                  setServiceItems([
+                                    ...serviceItems.map((item, key) => {
+                                      if (key === id) {
+                                        return {
+                                          serviceItem: e.target.value,
+                                          minQuantity: item.minQuantity,
+                                          maxQuantity: item.maxQuantity,
+                                        }
+                                      } else return item
+                                    }),
+                                  ])
+                                }
+                                value={serviceItem.serviceItem}
+                              >
+                                <option value="0">Select an Item</option>
+                                {serviceList.map((serviceItem, id) => {
+                                  return (
+                                    <option
+                                      key={id}
+                                      value={serviceItem.service}
+                                    >
+                                      {serviceItem.service} - {serviceItem.name}
+                                    </option>
+                                  )
+                                })}
+                              </select>
+                              <div
+                                className={
+                                  !loadingServices
+                                    ? 'awaiting hidden relative -mt-[42px] w-[100%] h-full bg-opacity-50 bg-transparent rounded-lg z-[1002]'
+                                    : 'awaiting relative -mt-[42px] flex items-center justify-center w-[100%] bg-opacity-50 bg-transparent rounded-lg z-[1002]'
+                                }
+                              >
+                                <SmallLoading />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="flex w-full flex-row flex-nowrap space-x-2">
+                          <div className="flex flex-col flex-wrap w-full">
+                            <span>
+                              <span className="text-gray-700 font-semibold">
+                                Min Qty/Pkg
+                              </span>
+                            </span>
+                            <input
+                              type="number"
+                              className="w-full h-12 p-3 bg-transparent border-[1px] border-gray-400 text-black"
+                              placeholder=""
+                              value={serviceItem.minQuantity}
+                              onChange={(e) =>
+                                setServiceItems([
+                                  ...serviceItems.map((item, key) => {
+                                    if (key === id) {
+                                      return {
+                                        serviceItem: item.serviceItem,
+                                        minQuantity: e.target.value,
+                                        maxQuantity: item.maxQuantity,
+                                      }
+                                    } else return item
+                                  }),
+                                ])
+                              }
+                            />
+                          </div>
+                          <div className="flex flex-col flex-wrap w-full">
+                            <span>
+                              <span className="text-gray-700 font-semibold">
+                                Max Qty
+                              </span>
+                            </span>
+                            <input
+                              type="number"
+                              className="w-full h-12 p-3 bg-transparent border-[1px] border-gray-400 text-black"
+                              placeholder=""
+                              value={serviceItem.maxQuantity}
+                              onChange={(e) =>
+                                setServiceItems([
+                                  ...serviceItems.map((item, key) => {
+                                    if (key === id) {
+                                      return {
+                                        serviceItem: item.serviceItem,
+                                        minQuantity: item.minQuantity,
+                                        maxQuantity: e.target.value,
+                                      }
+                                    } else return item
+                                  }),
+                                ])
+                              }
+                            />
                           </div>
                         </div>
                       </div>
-                      <div className="flex w-full flex-row flex-nowrap space-x-2">
-                        <div className="flex flex-col flex-wrap w-full">
-                          <span>
-                            <span className="text-gray-700 font-semibold">
-                              Min Qty/Pkg
-                            </span>
+                      {id !== 0 ? (
+                        <div className="ml-auto py-2">
+                          <span
+                            onClick={() => onRemoveServiceClick(id)}
+                            className="text-white text-sm ls:text-base px-2 ls:px-3 py-2 rounded-full hover:cursor-pointer hover:text-gray-400 bg-[#d81212] font-semibold transition-all duration-500"
+                          >
+                            Remove
                           </span>
-                          <input
-                            type="number"
-                            className="w-full h-12 p-3 bg-transparent border-[1px] border-gray-400 text-black"
-                            placeholder=""
-                          />
                         </div>
-                        <div className="flex flex-col flex-wrap w-full">
-                          <span>
-                            <span className="text-gray-700 font-semibold">
-                              Max Qty
-                            </span>
-                          </span>
-                          <input
-                            type="number"
-                            className="w-full h-12 p-3 bg-transparent border-[1px] border-gray-400 text-black"
-                            placeholder=""
-                          />
-                        </div>
-                      </div>
+                      ) : (
+                        <></>
+                      )}
                     </div>
                   )
                 })}
                 <div className="flex items-center ml-auto mt-3">
-                  <span className="bg-[#45aaf2] py-3 px-3 rounded-lg hover:cursor-pointer hover:bg-fuchsia-500 transition-colors duration-500">
+                  <span
+                    onClick={() => onAddServiceClick()}
+                    className="bg-[#45aaf2] py-3 px-3 rounded-lg hover:cursor-pointer hover:bg-fuchsia-500 transition-colors duration-500"
+                  >
                     Add Service
                   </span>
                 </div>

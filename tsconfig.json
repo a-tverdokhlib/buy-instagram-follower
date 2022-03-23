@@ -33,7 +33,6 @@
     "**/*.ts",
     "**/*.tsx",
     "pages/_app.js",
-    "src/helpers/api/config/config.js",
   ],
   "exclude": [
     "node_modules"
