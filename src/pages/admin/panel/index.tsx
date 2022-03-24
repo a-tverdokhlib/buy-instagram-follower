@@ -103,7 +103,12 @@ const Panel: React.VFC = () => {
           <AutoPacks isMobile={isMobile} showOverlay={(b) => setOverlay(b)} />
         )
       case 'other-services':
-        return <OtherSerivces />
+        return (
+          <OtherSerivces
+            isMobile={isMobile}
+            showOverlay={(b) => setOverlay(b)}
+          />
+        )
       case 'customers':
         return <Customers />
       case 'settings':
