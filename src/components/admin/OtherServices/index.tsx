@@ -34,6 +34,9 @@ const OtherService: React.VFC<OtherServiceProps> = (props) => {
   const [dropdownActionVisible, setDropdownActionVisible] = useState(false)
   const [dropdownSortbyVisible, setDropdownSortbyVisible] = useState(false)
   const [alertDescription, setAlertDescription] = useState('')
+  const [showSearchField, setShowSearchField] = useState(false)
+  const [showSearchFieldDelay, setShowSearchFieldDelay] = useState(false)
+  const [searchFieldClass, setSearchFieldClass] = useState('')
   const refClearCheckedList = useRef<HTMLDivElement>(null)
   useEffect(() => {
     if (services.length === 0) setLoading(true)
@@ -164,6 +167,24 @@ const OtherService: React.VFC<OtherServiceProps> = (props) => {
     if (checkedList!.length <= 0) return false
     return true
   }
+  const onSearchClick = () => {
+    const v = !showSearchField
+    if (v === true) {
+      setShowSearchField(v)
+      setShowSearchFieldDelay(v)
+    } else {
+      setShowSearchField(v)
+      setTimeout(() => {
+        setShowSearchFieldDelay(v)
+      }, 100)
+    }
+  }
+  const onSearchFieldBlur = () => {
+    setShowSearchField(false)
+    setTimeout(() => {
+      setShowSearchFieldDelay(false)
+    }, 100)
+  }
   return (
     <>
       <Head>
@@ -198,7 +219,40 @@ const OtherService: React.VFC<OtherServiceProps> = (props) => {
               </span>
             </div>
           </div>
-          <div className="fixed  z-[11] bg-fuchsia-100 bg-opacity-100 right-3 ss:right-8 flex flex-row flex-nowrap ls:space-x-3">
+          <div
+            className={
+              !showSearchField
+                ? 'fixed z-[11] bg-fuchsia-100 bg-opacity-100 right-3 ss:right-8 flex flex-row flex-nowrap ls:space-x-3 transition-all duration-300'
+                : 'fixed -mr-[178px] ls:-mr-[280px] sm:-mr-[300px] md:mr-[0px] z-[11] bg-fuchsia-100 bg-opacity-100 right-3 ss:right-8 flex flex-row flex-nowrap ls:space-x-3 transition-all duration-500'
+            }
+          >
+            <div className="flex px-2 mr-1 items-center w-[30px] md:w-[270px]">
+              <input
+                type="text"
+                placeholder="Search"
+                className={
+                  !showSearchFieldDelay
+                    ? 'hidden md:flex absolute w-[170px] ls:w-[270px] px-4 text-gray-700 bg-gray-200 py-[7px] rounded-lg'
+                    : 'md:flex absolute -ml-[180px] ls:-ml-[280px] md:ml-0 w-[170px] ls:w-[270px] px-4 text-gray-700 bg-gray-200 py-[7px] rounded-lg'
+                }
+                onBlur={() => onSearchFieldBlur()}
+              ></input>
+              <div onClick={() => onSearchClick()} className="z-[1] ml-auto">
+                <svg
+                  className="h-5 w-5 text-gray-500"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                  />
+                </svg>
+              </div>
+            </div>
             <div
               tabIndex={0}
               onClick={() => setDropdownSortbyVisible(!dropdownSortbyVisible)}
@@ -210,8 +264,8 @@ const OtherService: React.VFC<OtherServiceProps> = (props) => {
               <div
                 className={
                   dropdownSortbyVisible
-                    ? 'flex px-2 ls:px-3 py-2 flex-row flex-nowrap space-x-2 ls:space-x-3 items-center text-black border-[1px] border-gray-300 bg-gray-200 hover:cursor-pointer hover:bg-gray-200 transition-all duration-500'
-                    : 'flex px-2 ls:px-3 py-2 flex-row flex-nowrap space-x-2 ls:space-x-3 items-center text-black border-[1px] border-gray-300 hover:cursor-pointer hover:bg-gray-200 transition-all duration-500'
+                    ? 'flex px-2 ls:px-3 h-[38px] flex-row flex-nowrap space-x-2 ls:space-x-3 items-center text-black border-[1px] border-gray-300 bg-gray-200 hover:cursor-pointer hover:bg-gray-200 transition-all duration-500'
+                    : 'flex px-2 ls:px-3 h-[38px] flex-row flex-nowrap space-x-2 ls:space-x-3 items-center text-black border-[1px] border-gray-300 hover:cursor-pointer hover:bg-gray-200 transition-all duration-500'
                 }
               >
                 <span>
@@ -236,7 +290,9 @@ const OtherService: React.VFC<OtherServiceProps> = (props) => {
                     <path d="M21 15l-4 4l-4-4m4 4v-14" />
                   </svg>
                 </span>
-                <span className="text-sm whitespace-nowrap">Sort by</span>
+                <span className="hidden ls:flex text-sm whitespace-nowrap">
+                  Sort by
+                </span>
                 <span>
                   <svg
                     className="h-4 w-4 text-gray-500"
@@ -318,8 +374,8 @@ const OtherService: React.VFC<OtherServiceProps> = (props) => {
               <div
                 className={
                   dropdownActionVisible
-                    ? 'flex px-2 ls:px-3 py-2 flex-row flex-nowrap space-x-2 ls:space-x-3 items-center text-black border-[1px] border-gray-300 bg-gray-200 hover:cursor-pointer hover:bg-gray-200 transition-all duration-500'
-                    : 'flex px-2 ls:px-3 py-2 flex-row flex-nowrap space-x-2 ls:space-x-3 items-center text-black border-[1px] border-gray-300 hover:cursor-pointer hover:bg-gray-200 transition-all duration-500'
+                    ? 'flex px-2 ls:px-3 h-[38px] flex-row flex-nowrap space-x-2 ls:space-x-3 items-center text-black border-[1px] border-gray-300 bg-gray-200 hover:cursor-pointer hover:bg-gray-200 transition-all duration-500'
+                    : 'flex px-2 ls:px-3 h-[38px] flex-row flex-nowrap space-x-2 ls:space-x-3 items-center text-black border-[1px] border-gray-300 hover:cursor-pointer hover:bg-gray-200 transition-all duration-500'
                 }
               >
                 <span>

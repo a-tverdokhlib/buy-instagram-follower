@@ -24,7 +24,7 @@ const ThemeCustomizer: React.VFC<ThemeCustomizerProps> = (props) => {
   }
 
   return (
-    <div className="theme-customizer fixed right-1 top-1 flex flex-col flex-wrap w-[400px] bg-[#e8e8e9] shadow-lg shadow-gray-700/50 rounded-xl z-[1001]">
+    <div className="theme-customizer fixed right-1 top-1 flex flex-col flex-wrap sm:w-[400px] bg-[#e8e8e9] shadow-lg shadow-gray-700/50 rounded-xl z-[1001]">
       <div className="flex border-b-[1px] border-gray-400 w-full p-5">
         <span className="font-semibold text-black">
           <svg

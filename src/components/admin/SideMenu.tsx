@@ -36,6 +36,10 @@ const menuItems = [
         title: 'Subscription Order Logs',
       },
       {
+        href: '?p=autolikes-orders',
+        title: 'Subscription Order Logs',
+      },
+      {
         href: '?p=socials',
         title: 'Social network',
       },
