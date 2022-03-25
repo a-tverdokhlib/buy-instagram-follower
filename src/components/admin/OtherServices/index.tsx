@@ -223,7 +223,7 @@ const OtherService: React.VFC<OtherServiceProps> = (props) => {
             className={
               !showSearchField
                 ? 'fixed z-[11] bg-fuchsia-100 bg-opacity-100 right-3 ss:right-8 flex flex-row flex-nowrap ls:space-x-3 transition-all duration-300'
-                : 'fixed -mr-[178px] ls:-mr-[280px] sm:-mr-[300px] md:mr-[0px] z-[11] bg-fuchsia-100 bg-opacity-100 right-3 ss:right-8 flex flex-row flex-nowrap ls:space-x-3 transition-all duration-500'
+                : 'fixed -mr-[182px] ls:-mr-[284px] sm:-mr-[304px] md:mr-[0px] z-[11] bg-fuchsia-100 bg-opacity-100 right-3 ss:right-8 flex flex-row flex-nowrap ls:space-x-3 transition-all duration-500'
             }
           >
             <div className="flex px-2 mr-1 items-center w-[30px] md:w-[270px]">
