@@ -164,9 +164,9 @@ const SideMenu: React.VFC<Props> = (props) => {
     props.onEvent('menu-click')
   }
 
-  const bgColor = props.color === 'light' ? 'bg-fuchsia-100' : 'bg-gray-700'
+  const bgColor = props.color === 'light' ? 'bg-gray-100' : 'bg-gray-700'
   const bgColorZeroOpacity =
-    props.color === 'light' ? 'bg-fuchsia-100' : 'bg-[#161515]'
+    props.color === 'light' ? 'bg-gray-200' : 'bg-[#161515]'
   const textColor = props.color === 'light' ? 'text-gray-800' : 'text-gray-300'
   const borderColor =
     props.color === 'light' ? 'border-gray-300' : 'border-gray-900'
@@ -264,8 +264,10 @@ const SideMenu: React.VFC<Props> = (props) => {
                         className={
                           props.mode === 'expanded'
                             ? props.path === item.href
-                              ? `flex p-2 ${bgColor} ${textColor} rounded bg-fuchsia-400 cursor-pointer  translate-x-1 shadow-lg shadow-cyan-700/50  transition-all duration-300`
+                              ? `flex p-2  ${textColor} rounded bg-fuchsia-400 cursor-pointer  translate-x-1 shadow-lg shadow-cyan-700/50  transition-all duration-300`
                               : `flex p-2 ${bgColor} ${textColor} rounded hover:bg-fuchsia-400 cursor-pointer  hover:translate-x-1 hover:shadow-lg hover:shadow-cyan-700/50  transition-all duration-300`
+                            : props.path === item.href
+                            ? 'flex p-2 bg-fuchsia-400 rounded hover:bg-fuchsia-400 cursor-pointer  hover:translate-x-1 hover:shadow-lg hover:shadow-cyan-700/50  transition-all duration-300'
                             : `flex p-2 ${bgColor} rounded hover:bg-fuchsia-400 cursor-pointer  hover:translate-x-1 hover:shadow-lg hover:shadow-cyan-700/50  transition-all duration-300`
                         }
                         title={item.title}

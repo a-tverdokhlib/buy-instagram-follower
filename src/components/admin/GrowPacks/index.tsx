@@ -176,13 +176,13 @@ const GrowPacks: React.VFC<GrowPackProps> = (props) => {
       <Head>
         <title>Admin Growth Plan</title>
       </Head>
-      <div className="admin-panel flex flex-col flex-wrap w-full min-h-screen bg-fuchsia-100">
+      <div className="admin-panel flex flex-col flex-wrap w-full min-h-screen bg-gray-100">
         {/* <Header /> */}
-        <div className="lg:top-16 h-[56px] flex items-center flex-row flex-nowrap bg-fuchsia-100">
-          <div className="fixed w-full h-[56px] p-3 ss:p-8 z-10 bg-fuchsia-100 rounded-b-lg shadow-lg shadow-gray-700"></div>
+        <div className="lg:top-16 h-[56px] flex items-center flex-row flex-nowrap bg-gray-100">
+          <div className="fixed w-full h-[56px] p-3 ss:p-8 z-10 bg-gray-100 rounded-b-lg shadow-lg shadow-gray-700"></div>
           <div className="fixed w-full h-[56px] z-[11] flex items-center p-3 ss:p-8 hover:cursor-pointer">
             <div
-              className="flex items-center -ml-5 px-5 py-2 rounded-full bg-fuchsia-100 bg-opacity-100"
+              className="flex items-center -ml-5 px-5 py-2 rounded-full bg-gray-100 bg-opacity-100"
               onClick={onAddNewClicked}
             >
               <span className="h-6 w-6 rounded-full flex items-center justify-center bg-gray-500 hover:bg-blue-500">
@@ -205,7 +205,7 @@ const GrowPacks: React.VFC<GrowPackProps> = (props) => {
               </span>
             </div>
           </div>
-          <div className="fixed  z-[11] bg-fuchsia-100 bg-opacity-100 right-3 ss:right-8 flex flex-row flex-nowrap ls:space-x-3">
+          <div className="fixed  z-[11] bg-gray-100 bg-opacity-100 right-3 ss:right-8 flex flex-row flex-nowrap ls:space-x-3">
             <div
               tabIndex={0}
               onClick={() => setDropdownActionVisible(!dropdownActionVisible)}

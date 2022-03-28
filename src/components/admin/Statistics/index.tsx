@@ -8,7 +8,7 @@ const Statistics: React.VFC<StatisticsProps> = (props) => {
       <Head>
         <title>Admin Statistics</title>
       </Head>
-      <div className="flex flex-col flex-wrap w-full min-h-screen px-3 md:px-5 bg-fuchsia-100">
+      <div className="flex flex-col flex-wrap w-full min-h-screen px-3 md:px-5 bg-gray-200">
         <Header />
       </div>
     </>
