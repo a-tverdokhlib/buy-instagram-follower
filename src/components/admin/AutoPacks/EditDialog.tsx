@@ -176,7 +176,7 @@ const EditDialog: React.VFC<EditDialogProps> = (props) => {
     setServiceItems(newItems)
   }
   return (
-    <div className="admin-edit-category fixed right-0 right-1 top-1 h-[97vh] w-[98%] flex-col flex-wrap sm:w-[640px] bg-[#e8e8e9] shadow-lg shadow-cyan-700/50 rounded-xl z-[1001] overflow-y-scroll ease-out duration-500">
+    <div className="admin-edit-category fixed right-1 top-1 h-[97vh] w-[98%] flex-col flex-wrap sm:w-[640px] bg-[#e8e8e9] shadow-lg shadow-cyan-700/50 rounded-xl z-[1001] overflow-y-scroll ease-out duration-500">
       <div className="flex fixed w-[98%] z-[100] sm:w-[640px] top-1 right-1 border-b-[1px] border-gray-300 bg-gray-100 p-5 rounded-t-xl">
         <span className="font-semibold text-black">
           <svg
@@ -648,8 +648,8 @@ const EditDialog: React.VFC<EditDialogProps> = (props) => {
       <div
         className={
           !awaiting
-            ? 'awaiting hidden fixed top-1 right-1 w-full h-[97vh] sm:w-[600px] bg-opacity-50 bg-gray-800 rounded-lg z-[1002]'
-            : 'awaiting fixed flex items-center justify-center top-1 right-1 w-full h-[97vh] sm:w-[600px] bg-opacity-50 bg-gray-800 rounded-lg z-[1002]'
+            ? 'awaiting hidden fixed top-1 right-1 w-full h-[97vh] sm:w-[640px] bg-opacity-50 bg-gray-800 rounded-lg z-[1002]'
+            : 'awaiting fixed flex items-center justify-center top-1 right-1 w-full h-[97vh] sm:w-[640px] bg-opacity-50 bg-gray-800 rounded-lg z-[1002]'
         }
       >
         <Loading />

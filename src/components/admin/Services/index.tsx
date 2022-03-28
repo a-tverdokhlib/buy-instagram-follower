@@ -410,9 +410,14 @@ const Services: React.VFC<ServiceProps> = (props) => {
                 </span>
               </div>
               {dropdownSortbyVisible ? (
-                <div className="dropdown-content hover:cursor-pointer w-24 !bg-gray-200 left-0">
+                <div className="dropdown-content hover:cursor-pointer w-60 !bg-gray-200 left-0">
                   <div className="flex flex-col flex-wrap text-sm">
-                    <a className="flex flex-row flex-nowrap w-full !text-black hover:!bg-gray-300">
+                    <a
+                      onClick={() => {
+                        setFilteredCategoryID('all')
+                      }}
+                      className="flex flex-row flex-nowrap w-full !text-black hover:!bg-gray-300"
+                    >
                       <span className="flex items-center">
                         <svg
                           className="h-4 w-4 text-red-500"
@@ -433,28 +438,21 @@ const Services: React.VFC<ServiceProps> = (props) => {
                         <span className="ml-3 whitespace-nowrap">Sort by</span>
                       </span>
                     </a>
-                    <a className="w-full !text-black hover:!bg-gray-300">
-                      <span className="flex items-center">
-                        <svg
-                          className="h-4 w-4 text-red-600"
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          strokeWidth="2"
-                          stroke="currentColor"
-                          fill="none"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
+                    {categories.map((category, id) => {
+                      return (
+                        <a
+                          onClick={() => {
+                            setFilteredCategoryID(category._id)
+                          }}
+                          key={id}
+                          className="w-full !text-black hover:!bg-gray-300"
                         >
-                          {' '}
-                          <path stroke="none" d="M0 0h24v24H0z" />{' '}
-                          <rect x="4" y="4" width="16" height="16" rx="4" />{' '}
-                          <circle cx="12" cy="12" r="3" />{' '}
-                          <line x1="16.5" y1="7.5" x2="16.5" y2="7.501" />
-                        </svg>
-                        <span className="ml-3">Instagram</span>
-                      </span>
-                    </a>
+                          <span className="flex items-center">
+                            <span className="ml-3">{category.name}</span>
+                          </span>
+                        </a>
+                      )
+                    })}
                   </div>
                 </div>
               ) : (
@@ -614,6 +612,30 @@ const Services: React.VFC<ServiceProps> = (props) => {
                           <path d="M20 12v6a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h9" />
                         </svg>
                         <span className="ml-3 font-semibold">Active</span>
+                      </span>
+                    </a>
+                    <a
+                      onClick={onOfferClick}
+                      className="w-full !text-black hover:!bg-gray-300"
+                    >
+                      <span className="flex items-center">
+                        <svg
+                          className="h-4 w-4 text-green-600"
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          strokeWidth="2"
+                          stroke="currentColor"
+                          fill="none"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        >
+                          {' '}
+                          <path stroke="none" d="M0 0h24v24H0z" />{' '}
+                          <polyline points="9 11 12 14 20 6" />{' '}
+                          <path d="M20 12v6a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h9" />
+                        </svg>
+                        <span className="ml-3 font-semibold">Offer</span>
                       </span>
                     </a>
                   </div>

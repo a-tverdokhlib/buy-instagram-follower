@@ -10,8 +10,10 @@ import type { Reducer } from 'react'
 
 import { adminAutoLikePackReducer } from '@/redux/reducers/admin/autoLikePacks'
 import { adminCategoryReducer } from '@/redux/reducers/admin/categories'
+import { adminFAQReducer } from '@/redux/reducers/admin/FAQs'
 import { adminGrowPackReducer } from '@/redux/reducers/admin/growPacks'
 import { adminOtherServiceReducer } from '@/redux/reducers/admin/otherServices'
+import { adminPackageFAQReducer } from '@/redux/reducers/admin/packageFAQs'
 import { adminPanelReducer } from '@/redux/reducers/admin/panel'
 import { adminProviderReducer } from '@/redux/reducers/admin/providers'
 import { adminServiceReducer } from '@/redux/reducers/admin/services'
@@ -45,6 +47,8 @@ const combinedReducer = combineReducers({
   adminGrowPack: adminGrowPackReducer,
   adminAutoLikePack: adminAutoLikePackReducer,
   adminOtherService: adminOtherServiceReducer,
+  adminPackageFAQ: adminPackageFAQReducer,
+  adminFAQ: adminFAQReducer,
 })
 
 const reducer: Reducer<ReturnType<typeof combinedReducer>, AnyAction> | any = (
