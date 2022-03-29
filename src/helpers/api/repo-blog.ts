@@ -38,11 +38,15 @@ async function create(blog) {
 
 async function update(_id, params) {
   const updateOne = await BlogModel.findOne({ _id: _id })
-  updateOne.question = params.question
-  updateOne.answer = params.answer
-  updateOne.imageUrl = params.imageUrl
+  updateOne.articleTitle = params.articleTitle
+  updateOne.urlSlug = params.urlSlug
+  updateOne.thumbImageUrl = params.thumbImageUrl
+  updateOne.postCategoryId = params.postCategoryId
   updateOne.isActive = params.isActive
   updateOne.sort = params.sort
+  updateOne.metaKeywords = params.metaKeywords
+  updateOne.metaDescription = params.metaDescription
+  updateOne.articleDescription = params.articleDescription
   await updateOne.save()
   return updateOne
 }

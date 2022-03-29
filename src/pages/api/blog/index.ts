@@ -16,15 +16,30 @@ export default connectDB(
 )
 
 async function createBlog(req, res) {
-  const { question, answer, imageUrl, isActive, sort, _id } = req.body
-  const BlogOne = await BlogRepo.find({ question: question })
+  const {
+    articleTitle,
+    urlSlug,
+    thumbImageUrl,
+    postCategoryId,
+    isActive,
+    sort,
+    metaKeywords,
+    metaDescription,
+    articleDescription,
+    _id,
+  } = req.body
+  const BlogOne = await BlogRepo.find({ articleTitle: articleTitle })
   if (!BlogOne) {
     const BlogAdded = await BlogRepo.create({
-      question: question,
-      answer: answer,
-      imageUrl: imageUrl,
+      articleTitle: articleTitle,
+      urlSlug: urlSlug,
+      thumbImageUrl: thumbImageUrl,
+      postCategoryId: postCategoryId,
       isActive: isActive,
       sort: sort,
+      metaKeywords: metaKeywords,
+      metaDescription: metaDescription,
+      articleDescription: articleDescription,
     }).catch((err) => {
       return res.status(500).json({
         msg: 'Error occured during save in database.',
@@ -43,13 +58,29 @@ async function createBlog(req, res) {
 }
 
 async function updateBlog(req, res) {
-  const { question, answer, imageUrl, isActive, sort, _id } = req.body
+  const {
+    articleTitle,
+    urlSlug,
+    thumbImageUrl,
+    postCategoryId,
+    isActive,
+    sort,
+    metaKeywords,
+    metaDescription,
+    articleDescription,
+    _id,
+  } = req.body
   const oldOne = await BlogRepo.find({ _id: _id })
   const updatedOne = await BlogRepo.update(_id, {
-    question: question,
-    answer: answer,
+    articleTitle: articleTitle,
+    urlSlug: urlSlug,
+    thumbImageUrl: thumbImageUrl,
+    postCategoryId: postCategoryId,
     isActive: isActive,
     sort: sort,
+    metaKeywords: metaKeywords,
+    metaDescription: metaDescription,
+    articleDescription: articleDescription,
   })
   return res.status(200).json({
     status: 'success',

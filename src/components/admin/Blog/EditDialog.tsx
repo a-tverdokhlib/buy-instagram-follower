@@ -1,5 +1,5 @@
 export type EditDialogProps = {
-  readonly FAQ: any
+  readonly blog: any
   readonly onClose: () => void
   readonly onBlogCreated: (d) => void
   readonly onBlogUpdated: (d) => void
@@ -25,8 +25,7 @@ import {
   setSideMenuLayout,
 } from '@/redux/reducers/admin/sideMenu'
 import { useAppDispatch, useAppSelector } from '@/redux/store/hooks'
-import { FAQService } from '@/services/FAQ'
-import { providerService } from '@/services/provider'
+import { blogService } from '@/services/blog'
 
 const SunEditor = dynamic(() => import('suneditor-react'), {
   ssr: false,
@@ -38,13 +37,30 @@ const EditDialog: React.VFC<EditDialogProps> = (props) => {
   const { layout } = useAppSelector((state) => state.sideMenu)
   const { sidebarColor } = useAppSelector((state) => state.sideMenu)
   // const [code, setCode] = useState('myMonacoEditor')
-  const [_id, set_Id] = useState(props.FAQ ? props.FAQ._id : '-1')
-  const [question, setQuestion] = useState(props.FAQ ? props.FAQ.question : '')
-  const [answer, setAnswer] = useState(props.FAQ ? props.FAQ.answer : '')
-  const [isActive, setIsActive] = useState(
-    props.FAQ ? props.FAQ.isActive : false,
+  const [_id, set_Id] = useState(props.blog ? props.blog._id : '-1')
+  const [articleTitle, setArticleTitle] = useState(
+    props.blog ? props.blog.articleTitle : '',
   )
-  const [sort, setSort] = useState(props.FAQ ? props.FAQ.sort : '')
+  const [urlSlug, setUrlSlug] = useState(props.blog ? props.blog.urlSlug : '')
+  const [thumbImageUrl, setThumbImageUrl] = useState(
+    props.blog ? props.blog.thumbImageUrl : '',
+  )
+  const [postCategoryId, setPostCategoryId] = useState(
+    props.blog ? props.blog.postCategoryId : '',
+  )
+  const [isActive, setIsActive] = useState(
+    props.blog ? props.blog.isActive : false,
+  )
+  const [sort, setSort] = useState(props.blog ? props.blog.sort : '')
+  const [metaKeywords, setMetaKeywords] = useState(
+    props.blog ? props.blog.metaKeywords : '',
+  )
+  const [metaDescription, setMetaDescription] = useState(
+    props.blog ? props.blog.metaDescription : '',
+  )
+  const [articleDescription, setArticleDescription] = useState(
+    props.blog ? props.blog.articleDescription : '',
+  )
   const [awaiting, setAwaiting] = useState(false)
 
   const validationSchema = Yup.object().shape({})
@@ -58,28 +74,28 @@ const EditDialog: React.VFC<EditDialogProps> = (props) => {
     setAwaiting(true)
     if (data._id === '-1' || data._id === '') {
       data['isActive'] = data['isActive'] === 'active' ? true : false
-      const FAQ = await FAQService.create({
+      const blog = await blogService.create({
         ...data,
-        answer: answer,
+        articleDescription: articleDescription,
       })
-      if (FAQ) {
+      if (blog) {
         setAwaiting(false)
         props.onClose()
-        props.onBlogCreated(FAQ.data)
+        props.onBlogCreated(blog.data)
       } else {
         setAwaiting(false)
         props.onClose()
       }
     } else {
       data['isActive'] = data['isActive'] === 'active' ? true : false
-      const FAQ = await FAQService.update({
+      const blog = await blogService.update({
         ...data,
-        answer: answer,
+        articleDescription: articleDescription,
       })
-      if (FAQ) {
+      if (blog) {
         setAwaiting(false)
         props.onClose()
-        props.onBlogUpdated(FAQ.data)
+        props.onBlogUpdated(blog.data)
       } else {
         setAwaiting(false)
         props.onClose()
@@ -130,7 +146,7 @@ const EditDialog: React.VFC<EditDialogProps> = (props) => {
       <form onSubmit={handleSubmit((d) => onSubmit(d))}>
         <div className="flex mt-14 flex-col flex-wrap w-full p-2 ls:p-5 space-y-5">
           <div className="flex flex-col flex-wrap w-full">
-            <div className="text-black">Question</div>
+            <div className="text-gray-700 font-semibold">Article Title *</div>
             <div className="flex w-full">
               <input
                 {...register('_id')}
@@ -139,31 +155,66 @@ const EditDialog: React.VFC<EditDialogProps> = (props) => {
                 value={_id}
               />
               <input
-                {...register('question')}
+                {...register('articleTitle')}
                 className="w-full h-12 p-3 bg-transparent border-[1px] border-gray-300 text-gray-900"
                 type="text"
                 placeholder=""
-                value={question}
-                onChange={(e) => setQuestion(e.target.value)}
+                value={articleTitle}
+                onChange={(e) => setArticleTitle(e.target.value)}
               />
             </div>
           </div>
-          <div className="flex flex-row flex-nowrap w-full space-x-3">
+          <div className="flex flex-col flex-wrap w-full">
+            <div className="text-gray-700 font-semibold">URL Slug *</div>
+            <div className="flex w-full">
+              <span className="h-12 p-3 bg-transparent border-[1px] border-gray-300 text-gray-700">
+                https://goread.io/blog
+              </span>
+              <input
+                {...register('urlSlug')}
+                type="text"
+                className="w-full h-12 p-3 bg-transparent border-[1px] border-gray-300 text-black"
+                placeholder=""
+                value={urlSlug}
+                onChange={(e) => setUrlSlug(e.target.value)}
+              />
+            </div>
+          </div>
+          <div className="flex flex-col flex-wrap w-full">
+            <div className="text-gray-700 font-semibold">
+              Image thumbnail (900 * 500px) *
+            </div>
+            <div className="flex w-full">
+              <input
+                {...register('thumbImageUrl')}
+                className="w-full h-12 p-3 bg-transparent border-[1px] border-gray-300 text-gray-900"
+                type="text"
+                placeholder=""
+                value={thumbImageUrl}
+                onChange={(e) => setThumbImageUrl(e.target.value)}
+              />
+            </div>
+          </div>
+          <div className="flex flex-col flex-wrap space-x-0 space-y-3 sm:flex-row sm:flex-nowrap w-full sm:space-x-3 sm:space-y-0">
             <div className="flex flex-col flex-wrap w-full">
-              <div className="text-black">Default Sorting Number</div>
+              <div className="text-gray-700 font-semibold">
+                Post Categories *
+              </div>
               <div className="flex w-full">
-                <input
-                  {...register('sort')}
-                  className="w-full h-12 p-3 bg-transparent border-[1px] border-gray-300 text-black"
-                  type="number"
+                <select
+                  {...register('postCategoryId')}
+                  className="w-full h-12 p-3 bg-transparent border-[1px] border-gray-300 text-gray-500"
                   placeholder=""
-                  value={sort}
-                  onChange={(e) => setSort(e.target.value)}
-                />
+                  value={postCategoryId}
+                  onChange={(e) => setPostCategoryId(e.target.value)}
+                >
+                  <option value="1">Instagram</option>
+                  <option value="2">Other</option>
+                </select>
               </div>
             </div>
             <div className="flex flex-col flex-wrap w-full">
-              <div className="text-black">Status</div>
+              <div className="text-gray-700 font-semibold">Status</div>
               <div className="flex w-full">
                 <select
                   {...register('isActive')}
@@ -179,11 +230,78 @@ const EditDialog: React.VFC<EditDialogProps> = (props) => {
                 </select>
               </div>
             </div>
+            <div className="flex flex-col flex-wrap w-full">
+              <div className="text-gray-700 font-semibold">Sorting Number</div>
+              <div className="flex w-full">
+                <input
+                  {...register('sort')}
+                  className="w-full h-12 p-3 bg-transparent border-[1px] border-gray-300 text-black"
+                  type="number"
+                  placeholder=""
+                  value={sort}
+                  onChange={(e) => setSort(e.target.value)}
+                />
+              </div>
+            </div>
+          </div>
+          <div className="flex flex-col flex-wrap w-full">
+            <div className="text-black">
+              <span className="flex items-center">
+                <svg
+                  className="h-6 w-6 text-gray-800"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  {' '}
+                  <path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3" />{' '}
+                  <line x1="8" y1="12" x2="16" y2="12" />
+                </svg>
+                <span>
+                  <span className="ml-3 text-lg font-semibold">
+                    Page SEO informations
+                  </span>
+                </span>
+              </span>
+            </div>
+            <div className="flex flex-col flex-wrap w-full">
+              <div className="text-gray-700 font-semibold">Meta Keywords</div>
+              <div className="flex w-full">
+                <textarea
+                  {...register('metaKeywords')}
+                  className="w-full p-3 bg-transparent border-[1px] border-gray-300 text-black"
+                  placeholder=""
+                  rows={3}
+                  value={metaKeywords}
+                  onChange={(e) => setMetaKeywords(e.target.value)}
+                />
+              </div>
+            </div>
+            <div className="flex flex-col flex-wrap w-full">
+              <div className="text-gray-700 font-semibold">
+                Meta description
+              </div>
+              <div className="flex w-full">
+                <textarea
+                  {...register('metaDescription')}
+                  className="w-full p-3 bg-transparent border-[1px] border-gray-300 text-black"
+                  placeholder=""
+                  rows={3}
+                  value={metaDescription}
+                  onChange={(e) => setMetaDescription(e.target.value)}
+                />
+              </div>
+            </div>
           </div>
           <div className="flex flex-col flex-wrap w-full">
             <div className="flex">
               <span>
-                <span className="text-black">Answer</span>
+                <span className="text-gray-700 font-semibold">
+                  Article description
+                </span>
               </span>
             </div>
             <div className="flex">
@@ -194,10 +312,10 @@ const EditDialog: React.VFC<EditDialogProps> = (props) => {
                   // plugins: [font] set plugins, all plugins are set by default
                   // Other option
                 }}
-                setContents={answer}
+                setContents={articleDescription}
                 onChange={(content) => {
                   // setToggle((value) => !value)
-                  setAnswer(content)
+                  setArticleDescription(content)
                 }}
               />
             </div>

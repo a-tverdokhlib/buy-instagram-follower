@@ -11,7 +11,7 @@ module.exports = {
     dirs: ['src'],
   },
   images: {
-    domains: ['instagram.com', 'images.firstpost.com'],
+    domains: ['instagram.com', 'images.firstpost.com', 'goread.io'],
   },
   typescript: {
     ignoreBuildErrors: true,

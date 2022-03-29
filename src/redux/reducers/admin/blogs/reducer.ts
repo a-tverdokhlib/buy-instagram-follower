@@ -42,11 +42,15 @@ export const adminBlogReducer = createReducer(initialState, (builder) => {
     const blogList = [
       ...state.blogs.map((item) => {
         if (item._id === blog._id) {
-          item.question = blog.question
-          item.answer = blog.answer
-          item.imageUrl = blog.imageUrl
+          item.articleTitle = blog.articleTitle
+          item.urlSlug = blog.urlSlug
+          item.thumbImageUrl = blog.thumbImageUrl
+          item.postCategoryId = blog.postCategoryId
           item.isActive = blog.isActive
           item.sort = blog.sort
+          item.metaKeywords = blog.metaKeywords
+          item.metaDescription = blog.metaDescription
+          item.articleDescription = blog.articleDescription
           return item
         } else {
           return item

@@ -1,11 +1,15 @@
 import mongoose from 'mongoose'
 
 const BlogSchema = new mongoose.Schema({
-  question: String,
-  answer: String,
-  imageUrl: String,
+  articleTitle: String,
+  urlSlug: String,
+  thumbImageUrl: String,
+  postCategoryId: String,
   isActive: Boolean,
   sort: Number,
+  metaKeywords: String,
+  metaDescription: String,
+  articleDescription: String,
   createdAt: {
     type: Date,
     default: Date.now,

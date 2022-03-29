@@ -7,6 +7,7 @@ type Props = {
   readonly onCheckedListUpdated: (data) => void
 }
 import moment from 'moment'
+import Image from 'next/image'
 import { ForwardRefRenderFunction, useEffect, useState } from 'react'
 import React from 'react'
 import Switch from 'react-switch'
@@ -18,21 +19,22 @@ const MyComponentRenderFn: ForwardRefRenderFunction<any, Props> = (
   ref,
 ) => {
   const [confirmOpen, setConfirmOpen] = useState(false)
-  const [categoryToDelete, setCategoryToDelete] = useState({})
+  const [blogToDelete, setBlogToDelete] = useState({})
   const [checkedList, setCheckedList] = useState<String[]>([])
   const [allChecked, setAllChecked] = useState(false)
   const clearCheckedList = () => {
     setCheckedList([])
   }
-  const onEditClick = (category) => {
-    props.onEditClicked(category)
+  const onEditClick = (blog) => {
+    props.onEditClicked(blog)
   }
-  const onRemoveClick = (category) => {
-    setCategoryToDelete(category)
+  const onViewClick = (blog) => {}
+  const onRemoveClick = (blog) => {
+    setBlogToDelete(blog)
     setConfirmOpen(true)
   }
   const deleteConfirmed = () => {
-    props.onRemoveConfirmed(categoryToDelete)
+    props.onRemoveConfirmed(blogToDelete)
   }
   const onAllCheckClicked = (e) => {
     if (checkedList.length === 0) {
@@ -87,13 +89,19 @@ const MyComponentRenderFn: ForwardRefRenderFunction<any, Props> = (
                     scope="col"
                     className="w-[240px] text-base font-medium text-white px-6 py-4 border border-slate-400"
                   >
-                    Question
+                    Title
                   </th>
                   <th
                     scope="col"
-                    className="text-base font-medium text-white px-5 py-4 border border-slate-400"
+                    className="w-[240px] text-base font-medium text-white px-5 py-4 border border-slate-400"
                   >
-                    Answer
+                    Image Thumbnail
+                  </th>
+                  <th
+                    scope="col"
+                    className="w-[80px] text-base font-medium whitespace-nowrap text-white px-3 py-4 border border-slate-400"
+                  >
+                    Post Categories
                   </th>
                   <th
                     scope="col"
@@ -122,10 +130,10 @@ const MyComponentRenderFn: ForwardRefRenderFunction<any, Props> = (
                 </tr>
               </thead>
               <tbody>
-                {props.blogs.map((FAQ, id) => {
+                {props.blogs.map((blog, id) => {
                   return (
                     <tr
-                      key={FAQ._id}
+                      key={blog._id}
                       className="bg-white border-b hover:bg-gray-100"
                     >
                       <td className="px-6 py-4 whitespace-nowrap text-base font-medium text-gray-900 border border-slate-300">
@@ -133,45 +141,50 @@ const MyComponentRenderFn: ForwardRefRenderFunction<any, Props> = (
                           className="h-4 w-4"
                           type="checkbox"
                           checked={
-                            checkedList.indexOf(FAQ._id) !== -1 ? true : false
+                            checkedList.indexOf(blog._id) !== -1 ? true : false
                           }
-                          onChange={(e) => onCheckClicked(e, FAQ)}
+                          onChange={(e) => onCheckClicked(e, blog)}
                         />
                       </td>
                       <td className="text-base min-w-[200px] max-w-[240px] text-gray-900 px-1 py-4 border border-slate-300">
                         <span className="w-full break-words">
-                          {FAQ.question}
+                          {blog.articleTitle}
                         </span>
                       </td>
-                      <td className="text-base min-w-[300px] text-gray-900 px-1 py-4 border border-slate-300">
+                      <td className="text-base min-w-[240px] text-gray-900 px-1 py-4 border border-slate-300">
                         <span className="w-full break-words">
-                          {FAQ.answer
-                            ? removeHTML(FAQ.answer).substring(0, 125)
-                            : ''}
-                          ...
+                          <Image
+                            src={blog.thumbImageUrl}
+                            alt="Thumbnail"
+                            width={240}
+                            height={140}
+                          />
                         </span>
                       </td>
                       <td className="text-base text-gray-700 px-1 py-4 border border-slate-300">
+                        {blog.postCategoryId === '1' ? 'Instagram' : 'Other'}
+                      </td>
+                      <td className="text-base text-gray-700 px-1 py-4 border border-slate-300">
                         {moment
-                          .utc(FAQ.createdAt)
+                          .utc(blog.createdAt)
                           .local()
                           .format('Y-MM-DD hh:mm a')}
                       </td>
                       <td className="text-base text-gray-900 px-1 py-4 border border-slate-300">
-                        {FAQ.sort}
+                        {blog.sort}
                       </td>
                       <td className="text-base text-gray-700 px-1 py-4 whitespace-nowrap border border-slate-300">
                         <Switch
                           height={25}
                           width={50}
-                          onChange={(e) => onSwitchChange(e, FAQ)}
-                          checked={FAQ.isActive}
+                          onChange={(e) => onSwitchChange(e, blog)}
+                          checked={blog.isActive}
                         />
                       </td>
                       <td className="text-base text-gray-900 whitespace-nowrap border border-slate-300 px-3">
                         <div className="flex flex-row flex-nowrap w-full justify-center items-center">
                           <span
-                            onClick={() => onEditClick(FAQ)}
+                            onClick={() => onEditClick(blog)}
                             className="flex w-10 h-full justify-center items-center py-3 border-l-[1px] border-t-[1px] border-b-[1px] border-blue-600 hover:cursor-pointer hover:bg-blue-600 text-blue-600 hover:text-white  transition-all duration-500 delay-100"
                           >
                             <svg
@@ -190,7 +203,25 @@ const MyComponentRenderFn: ForwardRefRenderFunction<any, Props> = (
                             </svg>
                           </span>
                           <span
-                            onClick={() => onRemoveClick(FAQ)}
+                            onClick={() => onViewClick(blog)}
+                            className="flex w-10 h-full justify-center items-center py-3 border-b-[1px] border-t-[1px] border-l-[1px] border-blue-600 hover:cursor-pointer hover:bg-blue-600 text-blue-600 hover:text-white transition-all duration-500 delay-100"
+                          >
+                            <svg
+                              className="h-4 w-4"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke="currentColor"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="2"
+                                d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"
+                              />
+                            </svg>
+                          </span>
+                          <span
+                            onClick={() => onRemoveClick(blog)}
                             className="flex w-10 h-full justify-center items-center py-3 border-[1px] border-red-600 hover:cursor-pointer hover:bg-red-600 text-red-600 hover:text-white  transition-all duration-500 delay-100"
                           >
                             <svg

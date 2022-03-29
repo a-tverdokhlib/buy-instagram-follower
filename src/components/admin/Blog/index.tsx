@@ -449,7 +449,7 @@ const Blog: React.VFC<BlogProps> = (props) => {
 
         {editDlgShow ? (
           <EditDialog
-            FAQ={blogToEdit}
+            blog={blogToEdit}
             onClose={onCloseEditDialog}
             onBlogCreated={(d) => onBlogCreated(d)}
             onBlogUpdated={(d) => onBlogUpdated(d)}
