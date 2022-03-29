@@ -243,7 +243,7 @@ const PackageFAQs: React.VFC<PackageFAQProps> = (props) => {
       <div className="admin-panel flex flex-col flex-wrap w-full min-h-screen bg-gray-100">
         {/* <Header /> */}
         <div className="lg:top-16 h-[56px] flex items-center flex-row flex-nowrap bg-gray-100">
-          <div className="fixed w-full h-[56px] p-3 ss:p-8 z-10 bg-gray-100 rounded-b-lg shadow-lg shadow-gray-700"></div>
+          <div className="fixed w-full h-[56px] p-3 ss:p-8 z-10 bg-gray-100 rounded-b-lg shadow-lg shadow-gray-200 border-b-[1px] border-gray-300"></div>
           <div className="fixed w-full h-[56px] z-[11] flex items-center p-3 ss:p-8 hover:cursor-pointer">
             <div
               className="flex items-center -ml-5 px-5 py-2 rounded-full bg-gray-100 bg-opacity-100"

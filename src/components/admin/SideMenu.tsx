@@ -169,7 +169,9 @@ const SideMenu: React.VFC<Props> = (props) => {
     props.color === 'light' ? 'bg-gray-200' : 'bg-[#161515]'
   const textColor = props.color === 'light' ? 'text-gray-800' : 'text-gray-300'
   const borderColor =
-    props.color === 'light' ? 'border-gray-300' : 'border-gray-900'
+    props.color === 'light' ? 'border-gray-300' : 'border-gray-600'
+  const shadowColor =
+    props.color === 'light' ? 'shadow-gray-200' : 'shadow-cyan-600/50'
   const menuItemClick = (item) => {
     if (item.href !== '') {
       if (window.innerWidth < 1024) dispatch(setSideMenuLayout('expanded'))
@@ -192,7 +194,7 @@ const SideMenu: React.VFC<Props> = (props) => {
         // style={style2}
         className={
           props.mode === 'expanded'
-            ? 'flex fixed items-center z-50 top-0 w-full lg:visible lg:w-[80px] xl:w-[270px] p-2 bg-[#343444] hover:shadow-lg hover:shadow-cyan-700/50  transition-all duration-300 rounded-xl'
+            ? `flex fixed items-center z-50 top-0 w-full lg:visible lg:w-[80px] xl:w-[270px] p-2 ${bgColor} ${borderColor} border-r-[1px]  border-b-[1px] hover:shadow-lg hover:shadow-cyan-700/50  transition-all duration-300 shadow-lg ${shadowColor}`
             : 'flex fixed items-center z-50 top-0 w-full lg:visible lg:w-[80px] p-2 bg-[#343444] hover:shadow-lg hover:shadow-cyan-700/50  transition-all duration-300 rounded-xl'
         }
       >
@@ -214,7 +216,7 @@ const SideMenu: React.VFC<Props> = (props) => {
             />
           </svg>
         </div>
-        <div className="flex items-center relative w-[120px] h-[20px] ls:h-[45px] ls:w-full ls:full hover:cursor-pointer">
+        <div className="flex items-center relative w-[120px] h-[20px] ls:h-[44px] ls:w-full ls:full hover:cursor-pointer">
           <div
             className={
               props.mode === 'expanded'
