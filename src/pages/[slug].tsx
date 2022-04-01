@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 
+import Blog from '@/components/Blog'
 import BuyAutoInstagramFollowers from '@/components/Buy-Auto-Instagram-Followers'
 import BuyAutoInstagramLikes from '@/components/Buy-Auto-Instagram-Likes'
 import BuyCustomInstagramComments from '@/components/Buy-Custom-Instagram-Comments'
@@ -33,6 +34,7 @@ const Slug = (props) => {
     return <BuyAutoInstagramFollowers />
   else if (slug === 'buy-custom-instagram-comments')
     return <BuyCustomInstagramComments />
+  else if (slug === 'blog') return <Blog />
   else return <></>
 }
 
@@ -53,6 +55,7 @@ export async function getStaticPaths() {
   return { paths, fallback: false }
 }
 export async function getStaticProps({ params }) {
+  if (!params) return { props: {} }
   const resp = await categoryService.searchByUrlSlug(params.slug)
   return { props: { category: resp.data, services: resp.services } }
 }
