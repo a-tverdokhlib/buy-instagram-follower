@@ -15,6 +15,7 @@ export default connectDB(
 
 async function searchByCategory(req, res) {
   const { categoryId } = req.query
+  console.log('CategoryID =>', categoryId)
   if (categoryId === undefined) {
     const services = await serviceRepo.getAll()
     return res.status(200).json({

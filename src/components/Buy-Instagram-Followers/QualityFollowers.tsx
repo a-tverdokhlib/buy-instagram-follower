@@ -3,65 +3,10 @@ import { useRef, useState } from 'react'
 import { MySwipper } from '@/components/atoms/MySwipper'
 import { ProductCard } from '@/components/organisms/ProductCard'
 
-const productCards = [
-  {
-    title: '50',
-    subTitle: '50 Instagram Followers',
-    avgMark: 5,
-    reviewCount: 4,
-    cost: 0.89,
-    isPopular: false,
-  },
-  {
-    title: '60',
-    subTitle: 'Cheap Instagram Followers $1',
-    avgMark: 5,
-    reviewCount: 2,
-    cost: 1,
-    isPopular: false,
-  },
-  {
-    title: '100',
-    subTitle: '100 Instagram Followers',
-    avgMark: 5,
-    reviewCount: 4,
-    cost: 1.89,
-    isPopular: false,
-  },
-  {
-    title: '300',
-    subTitle: '300 Instagram Followers',
-    avgMark: 5,
-    reviewCount: 4,
-    cost: 2.99,
-    isPopular: true,
-  },
-  {
-    title: '500',
-    subTitle: '500 Instagram Followers',
-    reviewCount: 0,
-    cost: 4.89,
-    isPopular: false,
-  },
-  {
-    title: '1000',
-    subTitle: '1000 Instagram Followers',
-    avgMark: 5,
-    reviewCount: 3,
-    cost: 8.59,
-    isPopular: true,
-  },
-  {
-    title: '2500',
-    subTitle: '2500 Instagram Followers',
-    avgMark: 5,
-    reviewCount: 1,
-    cost: 19.99,
-    isPopular: false,
-  },
-]
-
-export const QualityFollowers: React.VFC = () => {
+type Props = {
+  readonly services: any
+}
+export const QualityFollowers: React.VFC<Props> = (props: any) => {
   const swiperRef = useRef<any>(null)
   const prevRef = useRef<any>(null)
   const nextRef = useRef<any>(null)
@@ -153,15 +98,16 @@ export const QualityFollowers: React.VFC = () => {
         swiperReachStart={swiperReachStart}
         swiperReachEnd={swiperReachEnd}
       >
-        {productCards.map((item, id) => {
+        {props.services.map((item, id) => {
           return (
             <ProductCard
               key={id}
-              title={item.title}
-              subTitle={item.subTitle}
+              title={item.quantity}
+              subTitle={item.name}
               reviewCount={item.reviewCount}
-              cost={item.cost}
-              isPopular={item.isPopular}
+              cost={item.price}
+              isPopular={item.isMostPopular}
+              urlSlug={item.urlSlug}
             />
           )
         })}
@@ -169,16 +115,3 @@ export const QualityFollowers: React.VFC = () => {
     </>
   )
 }
-// export async function getStaticProps() {
-//   // Call an external API endpoint to get posts
-//   const res = await fetch('https://.../posts')
-//   const posts = await res.json()
-
-//   // By returning { props: { posts } }, the Blog component
-//   // will receive `posts` as a prop at build time
-//   return {
-//     props: {
-//       posts,
-//     },
-//   }
-// }

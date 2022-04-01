@@ -8,6 +8,7 @@ export const serviceRepo = {
   getAll: () => allServices(),
   find: (x) => findService(x),
   findServices: (x) => findServices(x),
+  findServicesInBrief: (x) => findServicesInBrief(x),
   create,
   update,
   delete: _delete,
@@ -34,6 +35,30 @@ async function findServices(where) {
   const services = await serviceModel
     .find(where)
     .populate({ path: 'offer', model: 'Offer' })
+  return services
+}
+
+async function findServicesInBrief(where) {
+  const services = await serviceModel.find(where).select({
+    _id: 1,
+    name: 1,
+    categoryId: 1,
+    parentPackId: 1,
+    orderForId: 1,
+    coupanCode: 1,
+    coupanDiscount: 1,
+    quantity: 1,
+    price: 1,
+    isActive: 1,
+    sortNumber: 1,
+    imageUrl: 1,
+    urlSlug: 1,
+    pageTitle: 1,
+    metaKeywords: 1,
+    isMostPopular: 1,
+    isShownInActiveTab: 1,
+    isInstagramSaves: 1,
+  })
   return services
 }
 

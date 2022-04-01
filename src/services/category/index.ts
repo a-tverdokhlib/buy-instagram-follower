@@ -17,6 +17,7 @@ export const categoryService = {
   deleteMany,
   deleteInactive,
   setStatus,
+  searchByUrlSlug,
 }
 
 function search(keyword) {
@@ -77,5 +78,13 @@ function setStatus(_ids, status) {
     })
     .then((data) => {
       return data
+    })
+}
+
+function searchByUrlSlug(name) {
+  return fetchWrapper
+    .get(`${publicRuntimeConfig.apiUrl}/category/search?urlSlug=${name}`)
+    .then((category) => {
+      return category
     })
 }

@@ -13,25 +13,10 @@ const Package: React.VFC<PackageProps> = (props) => {
     </div>
   )
 }
-const packageList = [
-  {
-    packageId: 0,
-    packageName: 'Buy 800 Real Instagram Followers',
-  },
-  {
-    packageId: 1,
-    packageName: 'Buy 2000 Real Instagram Followers',
-  },
-  {
-    packageId: 2,
-    packageName: 'Buy 6000 Real Instagram Followers',
-  },
-  {
-    packageId: 3,
-    packageName: 'Buy 12000 Real Instagram Followers',
-  },
-]
-export const ActiveFollowerPackages: React.VFC = () => {
+type Props = {
+  readonly packageList: any
+}
+export const ActiveFollowerPackages: React.VFC<Props> = (props) => {
   return (
     <div className="flex flex-col flex-wrap w-full items-center bg-[#222232] min-h-screen">
       <div className="flex md:mt-24 flex-col flex-wrap pb-9 md:w-11/12 lg:w-11/12 bg-transparent bg-opacity-50 rounded-xl">
@@ -45,54 +30,24 @@ export const ActiveFollowerPackages: React.VFC = () => {
           </span>
         </div>
         <div className="grid grid-cols-1 gap-5 justify-center p-5 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          <ProductCard
-            img={
-              <Image
-                src="/img/avt-template.jpg"
-                alt="Avatar"
-                width="100%"
-                height="100%"
+          {props.packageList.map((item, id) => {
+            return (
+              <ProductCard
+                key={id}
+                img={
+                  <Image
+                    src="/img/avt-template.jpg"
+                    alt="Avatar"
+                    width="100%"
+                    height="100%"
+                  />
+                }
+                title={item.name}
+                description={item.name}
+                urlSlug={item.urlSlug}
               />
-            }
-            title="800 Real Instagram Followers"
-            description="800 Real Instagram Followers!"
-          />
-          <ProductCard
-            img={
-              <Image
-                src="/img/avt-template.jpg"
-                alt="Avatar"
-                width="80px"
-                height="80px"
-              />
-            }
-            title="2000 Real Instagram Followers"
-            description="2000 Real Instagram Followers."
-          />
-          <ProductCard
-            img={
-              <Image
-                src="/img/avt-template.jpg"
-                alt="Avatar"
-                width="80px"
-                height="80px"
-              />
-            }
-            title="6000 Real Instagram Followers"
-            description="6000 Real Instagram Followers"
-          />
-          <ProductCard
-            img={
-              <Image
-                src="/img/avt-template.jpg"
-                alt="Avatar"
-                width="80px"
-                height="80px"
-              />
-            }
-            title="12000 Real Instagram Followers"
-            description="12000 Real Instagram Followers"
-          />
+            )
+          })}
         </div>
       </div>
     </div>

@@ -1,3 +1,5 @@
+import router from 'next/router'
+
 type Props = {
   readonly title: string
   readonly subTitle: string
@@ -5,6 +7,7 @@ type Props = {
   readonly reviewCount: number
   readonly cost: number
   readonly isPopular: boolean
+  readonly urlSlug: string
 }
 
 export const ProductCard: React.VFC<Props> = (props) => {
@@ -214,7 +217,10 @@ export const ProductCard: React.VFC<Props> = (props) => {
         <span>Order Now</span>
       </div>
       <div className="btn-buyit justify-center absolute">
-        <div className="flex space-x-1 rounded-full py-2 gradient-btn-2 justify-center hover:cursor-pointer">
+        <div
+          onClick={() => router.push(props.urlSlug)}
+          className="flex space-x-1 rounded-full py-2 gradient-btn-2 justify-center hover:cursor-pointer"
+        >
           <svg
             className="h-5 w-5 text-white z-10"
             width="24"

@@ -1,16 +1,12 @@
+import parse from 'html-react-parser'
 import Router, { NextRouter } from 'next/router'
 import { useEffect, useRef, useState } from 'react'
+import { renderToString } from 'react-dom/server'
 
 import { ActiveFollowerPackages } from '@/components/Buy-Instagram-Followers/ActiveFollowerPackages'
 import { Banner } from '@/components/Buy-Instagram-Followers/Banner'
-import { Description1 } from '@/components/Buy-Instagram-Followers/Description1'
-import { Description2 } from '@/components/Buy-Instagram-Followers/Description2'
-import { Description3 } from '@/components/Buy-Instagram-Followers/Description3'
-import { Description4 } from '@/components/Buy-Instagram-Followers/Description4'
 import { FAQ } from '@/components/Buy-Instagram-Followers/FAQ'
 import { Feedback } from '@/components/Buy-Instagram-Followers/Feedback'
-import { FollowerPackages } from '@/components/Buy-Instagram-Followers/FollowerPackages'
-import { LikePackages } from '@/components/Buy-Instagram-Followers/LikesPackages'
 import { Footer } from '@/components/organisms/Footer'
 import { Header } from '@/components/organisms/Header'
 import { HowTo } from '@/components/organisms/HowTo'
@@ -31,7 +27,7 @@ function restoreScrollPosition(url: string, pos: number) {
   }
 }
 
-const BuyInstagramFollowers: React.VFC = () => {
+const BuyInstagramFollowers: React.VFC = (props: any) => {
   const dispatch = useAppDispatch()
   const { followerType } = useAppSelector((state) => state.followers)
   const { scrollPosition } = useAppSelector((state) => state.followers)
@@ -97,17 +93,27 @@ const BuyInstagramFollowers: React.VFC = () => {
         className="flex flex-1 flex-col w-full top-0 min-h-screen p-0"
       >
         <Banner
+          {...props}
           onClickedHighQuality={onClickedHighQuality}
           onClickedActiveFollowers={onClickedActiveFollowers}
           followerType={getFollowerType}
         />
-        <Description1 />
-        <FollowerPackages />
-        <Description2 />
-        <LikePackages />
-        <Description3 />
-        <ActiveFollowerPackages />
-        <Description4 />
+        <div className="service-description flex flex-col flex-wrap w-full p-3 ls:p-5 items-center justify-center bg-[#222232] text-gray-400">
+          {parse(
+            props.category.content.replace(
+              '<div class="active-packages"><span>Active Instagram Follower packages</span></div>',
+              renderToString(
+                <ActiveFollowerPackages
+                  packageList={[
+                    ...props.services.filter(
+                      (item) => item.isShownInActiveTab === true,
+                    ),
+                  ]}
+                />,
+              ),
+            ),
+          )}
+        </div>
         <HowTo />
         <FAQ />
         <Feedback />
@@ -119,10 +125,3 @@ const BuyInstagramFollowers: React.VFC = () => {
 }
 
 export default BuyInstagramFollowers
-
-export async function getStaticProps({ params }) {
-  return {
-    props: {},
-    revalidate: false, // One year in seconds
-  }
-}

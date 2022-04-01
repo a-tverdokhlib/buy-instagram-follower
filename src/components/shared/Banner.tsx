@@ -1,13 +1,14 @@
-import { ActiveFollowers } from './ActiveFollowers'
-import { QualityFollowers } from './QualityFollowers'
+// import { ActiveFollowers } from './ActiveFollowers'
+// import { QualityFollowers } from './QualityFollowers'
 
 type Props = {
+  readonly category: any
   readonly onClickedHighQuality: () => void
   readonly onClickedActiveFollowers: () => void
   readonly followerType: () => string
 }
 
-export const Banner: React.VFC<Props> = (props: any) => {
+export const Banner: React.VFC<Props> = (props) => {
   return (
     <div className="flex flex-col flex-wrap w-full bg-[#222232] min-h-screen">
       <div className="flex flex-col flex-wrap px-3 py-16 ls:p-16 space-y-3 justify-center">
@@ -54,23 +55,11 @@ export const Banner: React.VFC<Props> = (props: any) => {
         <div className="text-white text-center">What’s the difference?</div>
         <div className="h-10"></div>
         <div className="w-full justify-center items-center mt-16">
-          {props.followerType() === 'highQuality' ? (
-            <QualityFollowers
-              services={[
-                ...props.services.filter(
-                  (service) => service.isShownInActiveTab !== true,
-                ),
-              ]}
-            />
+          {/* {props.followerType() === 'highQuality' ? (
+            <QualityFollowers />
           ) : (
-            <ActiveFollowers
-              services={[
-                ...props.services.filter(
-                  (service) => service.isShownInActiveTab === true,
-                ),
-              ]}
-            />
-          )}
+            <ActiveFollowers />
+          )} */}
         </div>
       </div>
     </div>

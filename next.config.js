@@ -5,7 +5,7 @@ module.exports = {
     MONGODB_URI: 'mongodb://localhost:27017/buy-insta',
   },
   publicRuntimeConfig: {
-    apiUrl: 'https://localhost:3000/api',
+    apiUrl: 'http://localhost:3001/api',
   },
   eslint: {
     dirs: ['src'],
