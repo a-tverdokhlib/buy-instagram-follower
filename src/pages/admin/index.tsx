@@ -78,3 +78,6 @@ const Admin: React.VFC = () => {
 }
 
 export default Admin
+export async function getStaticProps() {
+  return { props: {} }
+}

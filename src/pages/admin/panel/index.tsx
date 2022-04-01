@@ -205,3 +205,6 @@ const Panel: React.VFC = () => {
   )
 }
 export default Panel
+export async function getStaticProps() {
+  return { props: {} }
+}

@@ -110,3 +110,6 @@ const BuyInstagramStoryViews: React.VFC = () => {
   )
 }
 export default BuyInstagramStoryViews
+export async function getStaticProps() {
+  return { props: {} }
+}
