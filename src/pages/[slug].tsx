@@ -41,26 +41,26 @@ const Slug = (props) => {
 export default Slug
 
 export async function getStaticPaths() {
-  // const resp = await categoryService.search('')
-  // const categories = resp.data
+  const resp = await categoryService.search('')
+  const categories = resp.data
 
-  // // Get the paths we want to pre-render based on posts
-  // let paths = categories
-  //   .filter((category) => category.isActive === true)
-  //   .map((category) => ({
-  //     params: { slug: category.urlSlug },
-  //   }))
-  // paths = [
-  //   ...paths,
-  //   { params: { slug: '/' } },
-  //   { params: { slug: '/admin' } },
-  //   { params: { slug: '/admin/panel' } },
-  //   { params: { slug: '/admin/auth' } },
-  // ]
-  // console.log('Paths=>', paths)
+  // Get the paths we want to pre-render based on posts
+  let paths = categories
+    .filter((category) => category.isActive === true)
+    .map((category) => ({
+      params: { slug: category.urlSlug },
+    }))
+  paths = [
+    ...paths,
+    { params: { slug: '/' } },
+    { params: { slug: '/admin' } },
+    { params: { slug: '/admin/panel' } },
+    { params: { slug: '/admin/auth' } },
+  ]
+  console.log('Paths=>', paths)
   // We'll pre-render only these paths at build time.
   // { fallback: false } means other routes should 404.
-  return { paths: [], fallback: false }
+  return { paths, fallback: false }
 }
 export async function getStaticProps({ params }) {
   // if (
