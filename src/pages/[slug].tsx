@@ -52,10 +52,10 @@ export async function getStaticPaths() {
     }))
   paths = [
     ...paths,
-    { params: { slug: 'blog' } },
-    { params: { slug: 'admin' } },
-    { params: { slug: 'admin/panel' } },
-    { params: { slug: 'admin/auth' } },
+    { params: { slug: '/' } },
+    { params: { slug: '/admin' } },
+    { params: { slug: '/admin/panel' } },
+    { params: { slug: '/admin/auth' } },
   ]
   console.log('Paths=>', paths)
   // We'll pre-render only these paths at build time.
@@ -64,10 +64,10 @@ export async function getStaticPaths() {
 }
 export async function getStaticProps({ params }) {
   if (
-    params.slug === 'blog' ||
-    params.slug === 'admin' ||
-    params.slug === 'admin/panel' ||
-    params.slug === 'admin/auth'
+    params.slug === '/' ||
+    params.slug === '/admin' ||
+    params.slug === '/admin/panel' ||
+    params.slug === '/admin/auth'
   )
     return { props: {} }
   else {
