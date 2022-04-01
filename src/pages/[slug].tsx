@@ -1,3 +1,4 @@
+import { apiHandler, categoryRepo, serviceRepo } from 'helpers/api'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 
@@ -40,39 +41,49 @@ const Slug = (props) => {
 
 export default Slug
 
-export async function getStaticPaths() {
-  const resp = await categoryService.search('')
-  const categories = resp.data
+Slug.getInitialProps = async (ctx) => {
+  console.log('Context =>', ctx)
+  const resp = await categoryService.searchByUrlSlug(ctx.query.slug)
+  return { category: resp.data, services: resp.services }
+  // const resp = await categoryService.search('')
+  // const categories = resp.data
+  // console.log('Categories =>', categories)
+  // return { categories: categories }
+}
 
-  // Get the paths we want to pre-render based on posts
-  let paths = categories
-    .filter((category) => category.isActive === true)
-    .map((category) => ({
-      params: { slug: category.urlSlug },
-    }))
-  paths = [
-    ...paths,
-    { params: { slug: '/' } },
-    { params: { slug: '/admin' } },
-    { params: { slug: '/admin/panel' } },
-    { params: { slug: '/admin/auth' } },
-  ]
-  console.log('Paths=>', paths)
-  // We'll pre-render only these paths at build time.
-  // { fallback: false } means other routes should 404.
-  return { paths, fallback: false }
-}
-export async function getStaticProps({ params }) {
-  // if (
-  //   params.slug === '/' ||
-  //   params.slug === '/admin' ||
-  //   params.slug === '/admin/panel' ||
-  //   params.slug === '/admin/auth'
-  // )
-  //   return { props: {} }
-  // else {
-  //   const resp = await categoryService.searchByUrlSlug(params.slug)
-  //   return { props: { category: resp.data, services: resp.services } }
-  // }
-  return { props: {} }
-}
+// export async function getStaticPaths() {
+//   // const categories = await categoryRepo.getAll()
+//   const resp = await categoryService.search('')
+//   const categories = resp.data
+
+//   // Get the paths we want to pre-render based on posts
+//   let paths = categories
+//     .filter((category) => category.isActive === true)
+//     .map((category) => ({
+//       params: { slug: category.urlSlug },
+//     }))
+//   paths = [
+//     ...paths,
+//     { params: { slug: '/' } },
+//     { params: { slug: '/admin' } },
+//     { params: { slug: '/admin/panel' } },
+//     { params: { slug: '/admin/auth' } },
+//   ]
+//   // We'll pre-render only these paths at build time.
+//   // { fallback: false } means other routes should 404.
+//   return { paths, fallback: true }
+// }
+
+// export async function getStaticProps({ params }) {
+//   if (
+//     params.slug === '/' ||
+//     params.slug === '/admin' ||
+//     params.slug === '/admin/panel' ||
+//     params.slug === '/admin/auth'
+//   )
+//     return { props: {} }
+//   else {
+//     const resp = await categoryService.searchByUrlSlug(params.slug)
+//     return { props: { category: resp.data, services: resp.services } }
+//   }
+// }
