@@ -4,6 +4,7 @@ type Props = {
   readonly img: any
   readonly title: any
   readonly description: any
+  readonly urlSlug: any
 }
 
 import React, { ForwardRefRenderFunction, useEffect, useState } from 'react'
@@ -11,7 +12,7 @@ import React, { ForwardRefRenderFunction, useEffect, useState } from 'react'
 import { Card } from '@/components/atoms/Card'
 
 const MyComponentRenderFn: ForwardRefRenderFunction<any, Props> = (
-  { children, img, title, description },
+  { children, img, title, description, urlSlug },
   ref,
 ) => {
   const stars = [1, 2, 3, 4, 5]
@@ -52,7 +53,10 @@ const MyComponentRenderFn: ForwardRefRenderFunction<any, Props> = (
         })}
       </div>
       <div className="btn-buyit justify-center mt-5">
-        <div className="flex space-x-1 rounded-full py-2 px-3 gradient-btn-3 justify-center hover:cursor-pointer">
+        <a
+          href={urlSlug}
+          className="flex space-x-1 rounded-full py-2 px-3 gradient-btn-3 justify-center hover:cursor-pointer"
+        >
           <svg
             className="h-5 w-5 text-[#ff05ff] z-10"
             width="24"
@@ -68,8 +72,8 @@ const MyComponentRenderFn: ForwardRefRenderFunction<any, Props> = (
             <path stroke="none" d="M0 0h24v24H0z" />{' '}
             <path d="M15 10l-4 4l6 6l4 -16l-18 7l4 2l2 6l3 -4" />
           </svg>
-          <span className="text-sm w-16">Buy Now</span>
-        </div>
+          <span className="text-sm w-16 text-white">Buy Now</span>
+        </a>
       </div>
     </div>
   )

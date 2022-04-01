@@ -1,5 +1,7 @@
+import parse from 'html-react-parser'
 import Router, { NextRouter } from 'next/router'
 import { useEffect } from 'react'
+import { renderToString } from 'react-dom/server'
 
 import { ActiveLikePackages } from '@/components/Buy-Instagram-Likes/ActiveLikePackages'
 import { Banner } from '@/components/Buy-Instagram-Likes/Banner'
@@ -31,7 +33,7 @@ function restoreScrollPosition(url: string, pos: number) {
   }
 }
 
-const BuyInstagramLikes: React.VFC = () => {
+const BuyInstagramLikes: React.VFC = (props: any) => {
   const dispatch = useAppDispatch()
   const { likeType } = useAppSelector((state) => state.likes)
   const { scrollPosition } = useAppSelector((state) => state.likes)
@@ -94,17 +96,34 @@ const BuyInstagramLikes: React.VFC = () => {
       <Header />
       <main className="flex flex-1 flex-col w-full top-0 min-h-screen p-0">
         <Banner
+          {...props}
           onClickedHighQuality={onClickedHighQuality}
           onClickedActiveFollowers={onClickedActiveFollowers}
           likeType={getLikeType}
         />
-        <Description1 />
+        <div className="service-description flex flex-col flex-wrap w-full p-3 ls:p-5 items-center justify-center bg-[#222232] text-gray-400">
+          {parse(
+            props.category.content.replace(
+              '<div class="active-packages"><span>Active Instagram Like packages</span></div>',
+              renderToString(
+                <ActiveLikePackages
+                  packageList={[
+                    ...props.services.filter(
+                      (item) => item.isShownInActiveTab === true,
+                    ),
+                  ]}
+                />,
+              ),
+            ),
+          )}
+        </div>
+        {/* <Description1 />
         <LikePackages />
         <Description2 />
         <ActiveLikePackages />
         <Description3 />
         <FollowerPackages />
-        <Description4 />
+        <Description4 /> */}
         <HowTo />
         <FAQ />
         <Feedback />

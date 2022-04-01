@@ -3,105 +3,11 @@ import { useRef, useState } from 'react'
 import { MySwipper } from '@/components/atoms/MySwipper'
 import { ProductCard } from '@/components/organisms/ProductCard'
 
-const productCards = [
-  {
-    title: '50',
-    subTitle: '50 Instagram Likes',
-    avgMark: 5,
-    reviewCount: 3,
-    cost: 0.89,
-    isPopular: false,
-  },
-  {
-    title: '100',
-    subTitle: '100 Instagram Likes',
-    avgMark: 5,
-    reviewCount: 2,
-    cost: 0.99,
-    isPopular: false,
-  },
-  {
-    title: '300',
-    subTitle: '300 Instagram Likes',
-    avgMark: 5,
-    reviewCount: 1,
-    cost: 2.59,
-    isPopular: false,
-  },
-  {
-    title: '500',
-    subTitle: '500 Instagram Likes',
-    avgMark: 5,
-    reviewCount: 1,
-    cost: 4.99,
-    isPopular: true,
-  },
-  {
-    title: '1000',
-    subTitle: '1000 Instagram Likes',
-    reviewCount: 1,
-    cost: 6.99,
-    isPopular: false,
-  },
-  {
-    title: '2500',
-    subTitle: '2500 Instagram Likes',
-    avgMark: 5,
-    reviewCount: 1,
-    cost: 11.99,
-    isPopular: false,
-  },
-  {
-    title: '5000',
-    subTitle: '5000 Instagram Likes',
-    avgMark: 5,
-    reviewCount: 1,
-    cost: 19.99,
-    isPopular: false,
-  },
-  {
-    title: '10000',
-    subTitle: '10k Instagram Likes',
-    avgMark: 5,
-    reviewCount: 1,
-    cost: 29.99,
-    isPopular: false,
-  },
-  {
-    title: '20000',
-    subTitle: '20k Instagram Likes',
-    avgMark: 5,
-    reviewCount: 1,
-    cost: 59.99,
-    isPopular: false,
-  },
-  {
-    title: '35000',
-    subTitle: '35k Instagram Likes',
-    avgMark: 5,
-    reviewCount: 1,
-    cost: 99.99,
-    isPopular: false,
-  },
-  {
-    title: '50000',
-    subTitle: '50k Instagram Likes',
-    avgMark: 5,
-    reviewCount: 1,
-    cost: 139.99,
-    isPopular: false,
-  },
-  {
-    title: '100000',
-    subTitle: '100k Instagram Likes',
-    avgMark: 5,
-    reviewCount: 1,
-    cost: 279.99,
-    isPopular: false,
-  },
-]
+type Props = {
+  readonly services: any
+}
 
-export const QualityLikes: React.VFC = () => {
+export const QualityLikes: React.VFC<Props> = (props: any) => {
   const swiperRef = useRef<any>(null)
   const prevRef = useRef<any>(null)
   const nextRef = useRef<any>(null)
@@ -193,15 +99,16 @@ export const QualityLikes: React.VFC = () => {
         swiperReachStart={swiperReachStart}
         swiperReachEnd={swiperReachEnd}
       >
-        {productCards.map((item, id) => {
+        {props.services.map((item, id) => {
           return (
             <ProductCard
               key={id}
-              title={item.title}
-              subTitle={item.subTitle}
+              title={item.quantity}
+              subTitle={item.name}
               reviewCount={item.reviewCount}
-              cost={item.cost}
-              isPopular={item.isPopular}
+              cost={item.price}
+              isPopular={item.isMostPopular}
+              urlSlug={item.urlSlug}
             />
           )
         })}

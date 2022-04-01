@@ -3,29 +3,10 @@ import Link from 'next/link'
 
 import { ProductCard } from './ProductCard'
 
-const packageList = [
-  {
-    packageId: 0,
-    packageName: 'Buy 200 Real Instagram Likes',
-    description: '200 Real Instagram Likes',
-  },
-  {
-    packageId: 1,
-    packageName: 'Buy 1500 Real Instagram Likes',
-    description: '200 Real Instagram Likes',
-  },
-  {
-    packageId: 2,
-    packageName: 'Buy 3000 Real Instagram Likes',
-    description: '200 Real Instagram Likes',
-  },
-  {
-    packageId: 3,
-    packageName: 'Buy 8000 Real Instagram Likes',
-    description: '200 Real Instagram Likes',
-  },
-]
-export const ActiveLikePackages: React.VFC = () => {
+type Props = {
+  readonly packageList: any
+}
+export const ActiveLikePackages: React.VFC<Props> = (props) => {
   return (
     <div className="flex flex-col flex-wrap w-full items-center bg-[#222232] min-h-screen">
       <div className="flex flex-col md:mt-24 flex-wrap pb-9 md:w-11/12 lg:w-11/12 bg-transparent bg-opacity-50 rounded-xl">
@@ -39,7 +20,7 @@ export const ActiveLikePackages: React.VFC = () => {
           </span>
         </div>
         <div className="grid grid-cols-1 gap-5 justify-center p-5 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {packageList.map((item, id) => {
+          {props.packageList.map((item, id) => {
             return (
               <ProductCard
                 key={id}
@@ -51,8 +32,9 @@ export const ActiveLikePackages: React.VFC = () => {
                     height="100%"
                   />
                 }
-                title={item.packageName}
-                description={item.description}
+                title={item.name}
+                description={item.name}
+                urlSlug={item.urlSlug}
               />
             )
           })}

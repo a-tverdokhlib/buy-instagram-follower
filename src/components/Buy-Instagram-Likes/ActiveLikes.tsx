@@ -3,39 +3,11 @@ import { useRef, useState } from 'react'
 import { MySwipper } from '@/components/atoms/MySwipper'
 import { ProductCard } from '@/components/organisms/ProductCard'
 
-const productCards = [
-  {
-    title: '200',
-    subTitle: '200 Real Instagram Likes',
-    reviewCount: 0,
-    cost: 6.99,
-    isPopular: false,
-  },
-  {
-    title: '1500',
-    subTitle: '1500 Real Instagram Likes',
-    reviewCount: 0,
-    cost: 19.99,
-    isPopular: false,
-  },
-  {
-    title: '3000',
-    subTitle: '3000 Real Instagram Likes',
-    reviewCount: 0,
-    cost: 34.99,
-    isPopular: true,
-  },
-  {
-    title: '8000',
-    subTitle: '8000 Instagram Likes',
-    avgMark: 5,
-    reviewCount: 0,
-    cost: 79.99,
-    isPopular: false,
-  },
-]
+type Props = {
+  readonly services: any
+}
 
-export const ActiveLikes: React.VFC = () => {
+export const ActiveLikes: React.VFC<Props> = (props: any) => {
   const swiperRef = useRef<any>(null)
   const prevRef = useRef<any>(null)
   const nextRef = useRef<any>(null)
@@ -125,15 +97,16 @@ export const ActiveLikes: React.VFC = () => {
         swiperReachStart={swiperReachStart}
         swiperReachEnd={swiperReachEnd}
       >
-        {productCards.map((item, id) => {
+        {props.services.map((item, id) => {
           return (
             <ProductCard
               key={id}
-              title={item.title}
-              subTitle={item.subTitle}
+              title={item.quantity}
+              subTitle={item.name}
               reviewCount={item.reviewCount}
-              cost={item.cost}
-              isPopular={item.isPopular}
+              cost={item.price}
+              isPopular={item.isMostPopular}
+              urlSlug={item.urlSlug}
             />
           )
         })}

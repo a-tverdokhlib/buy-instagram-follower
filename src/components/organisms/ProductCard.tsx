@@ -7,7 +7,7 @@ type Props = {
   readonly reviewCount: number
   readonly cost: number
   readonly isPopular: boolean
-  readonly urlSlug: string
+  readonly urlSlug?: string
 }
 
 export const ProductCard: React.VFC<Props> = (props) => {
@@ -218,7 +218,9 @@ export const ProductCard: React.VFC<Props> = (props) => {
       </div>
       <div className="btn-buyit justify-center absolute">
         <div
-          onClick={() => router.push(props.urlSlug)}
+          onClick={() =>
+            router.push(props.urlSlug !== undefined ? props.urlSlug : '')
+          }
           className="flex space-x-1 rounded-full py-2 gradient-btn-2 justify-center hover:cursor-pointer"
         >
           <svg
