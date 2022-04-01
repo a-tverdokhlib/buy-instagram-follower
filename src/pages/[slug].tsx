@@ -53,6 +53,12 @@ export async function getStaticPaths() {
   return { paths, fallback: false }
 }
 export async function getStaticProps({ params }) {
+  if (
+    params.slug === '/buy-instagram-story-views' ||
+    params.slug === '/admin' ||
+    params.slug === '/admin/panel'
+  )
+    return { props: {} }
   const resp = await categoryService.searchByUrlSlug(params.slug)
   return { props: { category: resp.data, services: resp.services } }
 }
