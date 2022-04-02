@@ -3,81 +3,10 @@ import { useRef, useState } from 'react'
 import { MySwipper } from '@/components/atoms/MySwipper'
 import { ProductCard } from '@/components/organisms/ProductCard'
 
-const productCards = [
-  {
-    title: '500',
-    subTitle: '500 Instagram Views',
-    avgMark: 5,
-    reviewCount: 1,
-    cost: 0.89,
-    isPopular: false,
-  },
-  {
-    title: '1000',
-    subTitle: '1000 Instagram Views',
-    avgMark: 5,
-    reviewCount: 1,
-    cost: 1.59,
-    isPopular: false,
-  },
-  {
-    title: '2500',
-    subTitle: '2500 Instagram Views',
-    avgMark: 5,
-    reviewCount: 1,
-    cost: 3.59,
-    isPopular: false,
-  },
-  {
-    title: '5000',
-    subTitle: '5000 Instagram Views',
-    avgMark: 5,
-    reviewCount: 1,
-    cost: 6.99,
-    isPopular: true,
-  },
-  {
-    title: '10000',
-    subTitle: '10k Instagram Views',
-    reviewCount: 1,
-    cost: 12.99,
-    isPopular: false,
-  },
-  {
-    title: '25000',
-    subTitle: '25k Instagram Views',
-    avgMark: 5,
-    reviewCount: 1,
-    cost: 28.99,
-    isPopular: false,
-  },
-  {
-    title: '50000',
-    subTitle: '50k Instagram Views',
-    avgMark: 5,
-    reviewCount: 1,
-    cost: 54.99,
-    isPopular: false,
-  },
-  {
-    title: '100000',
-    subTitle: '100k Instagram Views',
-    avgMark: 5,
-    reviewCount: 2,
-    cost: 89.99,
-    isPopular: false,
-  },
-  {
-    title: '1000000',
-    subTitle: '1 Million Instagram Views',
-    avgMark: 5,
-    reviewCount: 1,
-    cost: 169.99,
-    isPopular: false,
-  },
-]
-
-export const QualityViews: React.VFC = () => {
+type Props = {
+  readonly services: any
+}
+export const QualityViews: React.VFC<Props> = (props: any) => {
   const swiperRef = useRef<any>(null)
   const prevRef = useRef<any>(null)
   const nextRef = useRef<any>(null)
@@ -169,15 +98,16 @@ export const QualityViews: React.VFC = () => {
         swiperReachStart={swiperReachStart}
         swiperReachEnd={swiperReachEnd}
       >
-        {productCards.map((item, id) => {
+        {props.services.map((item, id) => {
           return (
             <ProductCard
               key={id}
-              title={item.title}
-              subTitle={item.subTitle}
+              title={item.quantity}
+              subTitle={item.name}
               reviewCount={item.reviewCount}
-              cost={item.cost}
-              isPopular={item.isPopular}
+              cost={item.price}
+              isPopular={item.isMostPopular}
+              urlSlug={item.urlSlug}
             />
           )
         })}

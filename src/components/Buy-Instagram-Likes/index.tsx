@@ -5,14 +5,8 @@ import { renderToString } from 'react-dom/server'
 
 import { ActiveLikePackages } from '@/components/Buy-Instagram-Likes/ActiveLikePackages'
 import { Banner } from '@/components/Buy-Instagram-Likes/Banner'
-import { Description1 } from '@/components/Buy-Instagram-Likes/Description1'
-import { Description2 } from '@/components/Buy-Instagram-Likes/Description2'
-import { Description3 } from '@/components/Buy-Instagram-Likes/Description3'
-import { Description4 } from '@/components/Buy-Instagram-Likes/Description4'
 import { FAQ } from '@/components/Buy-Instagram-Likes/FAQ'
 import { Feedback } from '@/components/Buy-Instagram-Likes/Feedback'
-import { FollowerPackages } from '@/components/Buy-Instagram-Likes/FollowerPackages'
-import { LikePackages } from '@/components/Buy-Instagram-Likes/LikesPackages'
 import { Footer } from '@/components/organisms/Footer'
 import { Header } from '@/components/organisms/Header'
 import { HowTo } from '@/components/organisms/HowTo'
@@ -117,13 +111,6 @@ const BuyInstagramLikes: React.VFC = (props: any) => {
             ),
           )}
         </div>
-        {/* <Description1 />
-        <LikePackages />
-        <Description2 />
-        <ActiveLikePackages />
-        <Description3 />
-        <FollowerPackages />
-        <Description4 /> */}
         <HowTo />
         <FAQ />
         <Feedback />

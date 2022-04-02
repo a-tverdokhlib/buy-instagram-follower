@@ -1,9 +1,9 @@
+import parse from 'html-react-parser'
 import Router, { NextRouter } from 'next/router'
 import { useEffect } from 'react'
+import { renderToString } from 'react-dom/server'
 
 import { Banner } from '@/components/Buy-Instagram-Views/Banner'
-import { Description1 } from '@/components/Buy-Instagram-Views/Description1'
-import { Description2 } from '@/components/Buy-Instagram-Views/Description2'
 import { FAQ } from '@/components/Buy-Instagram-Views/FAQ'
 import { Feedback } from '@/components/Buy-Instagram-Views/Feedback'
 import { ViewPackages } from '@/components/Buy-Instagram-Views/ViewPackages'
@@ -27,7 +27,7 @@ function restoreScrollPosition(url: string, pos: number) {
   }
 }
 
-const BuyInstagramLikes: React.VFC = () => {
+const BuyInstagramLikes: React.VFC = (props: any) => {
   const dispatch = useAppDispatch()
   const { viewType } = useAppSelector((state) => state.views)
   const { scrollPosition } = useAppSelector((state) => state.views)
@@ -90,13 +90,14 @@ const BuyInstagramLikes: React.VFC = () => {
       <Header />
       <main className="flex flex-1 flex-col w-full top-0 min-h-screen p-0">
         <Banner
+          {...props}
           onClickedHighQuality={onClickedHighQuality}
           onClickedActiveViews={onClickedActiveViews}
           viewType={getViewType}
-        />{' '}
-        <Description1 />
-        <ViewPackages />
-        <Description2 />
+        />
+        <div className="service-description flex flex-col flex-wrap w-full p-3 ls:p-5 items-center justify-center bg-[#222232] text-gray-400">
+          {parse(props.category.content)}
+        </div>
         <HowTo />
         <FAQ />
         <Feedback />
