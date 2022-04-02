@@ -1,6 +1,6 @@
 import { apiHandler, categoryRepo, serviceRepo } from 'helpers/api'
 import { useRouter } from 'next/router'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import Blog from '@/components/Blog'
 import BuyAutoInstagramFollowers from '@/components/Buy-Auto-Instagram-Followers'
@@ -16,27 +16,36 @@ import { categoryService } from '@/services/category'
 const Slug = (props) => {
   const router = useRouter()
   const { slug } = router.query
+  const [mounted, setMounted] = useState(false)
+
   const onClickedHighQuality = () => {}
   const onClickedActiveFollowers = () => {}
   const getFollowerType = () => {
     return 'highQuality'
   }
-  if (slug === 'buy-instagram-followers')
-    return <BuyInstagramFollowers {...props} />
-  else if (slug === 'buy-instagram-likes')
-    return <BuyInstagramLikes {...props} />
-  else if (slug === 'buy-instagram-views')
-    return <BuyInstagramViews {...props} />
-  else if (slug === 'buy-instagram-comments')
-    return <BuyInstagramComments {...props} />
-  else if (slug === 'instagram-growth') return <InstagramGrowth />
-  else if (slug === 'buy-auto-instagram-likes') return <BuyAutoInstagramLikes />
-  else if (slug === 'buy-auto-instagram-followers')
-    return <BuyAutoInstagramFollowers />
-  else if (slug === 'buy-custom-instagram-comments')
-    return <BuyCustomInstagramComments />
-  else if (slug === 'blog') return <Blog />
-  else return <></>
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  if (mounted === true) {
+    if (slug === 'buy-instagram-followers')
+      return <BuyInstagramFollowers {...props} />
+    else if (slug === 'buy-instagram-likes')
+      return <BuyInstagramLikes {...props} />
+    else if (slug === 'buy-instagram-views')
+      return <BuyInstagramViews {...props} />
+    else if (slug === 'buy-instagram-comments')
+      return <BuyInstagramComments {...props} />
+    else if (slug === 'instagram-growth') return <InstagramGrowth />
+    else if (slug === 'buy-auto-instagram-likes')
+      return <BuyAutoInstagramLikes />
+    else if (slug === 'buy-auto-instagram-followers')
+      return <BuyAutoInstagramFollowers />
+    else if (slug === 'buy-custom-instagram-comments')
+      return <BuyCustomInstagramComments />
+    else if (slug === 'blog') return <Blog />
+    else return <></>
+  } else return <></>
 }
 
 export default Slug

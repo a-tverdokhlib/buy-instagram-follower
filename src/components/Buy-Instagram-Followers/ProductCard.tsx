@@ -16,10 +16,7 @@ const MyComponentRenderFn: ForwardRefRenderFunction<any, Props> = (
   { children, img, title, description, urlSlug },
   ref,
 ) => {
-  console.log('UrlSlug=>', urlSlug)
-  const onBuyClick = () => {
-    console.log(urlSlug)
-  }
+  const onBuyClick = () => {}
   const stars = [1, 2, 3, 4, 5]
   return (
     <div className="overflow-hidden m-auto pb-10 flex flex-wrap w-full ls:min-w-[280px] max-w-xs justify-center cursor-pointer bg-[#343444] hover:-translate-y-2 hover:shadow-lg hover:shadow-cyan-700/50  transition-all duration-300 rounded-xl">
