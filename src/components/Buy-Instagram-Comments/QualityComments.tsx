@@ -3,57 +3,10 @@ import { useRef, useState } from 'react'
 import { MySwipper } from '@/components/atoms/MySwipper'
 import { ProductCard } from '@/components/organisms/ProductCard'
 
-const productCards = [
-  {
-    title: '10',
-    subTitle: '10 Instagram Comments',
-    avgMark: 5,
-    reviewCount: 1,
-    cost: 2.49,
-    isPopular: false,
-  },
-  {
-    title: '20',
-    subTitle: '20 Instagram Comments',
-    avgMark: 5,
-    reviewCount: 1,
-    cost: 5.49,
-    isPopular: false,
-  },
-  {
-    title: '50',
-    subTitle: '50 Instagram Comments',
-    avgMark: 5,
-    reviewCount: 1,
-    cost: 7.99,
-    isPopular: false,
-  },
-  {
-    title: '100',
-    subTitle: '100 Instagram Comments',
-    avgMark: 5,
-    reviewCount: 1,
-    cost: 12.99,
-    isPopular: false,
-  },
-  {
-    title: '200',
-    subTitle: '200 Instagram Comments',
-    reviewCount: 1,
-    cost: 19.99,
-    isPopular: false,
-  },
-  {
-    title: '500',
-    subTitle: '500 Instagram Comments',
-    avgMark: 5,
-    reviewCount: 1,
-    cost: 45.99,
-    isPopular: false,
-  },
-]
-
-export const QualityComments: React.VFC = () => {
+type Props = {
+  readonly services: any
+}
+export const QualityComments: React.VFC<Props> = (props: any) => {
   const swiperRef = useRef<any>(null)
   const prevRef = useRef<any>(null)
   const nextRef = useRef<any>(null)
@@ -145,15 +98,16 @@ export const QualityComments: React.VFC = () => {
         swiperReachStart={swiperReachStart}
         swiperReachEnd={swiperReachEnd}
       >
-        {productCards.map((item, id) => {
+        {props.services.map((item, id) => {
           return (
             <ProductCard
               key={id}
-              title={item.title}
-              subTitle={item.subTitle}
+              title={item.quantity}
+              subTitle={item.name}
               reviewCount={item.reviewCount}
-              cost={item.cost}
-              isPopular={item.isPopular}
+              cost={item.price}
+              isPopular={item.isMostPopular}
+              urlSlug={item.urlSlug}
             />
           )
         })}

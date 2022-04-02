@@ -1,3 +1,4 @@
+import parse from 'html-react-parser'
 import Router, { NextRouter } from 'next/router'
 import { useEffect } from 'react'
 
@@ -25,7 +26,7 @@ function restoreScrollPosition(url: string, pos: number) {
   }
 }
 
-const BuyInstagramLikes: React.VFC = () => {
+const BuyInstagramLikes: React.VFC = (props: any) => {
   const dispatch = useAppDispatch()
   const { commentType } = useAppSelector((state) => state.comments)
   const { scrollPosition } = useAppSelector((state) => state.comments)
@@ -88,11 +89,14 @@ const BuyInstagramLikes: React.VFC = () => {
       <Header />
       <main className="flex flex-1 flex-col w-full top-0 min-h-screen p-0">
         <Banner
+          {...props}
           onClickedHighQuality={onClickedHighQuality}
           onClickedActive={onClickedActive}
           commentType={getCommentType}
-        />{' '}
-        <Description1 />
+        />
+        <div className="service-description flex flex-col flex-wrap w-full p-3 ls:p-5 items-center justify-center bg-[#222232] text-gray-400">
+          {parse(props.category.content)}
+        </div>
         <HowTo />
         <FAQ />
         <Feedback />
