@@ -147,10 +147,13 @@ const BuyAutoInstagramFollowers: React.VFC = (props: any) => {
               planSelected={(item) => onSubscriptionPlanSelected(item)}
             />
             <InstagramAccount submitClicked={(name) => onSubmitClicked(name)} />
-            <PaymentGateways price={parseFloat(parseFloat(
+            <PaymentGateways
+              price={
                 plan.price *
-                  ((100 - plan.coupanDiscount) / 100),
-              ).toFixed(2) * subscriptionPlan.variationDays).toFixed(2)} />
+                ((100 - plan.coupanDiscount) / 100) *
+                subscriptionPlan.variationDays
+              }
+            />
             <div className="w-full h-16"></div>
             <Statics
               providedFollowers={'505,604,653'}
