@@ -9,7 +9,7 @@ type Props = {
   readonly commentType: () => string
 }
 
-export const Banner: React.VFC<Props> = (props) => {
+export const Banner: React.VFC<Props> = (props: any) => {
   return (
     <div className="flex flex-col flex-wrap w-full bg-[#222232] min-h-screen">
       <div className="flex flex-col flex-wrap px-3 py-16 ls:p-16 space-y-3 justify-center">
@@ -57,9 +57,25 @@ export const Banner: React.VFC<Props> = (props) => {
         <div className="h-10"></div>
         <div className="w-full justify-center items-center mt-16">
           {props.commentType() === 'highQuality' ? (
-            <QualityComments />
+            <QualityComments
+              services={[
+                ...props.services.filter(
+                  (service) =>
+                    service.isShownInActiveTab !== true &&
+                    service.isActive === true,
+                ),
+              ]}
+            />
           ) : (
-            <ActiveComments />
+            <ActiveComments
+              services={[
+                ...props.services.filter(
+                  (service) =>
+                    service.isShownInActiveTab === true &&
+                    service.isActive === true,
+                ),
+              ]}
+            />
           )}
         </div>
       </div>

@@ -58,6 +58,7 @@ async function findServicesInBrief(where) {
     isMostPopular: 1,
     isShownInActiveTab: 1,
     isInstagramSaves: 1,
+    variations: 1,
   })
   return services
 }

@@ -1,11 +1,14 @@
 type Props = {
   readonly planInfo: any
+  readonly onPlanSelected: () => void
+  readonly isSelected: boolean
 }
 export const FollowerPlanCard: React.VFC<Props> = (props) => {
   return (
     <div
+      onClick={() => props.onPlanSelected()}
       className={
-        props.planInfo.isPopular
+        props.planInfo.isMostPopular
           ? 'flex flex-col w-full  border-[1px] border-black border-opacity-10 rounded-xl h-[130px] md:h-[340px] bg-black bg-opacity-30'
           : 'flex flex-col w-full  border-[1px] border-black border-opacity-10 rounded-xl h-[130px] md:h-[300px] bg-black bg-opacity-30'
       }
@@ -13,7 +16,7 @@ export const FollowerPlanCard: React.VFC<Props> = (props) => {
       <div className="w-full top-0 h-20">
         <div
           className={
-            props.planInfo.isPopular
+            props.planInfo.isMostPopular
               ? 'ml-auto w-20 h-20 -mt-3 -mr-[10px] bg-[url("/img/bestvalue.png")] bg-no-repeat bg-cover'
               : 'ml-auto w-20 h-20'
           }
@@ -23,7 +26,7 @@ export const FollowerPlanCard: React.VFC<Props> = (props) => {
         <div className="flex justify-end w-3/12 md:w-full md:justify-center">
           <span
             className={
-              props.planInfo.isPopular
+              props.isSelected
                 ? 'w-6 h-6 md:w-14 md:h-14 bg-[url("/img/custom-radio-large-checked.png")] bg-no-repeat bg-cover'
                 : 'w-6 h-6 md:w-14 md:h-14 bg-[url("/img/custom-radio-large.png")] bg-no-repeat bg-cover'
             }
@@ -33,26 +36,26 @@ export const FollowerPlanCard: React.VFC<Props> = (props) => {
           <div className="flex items-center justify-center">
             <span>
               <span className="text-white text-[15px] ls:text-xl md:text-2xl">
-                {props.planInfo.followers} followers/Day
+                {props.planInfo.quantity} followers/Day
               </span>
             </span>
           </div>
           <div className="md:hidden flex items-center justify-center">
             <span
               className={
-                props.planInfo.isPopular
+                props.planInfo.isMostPopular
                   ? 'flex items-center justify-center bg-[url("/img/discount-saving.png")] bg-no-repeat bg-contain w-24 h-5 py-2'
                   : 'flex items-center justify-center bg-no-repeat bg-contain w-24 h-5 py-2'
               }
             >
               <span
                 className={
-                  props.planInfo.isPopular
+                  props.planInfo.isMostPopular
                     ? 'text-[white] text-lg md:text-2xl'
                     : 'text-[#ff5502] text-lg md:text-2xl font-bold'
                 }
               >
-                Save {props.planInfo.savePercent} %
+                Save {props.planInfo.coupanDiscount} %
               </span>
             </span>
           </div>
@@ -75,31 +78,34 @@ export const FollowerPlanCard: React.VFC<Props> = (props) => {
               </svg>
             </sub>{' '}
             <span className="text-white text-[15px] ls:text-2xl font-bold">
-              {props.planInfo.price}
+              {parseFloat(
+                props.planInfo.price *
+                  ((100 - props.planInfo.coupanDiscount) / 100),
+              ).toFixed(2)}
             </span>
           </span>
           <span>
             <span className="text-white text-[15px] ls:text-lg line-through decoration-1">
-              {props.planInfo.oldPrice}
+              {props.planInfo.price}
             </span>
           </span>
         </div>
         <div className="hidden md:flex items-center justify-center w-full">
           <span
             className={
-              props.planInfo.isPopular
+              props.planInfo.isMostPopular
                 ? 'flex items-center justify-center bg-[url("/img/discount-saving.png")] bg-no-repeat bg-contain w-48 h-10 py-2'
                 : 'flex items-center justify-center bg-no-repeat bg-contain w-48 h-10 py-2'
             }
           >
             <span
               className={
-                props.planInfo.isPopular
+                props.planInfo.isMostPopular
                   ? 'text-[white] text-2xl'
                   : 'text-[#ff5502] text-2xl font-bold'
               }
             >
-              Save {props.planInfo.savePercent} %
+              Save {props.planInfo.coupanDiscount} %
             </span>
           </span>
         </div>

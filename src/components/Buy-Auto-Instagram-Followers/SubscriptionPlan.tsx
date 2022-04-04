@@ -1,29 +1,25 @@
+import { useEffect } from 'react'
+
 import { SubscriptionPlanCard } from './SubscriptionPlanCard'
 
-const planInfos = [
-  {
-    id: 0,
-    days: 15,
-    savePercent: 19,
-    isPopular: false,
-  },
-  {
-    id: 1,
-    days: 26,
-    savePercent: 28,
-    isPopular: true,
-  },
-  {
-    id: 2,
-    days: 30,
-    savePercent: 50,
-    isPopular: false,
-  },
-]
 type Props = {
+  readonly plan: any
+  readonly activeSubscriptionPlan: any
   readonly planSelected: (any) => void
 }
 export const SubscriptionPlan: React.VFC<Props> = (props) => {
+  // useEffect(() => {
+  //   if (Object.keys(props.activeSubscriptionPlan).length === 0) {
+  //     if (props.plan.variations) {
+  //       const al = props.plan.variations.filter(
+  //         (item) => item.isDefaultActive === true,
+  //       )
+  //       if (al.length > 0) {
+  //         props.planSelected(al[0])
+  //       }
+  //     }
+  //   }
+  // }, [])
   return (
     <div className="flex flex-col flex-wrap w-full md:bg-[#222232] md:rounded-none md:p-0 ml:px-14">
       <div className="flex flex-col flex-wrap w-full py-6 pr-3 md:pr-12 md:p-16">
@@ -44,9 +40,22 @@ export const SubscriptionPlan: React.VFC<Props> = (props) => {
         </div>
       </div>
       <div className="grid grid-cols-3 gap-2 px-3 w-full items-center md:px-16">
-        {planInfos.map((item, id) => {
-          return <SubscriptionPlanCard key={id} planInfo={item} />
-        })}
+        {props.plan.variations ? (
+          props.plan.variations.map((item, id) => {
+            return (
+              <SubscriptionPlanCard
+                key={id}
+                onPlanSelected={() => props.planSelected(item)}
+                planInfo={item}
+                isSelected={
+                  item._id === props.activeSubscriptionPlan._id ? true : false
+                }
+              />
+            )
+          })
+        ) : (
+          <></>
+        )}
       </div>
     </div>
   )

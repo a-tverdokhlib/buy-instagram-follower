@@ -36,13 +36,13 @@ const Slug = (props) => {
       return <BuyInstagramViews {...props} />
     else if (slug === 'buy-instagram-comments')
       return <BuyInstagramComments {...props} />
-    else if (slug === 'instagram-growth') return <InstagramGrowth />
+    else if (slug === 'instagram-growth') return <InstagramGrowth {...props} />
     else if (slug === 'buy-auto-instagram-likes')
-      return <BuyAutoInstagramLikes />
+      return <BuyAutoInstagramLikes {...props} />
     else if (slug === 'buy-auto-instagram-followers')
-      return <BuyAutoInstagramFollowers />
+      return <BuyAutoInstagramFollowers {...props} />
     else if (slug === 'buy-custom-instagram-comments')
-      return <BuyCustomInstagramComments />
+      return <BuyCustomInstagramComments {...props} />
     else if (slug === 'blog') return <Blog />
     else return <></>
   } else return <></>
@@ -54,6 +54,7 @@ Slug.getInitialProps = async (ctx) => {
   console.log('Context =>', ctx)
   const resp = await categoryService.searchByUrlSlug(ctx.query.slug)
   return { category: resp.data, services: resp.services }
+
   // const resp = await categoryService.search('')
   // const categories = resp.data
   // console.log('Categories =>', categories)

@@ -37,13 +37,12 @@ function restoreScrollPosition(url: string, pos: number) {
   }
 }
 
-const BuyAutoInstagramFollowers: React.VFC = () => {
+const BuyAutoInstagramFollowers: React.VFC = (props: any) => {
   let scroller = Scroll.scroller
   let scroll = Scroll.animateScroll
   let Element = Scroll.Element
 
   const { pathname } = useRouter()
-
   useEffect(() => {
     onRouteChangeComplete(pathname)
   }, [pathname])
@@ -66,6 +65,7 @@ const BuyAutoInstagramFollowers: React.VFC = () => {
   }
 
   const onSubscriptionPlanSelected = (item) => {
+    console.log('Sub =>', item)
     dispatch(setSubscriptionPlan(item))
   }
 
@@ -76,6 +76,25 @@ const BuyAutoInstagramFollowers: React.VFC = () => {
       restoreScrollPosition(url, scrollPosition)
     }
   }
+  useEffect(() => {
+    if (Object.keys(plan).length === 0) {
+      const al = [
+        ...props.services.filter((item) => item.isMostPopular === true),
+      ]
+      if (al.length > 0) {
+        dispatch(setPlan(al[0]))
+      }
+    }
+  }, [])
+
+  useEffect(() => {
+    if (plan.variations) {
+      const al = plan.variations.filter((item) => item.isDefaultActive === true)
+      if (al.length > 0) {
+        dispatch(setSubscriptionPlan(al[0]))
+      }
+    }
+  }, [plan])
   useEffect(() => {
     if ('scrollRestoration' in window.history) {
       const onBeforeUnload = (event: Event) => {
@@ -106,6 +125,7 @@ const BuyAutoInstagramFollowers: React.VFC = () => {
       }
     }
   }, [])
+
   return (
     <>
       <Header />
@@ -117,13 +137,20 @@ const BuyAutoInstagramFollowers: React.VFC = () => {
         <div className="flex flex-col flex-wrap w-full p-3 bg-[#222232]">
           <div className="flex flex-col flex-wrap w-full overflow-hidden rounded-2xl bg-[#222232] bg-opacity-50 md:bg-[transparent]">
             <FollowerPlan
+              services={props.services.filter((item) => item.isActive === true)}
               planSelected={(item) => onFollowerPlanSelected(item)}
+              activePlan={plan}
             />
             <SubscriptionPlan
+              plan={plan}
+              activeSubscriptionPlan={subscriptionPlan}
               planSelected={(item) => onSubscriptionPlanSelected(item)}
             />
             <InstagramAccount submitClicked={(name) => onSubmitClicked(name)} />
-            <PaymentGateways price={0} />
+            <PaymentGateways price={parseFloat(parseFloat(
+                plan.price *
+                  ((100 - plan.coupanDiscount) / 100),
+              ).toFixed(2) * subscriptionPlan.variationDays).toFixed(2)} />
             <div className="w-full h-16"></div>
             <Statics
               providedFollowers={'505,604,653'}

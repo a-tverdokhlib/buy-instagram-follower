@@ -1,9 +1,8 @@
+import parse from 'html-react-parser'
 import Router, { NextRouter } from 'next/router'
 import { useEffect } from 'react'
 
 import { Banner } from '@/components/Buy-Custom-Instagram-Comments/Banner'
-import { Description1 } from '@/components/Buy-Custom-Instagram-Comments/Description1'
-import { Description2 } from '@/components/Buy-Custom-Instagram-Comments/Description2'
 import { FAQ } from '@/components/Buy-Custom-Instagram-Comments/FAQ'
 import { Feedback } from '@/components/Buy-Custom-Instagram-Comments/Feedback'
 import { ViewPackages } from '@/components/Buy-Custom-Instagram-Comments/ViewPackages'
@@ -27,7 +26,7 @@ function restoreScrollPosition(url: string, pos: number) {
   }
 }
 
-const BuyCustomInstagramComments: React.VFC = () => {
+const BuyCustomInstagramComments: React.VFC = (props: any) => {
   const dispatch = useAppDispatch()
   const { commentType } = useAppSelector((state) => state.customComments)
   const { scrollPosition } = useAppSelector((state) => state.customComments)
@@ -90,11 +89,14 @@ const BuyCustomInstagramComments: React.VFC = () => {
       <Header />
       <main className="flex flex-1 flex-col w-full top-0 min-h-screen p-0">
         <Banner
+          {...props}
           onClickedHighQuality={onClickedHighQuality}
           onClickedActive={onClickedActive}
           commentType={getCommentType}
         />{' '}
-        <Description1 />
+        <div className="service-description flex flex-col flex-wrap w-full p-3 ls:p-5 items-center justify-center bg-[#222232] text-gray-400">
+          {parse(props.category.content)}
+        </div>
         <HowTo />
         <Feedback />
         <div className="h-32 bg-[#222232]"></div>

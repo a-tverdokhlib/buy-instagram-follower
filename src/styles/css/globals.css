@@ -785,3 +785,15 @@ body {
     width: 0;  /* Remove scrollbar space */
     background: transparent;  /* Optional: just make scrollbar invisible */
 }
+
+.features li {
+    font-size: 14px;
+    border-bottom-width: 1px;
+    border-color: rgb(75 85 99 / 1);
+    height: 32px;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+
+}

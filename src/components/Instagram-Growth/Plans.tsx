@@ -4,58 +4,8 @@ import { MySwipper } from '@/components/atoms/MySwipper'
 
 import { GrowthPlanCard } from './GrowthPlanCard'
 
-const planCards = [
-  {
-    title: 'Personal Plan',
-    avgMark: 5,
-    reviewCount: 1,
-    cost: 29,
-    isPopular: false,
-    followerDesc: '1,000+ Real Followers',
-    viewDesc: '200+ Views Per Video',
-    likeDesc: '50+ Likes Per Post',
-    autoSaveDesc: '30+ Instagram Autosaves per post',
-    autoCommentDesc: '15+ Auto Comments per post',
-    autoImpressDesc: '200+ Auto Impressions per post',
-    profileVisitDesc: 'Instagram Profile Visits',
-    futurePostDesc: 'Unlimited Future Posts',
-    oneTimePaymentDesc: 'One Time Payment, Not Recurring',
-  },
-  {
-    title: 'Influencer Plan',
-    avgMark: 5,
-    reviewCount: 1,
-    cost: 69,
-    isPopular: false,
-    followerDesc: '1,000+ Real Followers',
-    viewDesc: '200+ Views Per Video',
-    likeDesc: '50+ Likes Per Post',
-    autoSaveDesc: '30+ Instagram Autosaves per post',
-    autoCommentDesc: '15+ Auto Comments per post',
-    autoImpressDesc: '200+ Auto Impressions per post',
-    profileVisitDesc: 'Instagram Profile Visits',
-    futurePostDesc: 'Unlimited Future Posts',
-    oneTimePaymentDesc: 'One Time Payment, Not Recurring',
-  },
-  {
-    title: 'Business Plan',
-    avgMark: 5,
-    reviewCount: 1,
-    cost: 99,
-    isPopular: false,
-    followerDesc: '1,000+ Real Followers',
-    viewDesc: '200+ Views Per Video',
-    likeDesc: '50+ Likes Per Post',
-    autoSaveDesc: '30+ Instagram Autosaves per post',
-    autoCommentDesc: '15+ Auto Comments per post',
-    autoImpressDesc: '200+ Auto Impressions per post',
-    profileVisitDesc: 'Instagram Profile Visits',
-    futurePostDesc: 'Unlimited Future Posts',
-    oneTimePaymentDesc: 'One Time Payment, Not Recurring',
-  },
-]
-
 type Props = {
+  readonly plans: any
   readonly onPlanSelected: (any) => void
 }
 
@@ -152,23 +102,15 @@ export const Plans: React.VFC<Props> = (props) => {
         swiperReachStart={swiperReachStart}
         swiperReachEnd={swiperReachEnd}
       >
-        {planCards.map((item, id) => {
+        {props.plans.map((item, id) => {
           return (
             <GrowthPlanCard
               key={id}
-              title={item.title}
+              title={item.name}
               reviewCount={item.reviewCount}
-              cost={item.cost}
+              price={item.price}
               isPopular={item.isPopular}
-              followerDesc={item.followerDesc}
-              viewDesc={item.viewDesc}
-              likeDesc={item.likeDesc}
-              autoSaveDesc={item.autoSaveDesc}
-              autoCommentDesc={item.autoCommentDesc}
-              autoImpressDesc={item.autoImpressDesc}
-              profileVisitDesc={item.profileVisitDesc}
-              futurePostDesc={item.futurePostDesc}
-              oneTimePaymentDesc={item.oneTimePaymentDesc}
+              keyFeatures={item.keyFeatures}
               onPurchaseClicked={() => props.onPlanSelected(item)}
             />
           )

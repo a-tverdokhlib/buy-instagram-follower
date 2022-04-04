@@ -3,42 +3,10 @@ import { useRef, useState } from 'react'
 import { MySwipper } from '@/components/atoms/MySwipper'
 import { ProductCard } from '@/components/organisms/ProductCard'
 
-const productCards = [
-  {
-    title: '15',
-    subTitle: '15 Custom Comments',
-    avgMark: 5,
-    reviewCount: 0,
-    cost: 2.99,
-    isPopular: false,
-  },
-  {
-    title: '25',
-    subTitle: '25 Custom Comments',
-    avgMark: 5,
-    reviewCount: 0,
-    cost: 4.99,
-    isPopular: false,
-  },
-  {
-    title: '50',
-    subTitle: '50 Custom Comments',
-    avgMark: 5,
-    reviewCount: 0,
-    cost: 8.99,
-    isPopular: false,
-  },
-  {
-    title: '100',
-    subTitle: '100 Custom Comments',
-    avgMark: 5,
-    reviewCount: 0,
-    cost: 14.99,
-    isPopular: false,
-  },
-]
-
-export const QualityComments: React.VFC = () => {
+type Props = {
+  readonly services: any
+}
+export const QualityComments: React.VFC<Props> = (props) => {
   const swiperRef = useRef<any>(null)
   const prevRef = useRef<any>(null)
   const nextRef = useRef<any>(null)
@@ -130,15 +98,16 @@ export const QualityComments: React.VFC = () => {
         swiperReachStart={swiperReachStart}
         swiperReachEnd={swiperReachEnd}
       >
-        {productCards.map((item, id) => {
+        {props.services.map((item, id) => {
           return (
             <ProductCard
               key={id}
-              title={item.title}
-              subTitle={item.subTitle}
+              title={item.quantity}
+              subTitle={item.name}
               reviewCount={item.reviewCount}
-              cost={item.cost}
-              isPopular={item.isPopular}
+              cost={item.price}
+              isPopular={item.isMostPopular}
+              urlSlug={item.urlSlug}
             />
           )
         })}

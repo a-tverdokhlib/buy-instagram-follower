@@ -3,9 +3,11 @@ import { useRef, useState } from 'react'
 import { MySwipper } from '@/components/atoms/MySwipper'
 import { ProductCard } from '@/components/organisms/ProductCard'
 
-const productCards: readonly any[] = []
+type Props = {
+  readonly services: any
+}
 
-export const ActiveComments: React.VFC = () => {
+export const ActiveComments: React.VFC<Props> = (props) => {
   const swiperRef = useRef<any>(null)
   const prevRef = useRef<any>(null)
   const nextRef = useRef<any>(null)
@@ -30,7 +32,7 @@ export const ActiveComments: React.VFC = () => {
   }
   return (
     <>
-      {productCards.length === 0 ? (
+      {props.services.length === 0 ? (
         <>
           <div className="flex justify-center text-white">
             No Active Comments
@@ -103,15 +105,16 @@ export const ActiveComments: React.VFC = () => {
             swiperReachStart={swiperReachStart}
             swiperReachEnd={swiperReachEnd}
           >
-            {productCards.map((item, id) => {
+            {props.services.map((item, id) => {
               return (
                 <ProductCard
                   key={id}
-                  title={item.title}
-                  subTitle={item.subTitle}
+                  title={item.quantity}
+                  subTitle={item.name}
                   reviewCount={item.reviewCount}
-                  cost={item.cost}
-                  isPopular={item.isPopular}
+                  cost={item.price}
+                  isPopular={item.isMostPopular}
+                  urlSlug={item.urlSlug}
                 />
               )
             })}

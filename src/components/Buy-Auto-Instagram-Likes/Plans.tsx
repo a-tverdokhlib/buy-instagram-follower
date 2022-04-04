@@ -4,58 +4,8 @@ import { MySwipper } from '@/components/atoms/MySwipper'
 
 import { AutoLikesPlanCard } from './AutoLikesPlanCard'
 
-const planCards = [
-  {
-    title: '50 Likes Per Post',
-    avgMark: 5,
-    reviewCount: 1,
-    cost: 8.99,
-    isPopular: false,
-    descriptions: [
-      'Up to 4 posts per day',
-      'Real likes from real people',
-      'Free views on all videos',
-      'Safe and secure',
-      'One time payment',
-      '30 days growth',
-      '1-time Payment. Not Recurring',
-    ],
-  },
-  {
-    title: '100 Likes Per Post',
-    avgMark: 5,
-    reviewCount: 1,
-    cost: 17.99,
-    isPopular: false,
-    descriptions: [
-      'Up to 4 posts per day',
-      'Real likes from real people',
-      'Free views on all videos',
-      'Safe and secure',
-      'One time payment',
-      '30 days growth',
-      '1-time Payment. Not Recurring',
-    ],
-  },
-  {
-    title: '250 Likes Per Post',
-    avgMark: 5,
-    reviewCount: 1,
-    cost: 28.99,
-    isPopular: false,
-    descriptions: [
-      'Up to 4 posts per day',
-      'Real likes from real people',
-      'Free views on all videos',
-      'Safe and secure',
-      'One time payment',
-      '30 days growth',
-      '1-time Payment. Not Recurring',
-    ],
-  },
-]
-
 type Props = {
+  readonly plans: any
   readonly onPlanSelected: (any) => void
 }
 
@@ -152,15 +102,15 @@ export const Plans: React.VFC<Props> = (props) => {
         swiperReachStart={swiperReachStart}
         swiperReachEnd={swiperReachEnd}
       >
-        {planCards.map((item, id) => {
+        {props.plans.map((item, id) => {
           return (
             <AutoLikesPlanCard
               key={id}
-              title={item.title}
+              title={item.name}
               reviewCount={item.reviewCount}
-              cost={item.cost}
+              price={item.price}
               isPopular={item.isPopular}
-              descriptions={item.descriptions}
+              keyFeatures={item.keyFeatures}
               onPurchaseClicked={() => props.onPlanSelected(item)}
             />
           )

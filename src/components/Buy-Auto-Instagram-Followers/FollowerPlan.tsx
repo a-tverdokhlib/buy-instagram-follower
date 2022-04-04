@@ -1,35 +1,13 @@
+import { isEmpty } from 'rxjs'
+
 import { FollowerPlanCard } from './FollowerPlanCard'
 
 type Props = {
+  readonly services: any
   readonly planSelected: (any) => void
+  readonly activePlan: any
 }
 
-const planInfos = [
-  {
-    id: 0,
-    followers: 50,
-    savePercent: 45,
-    price: 0.84,
-    oldPrice: 1.52,
-    isPopular: false,
-  },
-  {
-    id: 1,
-    followers: 150,
-    savePercent: 50,
-    price: 1.44,
-    oldPrice: 2,
-    isPopular: true,
-  },
-  {
-    id: 2,
-    followers: 200,
-    savePercent: 70,
-    price: 1.66,
-    oldPrice: 5.53,
-    isPopular: false,
-  },
-]
 export const FollowerPlan: React.VFC<Props> = (props) => {
   return (
     <div className="flex flex-col flex-wrap w-full md:bg-[#222232] md:rounded-none md:p-0 ml:px-14">
@@ -51,8 +29,15 @@ export const FollowerPlan: React.VFC<Props> = (props) => {
         </div>
       </div>
       <div className="flex flex-col flex-wrap space-y-4 w-full items-center px-3 md:space-x-2 md:space-y-0 md:px-16 md:flex-row md:flex-nowrap">
-        {planInfos.map((item, id) => {
-          return <FollowerPlanCard key={id} planInfo={item} />
+        {props.services.map((item, id) => {
+          return (
+            <FollowerPlanCard
+              onPlanSelected={() => props.planSelected(item)}
+              key={id}
+              planInfo={item}
+              isSelected={item._id === props.activePlan._id ? true : false}
+            />
+          )
         })}
       </div>
     </div>

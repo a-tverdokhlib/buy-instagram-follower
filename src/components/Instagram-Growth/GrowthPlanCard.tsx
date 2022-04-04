@@ -1,18 +1,20 @@
+import parse from 'html-react-parser'
 type Props = {
   readonly title: string
   readonly avgMark?: number
   readonly reviewCount: number
-  readonly cost: number
+  readonly price: number
   readonly isPopular: boolean
-  readonly followerDesc: string
-  readonly viewDesc: string
-  readonly likeDesc: string
-  readonly autoSaveDesc: string
-  readonly autoCommentDesc: string
-  readonly autoImpressDesc: string
-  readonly profileVisitDesc: string
-  readonly futurePostDesc: string
-  readonly oneTimePaymentDesc: string
+  readonly keyFeatures: any
+  // readonly followerDesc: string
+  // readonly viewDesc: string
+  // readonly likeDesc: string
+  // readonly autoSaveDesc: string
+  // readonly autoCommentDesc: string
+  // readonly autoImpressDesc: string
+  // readonly profileVisitDesc: string
+  // readonly futurePostDesc: string
+  // readonly oneTimePaymentDesc: string
   readonly onPurchaseClicked: () => void
 }
 
@@ -63,7 +65,7 @@ export const GrowthPlanCard: React.VFC<Props> = (props) => {
                   <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
                 </svg>
               </sub>
-              <span className="font-bold text-4xl">{props.cost}</span>
+              <span className="font-bold text-4xl">{props.price}</span>
             </div>
             <div className="flex">
               <span className="font-bold">per month</span>
@@ -71,8 +73,9 @@ export const GrowthPlanCard: React.VFC<Props> = (props) => {
           </div>
         </div>
       </div>
+      <div className="w-full">{parse(props.keyFeatures)}</div>
       {/* background-image: linear-gradient(to right,#ff7802 0%,#fea921 100%),linear-gradient(to right,#ff7802 0%,#fea921 100%); */}
-      <div className="w-full flex text-sm h-8 text-gray-300 space-x-1 border-b-[1px] border-gray-600 items-center justify-center text-center">
+      {/* <div className="w-full flex text-sm h-8 text-gray-300 space-x-1 border-b-[1px] border-gray-600 items-center justify-center text-center">
         <svg
           className="h-4 w-4 text-[#DC39FC]"
           fill="none"
@@ -248,7 +251,7 @@ export const GrowthPlanCard: React.VFC<Props> = (props) => {
         <span className="text-[green] text-[13px] ls:text-sm">
           {props.oneTimePaymentDesc}
         </span>
-      </div>
+      </div> */}
       <div
         onClick={props.onPurchaseClicked}
         className="w-full flex text-sm h-8 text-gray-300 space-x-1  items-center justify-center text-center cursor-pointer hover:scale-110 transition-all duration-500"
