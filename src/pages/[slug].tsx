@@ -9,6 +9,7 @@ import BuyCustomInstagramComments from '@/components/Buy-Custom-Instagram-Commen
 import BuyInstagramComments from '@/components/Buy-Instagram-Comments'
 import BuyInstagramFollowers from '@/components/Buy-Instagram-Followers'
 import BuyInstagramLikes from '@/components/Buy-Instagram-Likes'
+import BuyInstagramStoryViews from '@/components/Buy-Instagram-Story-Views'
 import BuyInstagramViews from '@/components/Buy-Instagram-Views'
 import InstagramGrowth from '@/components/Instagram-Growth'
 import { categoryService } from '@/services/category'
@@ -43,6 +44,8 @@ const Slug = (props) => {
       return <BuyAutoInstagramFollowers {...props} />
     else if (slug === 'buy-custom-instagram-comments')
       return <BuyCustomInstagramComments {...props} />
+    else if (slug === 'buy-instagram-story-views')
+      return <BuyInstagramStoryViews {...props} />
     else if (slug === 'blog') return <Blog />
     else return <></>
   } else return <></>

@@ -26,7 +26,7 @@ function restoreScrollPosition(url: string, pos: number) {
   }
 }
 
-const BuyInstagramStoryViews: React.VFC = () => {
+const BuyInstagramStoryViews: React.VFC = (props: any) => {
   let scroller = Scroll.scroller
   let scroll = Scroll.animateScroll
   let Element = Scroll.Element
@@ -90,6 +90,8 @@ const BuyInstagramStoryViews: React.VFC = () => {
       }
     }
   }, [])
+
+  console.log('Other Service =>', props.category)
   return (
     <>
       <Header />
@@ -97,7 +99,7 @@ const BuyInstagramStoryViews: React.VFC = () => {
         className="flex flex-1 flex-col w-full top-0 min-h-screen p-0"
         id="ContainerElementID"
       >
-        <Banner onPlanSelected={(item) => onPlanSelected(item)} />
+        <Banner {...props} onPlanSelected={(item) => onPlanSelected(item)} />
         <Element name="myScrollToElement">
           <PlanConfirmation plan={plan} />
         </Element>

@@ -12,13 +12,14 @@ type Props = {
   readonly onPlanSelected: (any) => void
 }
 
-export const Banner: React.VFC<Props> = (props) => {
+export const Banner: React.VFC<Props> = (props: any) => {
+  console.log('Data=>', props.category)
   return (
     <div className="flex flex-col flex-wrap w-full bg-[#222232] min-h-screen">
       <div className="flex flex-col flex-wrap px-3 py-16 ls:p-16 space-y-3 justify-center">
         <div className="text-white text-2xl ls:text-4xl text-center">
           <span>
-            <span className="">Buy Instagram Story Views</span> with Instant
+            <span className="">{props.category.name}</span> with Instant
             Delivery in 2020
           </span>
         </div>
@@ -36,7 +37,10 @@ export const Banner: React.VFC<Props> = (props) => {
       <div className="flex w-full flex-col flex-wrap px-5 md:px-16 space-y-5 justify-center items-center">
         <div className="h-10"></div>
         <div className="w-full justify-center items-center mt-16">
-          <Plans onPlanSelected={(item) => props.onPlanSelected(item)} />
+          <Plans
+            services={props.category.priceList}
+            onPlanSelected={(item) => props.onPlanSelected(item)}
+          />
         </div>
       </div>
     </div>

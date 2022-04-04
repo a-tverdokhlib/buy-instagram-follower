@@ -4,50 +4,8 @@ import { MySwipper } from '@/components/atoms/MySwipper'
 
 import { StoryViewPlanCard } from './StoryViewPlanCard'
 
-const planCards = [
-  {
-    title: '100',
-    subTitle: 'Buy Instagram story views',
-    avgMark: 5,
-    reviewCount: 1,
-    cost: 1.22,
-    isPopular: false,
-  },
-  {
-    title: '1000',
-    subTitle: 'Buy Instagram story views',
-    avgMark: 5,
-    reviewCount: 1,
-    cost: 4.99,
-    isPopular: false,
-  },
-  {
-    title: '2000',
-    subTitle: 'Buy Instagram story views',
-    avgMark: 5,
-    reviewCount: 1,
-    cost: 7.99,
-    isPopular: false,
-  },
-  {
-    title: '5000',
-    subTitle: 'Buy Instagram story views',
-    avgMark: 5,
-    reviewCount: 1,
-    cost: 12.99,
-    isPopular: false,
-  },
-  {
-    title: '10000',
-    subTitle: 'Buy Instagram story views',
-    avgMark: 5,
-    reviewCount: 1,
-    cost: 18.99,
-    isPopular: false,
-  },
-]
-
 type Props = {
+  readonly services: any
   readonly onPlanSelected: (any) => void
 }
 
@@ -144,15 +102,15 @@ export const Plans: React.VFC<Props> = (props) => {
         swiperReachStart={swiperReachStart}
         swiperReachEnd={swiperReachEnd}
       >
-        {planCards.map((item, id) => {
+        {props.services.map((item, id) => {
           return (
             <StoryViewPlanCard
               key={id}
-              title={item.title}
-              subTitle={item.subTitle}
+              title={item.quantity}
+              subTitle="Buy Instagram story views"
               reviewCount={item.reviewCount}
-              cost={item.cost}
-              isPopular={item.isPopular}
+              cost={item.salePrice}
+              isPopular={false}
               onPurchaseClicked={() => props.onPlanSelected(item)}
             />
           )

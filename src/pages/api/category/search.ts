@@ -5,6 +5,7 @@ import {
   autoLikePackRepo,
   categoryRepo,
   growPackRepo,
+  otherServiceRepo,
   serviceRepo,
 } from 'helpers/api'
 import getConfig from 'next/config'
@@ -27,6 +28,19 @@ async function searchCategory(req, res) {
 
   const category = await categoryRepo.find({ urlSlug: urlSlug })
   if (!category) {
+    if (urlSlug === 'buy-instagram-story-views') {
+      const services = await otherServiceRepo.getAll()
+      if (services.length > 0)
+        return res.status(200).json({
+          data: services[0],
+          services: [],
+        })
+      else
+        return res.status(200).json({
+          data: {},
+          services: [],
+        })
+    }
     return res.status(200).json({
       data: {},
       services: [],
