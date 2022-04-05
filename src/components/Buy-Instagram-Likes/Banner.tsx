@@ -58,6 +58,7 @@ export const Banner: React.VFC<Props> = (props: any) => {
         <div className="w-full justify-center items-center mt-16">
           {props.likeType() === 'highQuality' ? (
             <QualityLikes
+              category={props.category}
               services={[
                 ...props.services.filter(
                   (service) =>
@@ -68,6 +69,7 @@ export const Banner: React.VFC<Props> = (props: any) => {
             />
           ) : (
             <ActiveLikes
+              category={props.category}
               services={[
                 ...props.services.filter(
                   (service) => service.isShownInActiveTab === true,
