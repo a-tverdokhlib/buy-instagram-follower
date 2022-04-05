@@ -13,7 +13,6 @@ type Props = {
 }
 
 export const Banner: React.VFC<Props> = (props: any) => {
-  console.log('Data=>', props.category)
   return (
     <div className="flex flex-col flex-wrap w-full bg-[#222232] min-h-screen">
       <div className="flex flex-col flex-wrap px-3 py-16 ls:p-16 space-y-3 justify-center">

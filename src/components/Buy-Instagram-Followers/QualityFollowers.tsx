@@ -1,3 +1,4 @@
+import router from 'next/router'
 import { useRef, useState } from 'react'
 
 import { MySwipper } from '@/components/atoms/MySwipper'
@@ -5,6 +6,7 @@ import { ProductCard } from '@/components/organisms/ProductCard'
 
 type Props = {
   readonly services: any
+  readonly category: any
 }
 export const QualityFollowers: React.VFC<Props> = (props: any) => {
   const swiperRef = useRef<any>(null)
@@ -26,6 +28,16 @@ export const QualityFollowers: React.VFC<Props> = (props: any) => {
 
   const swiperReachStart = (e: any) => {
     setSwiperReachStarted(e)
+  }
+
+  const onOrderItemClick = (item) => {
+    router.push({
+      pathname:
+        item.urlSlug !== undefined
+          ? `${item.urlSlug}/${props.category.urlSlug}`
+          : '',
+      query: { serviceId: item._id },
+    })
   }
 
   const swiperReachEnd = (e: any) => {
@@ -107,7 +119,8 @@ export const QualityFollowers: React.VFC<Props> = (props: any) => {
               reviewCount={item.reviewCount}
               cost={item.price}
               isPopular={item.isMostPopular}
-              urlSlug={item.urlSlug}
+              // urlSlug={`${item.urlSlug}/${props.category.urlSlug}?serviceId=${item._id}`}
+              onOrderItemClick={() => onOrderItemClick(item)}
             />
           )
         })}

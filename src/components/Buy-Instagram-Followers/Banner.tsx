@@ -56,6 +56,7 @@ export const Banner: React.VFC<Props> = (props: any) => {
         <div className="w-full justify-center items-center mt-16">
           {props.followerType() === 'highQuality' ? (
             <QualityFollowers
+              category={props.category}
               services={[
                 ...props.services.filter(
                   (service) => service.isShownInActiveTab !== true,
@@ -64,6 +65,7 @@ export const Banner: React.VFC<Props> = (props: any) => {
             />
           ) : (
             <ActiveFollowers
+              category={props.category}
               services={[
                 ...props.services.filter(
                   (service) => service.isShownInActiveTab === true,

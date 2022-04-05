@@ -25,21 +25,21 @@ export const SideNavbar: React.VFC<SideProps> = ({ children }) => {
             </Link>
           </li>
           <li className="w-full md:w-28 ml:w-28 lg:w-36 pt-3">
-            <Link href="buy-instagram-followers">
+            <Link href="/buy-instagram-followers">
               <a className="flex items-center h-full py-2 pr-4 pl-3 text-white hover:text-[#DC39FC] md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 transition-all duration-500 delay-75">
                 Buy Intagram Followers
               </a>
             </Link>
           </li>
           <li className="w-full md:w-28 ml:w-28 lg:w-36 pt-3">
-            <Link href="buy-instagram-likes">
+            <Link href="/buy-instagram-likes">
               <a className="flex items-center h-full py-2 pr-4 pl-3 text-white hover:text-[#DC39FC] md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 transition-all duration-500 delay-75">
                 Buy Intagram Likes
               </a>
             </Link>
           </li>
           <li className="w-full md:w-28 ml:w-28 lg:w-36 pt-3">
-            <Link href="buy-instagram-views">
+            <Link href="/buy-instagram-views">
               <a className="flex items-center h-full py-2 pr-4 pl-3 text-white hover:text-[#DC39FC] md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 transition-all duration-500 delay-75">
                 Buy Intagram Views
               </a>
@@ -67,32 +67,32 @@ export const SideNavbar: React.VFC<SideProps> = ({ children }) => {
             </a>
             <div className="ls:w-[300px] rounded-lg ml-auto mr-0 ls:mr-3 dropdown-content">
               <div className="bg-transparent">
-                <Link href="buy-instagram-comments">
+                <Link href="/buy-instagram-comments">
                   <a href="#">Buy Buy Instagram Comments</a>
                 </Link>
               </div>
               <div>
-                <Link href="instagram-growth">
+                <Link href="/instagram-growth">
                   <a href="#">Buy Instagram Growth</a>
                 </Link>
               </div>
               <div>
-                <Link href="buy-auto-instagram-likes">
+                <Link href="/buy-auto-instagram-likes">
                   <a href="#">Buy Automatic Instagram Likes</a>
                 </Link>
               </div>
               <div>
-                <Link href="buy-auto-instagram-followers">
+                <Link href="/buy-auto-instagram-followers">
                   <a href="#">Buy Auto Instagram Followers</a>
                 </Link>
               </div>
               <div>
-                <Link href="buy-custom-instagram-comments">
+                <Link href="/buy-custom-instagram-comments">
                   <a href="#">Buy Custom Instagram Comments</a>
                 </Link>
               </div>
               <div>
-                <Link href="buy-instagram-story-views">
+                <Link href="/buy-instagram-story-views">
                   <a href="#">Buy Instagram Story Views</a>
                 </Link>
               </div>
