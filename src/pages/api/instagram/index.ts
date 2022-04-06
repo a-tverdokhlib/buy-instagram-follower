@@ -20,18 +20,25 @@ async function getUserInfo(req, res) {
     throw 'No username given'
   }
 
-  axios
-    .get(`https://www.instagram.com/${username}/?__a=1`, {
-      proxy: {
-        host: 's1.airproxy.io',
-        port: 31005,
-        auth: { username: 'sanjananb', password: 'sanjananb' },
-      },
-    })
-    .then((res) => {
-      console.log(res)
-    })
-    .catch((err) => {
-      console.log(err)
-    })
+  // axios
+  //   .get(`https://www.instagram.com/${username}/?__a=1`, {
+  //     proxy: {
+  //       host: 's1.airproxy.io',
+  //       port: 31005,
+  //       auth: { username: 'sanjananb', password: 'sanjananb' },
+  //     },
+  //   })
+  //   .then((res) => {
+  //     console.log(res)
+  //   })
+  //   .catch((err) => {
+  //     console.log(err)
+  //   })
+
+  const url = `https://www.instagram.com/${username}/?__a=1%5Csanjananb:sanjananb@s2.airproxy.io:31005`
+
+  fetch(url)
+    .then((response) => response.text())
+    .then(console.log)
+    .catch(console.error)
 }
