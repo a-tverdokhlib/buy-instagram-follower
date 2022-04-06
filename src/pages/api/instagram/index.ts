@@ -35,7 +35,7 @@ async function getUserInfo(req, res) {
   //     console.log(err)
   //   })
 
-  const url = `https://www.instagram.com/${username}/?__a=1?sanjananb:sanjananb@s2.airproxy.io:31005`
+  const url = `https://www.instagram.com/${username}/?__a=1/sanjananb:sanjananb@s2.airproxy.io:31005`
 
   fetch(url)
     .then((response) => response.text())
