@@ -25,12 +25,9 @@ const Product = (props) => {
     }
   }, [mounted])
 
-  const onUsernameBlur = () => {
-    console.log('Blur Event =>', instaUsername)
-    console.log(
-      'Instagram User Data =>',
-      goreadService.getUserData(instaUsername),
-    )
+  const onUsernameBlur = async () => {
+    const userdata = await goreadService.getUserData(instaUsername)
+    console.log('User Data =>', userdata)
   }
   if (mounted === true) {
     return (
