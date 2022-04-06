@@ -23,9 +23,9 @@ async function getUserInfo(req, res) {
   axios
     .get(`https://www.instagram.com/${username}/?__a=1`, {
       proxy: {
-        host: 'proxy.froxy.com',
-        port: 9000,
-        auth: { username: 'BBis8yzzuum8tR9n', password: 'mobile;;;;' },
+        host: 's1.airproxy.io',
+        port: 31005,
+        auth: { username: 'sanjananb', password: 'sanjananb' },
       },
     })
     .then((res) => {
