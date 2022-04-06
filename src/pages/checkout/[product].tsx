@@ -4,14 +4,15 @@ import { useEffect, useState } from 'react'
 import { Footer } from '@/components/organisms/Footer'
 import { Header } from '@/components/organisms/Header'
 import { categoryService } from '@/services/category'
-import { serviceService } from '@/services/service'
+import { goreadService } from '@/services/goread'
 
 const Product = (props) => {
   const router = useRouter()
   const { product, serviceId } = router.query
   const [mounted, setMounted] = useState(false)
   const [selectedServiceItem, setSelectedServiceItem] = useState<any>()
-
+  const [instaUsername, setInstaUsername] = useState('')
+  const [email, setEmail] = useState('')
   useEffect(() => {
     setMounted(true)
   }, [])
@@ -24,6 +25,13 @@ const Product = (props) => {
     }
   }, [mounted])
 
+  const onUsernameBlur = () => {
+    console.log('Blur Event =>', instaUsername)
+    console.log(
+      'Instagram User Data =>',
+      goreadService.getUserData(instaUsername),
+    )
+  }
   if (mounted === true) {
     return (
       <>
@@ -54,6 +62,9 @@ const Product = (props) => {
                     className="w-full p-3 rounded-lg"
                     type="text"
                     placeholder="Your Instagram username"
+                    onChange={(e) => setInstaUsername(e.target.value)}
+                    value={instaUsername}
+                    onBlur={() => onUsernameBlur()}
                   ></input>
                 </div>
                 <div className="flex w-full">
@@ -61,6 +72,8 @@ const Product = (props) => {
                     className="w-full p-3 rounded-lg"
                     type="text"
                     placeholder="Your Email"
+                    onChange={(e) => setEmail(e.target.value)}
+                    value={email}
                   ></input>
                 </div>
                 <div className="flex">
