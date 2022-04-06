@@ -15,7 +15,7 @@ export const goreadService = {
 
 function getUserData(username) {
   return fetchWrapper
-    .get(`https://goread.io/api/instanew/${username}`)
+    .get(`${publicRuntimeConfig.apiUrl}/instagram?username=${username}`)
     .then((data) => {
       return data
     })
