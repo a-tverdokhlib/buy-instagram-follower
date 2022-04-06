@@ -39,6 +39,14 @@ async function getUserInfo(req, res) {
 
   fetch(url)
     .then((response) => response.text())
-    .then(console.log)
-    .catch(console.error)
+    .then((response) => {
+      return res.status(200).json({
+        data: response,
+      })
+    })
+    .catch((error) => {
+      return res.status(501).json({
+        data: {},
+      })
+    })
 }
