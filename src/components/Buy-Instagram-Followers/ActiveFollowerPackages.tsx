@@ -14,6 +14,7 @@ const Package: React.VFC<PackageProps> = (props) => {
   )
 }
 type Props = {
+  readonly category: any
   readonly packageList: any
 }
 export const ActiveFollowerPackages: React.VFC<Props> = (props) => {
@@ -44,7 +45,7 @@ export const ActiveFollowerPackages: React.VFC<Props> = (props) => {
                 }
                 title={item.name}
                 description={item.name}
-                urlSlug={item.urlSlug}
+                urlSlug={`${item.urlSlug}/${props.category.urlSlug}?serviceId=${item._id}`}
               />
             )
           })}

@@ -1,9 +1,11 @@
+import router from 'next/router'
 import { useRef, useState } from 'react'
 
 import { MySwipper } from '@/components/atoms/MySwipper'
 import { ProductCard } from '@/components/organisms/ProductCard'
 
 type Props = {
+  readonly category: any
   readonly services: any
 }
 
@@ -29,6 +31,16 @@ export const ActiveComments: React.VFC<Props> = (props) => {
 
   const swiperReachEnd = (e: any) => {
     setSwiperReachEnded(e)
+  }
+
+  const onOrderItemClick = (item) => {
+    router.push({
+      pathname:
+        item.urlSlug !== undefined
+          ? `${item.urlSlug}/${props.category.urlSlug}`
+          : '',
+      query: { serviceId: item._id },
+    })
   }
   return (
     <>
@@ -114,7 +126,8 @@ export const ActiveComments: React.VFC<Props> = (props) => {
                   reviewCount={item.reviewCount}
                   cost={item.price}
                   isPopular={item.isMostPopular}
-                  urlSlug={item.urlSlug}
+                  // urlSlug={item.urlSlug}
+                  onOrderItemClick={() => onOrderItemClick(item)}
                 />
               )
             })}

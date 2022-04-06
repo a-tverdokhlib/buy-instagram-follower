@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { ProductCard } from './ProductCard'
 
 type Props = {
+  readonly category: any
   readonly packageList: any
 }
 export const ActiveLikePackages: React.VFC<Props> = (props) => {
@@ -34,7 +35,7 @@ export const ActiveLikePackages: React.VFC<Props> = (props) => {
                 }
                 title={item.name}
                 description={item.name}
-                urlSlug={item.urlSlug}
+                urlSlug={`${item.urlSlug}/${props.category.urlSlug}?serviceId=${item._id}`}
               />
             )
           })}

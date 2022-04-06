@@ -101,6 +101,7 @@ const BuyInstagramLikes: React.VFC = (props: any) => {
               '<div class="active-packages"><span>Active Instagram Like packages</span></div>',
               renderToString(
                 <ActiveLikePackages
+                  category={props.category}
                   packageList={[
                     ...props.services.filter(
                       (item) => item.isShownInActiveTab === true,
