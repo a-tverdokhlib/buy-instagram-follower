@@ -48,6 +48,7 @@
     "suneditor": "^2.42.0",
     "suneditor-react": "^3.4.0",
     "swiper": "^8.0.5",
+    "tunnel": "^0.0.6",
     "yup": "^0.32.11"
   },
   "devDependencies": {

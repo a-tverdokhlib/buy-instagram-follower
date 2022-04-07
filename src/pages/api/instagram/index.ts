@@ -4,6 +4,7 @@ import axios from 'axios'
 import fetch from 'fetch-with-proxy'
 import { apiHandler } from 'helpers/api'
 import getConfig from 'next/config'
+import tunnel from 'tunnel'
 
 import connectDB from '@/helpers/api/lib/mongodb'
 
@@ -80,31 +81,51 @@ async function getUserInfo(req, res) {
   //       data: {},
   //     })
   //   })
-  const HttpsProxyAgent = require('https-proxy-agent')
 
-  const axiosDefaultConfig = {
-    baseURL: `https://www.instagram.com/${username}/?__a=1`,
-    proxy: false,
-    httpsAgent: new HttpsProxyAgent(
-      'http://BBis8yzzuum8tR9n:mobile;;;;@proxy.froxy.com:9000',
-    ),
-  }
+  // const HttpsProxyAgent = require('https-proxy-agent')
 
-  const axios = require('axios').create(axiosDefaultConfig)
-  axios
-    .get('42')
-    .then(function (response) {
-      console.log(`Response with axios was ok: ${response.status}`)
-      console.log(response)
-      // return res.status(200).json({
-      //   data: response,
-      // })
-    })
-    .catch(function (error) {
-      console.log(error)
-      return res.status(200).json({
-        data: {},
-        error: error,
-      })
-    })
+  // const axiosDefaultConfig = {
+  //   baseURL: `https://www.instagram.com/${username}/?__a=1`,
+  //   proxy: false,
+  //   httpsAgent: new HttpsProxyAgent(
+  //     'http://sanjananb:sanjananb@s2.airproxy.io:31005',
+  //   ),
+  // }
+
+  // const axios = require('axios').create(axiosDefaultConfig)
+  // axios
+  //   .get('42')
+  //   .then(function (response) {
+  //     console.log(`Response with axios was ok: ${response.status}`)
+  //     console.log(response)
+  //     // return res.status(200).json({
+  //     //   data: response,
+  //     // })
+  //   })
+  //   .catch(function (error) {
+  //     console.log(error)
+  //     return res.status(200).json({
+  //       data: {},
+  //       error: error,
+  //     })
+  //   })
+
+  const agent = tunnel.httpsOverHttp({
+    proxy: {
+      host: 'http://s2.airproxy.io',
+      port: 31005,
+      proxyAuth: 'sanjananb:sanjananb',
+    },
+  })
+
+  const responsePromise = await axios.request({
+    url: `https://www.instagram.com/${username}/?__a=1`,
+    method: 'get',
+    headers: {
+      'User-Agent': 'Chrome',
+    },
+    httpsAgent: agent,
+  })
+
+  console.log('Response =>', responsePromise)
 }
