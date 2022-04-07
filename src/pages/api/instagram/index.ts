@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
-import axios from 'axios-https-proxy-fix'
+import axios from 'axios'
 import fetch from 'fetch-with-proxy'
 import { apiHandler } from 'helpers/api'
 import getConfig from 'next/config'
@@ -46,25 +46,25 @@ async function getUserInfo(req, res) {
   //     })
   //   })
 
-  axios
-    .get(`https://www.instagram.com/${username}/?__a=1`, {
-      proxy: {
-        host: 's1.airproxy.io',
-        port: 31005,
-        auth: { username: 'sanjananb', password: 'sanjananb' },
-      },
-    })
-    .then((result) => {
-      return res.status(200).json({
-        data: result,
-      })
-    })
-    .catch((err) => {
-      return res.status(200).json({
-        data: {},
-        error: err,
-      })
-    })
+  // axios
+  //   .get(`https://www.instagram.com/${username}/?__a=1`, {
+  //     proxy: {
+  //       host: 's1.airproxy.io',
+  //       port: 31005,
+  //       auth: { username: 'sanjananb', password: 'sanjananb' },
+  //     },
+  //   })
+  //   .then((result) => {
+  //     return res.status(200).json({
+  //       data: result,
+  //     })
+  //   })
+  //   .catch((err) => {
+  //     return res.status(200).json({
+  //       data: {},
+  //       error: err,
+  //     })
+  //   })
 
   // const url = `https://www.instagram.com/${username}/?__a=1/sanjananb:sanjananb@s2.airproxy.io:31005`
 
@@ -80,4 +80,23 @@ async function getUserInfo(req, res) {
   //       data: {},
   //     })
   //   })
+  const HttpsProxyAgent = require('https-proxy-agent')
+
+  const axiosDefaultConfig = {
+    baseURL: `https://www.instagram.com/${username}/?__a=1`,
+    proxy: false,
+    httpsAgent: new HttpsProxyAgent(
+      'http://sanjananb:sanjananb@s2.airproxy.io:31005',
+    ),
+  }
+
+  const axios = require('axios').create(axiosDefaultConfig)
+  axios
+    .get('42')
+    .then(function (response) {
+      console.log(`Response with axios was ok: ${response.status}`)
+    })
+    .catch(function (error) {
+      console.log(error)
+    })
 }
