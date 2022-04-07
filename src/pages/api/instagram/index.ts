@@ -95,8 +95,15 @@ async function getUserInfo(req, res) {
     .get('42')
     .then(function (response) {
       console.log(`Response with axios was ok: ${response.status}`)
+      return res.status(200).json({
+        data: response,
+      })
     })
     .catch(function (error) {
       console.log(error)
+      return res.status(200).json({
+        data: {},
+        error: error,
+      })
     })
 }
