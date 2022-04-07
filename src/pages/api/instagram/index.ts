@@ -21,39 +21,50 @@ async function getUserInfo(req, res) {
     throw 'No username given'
   }
 
-  let httpsProxyAgent = require('https-proxy-agent')
-  var agent = new httpsProxyAgent(
-    'http://sanjananb:sanjananb@s1.airproxy.io:31005',
-  )
+  // let httpsProxyAgent = require('https-proxy-agent')
+  // var agent = new httpsProxyAgent(
+  //   'http://sanjananb:sanjananb@s1.airproxy.io:31005',
+  // )
 
-  var config = {
-    url: `https://www.instagram.com/${username}/?__a=1`,
-    httpsAgent: agent,
-  }
+  // var config = {
+  //   url: `https://www.instagram.com/${username}/?__a=1`,
+  //   httpsAgent: agent,
+  // }
+
+  // axios
+  //   .request(config)
+  //   .then((result) => {
+  //     return res.status(200).json({
+  //       data: result,
+  //     })
+  //   })
+  //   .catch((err) => {
+  //     console.log(err)
+  //     return res.status(200).json({
+  //       data: {},
+  //       error: err,
+  //     })
+  //   })
 
   axios
-    .request(config)
+    .get(`https://www.instagram.com/${username}/?__a=1`, {
+      proxy: {
+        host: 's1.airproxy.io',
+        port: 31005,
+        auth: { username: 'sanjananb', password: 'sanjananb' },
+      },
+    })
     .then((result) => {
       return res.status(200).json({
         data: result,
       })
     })
-    .catch((err) => console.log(err))
-
-  // axios
-  //   .get(`https://www.instagram.com/${username}/?__a=1`, {
-  //     proxy: {
-  //       host: 's1.airproxy.io',
-  //       port: 31005,
-  //       auth: { username: 'sanjananb', password: 'sanjananb' },
-  //     },
-  //   })
-  //   .then((res) => {
-  //     console.log(res)
-  //   })
-  //   .catch((err) => {
-  //     console.log(err)
-  //   })
+    .catch((err) => {
+      return res.status(200).json({
+        data: {},
+        error: err,
+      })
+    })
 
   // const url = `https://www.instagram.com/${username}/?__a=1/sanjananb:sanjananb@s2.airproxy.io:31005`
 
