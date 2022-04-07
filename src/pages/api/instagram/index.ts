@@ -27,7 +27,7 @@ async function getUserInfo(req, res) {
   )
 
   var config = {
-    url: 'https://www.instagram.com',
+    url: `https://www.instagram.com/${username}/?__a=1`,
     httpsAgent: agent,
   }
 
