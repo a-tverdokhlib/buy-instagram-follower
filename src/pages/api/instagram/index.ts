@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
-import axios from 'axios'
+import axios from 'axios-https-proxy-fix'
 import fetch from 'fetch-with-proxy'
 import { apiHandler } from 'helpers/api'
 import getConfig from 'next/config'

@@ -12,6 +12,7 @@
     "@hookform/resolvers": "^2.8.8",
     "@reduxjs/toolkit": "^1.7.2",
     "axios": "^0.26.0",
+    "axios-https-proxy-fix": "^0.17.1",
     "bcryptjs": "^2.4.3",
     "cookie": "^0.4.2",
     "eslint-config-prettier": "^8.3.0",
