@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
+import axios from 'axios'
 import fetch from 'fetch-with-proxy'
 import { apiHandler } from 'helpers/api'
 import getConfig from 'next/config'
@@ -20,6 +21,25 @@ async function getUserInfo(req, res) {
     throw 'No username given'
   }
 
+  let httpsProxyAgent = require('https-proxy-agent')
+  var agent = new httpsProxyAgent(
+    'http://sanjananb:sanjananb@s1.airproxy.io:31005',
+  )
+
+  var config = {
+    url: 'https://www.instagram.com',
+    httpsAgent: agent,
+  }
+
+  axios
+    .request(config)
+    .then((result) => {
+      return res.status(200).json({
+        data: result,
+      })
+    })
+    .catch((err) => console.log(err))
+
   // axios
   //   .get(`https://www.instagram.com/${username}/?__a=1`, {
   //     proxy: {
@@ -35,18 +55,18 @@ async function getUserInfo(req, res) {
   //     console.log(err)
   //   })
 
-  const url = `https://www.instagram.com/${username}/?__a=1/sanjananb:sanjananb@s2.airproxy.io:31005`
+  // const url = `https://www.instagram.com/${username}/?__a=1/sanjananb:sanjananb@s2.airproxy.io:31005`
 
-  fetch(url)
-    .then((response) => response.text())
-    .then((response) => {
-      return res.status(200).json({
-        data: response,
-      })
-    })
-    .catch((error) => {
-      return res.status(501).json({
-        data: {},
-      })
-    })
+  // fetch(url)
+  //   .then((response) => response.text())
+  //   .then((response) => {
+  //     return res.status(200).json({
+  //       data: response,
+  //     })
+  //   })
+  //   .catch((error) => {
+  //     return res.status(501).json({
+  //       data: {},
+  //     })
+  //   })
 }
