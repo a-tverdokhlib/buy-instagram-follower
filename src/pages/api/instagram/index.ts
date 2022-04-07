@@ -86,7 +86,7 @@ async function getUserInfo(req, res) {
     baseURL: `https://www.instagram.com/${username}/?__a=1`,
     proxy: false,
     httpsAgent: new HttpsProxyAgent(
-      'http://sanjananb:sanjananb@s2.airproxy.io:31005',
+      'http://BBis8yzzuum8tR9n:mobile;;;;@proxy.froxy.com:9000',
     ),
   }
 
