@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 
@@ -13,6 +14,7 @@ const Product = (props) => {
   const [selectedServiceItem, setSelectedServiceItem] = useState<any>()
   const [instaUsername, setInstaUsername] = useState('')
   const [email, setEmail] = useState('')
+  const [userProfilePictureUrl, setUserProfilePictureUrl] = useState('')
   const stars = [1, 2, 3, 4, 5]
   useEffect(() => {
     setMounted(true)
@@ -27,8 +29,14 @@ const Product = (props) => {
   }, [mounted])
 
   const onUsernameBlur = async () => {
-    const userdata = await goreadService.getUserData(instaUsername)
-    console.log('User Data =>', userdata)
+    const responseData = await goreadService.getUserData(instaUsername)
+    console.log('User Data =>', responseData)
+    if (responseData.status === 'success') {
+      if (responseData.data.user) {
+        setUserProfilePictureUrl(responseData.data.user.profile_pic_url)
+      }
+    }
+    //responseData.data.user.profile_pic_url
   }
   if (mounted === true) {
     return (
@@ -74,13 +82,27 @@ const Product = (props) => {
                     value={email}
                   ></input>
                 </div>
-                <div className="flex">
+                <div className="flex flex-col flex-wrap space-y-5 md:flex-row md:flex-nowrap md:space-y-0 md:space-x-5">
                   <div className="btn-buyit justify-center mt-5">
                     <a className="flex space-x-1 rounded-full py-3 px-7 gradient-ani-btn !shadow-none justify-center hover:cursor-pointer">
                       <span className="text-lg w-48 text-gray-300 text-center">
                         Select Account
                       </span>
                     </a>
+                  </div>
+                  <div className="flex w-full items-center justify-center">
+                    {userProfilePictureUrl !== '' ? (
+                      <div className={'w-20 h-20 rounded-full overflow-hidden'}>
+                        <Image
+                          src={userProfilePictureUrl}
+                          alt="Profile Picture"
+                          width={100}
+                          height={100}
+                        />
+                      </div>
+                    ) : (
+                      <></>
+                    )}
                   </div>
                 </div>
                 <div className="flex w-full h-5 border-b-[1px] border-b-gray-600"></div>
