@@ -95,9 +95,9 @@ const Product = (props) => {
                       <div className={'w-20 h-20 rounded-full overflow-hidden'}>
                         <Image
                           src={userProfilePictureUrl}
-                          alt="Profile Picture"
-                          width={100}
-                          height={100}
+                          alt=""
+                          width={80}
+                          height={80}
                         />
                       </div>
                     ) : (
