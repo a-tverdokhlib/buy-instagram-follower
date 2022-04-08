@@ -35,9 +35,9 @@ async function firstWay(username, host, port, auth, callback) {
 
   const respData = responsePromise.data
   if (respData.graphql !== undefined) {
-    return respData.graphql
+    callback(respData.graphql)
   } else {
-    return null
+    callback(null)
   }
 }
 
@@ -56,17 +56,19 @@ async function secondWay(username, host, port, auth, callback) {
   await axiosFixed
     .get()
     .then(async function (response) {
-      console.log(response)
       if (response.data) {
         if (response.data.graphql !== undefined) {
-          return response.data.graphql
+          // return response.data.graphql
+          callback(response.data.graphql)
         } else {
-          return null
+          // return null
+          callback(null)
         }
       }
     })
     .catch(function (error) {
-      return null
+      // return null
+      callback(null)
     })
 }
 
@@ -84,6 +86,7 @@ async function getUserInfo(req, res) {
       return res.status(200).json({
         data: result,
         status: 'success',
+        proxy: '138.68.76.104:8058',
       })
     } else {
       failedProxyCnt++
@@ -111,6 +114,7 @@ async function getUserInfo(req, res) {
         return res.status(200).json({
           data: result,
           status: 'success',
+          proxy: 's2.airproxy.io:31005',
         })
       } else {
         failedProxyCnt++
@@ -139,6 +143,7 @@ async function getUserInfo(req, res) {
         return res.status(200).json({
           data: result,
           status: 'success',
+          proxy: 's2.airproxy.io:30708',
         })
       } else {
         failedProxyCnt++
@@ -167,6 +172,7 @@ async function getUserInfo(req, res) {
         return res.status(200).json({
           data: result,
           status: 'success',
+          proxy: 's1.airproxy.io:10902',
         })
       } else {
         failedProxyCnt++
@@ -195,6 +201,7 @@ async function getUserInfo(req, res) {
         return res.status(200).json({
           data: result,
           status: 'success',
+          proxy: 's1.airproxy.io:10310',
         })
       } else {
         failedProxyCnt++
@@ -223,6 +230,7 @@ async function getUserInfo(req, res) {
         return res.status(200).json({
           data: result,
           status: 'success',
+          proxy: 'proxy.froxy.com:9000',
         })
       } else {
         failedProxyCnt++
