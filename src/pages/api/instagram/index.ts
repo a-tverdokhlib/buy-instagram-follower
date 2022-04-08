@@ -174,7 +174,7 @@ async function getUserInfo(req, res) {
     .catch(function (error) {
       console.log(error)
       return res.status(200).json({
-        data: error,
+        data: {},
         status: 'error',
       })
     })
