@@ -13,6 +13,7 @@ const Product = (props) => {
   const [selectedServiceItem, setSelectedServiceItem] = useState<any>()
   const [instaUsername, setInstaUsername] = useState('')
   const [email, setEmail] = useState('')
+  const stars = [1, 2, 3, 4, 5]
   useEffect(() => {
     setMounted(true)
   }, [])
@@ -37,8 +38,8 @@ const Product = (props) => {
           id="content"
           className="flex flex-1 flex-col w-full top-0 min-h-screen p-0"
         >
-          <div className="flex flex-col flex-wrap w-full items-center justify-center bg-[#222232]">
-            <div className="flex flex-col flex-wrap w-full md:w-[850px] p-2 ls:p-10 md:px-24">
+          <div className="flex flex-col flex-wrap w-full items-center justify-center lg:items-start lg:flex-row lg:flex-nowrap bg-[#222232] ">
+            <div className="flex flex-col flex-wrap w-full ml:min-w-[850px] ml:max-w-[850px] p-2 ls:p-10 md:px-24">
               <div className="flex flex-col flex-wrap w-full mt-10 md:mt-0 p-3 md:p-16 space-y-5 rounded-lg border-gray-200 shadow-gray-700 shadow-sm bg-black bg-opacity-50">
                 <div className="flex w-full">
                   <span>
@@ -75,7 +76,7 @@ const Product = (props) => {
                 </div>
                 <div className="flex">
                   <div className="btn-buyit justify-center mt-5">
-                    <a className="flex space-x-1 rounded-full py-3 px-7 gradient-btn-3 justify-center hover:cursor-pointer">
+                    <a className="flex space-x-1 rounded-full py-3 px-7 gradient-ani-btn !shadow-none justify-center hover:cursor-pointer">
                       <span className="text-lg w-48 text-gray-300 text-center">
                         Select Account
                       </span>
@@ -105,6 +106,46 @@ const Product = (props) => {
                       </select>
                     </div>
                   </div>
+                </div>
+              </div>
+            </div>
+            <div className="flex flex-col flex-wrap w-full p-2 ls:p-10 lg:p-0 lg:mr-10">
+              <div className="flex flex-col flex-wrap w-full lg:pt-24 items-center justify-center">
+                <div className="flex overflow-hidden rounded-full bg-gray-500 h-20 w-20 p-1">
+                  <div className="w-full h-full rounded-full bg-[url('/img/avt-template.jpg')] bg-center" />
+                </div>
+                <div className="flex mt-10">
+                  <span className="text-gray-300 text-lg text-center">
+                    The best followers service around. I have bought many times
+                    and I will continue to do so because of their customers
+                    service.
+                  </span>
+                </div>
+                <div className="flex mt-10 w-full justify-center">
+                  {stars.map((item, id) => {
+                    return (
+                      <svg
+                        key={id}
+                        className="h-5 w-5 text-yellow-400 fill-yellow-400 hover:scale-125"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        strokeWidth="2"
+                        stroke="currentColor"
+                        fill="none"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
+                        {' '}
+                        <path d="M12 17.75l-6.172 3.245 1.179-6.873-4.993-4.867 6.9-1.002L12 2l3.086 6.253 6.9 1.002-4.993 4.867 1.179 6.873z" />
+                      </svg>
+                    )
+                  })}
+                </div>
+                <div className="flex mt-10 items-center justify-center">
+                  <span>
+                    <span className="text-white text-lg font-bold">Dino</span>
+                  </span>
                 </div>
               </div>
             </div>

@@ -1,7 +1,5 @@
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
-import axios from 'axios'
-import fetch from 'fetch-with-proxy'
 import { apiHandler } from 'helpers/api'
 import getConfig from 'next/config'
 import tunnel from 'tunnel'
@@ -22,6 +20,7 @@ async function getUserInfo(req, res) {
     throw 'No username given'
   }
 
+  // ********* Attempted **********
   // let httpsProxyAgent = require('https-proxy-agent')
   // var agent = new httpsProxyAgent(
   //   'http://sanjananb:sanjananb@s1.airproxy.io:31005',
@@ -47,6 +46,7 @@ async function getUserInfo(req, res) {
   //     })
   //   })
 
+  // ********** Attempted ***********
   // axios
   //   .get(`https://www.instagram.com/${username}/?__a=1`, {
   //     proxy: {
@@ -67,6 +67,7 @@ async function getUserInfo(req, res) {
   //     })
   //   })
 
+  // ********** Attempted *********
   // const url = `https://www.instagram.com/${username}/?__a=1/sanjananb:sanjananb@s2.airproxy.io:31005`
 
   // fetch(url)
@@ -82,6 +83,7 @@ async function getUserInfo(req, res) {
   //     })
   //   })
 
+  // ********** Attempted *********
   // const HttpsProxyAgent = require('https-proxy-agent')
 
   // const axiosDefaultConfig = {
@@ -91,7 +93,6 @@ async function getUserInfo(req, res) {
   //     'http://sanjananb:sanjananb@s2.airproxy.io:31005',
   //   ),
   // }
-
   // const axios = require('axios').create(axiosDefaultConfig)
   // axios
   //   .get('42')
@@ -110,22 +111,64 @@ async function getUserInfo(req, res) {
   //     })
   //   })
 
-  const agent = tunnel.httpsOverHttp({
+  // 1st way
+  // const agent = tunnel.httpsOverHttp({
+  //   proxy: {
+  //     host: '138.68.76.104',
+  //     port: 8058,
+  //     proxyAuth: 'admin:p8FNPlwEEh0R',
+  //   },
+  // })
+
+  // const responsePromise = await axios.request({
+  //   url: `https://www.instagram.com/${username}/?__a=1`,
+  //   method: 'get',
+  //   headers: {
+  //     'User-Agent': 'Chrome',
+  //   },
+  //   httpsAgent: agent,
+  // })
+
+  // console.log('Response =>', responsePromise)
+  // const respData = responsePromise.data
+  // if (respData.graphql !== undefined) {
+  //   console.log('Success!!!')
+  //   return res.status(200).json({
+  //     data: responsePromise.data,
+  //   })
+  // }
+
+  //2nd way
+  const axiosDefaultConfig = {
+    baseURL: `https://www.instagram.com/${username}/?__a=1`,
     proxy: {
-      host: 'http://s2.airproxy.io',
+      host: 's2.airproxy.io',
       port: 31005,
-      proxyAuth: 'sanjananb:sanjananb',
+      protocol: 'http',
+      auth: {
+        username: 'sanjananb',
+        password: 'sanjananb',
+      },
     },
-  })
+  }
 
-  const responsePromise = await axios.request({
-    url: `https://www.instagram.com/${username}/?__a=1`,
-    method: 'get',
-    headers: {
-      'User-Agent': 'Chrome',
-    },
-    httpsAgent: agent,
-  })
+  const axiosFixed = require('axios-https-proxy-fix').create(axiosDefaultConfig)
+  axiosFixed
+    .get()
+    .then(function (response) {
+      console.log(response)
+    })
+    .catch(function (error) {
+      console.log(error)
+    })
 
-  console.log('Response =>', responsePromise)
+  // data: {
+  // 	graphql: {},
+  // 	logging_page_id: 'profilePage_20269764',
+  // 	seo_category_infos: [],
+  // 	show_qr_modal: false,
+  // 	show_suggested_profiles: true,
+  // 	show_view_shop: false,
+  // 	toast_content_on_load: null
+  //
 }
