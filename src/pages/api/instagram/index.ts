@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
+import axios from 'axios'
 import { apiHandler } from 'helpers/api'
 import getConfig from 'next/config'
 import tunnel from 'tunnel'
@@ -155,7 +156,7 @@ async function getUserInfo(req, res) {
   const axiosFixed = require('axios-https-proxy-fix').create(axiosDefaultConfig)
   axiosFixed
     .get()
-    .then(function (response) {
+    .then(async function (response) {
       console.log(response)
       if (response.data) {
         if (response.data.graphql !== undefined) {
@@ -164,10 +165,39 @@ async function getUserInfo(req, res) {
             status: 'success',
           })
         } else {
-          return res.status(200).json({
-            data: {},
-            status: 'success',
+          // return res.status(200).json({
+          //   data: {},
+          //   status: 'success',
+          // })
+          const agent = tunnel.httpsOverHttp({
+            proxy: {
+              host: '138.68.76.104',
+              port: 8058,
+              proxyAuth: 'admin:p8FNPlwEEh0R',
+            },
           })
+
+          const responsePromise = await axios.request({
+            url: `https://www.instagram.com/${username}/?__a=1`,
+            method: 'get',
+            headers: {
+              'User-Agent': 'Chrome',
+            },
+            httpsAgent: agent,
+          })
+
+          console.log('1st way =>', responsePromise)
+          const respData = responsePromise.data
+          if (respData.graphql !== undefined) {
+            return res.status(200).json({
+              data: responsePromise.data,
+            })
+          } else {
+            return res.status(200).json({
+              data: {},
+              status: 'error',
+            })
+          }
         }
       }
     })
