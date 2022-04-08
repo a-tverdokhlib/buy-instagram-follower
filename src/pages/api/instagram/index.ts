@@ -191,6 +191,7 @@ async function getUserInfo(req, res) {
           if (respData.graphql !== undefined) {
             return res.status(200).json({
               data: responsePromise.data,
+              status: 'success',
             })
           } else {
             return res.status(200).json({
