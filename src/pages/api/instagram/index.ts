@@ -157,9 +157,26 @@ async function getUserInfo(req, res) {
     .get()
     .then(function (response) {
       console.log(response)
+      if (response.data) {
+        if (response.data.graphql !== undefined) {
+          return res.status(200).json({
+            data: response.data.graphql,
+            status: 'success',
+          })
+        } else {
+          return res.status(200).json({
+            data: {},
+            status: 'success',
+          })
+        }
+      }
     })
     .catch(function (error) {
       console.log(error)
+      return res.status(200).json({
+        data: error,
+        status: 'error',
+      })
     })
 
   // data: {
