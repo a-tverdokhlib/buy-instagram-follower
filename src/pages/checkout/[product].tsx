@@ -171,7 +171,12 @@ const Product = (props) => {
                       <div className="w-full justify-center items-center">
                         <select
                           onChange={(e) => {
-                            setSelectedServiceItem(e.target.value)
+                            const selectedItems = props.services.filter(
+                              (item) => item._id === e.target.value,
+                            )
+                            if (selectedItems.length > 0) {
+                              setSelectedServiceItem(selectedItems[0])
+                            }
                             // router.replace({
                             //   query: {
                             //     ...router.query,
