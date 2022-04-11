@@ -77,11 +77,11 @@ const Product = (props) => {
     }
   }
   const onChangeAccountClick = () => {
-    router.replace({
+    router.push({
       query: {
         ...router.query,
-        email: '',
-        username: '',
+        email: null,
+        username: null,
       },
     })
   }
