@@ -66,6 +66,7 @@ const Product = (props) => {
         router.replace({
           query: {
             ...router.query,
+            serviceId: selectedServiceItem._id,
             email: useremail,
             username: instaUsername,
           },
@@ -169,9 +170,15 @@ const Product = (props) => {
                     <div className="flex w-full">
                       <div className="w-full justify-center items-center">
                         <select
-                          onChange={(e) =>
+                          onChange={(e) => {
                             setSelectedServiceItem(e.target.value)
-                          }
+                            // router.replace({
+                            //   query: {
+                            //     ...router.query,
+                            //     serviceId: e.target.value,
+                            //   },
+                            // })
+                          }}
                           value={selectedServiceItem._id}
                           className="flex w-full space-x-1 rounded-full py-4 px-3 justify-center hover:cursor-pointer border-[2px] border-[#ccc] bg-transparent text-white text-lg hover:border-purple-900"
                         >
@@ -291,9 +298,9 @@ const Product = (props) => {
                     <div className="flex mt-3 w-full">
                       <div className="w-full justify-center items-center">
                         <select
-                          onChange={(e) =>
+                          onChange={(e) => {
                             setSelectedServiceItem(e.target.value)
-                          }
+                          }}
                           value={selectedServiceItem._id}
                           className="flex w-full space-x-1 rounded-full py-4 px-3 justify-center hover:cursor-pointer border-[2px] border-[#ccc] bg-transparent text-white text-lg hover:border-purple-900"
                         >
