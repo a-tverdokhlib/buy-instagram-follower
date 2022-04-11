@@ -10,7 +10,7 @@ module.exports = {
         user: 'audelkabristante@gmail.com',
         pass: 'ynjmvnurlrzqhwja',
       },
-      sender: 'support@goread.io',
+      sender: 'devsunleez@gmail.com',
     },
   },
   publicRuntimeConfig: {

@@ -29,6 +29,7 @@ module.exports = async (to, fromName, templateData) => {
 
     const ejsFile = await ejs.renderFile(
       path.join(templatesDirectory, 'templates', 'email.ejs'),
+      { data: templateData },
     )
 
     console.log(
@@ -40,7 +41,7 @@ module.exports = async (to, fromName, templateData) => {
     const message = await transport.sendMail({
       to: to,
       from: `${serverRuntimeConfig.smtp.sender} ${fromName}`,
-      subject: `Make your order now ${fromName}`,
+      subject: `Don't forget me. Grab me before I'm gone. ${fromName}`,
       html: ejsFile,
     })
 
