@@ -17,6 +17,7 @@ export default connectDB(
 async function sendemail(req, res) {
   const { email, username, quantity, name, link } = req.body
   const result = await transfer(email, 'Support', {
+    email,
     username,
     quantity,
     name,
