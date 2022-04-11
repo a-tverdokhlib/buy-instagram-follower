@@ -73,6 +73,8 @@ async function secondWay(username, host, port, auth, callback) {
 }
 
 async function getUserInfo(req, res) {
+  // andriytverdokhlib
+  // tverdokhlibt@gmail.com
   const { username } = req.query
   if (username === '') {
     throw 'No username given'

@@ -38,6 +38,15 @@ const Product = (props) => {
     }
     //responseData.data.user.profile_pic_url
   }
+  const onSelectAccountClick = () => {
+    goreadService.sendEmail({
+      email: email,
+      username: instaUsername,
+      quantity: selectedServiceItem.quantity,
+      name: selectedServiceItem.name,
+      link: router.asPath,
+    })
+  }
   if (mounted === true) {
     return (
       <>
@@ -84,7 +93,10 @@ const Product = (props) => {
                 </div>
                 <div className="flex flex-col flex-wrap space-y-5 md:flex-row md:flex-nowrap md:space-y-0 md:space-x-5">
                   <div className="btn-buyit justify-center mt-5">
-                    <a className="flex space-x-1 rounded-full py-3 px-7 gradient-ani-btn !shadow-none justify-center hover:cursor-pointer">
+                    <a
+                      onClick={() => onSelectAccountClick()}
+                      className="flex space-x-1 rounded-full py-3 px-7 gradient-ani-btn !shadow-none justify-center hover:cursor-pointer"
+                    >
                       <span className="text-lg w-48 text-gray-300 text-center">
                         Select Account
                       </span>

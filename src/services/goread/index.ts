@@ -11,6 +11,7 @@ const userSubject = new BehaviorSubject(
 
 export const goreadService = {
   getUserData,
+  sendEmail,
 }
 
 function getUserData(username) {
@@ -18,5 +19,13 @@ function getUserData(username) {
     .get(`${publicRuntimeConfig.apiUrl}/instagram?username=${username}`)
     .then((data) => {
       return data
+    })
+}
+
+function sendEmail(data) {
+  return fetchWrapper
+    .post(`${publicRuntimeConfig.apiUrl}/checkout/sendemail`, data)
+    .then((resp) => {
+      return resp
     })
 }
