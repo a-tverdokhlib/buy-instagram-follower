@@ -21,6 +21,7 @@ function jwtMiddleware(req, res) {
       '/api/service/parentPacks',
       '/api/service/orderFors',
       '/api/checkout/sendemail',
+      '/api/instagram',
     ],
   })
 
