@@ -15,6 +15,12 @@ const Product = (props) => {
   const [instaUsername, setInstaUsername] = useState('')
   const [email, setEmail] = useState('')
   const [userProfilePictureUrl, setUserProfilePictureUrl] = useState('')
+  const absoluteUrl =
+    typeof window !== 'undefined' && window.location.href
+      ? window.location.href
+      : ''
+
+  console.log('Absolute URL =>', absoluteUrl)
   const stars = [1, 2, 3, 4, 5]
   useEffect(() => {
     setMounted(true)
@@ -39,12 +45,13 @@ const Product = (props) => {
     //responseData.data.user.profile_pic_url
   }
   const onSelectAccountClick = () => {
+    console.log('Router=>', router)
     goreadService.sendEmail({
       email: email,
       username: instaUsername,
       quantity: selectedServiceItem.quantity,
       name: selectedServiceItem.name,
-      link: router.asPath,
+      link: absoluteUrl,
     })
   }
   if (mounted === true) {
