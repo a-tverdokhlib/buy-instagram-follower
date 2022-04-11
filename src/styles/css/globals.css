@@ -795,5 +795,15 @@ body {
     width: 100%;
     align-items: center;
     justify-content: center;
+}
 
+.letters-line:after {
+  content: "";
+  position: absolute;
+  left: 0px;
+  top: 12px;
+  width:100%;
+  height: 1px;
+  background: gray;
+  z-index: 1;
 }
