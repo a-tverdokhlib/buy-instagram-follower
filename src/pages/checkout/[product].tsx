@@ -76,7 +76,15 @@ const Product = (props) => {
       }
     }
   }
-  const onChangeAccountClick = () => {}
+  const onChangeAccountClick = () => {
+    router.replace({
+      query: {
+        ...router.query,
+        email: '',
+        username: '',
+      },
+    })
+  }
   const onPayClick = () => {}
   if (mounted === true) {
     if (
