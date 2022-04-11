@@ -61,7 +61,6 @@ const Product = (props) => {
         // setLoading(false)
         console.log('Go to Next Step')
         router.replace({
-          pathname: '/...',
           query: {
             ...router.query,
             email: email,
@@ -71,14 +70,15 @@ const Product = (props) => {
         //console.log(router.push(''))
       } else {
         console.log('Something wrong.')
-        router.replace({
-          pathname: '/...',
-          query: {
-            ...router.query,
-            email: email,
-            username: instaUsername,
-          },
-        })
+        alert('Failed! Please check if you have inputed valid email.')
+        // router.replace({
+        //   pathname: '/...',
+        //   query: {
+        //     ...router.query,
+        //     email: email,
+        //     username: instaUsername,
+        //   },
+        // })
       }
     }
   }
