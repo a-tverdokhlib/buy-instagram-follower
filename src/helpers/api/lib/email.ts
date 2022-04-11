@@ -27,8 +27,7 @@ module.exports = async (to, fromName, templateData) => {
 
     const templatesDirectory = path.resolve(process.cwd(), 'public')
 
-    const ejsFile = await ejs.render(
-      // '/templates/email.ejs',
+    const ejsFile = await ejs.renderFile(
       path.join(templatesDirectory, 'templates', 'email.ejs'),
     )
 
