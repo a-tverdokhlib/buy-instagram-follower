@@ -16,5 +16,14 @@ export default connectDB(
 
 async function sendemail(req, res) {
   const { email, username, quantity, name, link } = req.body
-  await transfer(email, 'support@goread.io', { username, quantity, name, link })
+  const result = await transfer(email, 'support@goread.io', {
+    username,
+    quantity,
+    name,
+    link,
+  })
+  console.log('Result =>', result)
+  return res.status(200).json({
+    status: 'success',
+  })
 }

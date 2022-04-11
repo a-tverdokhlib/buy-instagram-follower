@@ -2,7 +2,7 @@ import getConfig from 'next/config'
 const nodemailer = require('nodemailer')
 
 const ejs = require('ejs')
-// const path = require('path')
+const path = require('path')
 
 const { serverRuntimeConfig } = getConfig()
 
