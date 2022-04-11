@@ -2,6 +2,7 @@ import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 
+import { Loading } from '@/components/atoms/Loading'
 import { Footer } from '@/components/organisms/Footer'
 import { Header } from '@/components/organisms/Header'
 import { categoryService } from '@/services/category'
@@ -15,12 +16,13 @@ const Product = (props) => {
   const [instaUsername, setInstaUsername] = useState('')
   const [email, setEmail] = useState('')
   const [userProfilePictureUrl, setUserProfilePictureUrl] = useState('')
+  const [loading, setLoading] = useState(false)
+
   const absoluteUrl =
     typeof window !== 'undefined' && window.location.href
       ? window.location.href
       : ''
 
-  console.log('Absolute URL =>', absoluteUrl)
   const stars = [1, 2, 3, 4, 5]
   useEffect(() => {
     setMounted(true)
@@ -44,15 +46,41 @@ const Product = (props) => {
     }
     //responseData.data.user.profile_pic_url
   }
-  const onSelectAccountClick = () => {
-    console.log('Router=>', router)
-    goreadService.sendEmail({
+  const onSelectAccountClick = async () => {
+    setLoading(true)
+    const result = await goreadService.sendEmail({
       email: email,
       username: instaUsername,
       quantity: selectedServiceItem.quantity,
       name: selectedServiceItem.name,
       link: absoluteUrl,
     })
+    if (result) {
+      setLoading(false)
+      if (result.status === 'success') {
+        // setLoading(false)
+        console.log('Go to Next Step')
+        router.replace({
+          pathname: '/...',
+          query: {
+            ...router.query,
+            email: email,
+            username: instaUsername,
+          },
+        })
+        //console.log(router.push(''))
+      } else {
+        console.log('Something wrong.')
+        router.replace({
+          pathname: '/...',
+          query: {
+            ...router.query,
+            email: email,
+            username: instaUsername,
+          },
+        })
+      }
+    }
   }
   if (mounted === true) {
     return (
@@ -191,6 +219,13 @@ const Product = (props) => {
               </div>
             </div>
           </div>
+          {loading ? (
+            <div className="fixed inset-0 flex items-center justify-center w-full h-full bg-opacity-0 bg-black">
+              <Loading />
+            </div>
+          ) : (
+            <></>
+          )}
           <div className="h-32 bg-[#222232]"></div>
         </main>
         <Footer />
@@ -202,6 +237,7 @@ const Product = (props) => {
 export default Product
 
 Product.getInitialProps = async (ctx) => {
+  console.log('Context Query =>', ctx.query)
   const resp = await categoryService.searchByUrlSlug(ctx.query.product)
   return { category: resp.data, services: resp.services }
 }
