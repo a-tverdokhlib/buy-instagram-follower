@@ -26,7 +26,7 @@ async function sendemail(req, res) {
     coupanDiscount,
     link,
   })
-  console.log('Result =>', result)
+
   return res.status(200).json({
     status: 'success',
   })

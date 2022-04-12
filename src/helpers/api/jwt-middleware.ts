@@ -22,6 +22,7 @@ function jwtMiddleware(req, res) {
       '/api/service/orderFors',
       '/api/checkout/sendemail',
       '/api/instagram',
+      '/api/cardinity/sign',
     ],
   })
 

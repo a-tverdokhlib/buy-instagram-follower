@@ -1,16 +1,20 @@
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import ReCAPTCHA from 'react-google-recaptcha'
+import { useForm } from 'react-hook-form'
 
 import { Loading } from '@/components/atoms/Loading'
 import { Footer } from '@/components/organisms/Footer'
 import { Header } from '@/components/organisms/Header'
+import { cardinityService } from '@/services/cardinity'
 import { categoryService } from '@/services/category'
 import { goreadService } from '@/services/goread'
-
 const Product = (props) => {
   const router = useRouter()
+  const { register, handleSubmit, reset, formState } = useForm()
+  const { errors } = formState
+
   const { product, serviceId, email, username } = router.query
   const [mounted, setMounted] = useState(false)
   const [selectedServiceItem, setSelectedServiceItem] = useState<any>()
@@ -19,7 +23,10 @@ const Product = (props) => {
   const [coupanCode, setCoupanCode] = useState('')
   const [userProfilePictureUrl, setUserProfilePictureUrl] = useState('')
   const [loading, setLoading] = useState(false)
-
+  const [showLimitedOffer, setShowLimitedOffer] = useState(true)
+  const [cardinityReady, setCardinityReady] = useState(false)
+  const [signature, setSignature] = useState('')
+  const submitRef = useRef<HTMLButtonElement>(null)
   const absoluteUrl =
     typeof window !== 'undefined' && window.location.href
       ? window.location.href
@@ -86,7 +93,42 @@ const Product = (props) => {
       },
     })
   }
-  const onPayClick = () => {}
+
+  const onSubmit = async (data) => {
+    // const signature = await cardinityService.sign(data)
+    // data['signature'] = signature
+    // setSignature(signature)
+  }
+
+  const onPayClick = async () => {
+    const data = {
+      amount: selectedServiceItem.price,
+      cancel_url: absoluteUrl,
+      country: 'LT',
+      language: 'EN',
+      currency: 'USD',
+      description: selectedServiceItem.name,
+      order_id: '123',
+      return_url: absoluteUrl,
+    }
+    const resp = await cardinityService.sign(data)
+    console.log('Signature =>', resp.signature)
+    setSignature(resp.signature)
+    setTimeout(() => {
+      submitRef.current!.click()
+    }, 1000)
+  }
+
+  const onPayWithCryptoClick = () => {}
+
+  const onAddToCartClick = () => {}
+
+  const onApplyClick = () => {}
+
+  const onCloseLimitedOffer = () => {
+    setShowLimitedOffer(false)
+  }
+
   if (mounted === true) {
     if (
       email === undefined ||
@@ -184,7 +226,11 @@ const Product = (props) => {
                             //   },
                             // })
                           }}
-                          value={selectedServiceItem._id}
+                          value={
+                            selectedServiceItem
+                              ? selectedServiceItem._id
+                              : serviceId
+                          }
                           className="flex w-full space-x-1 rounded-full py-4 px-3 justify-center hover:cursor-pointer border-[2px] border-[#ccc] bg-transparent text-white text-lg hover:border-purple-900"
                         >
                           {props.services.map((item, id) => {
@@ -332,9 +378,58 @@ const Product = (props) => {
                 <div className="flex flex-col flex-wrap w-full mt-10 md:mt-0 p-3 md:py-10 md:px-10 space-y-5 rounded-lg border-gray-200 shadow-gray-700 shadow-sm bg-black bg-opacity-50">
                   <div className="flex w-full">
                     <span>
-                      <span className="text-2xl text-gray-300">Payment</span>
+                      <span className="text-3xl text-gray-300">Payment</span>
                     </span>
                   </div>
+                  {showLimitedOffer === true ? (
+                    <div className="flex rounded-lg items-center justify-center p-5 bg-gradient-to-r from-red-900 to-red-900 w-full">
+                      <div className="flex flex-col flex-wrap space-y-3 w-full">
+                        <div className="flex">
+                          <span className="text-2xl text-gray-400 font-semibold">
+                            Limited offer:
+                          </span>
+                          <span
+                            onClick={() => onCloseLimitedOffer()}
+                            className="text-2xl text-gray-700 font-bold ml-auto hover:cursor-pointer"
+                          >
+                            <svg
+                              className="h-6 w-6 text-gray-500"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke="currentColor"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="2"
+                                d="M6 18L18 6M6 6l12 12"
+                              />
+                            </svg>
+                          </span>
+                        </div>
+                        <div className="w-full">
+                          <span>
+                            <span className="text-gray-400 text-base">
+                              Add 400000 additional Followers to your cart for
+                              only $1039.99 extra and save 20.00%!
+                            </span>
+                          </span>
+                        </div>
+                        <div className="flex btn-buyit ">
+                          <a
+                            onClick={() => onAddToCartClick()}
+                            className="flex space-x-1 rounded-full py-2 px-10 gradient-btn-3 !shadow-none justify-center hover:cursor-pointer"
+                          >
+                            <span className="text-lg w-28 text-gray-300 text-center">
+                              Add to cart
+                            </span>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  ) : (
+                    <></>
+                  )}
                   <div className="flex items-center justify-center w-full">
                     <span>
                       <span className="text-6xl text-yellow-700">
@@ -352,7 +447,7 @@ const Product = (props) => {
                     ></input>
                     <div className="btn-buyit justify-center">
                       <a
-                        onClick={() => onChangeAccountClick()}
+                        onClick={() => onApplyClick()}
                         className="flex space-x-1 rounded-full py-3 px-7 gradient-btn-3 !shadow-none justify-center hover:cursor-pointer"
                       >
                         <span className="text-lg w-28 text-gray-300 text-center">
@@ -370,7 +465,60 @@ const Product = (props) => {
                   </div>
                   <div className="flex w-full items-center justify-center">
                     <div className="btn-buyit justify-center">
-                      <a
+                      <form
+                        name="checkout"
+                        method="POST"
+                        action="https://checkout.cardinity.com"
+                      >
+                        <input
+                          type="hidden"
+                          {...register('amount')}
+                          value={selectedServiceItem.price}
+                        />
+                        <input
+                          type="hidden"
+                          {...register('cancel_url')}
+                          value={absoluteUrl}
+                        />
+                        <input
+                          type="hidden"
+                          {...register('country')}
+                          value="HK"
+                        />
+                        <input
+                          type="hidden"
+                          {...register('language')}
+                          value="EN"
+                        />
+                        <input
+                          type="hidden"
+                          {...register('currency')}
+                          value="USD"
+                        />
+                        <input
+                          type="hidden"
+                          {...register('description')}
+                          value={selectedServiceItem.name}
+                        />
+                        <input
+                          type="hidden"
+                          {...register('order_id')}
+                          value={'123'}
+                        />
+                        <input
+                          type="hidden"
+                          {...register('return_url')}
+                          value={absoluteUrl}
+                        />
+                        <input
+                          type="hidden"
+                          {...register('signature')}
+                          value={signature}
+                        />
+                        <button ref={submitRef} type="submit" />
+                      </form>
+                      <button
+                        // type="submit"
                         onClick={() => onPayClick()}
                         className="flex space-x-1 rounded-full py-3 px-7 gradient-ani-btn !shadow-none justify-center hover:cursor-pointer"
                       >
@@ -397,7 +545,7 @@ const Product = (props) => {
                           </svg>
                           <span className="ml-1">Pay</span>
                         </span>
-                      </a>
+                      </button>
                     </div>
                   </div>
                   <div className="flex w-full">
@@ -437,7 +585,7 @@ const Product = (props) => {
                   <div className="flex w-full items-center justify-center">
                     <div className="btn-buyit justify-center">
                       <a
-                        onClick={() => onPayClick()}
+                        onClick={() => onPayWithCryptoClick()}
                         className="flex space-x-1 text-white text-base ls:text-xl md:text-2xl bg-gradient-to-r from-orange-500 to-orange-800 px-2 ls:px-7 py-4 md:px-5 md:py-4 rounded-full hover:cursor-pointer hover:px-5 hover:py-4 ls:hover:px-10 ls:hover:py-4 md:hover:px-16 md:hover:py-4 transition-all duration-100"
                       >
                         <span className="flex justify-center items-center text-lg w-48 ls:w-64 text-gray-300 text-center">

@@ -12,6 +12,12 @@ module.exports = {
       },
       sender: 'devsunleez@gmail.com',
     },
+    cardinity: {
+      consumerKey: 'test_omnqchxlrusrpequzdepwip0patjql',
+      consumerSecret: 'cwsb3fqddtu02gdmmfnvz6skr9lwv9qlmbll0zq5zbhoeylojj',
+      project_id: 'test_pr_xnm9euovq3rypgt7gurlaeulb3silu',
+      project_secret: 'kduzu7xbizgtnp8wy7cv4hukdpuujaealc0tcs8tibp7kcgfut',
+    },
   },
   publicRuntimeConfig: {
     apiUrl: 'http://localhost:3001/api',
