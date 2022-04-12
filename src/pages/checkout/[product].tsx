@@ -26,6 +26,7 @@ const Product = (props) => {
   const [showLimitedOffer, setShowLimitedOffer] = useState(true)
   const [cardinityReady, setCardinityReady] = useState(false)
   const [signature, setSignature] = useState('')
+  const [projectId, setProjectId] = useState('')
   const submitRef = useRef<HTMLButtonElement>(null)
   const absoluteUrl =
     typeof window !== 'undefined' && window.location.href
@@ -113,7 +114,9 @@ const Product = (props) => {
     }
     const resp = await cardinityService.sign(data)
     console.log('Signature =>', resp.signature)
+    console.log('ProjectID =>', resp.project_id)
     setSignature(resp.signature)
+    setProjectId(resp.project_id)
     setTimeout(() => {
       submitRef.current!.click()
     }, 1000)
@@ -509,6 +512,11 @@ const Product = (props) => {
                           type="hidden"
                           {...register('return_url')}
                           value={absoluteUrl}
+                        />
+                        <input
+                          type="hidden"
+                          {...register('project_id')}
+                          value={projectId}
                         />
                         <input
                           type="hidden"

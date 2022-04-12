@@ -68,5 +68,6 @@ async function makeSignature(req, res) {
   const signature = sha256.hmac(project_secret, message)
   return res.status(200).json({
     signature: signature,
+    project_id: project_id,
   })
 }
