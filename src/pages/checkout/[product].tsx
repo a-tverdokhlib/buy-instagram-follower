@@ -105,11 +105,11 @@ const Product = (props) => {
     const data = {
       amount: selectedServiceItem.price,
       cancel_url: absoluteUrl,
-      country: 'LT',
+      country: 'UA',
       language: 'EN',
       currency: 'USD',
       description: selectedServiceItem.name,
-      order_id: '123',
+      order_id: '123456798',
       return_url: absoluteUrl,
     }
     const resp = await cardinityService.sign(data)
