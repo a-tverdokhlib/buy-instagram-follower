@@ -486,7 +486,7 @@ const Product = (props) => {
                         <input
                           type="hidden"
                           {...register('country')}
-                          value="HK"
+                          value="UA"
                         />
                         <input
                           type="hidden"
@@ -506,7 +506,7 @@ const Product = (props) => {
                         <input
                           type="hidden"
                           {...register('order_id')}
-                          value={'123'}
+                          value={'123456798'}
                         />
                         <input
                           type="hidden"
