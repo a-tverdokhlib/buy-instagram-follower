@@ -6,7 +6,6 @@ import { useForm } from 'react-hook-form'
 
 import { Loading } from '@/components/atoms/Loading'
 import { Footer } from '@/components/organisms/Footer'
-import { Header } from '@/components/organisms/Header'
 import { cardinityService } from '@/services/cardinity'
 import { categoryService } from '@/services/category'
 import { goreadService } from '@/services/goread'
@@ -132,6 +131,10 @@ const Product = (props) => {
     setShowLimitedOffer(false)
   }
 
+  const onBackClick = () => {
+    router.back()
+  }
+
   if (mounted === true) {
     if (
       email === undefined ||
@@ -141,7 +144,38 @@ const Product = (props) => {
     )
       return (
         <>
-          <Header />
+          <div className="flex w-full h-[80px] items-center">
+            <div
+              onClick={() => onBackClick()}
+              className="flex ml-5 p-3 hover:cursor-pointer"
+            >
+              <span className="flex items-center">
+                <svg
+                  className="h-6 w-6 text-gray-500"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  {' '}
+                  <polyline points="15 18 9 12 15 6" />
+                </svg>
+              </span>
+              <span className="text-white text-xl"> Back </span>
+            </div>
+            <div className="flex w-full justify-center">
+              <div className="w-[190px] h-[40px] relative">
+                <Image
+                  src="/Goread_Logo.png"
+                  alt="Logo"
+                  layout="fill"
+                  objectFit="contain"
+                />
+              </div>
+            </div>
+          </div>
           <main
             id="content"
             className="flex flex-1 flex-col w-full top-0 min-h-screen p-0"
@@ -303,13 +337,43 @@ const Product = (props) => {
             )}
             <div className="h-32 bg-[#222232]"></div>
           </main>
-          <Footer />
         </>
       )
     else
       return (
         <>
-          <Header />
+          <div className="flex w-full h-[80px] items-center">
+            <div
+              onClick={() => onBackClick()}
+              className="flex ml-5 p-3 hover:cursor-pointer"
+            >
+              <span className="flex items-center">
+                <svg
+                  className="h-6 w-6 text-gray-500"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  {' '}
+                  <polyline points="15 18 9 12 15 6" />
+                </svg>
+              </span>
+              <span className="text-white text-xl"> Back </span>
+            </div>
+            <div className="flex w-full justify-center">
+              <div className="w-[190px] h-[40px] relative">
+                <Image
+                  src="/Goread_Logo.png"
+                  alt="Logo"
+                  layout="fill"
+                  objectFit="contain"
+                />
+              </div>
+            </div>
+          </div>
           <main
             id="content"
             className="flex flex-1 flex-col w-full top-0 min-h-screen p-0"
@@ -648,7 +712,6 @@ const Product = (props) => {
             )}
             <div className="h-32 bg-[#222232]"></div>
           </main>
-          <Footer />
         </>
       )
   } else return <></>

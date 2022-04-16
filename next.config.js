@@ -33,6 +33,7 @@ module.exports = {
       'goread.io',
       'instagram.fblq3-1.fna.fbcdn.net',
       'instagram.ffab2-1.fna.fbcdn.net',
+      'instagram.*',
     ],
   },
   typescript: {
