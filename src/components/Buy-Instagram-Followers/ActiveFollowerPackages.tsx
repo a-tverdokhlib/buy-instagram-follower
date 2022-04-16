@@ -45,7 +45,7 @@ export const ActiveFollowerPackages: React.VFC<Props> = (props) => {
                 }
                 title={item.name}
                 description={item.name}
-                urlSlug={`${item.urlSlug}/${props.category.urlSlug}?serviceId=${item._id}`}
+                urlSlug={`checkout/${props.category.urlSlug}?serviceId=${item._id}`}
               />
             )
           })}

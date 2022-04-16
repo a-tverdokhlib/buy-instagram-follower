@@ -95,7 +95,7 @@ const BuyInstagramLikes: React.VFC = (props: any) => {
           viewType={getViewType}
         />
         <div className="service-description flex flex-col flex-wrap w-full p-3 ls:p-5 items-center justify-center bg-[#222232] text-gray-400">
-          {parse(props.category.content)}
+          {props.category !== undefined ? parse(props.category.content) : <></>}
         </div>
         <HowTo />
         <FAQ />

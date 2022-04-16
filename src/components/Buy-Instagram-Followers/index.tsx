@@ -99,20 +99,24 @@ const BuyInstagramFollowers: React.VFC = (props: any) => {
           followerType={getFollowerType}
         />
         <div className="service-description flex flex-col flex-wrap w-full p-3 ls:p-5 items-center justify-center bg-[#222232] text-gray-400">
-          {parse(
-            props.category.content.replace(
-              '<div class="active-packages"><span>Active Instagram Follower packages</span></div>',
-              renderToString(
-                <ActiveFollowerPackages
-                  category={props.category}
-                  packageList={[
-                    ...props.services.filter(
-                      (item) => item.isShownInActiveTab === true,
-                    ),
-                  ]}
-                />,
+          {props.category !== undefined ? (
+            parse(
+              props.category.content.replace(
+                '<div class="active-packages"><span>Active Instagram Follower packages</span></div>',
+                renderToString(
+                  <ActiveFollowerPackages
+                    category={props.category}
+                    packageList={[
+                      ...props.services.filter(
+                        (item) => item.isShownInActiveTab === true,
+                      ),
+                    ]}
+                  />,
+                ),
               ),
-            ),
+            )
+          ) : (
+            <></>
           )}
         </div>
         <HowTo />

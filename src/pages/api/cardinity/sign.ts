@@ -21,10 +21,9 @@ export default connectDB(
 async function makeSignature(req, res) {
   const Client = Cardinity.client()
   const client = new Client(
-    'test_omnqchxlrusrpequzdepwip0patjql',
-    'cwsb3fqddtu02gdmmfnvz6skr9lwv9qlmbll0zq5zbhoeylojj',
+    serverRuntimeConfig.cardinity.consumerKey,
+    serverRuntimeConfig.cardinity.consumerSecret,
   )
-  console.log('Cardinity Client =>', client)
   const {
     amount,
     cancel_url,
@@ -71,3 +70,9 @@ async function makeSignature(req, res) {
     project_id: project_id,
   })
 }
+
+// 'pan': '5555555555554444',
+// 'exp_year': 2022,
+// 'exp_month': 12,
+// 'cvc': '222',
+// 'holder': 'John Doe',

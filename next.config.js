@@ -21,6 +21,7 @@ module.exports = {
   },
   publicRuntimeConfig: {
     apiUrl: 'http://localhost:3001/api',
+    behindApiUrl: 'http://localhost:4000/v1',
   },
   eslint: {
     dirs: ['src'],

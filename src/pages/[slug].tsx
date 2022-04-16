@@ -1,3 +1,4 @@
+import { fetchWrapper } from 'helpers'
 import { apiHandler, categoryRepo, serviceRepo } from 'helpers/api'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
@@ -12,18 +13,14 @@ import BuyInstagramLikes from '@/components/Buy-Instagram-Likes'
 import BuyInstagramStoryViews from '@/components/Buy-Instagram-Story-Views'
 import BuyInstagramViews from '@/components/Buy-Instagram-Views'
 import InstagramGrowth from '@/components/Instagram-Growth'
+import ProductItem from '@/components/ProductItem'
+import { behindService } from '@/services/behindService'
 import { categoryService } from '@/services/category'
-
 const Slug = (props) => {
   const router = useRouter()
   const { slug } = router.query
   const [mounted, setMounted] = useState(false)
 
-  const onClickedHighQuality = () => {}
-  const onClickedActiveFollowers = () => {}
-  const getFollowerType = () => {
-    return 'highQuality'
-  }
   useEffect(() => {
     setMounted(true)
   }, [])
@@ -47,56 +44,64 @@ const Slug = (props) => {
     else if (slug === 'buy-instagram-story-views')
       return <BuyInstagramStoryViews {...props} />
     else if (slug === 'blog') return <Blog />
-    else return <></>
+    else return <ProductItem {...props} />
   } else return <></>
 }
 
 export default Slug
 
-Slug.getInitialProps = async (ctx) => {
-  console.log('Context =>', ctx)
-  const resp = await categoryService.searchByUrlSlug(ctx.query.slug)
-  return { category: resp.data, services: resp.services }
+// Slug.getInitialProps = async (ctx) => {
+//   console.log('Context =>', ctx)
+//   const resp = await categoryService.searchByUrlSlug(ctx.query.slug)
+//   return { category: resp.data, services: resp.services }
+// }
 
-  // const resp = await categoryService.search('')
-  // const categories = resp.data
-  // console.log('Categories =>', categories)
-  // return { categories: categories }
+export async function getStaticPaths() {
+  // const resp = await categoryRepo.getAll()
+
+  const slugItems = await behindService.getUrlSlugs()
+
+  const paths = slugItems
+    .filter((item) => item.urlSlug !== '')
+    .map((item) => ({
+      params: { slug: item.urlSlug },
+    }))
+  return { paths, fallback: true }
 }
 
-// export async function getStaticPaths() {
-//   // const categories = await categoryRepo.getAll()
-//   const resp = await categoryService.search('')
-//   const categories = resp.data
+export async function getStaticProps({ params }) {
+  const slug = params.slug
+  if (
+    slug === '/' ||
+    slug === '/admin' ||
+    slug === '/admin/panel' ||
+    slug === '/admin/auth' ||
+    slug === '/blog' ||
+    slug === '/contact' ||
+    slug === '/faq'
+  )
+    return { props: {} }
+  else if (
+    slug === 'buy-instagram-followers' ||
+    slug === 'buy-instagram-likes' ||
+    slug === 'buy-instagram-views' ||
+    slug === 'buy-instagram-comments' ||
+    slug === 'instagram-growth' ||
+    slug === 'buy-auto-instagram-likes' ||
+    slug === 'buy-auto-instagram-followers' ||
+    slug === 'buy-custom-instagram-comments' ||
+    slug === 'buy-instagram-story-views'
+  ) {
+    const categoryData = await behindService.getCategoryDataBySlug(slug)
+    const productData = await behindService.getProductDataById(categoryData._id)
+    return { props: { category: categoryData, services: productData } }
+  } else {
+    const productData = await behindService.getProductDataBySlug(slug)
+    const categoryData = await behindService.getCategoryDataById(
+      productData.categoryId,
+    )
+    return { props: { category: categoryData, service: productData } }
+  }
 
-//   // Get the paths we want to pre-render based on posts
-//   let paths = categories
-//     .filter((category) => category.isActive === true)
-//     .map((category) => ({
-//       params: { slug: category.urlSlug },
-//     }))
-//   paths = [
-//     ...paths,
-//     { params: { slug: '/' } },
-//     { params: { slug: '/admin' } },
-//     { params: { slug: '/admin/panel' } },
-//     { params: { slug: '/admin/auth' } },
-//   ]
-//   // We'll pre-render only these paths at build time.
-//   // { fallback: false } means other routes should 404.
-//   return { paths, fallback: true }
-// }
-
-// export async function getStaticProps({ params }) {
-//   if (
-//     params.slug === '/' ||
-//     params.slug === '/admin' ||
-//     params.slug === '/admin/panel' ||
-//     params.slug === '/admin/auth'
-//   )
-//     return { props: {} }
-//   else {
-//     const resp = await categoryService.searchByUrlSlug(params.slug)
-//     return { props: { category: resp.data, services: resp.services } }
-//   }
-// }
+  return { props: {} }
+}

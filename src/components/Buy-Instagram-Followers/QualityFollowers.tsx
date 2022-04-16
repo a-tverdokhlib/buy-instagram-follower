@@ -33,9 +33,7 @@ export const QualityFollowers: React.VFC<Props> = (props: any) => {
   const onOrderItemClick = (item) => {
     router.push({
       pathname:
-        item.urlSlug !== undefined
-          ? `${item.urlSlug}/${props.category.urlSlug}`
-          : '',
+        item.urlSlug !== undefined ? `checkout/${props.category.urlSlug}` : '',
       query: { serviceId: item._id },
     })
   }
