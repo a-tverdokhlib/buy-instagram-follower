@@ -147,7 +147,7 @@ const Product = (props) => {
           <div className="flex w-full h-[80px] items-center">
             <div
               onClick={() => onBackClick()}
-              className="flex ml-5 p-3 hover:cursor-pointer"
+              className="flex ml-5 ls:p-3 hover:cursor-pointer"
             >
               <span className="flex items-center">
                 <svg
@@ -345,7 +345,7 @@ const Product = (props) => {
           <div className="flex w-full h-[80px] items-center">
             <div
               onClick={() => onBackClick()}
-              className="flex ml-5 p-3 hover:cursor-pointer"
+              className="flex ml-5 ls:p-3 hover:cursor-pointer"
             >
               <span className="flex items-center">
                 <svg
