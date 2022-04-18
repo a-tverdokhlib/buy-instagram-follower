@@ -15,6 +15,8 @@ const Product = (props) => {
   const { errors } = formState
 
   const { product, serviceId, email, username, payment } = router.query
+  console.log('Router Info =>', router)
+
   const [mounted, setMounted] = useState(false)
   const [selectedServiceItem, setSelectedServiceItem] = useState<any>()
   const [instaUsername, setInstaUsername] = useState(username)
@@ -915,7 +917,7 @@ const Product = (props) => {
 export default Product
 
 Product.getInitialProps = async (ctx) => {
-  console.log('Context Query =>', ctx.query)
+  console.log('Context =>', ctx)
   const resp = await categoryService.searchByUrlSlug(ctx.query.product)
   return { category: resp.data, services: resp.services }
 }
