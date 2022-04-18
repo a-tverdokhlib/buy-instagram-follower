@@ -951,7 +951,7 @@ export const getServerSideProps = async (context) => {
         if (its.length > 0) {
           const key = its[0]
           const val = its[1]
-          keyValues = [...keyValues, { key: val }]
+          keyValues = [...keyValues, { key: key, value: val }]
         }
       })
     }
