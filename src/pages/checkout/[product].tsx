@@ -941,7 +941,8 @@ export default Product
 export const getServerSideProps = async (context) => {
   if (context.req.method == 'POST') {
     const body = await getRawBody(context.req)
-    console.log(body.toString('utf-8'))
+    // console.log(body.toString('utf-8'))
+    console.log('Body => ', body)
   }
   // console.log('Request =>', context.req)
   const resp = await categoryService.searchByUrlSlug(context.query.product)
