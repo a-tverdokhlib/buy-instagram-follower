@@ -715,10 +715,198 @@ const Product = (props) => {
           </main>
         </>
       )
-    else
+    else if (payment === 'success')
       return (
         <>
-          Thank you! We appreciate you for using our service. Payment Success!
+          <div className="flex w-full h-[80px] items-center">
+            <div
+              onClick={() => onBackClick()}
+              className="flex ml-5 ls:p-3 hover:cursor-pointer"
+            >
+              <span className="flex items-center">
+                <svg
+                  className="h-6 w-6 text-gray-500"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  {' '}
+                  <polyline points="15 18 9 12 15 6" />
+                </svg>
+              </span>
+              <span className="text-white text-xl"> Back </span>
+            </div>
+            <div className="flex w-full justify-center">
+              <div className="w-[190px] h-[40px] relative">
+                <Image
+                  src="/Goread_Logo.png"
+                  alt="Logo"
+                  layout="fill"
+                  objectFit="contain"
+                />
+              </div>
+            </div>
+          </div>
+          <main
+            id="content"
+            className="flex flex-1 flex-col w-full top-0 min-h-screen p-0"
+          >
+            <div className="flex flex-col flex-wrap w-full items-center justify-center lg:items-start lg:flex-row lg:flex-nowrap bg-[#222232] ">
+              <div className="flex flex-col flex-wrap w-full ml:min-w-[850px] ml:max-w-[850px] p-2 ls:p-10 md:px-24">
+                <div className="flex flex-col flex-wrap w-full mt-10 md:mt-0 p-3 md:py-16 md:px-10 space-y-5 rounded-lg border-gray-200 shadow-gray-700 shadow-sm bg-black bg-opacity-50">
+                  <div className="flex flex-col flex-wrap w-full space-y-5">
+                    <span>
+                      <span className="text-gray-300 text-xl md:text-3xl">
+                        Order Success!
+                      </span>
+                    </span>
+                    <span>
+                      <span className="text-gray-400">
+                        Thank you! We appreciate you for using our customer
+                        service. Your order has been successfully placed. Please
+                        see order details below you have placed and get back to
+                        us if anything needs to be updated.
+                      </span>
+                    </span>
+                  </div>
+                  <div className="w-full border-b-[1px] h-5 border-gray-600"></div>
+                  <div className="flex flex-col flex-wrap md:flex-row md:flex-nowrap w-full items-center">
+                    <div className="flex mt-3 w-full">
+                      <div className="w-full justify-center items-center">
+                        <select
+                          onChange={(e) => {
+                            setSelectedServiceItem(e.target.value)
+                          }}
+                          value={selectedServiceItem._id}
+                          className="flex w-full space-x-1 rounded-full py-4 px-3 justify-center hover:cursor-pointer border-[2px] border-[#ccc] bg-transparent text-white text-lg hover:border-purple-900"
+                        >
+                          {props.services.map((item, id) => {
+                            if (item._id === selectedServiceItem._id)
+                              return (
+                                <option
+                                  key={id}
+                                  className="text-gray-700 text-lg"
+                                  value={item._id}
+                                >
+                                  {item.name} | ${item.price} - One time
+                                </option>
+                              )
+                          })}
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {loading ? (
+              <div className="fixed inset-0 flex items-center justify-center w-full h-full bg-opacity-0 bg-black">
+                <Loading />
+              </div>
+            ) : (
+              <></>
+            )}
+            <div className="h-32 bg-[#222232]"></div>
+          </main>
+        </>
+      )
+    else if (payment === 'declined')
+      return (
+        <>
+          <div className="flex w-full h-[80px] items-center">
+            <div
+              onClick={() => onBackClick()}
+              className="flex ml-5 ls:p-3 hover:cursor-pointer"
+            >
+              <span className="flex items-center">
+                <svg
+                  className="h-6 w-6 text-gray-500"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  {' '}
+                  <polyline points="15 18 9 12 15 6" />
+                </svg>
+              </span>
+              <span className="text-white text-xl"> Back </span>
+            </div>
+            <div className="flex w-full justify-center">
+              <div className="w-[190px] h-[40px] relative">
+                <Image
+                  src="/Goread_Logo.png"
+                  alt="Logo"
+                  layout="fill"
+                  objectFit="contain"
+                />
+              </div>
+            </div>
+          </div>
+          <main
+            id="content"
+            className="flex flex-1 flex-col w-full top-0 min-h-screen p-0"
+          >
+            <div className="flex flex-col flex-wrap w-full items-center justify-center lg:items-start lg:flex-row lg:flex-nowrap bg-[#222232] ">
+              <div className="flex flex-col flex-wrap w-full ml:min-w-[850px] ml:max-w-[850px] p-2 ls:p-10 md:px-24">
+                <div className="flex flex-col flex-wrap w-full mt-10 md:mt-0 p-3 md:py-16 md:px-10 space-y-5 rounded-lg border-gray-200 shadow-gray-700 shadow-sm bg-black bg-opacity-50">
+                  <div className="flex flex-col flex-wrap w-full space-y-5">
+                    <span>
+                      <span className="text-gray-300 text-xl md:text-3xl">
+                        Order Declined!
+                      </span>
+                    </span>
+                    <span>
+                      <span className="text-gray-400">
+                        We are sorry for order failure. Please confirm that you
+                        have inputed valid info.
+                      </span>
+                    </span>
+                  </div>
+                  <div className="w-full border-b-[1px] h-5 border-gray-600"></div>
+                  <div className="flex flex-col flex-wrap md:flex-row md:flex-nowrap w-full items-center">
+                    <div className="flex mt-3 w-full">
+                      <div className="w-full justify-center items-center">
+                        <select
+                          onChange={(e) => {
+                            setSelectedServiceItem(e.target.value)
+                          }}
+                          value={selectedServiceItem._id}
+                          className="flex w-full space-x-1 rounded-full py-4 px-3 justify-center hover:cursor-pointer border-[2px] border-[#ccc] bg-transparent text-white text-lg hover:border-purple-900"
+                        >
+                          {props.services.map((item, id) => {
+                            if (item._id === selectedServiceItem._id)
+                              return (
+                                <option
+                                  key={id}
+                                  className="text-gray-700 text-lg"
+                                  value={item._id}
+                                >
+                                  {item.name} | ${item.price} - One time
+                                </option>
+                              )
+                          })}
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {loading ? (
+              <div className="fixed inset-0 flex items-center justify-center w-full h-full bg-opacity-0 bg-black">
+                <Loading />
+              </div>
+            ) : (
+              <></>
+            )}
+            <div className="h-32 bg-[#222232]"></div>
+          </main>
         </>
       )
   } else return <></>
