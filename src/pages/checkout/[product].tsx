@@ -101,6 +101,7 @@ const Product = (props) => {
   }
 
   const onPayClick = async () => {
+    const return_url = `${absoluteUrl}&payment=success`
     const data = {
       amount: selectedServiceItem.price,
       cancel_url: absoluteUrl,
@@ -109,7 +110,7 @@ const Product = (props) => {
       currency: 'USD',
       description: selectedServiceItem.name,
       order_id: '123456798',
-      return_url: absoluteUrl,
+      return_url: return_url,
     }
     const resp = await cardinityService.sign(data)
     console.log('Signature =>', resp.signature)
