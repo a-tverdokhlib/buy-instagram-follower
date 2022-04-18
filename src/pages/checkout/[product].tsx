@@ -109,7 +109,7 @@ const Product = (props) => {
       currency: 'USD',
       description: selectedServiceItem.name,
       order_id: '123456798',
-      return_url: `${absoluteUrl}&payment=approved`,
+      return_url: absoluteUrl,
     }
     const resp = await cardinityService.sign(data)
     console.log('Signature =>', resp.signature)
@@ -714,7 +714,12 @@ const Product = (props) => {
           </main>
         </>
       )
-    else return <>Thank you! We appreciate you for using our service.</>
+    else
+      return (
+        <>
+          Thank you! We appreciate you for using our service. Payment Success!
+        </>
+      )
   } else return <></>
 }
 
