@@ -940,22 +940,10 @@ export default Product
 // }
 export const getServerSideProps = async (context) => {
   if (context.req.method == 'POST') {
-    // const body = await getRawBody(context.req)
-    // console.log(body.toString('utf-8'))
-    const {
-      amount,
-      country,
-      created,
-      currency,
-      description,
-      id,
-      order_id,
-      payment_method,
-      status,
-    } = context.req.body
-    console.log('Amount =>', amount)
-    console.log('Currency =>', currency)
+    const body = await getRawBody(context.req)
+    console.log(body.toString('utf-8'))
   }
+  // console.log('Request =>', context.req)
   const resp = await categoryService.searchByUrlSlug(context.query.product)
   return { props: { category: resp.data, services: resp.services } }
 }
