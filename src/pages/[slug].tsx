@@ -93,6 +93,8 @@ export async function getStaticProps({ params }) {
     slug === 'buy-instagram-story-views'
   ) {
     const categoryData = await behindService.getCategoryDataBySlug(slug)
+    if (slug === 'buy-instagram-story-views')
+      return { props: { category: categoryData } }
     const productData = await behindService.getProductDataById(categoryData._id)
     return { props: { category: categoryData, services: productData } }
   } else {

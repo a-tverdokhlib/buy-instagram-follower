@@ -10,7 +10,6 @@ import { Feedback } from '@/components/ProductItem/Feedback'
 import { HowTo } from '@/components/ProductItem/HowTo'
 
 const ProductItem: React.VFC = (props: any) => {
-  console.log('serviceID =>', props.service._id)
   const onBuyItemClick = () => {
     router.push({
       pathname:
