@@ -106,9 +106,10 @@ const Product = (props) => {
 
   const onPayClick = async () => {
     const return_url = `${absoluteUrl}&payment=success`
+    const cancel_url = `${absoluteUrl}&payment=cancel`
     const data = {
       amount: selectedServiceItem.price,
-      cancel_url: absoluteUrl,
+      cancel_url: cancel_url,
       country: 'UA',
       language: 'EN',
       currency: 'USD',
@@ -550,7 +551,7 @@ const Product = (props) => {
                         <input
                           type="hidden"
                           {...register('cancel_url')}
-                          value={absoluteUrl}
+                          value={`${absoluteUrl}&payment=cancel`}
                         />
                         <input
                           type="hidden"
@@ -777,7 +778,7 @@ const Product = (props) => {
                     </span>
                   </div>
                   <div className="w-full border-b-[1px] h-5 border-gray-600"></div>
-                  <div className="flex flex-col flex-wrap md:flex-row md:flex-nowrap w-full items-center">
+                  <div className="flex flex-col flex-wrap w-full items-center space-y-3">
                     <div className="flex mt-3 w-full">
                       <div className="w-full justify-center items-center">
                         <select
@@ -802,6 +803,50 @@ const Product = (props) => {
                         </select>
                       </div>
                     </div>
+                    <div className="flex w-full">
+                      <div>
+                        <span className="text-gray-300 text-xl">Amount: </span>
+                      </div>
+                      <div>
+                        <span>
+                          {
+                            props.respData.filter(
+                              (item) => item.key === 'amount',
+                            )[0].value
+                          }
+                        </span>
+                      </div>
+                    </div>
+                    <div className="flex w-full">
+                      <div>
+                        <span className="text-gray-300 text-xl">
+                          Currency:{' '}
+                        </span>
+                      </div>
+                      <div>
+                        <span>
+                          {
+                            props.respData.filter(
+                              (item) => item.key === 'currency',
+                            )[0].value
+                          }
+                        </span>
+                      </div>
+                    </div>
+                    <div className="flex w-full">
+                      <div>
+                        <span className="text-gray-300 text-xl">Status: </span>
+                      </div>
+                      <div>
+                        <span>
+                          {
+                            props.respData.filter(
+                              (item) => item.key === 'status',
+                            )[0].value
+                          }
+                        </span>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -817,7 +862,7 @@ const Product = (props) => {
           </main>
         </>
       )
-    else if (payment === 'declined')
+    else if (payment === 'cancel')
       return (
         <>
           <div className="flex w-full h-[80px] items-center">
@@ -862,13 +907,13 @@ const Product = (props) => {
                   <div className="flex flex-col flex-wrap w-full space-y-5">
                     <span>
                       <span className="text-gray-300 text-xl md:text-3xl">
-                        Order Declined!
+                        Order Failed!
                       </span>
                     </span>
                     <span>
                       <span className="text-gray-400">
-                        We are sorry for order failure. Please confirm that you
-                        have inputed valid info.
+                        We are sorry for your order failure. Please confirm that
+                        you have inputed valid info.
                       </span>
                     </span>
                   </div>
@@ -939,12 +984,12 @@ export default Product
 //   }
 // }
 export const getServerSideProps = async (context) => {
+  let keyValues: any = []
   if (context.req.method == 'POST') {
     const body = await getRawBody(context.req)
     // console.log(body.toString('utf-8'))
     const bodyString = body.toString('utf-8')
     const bodyValues = bodyString.split('&')
-    let keyValues: any = []
     if (bodyValues.length > 0) {
       bodyValues.map((item) => {
         const its = item.split('=')
@@ -957,7 +1002,12 @@ export const getServerSideProps = async (context) => {
     }
     console.log('Body Params => ', keyValues)
   }
-  // console.log('Request =>', context.req)
   const resp = await categoryService.searchByUrlSlug(context.query.product)
-  return { props: { category: resp.data, services: resp.services } }
+  return {
+    props: {
+      category: resp.data,
+      services: resp.services,
+      respData: keyValues,
+    },
+  }
 }

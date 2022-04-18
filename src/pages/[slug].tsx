@@ -104,6 +104,4 @@ export async function getStaticProps({ params }) {
     )
     return { props: { category: categoryData, service: productData } }
   }
-
-  return { props: {} }
 }
