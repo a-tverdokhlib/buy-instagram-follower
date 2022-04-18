@@ -576,7 +576,7 @@ const Product = (props) => {
                         <input
                           type="hidden"
                           {...register('return_url')}
-                          value={absoluteUrl}
+                          value={`${absoluteUrl}&payment=success`}
                         />
                         <input
                           type="hidden"
