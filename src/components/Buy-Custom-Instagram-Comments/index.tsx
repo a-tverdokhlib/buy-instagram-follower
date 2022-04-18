@@ -3,7 +3,6 @@ import Router, { NextRouter } from 'next/router'
 import { useEffect } from 'react'
 
 import { Banner } from '@/components/Buy-Custom-Instagram-Comments/Banner'
-import { FAQ } from '@/components/Buy-Custom-Instagram-Comments/FAQ'
 import { Feedback } from '@/components/Buy-Custom-Instagram-Comments/Feedback'
 import { ViewPackages } from '@/components/Buy-Custom-Instagram-Comments/ViewPackages'
 import { Footer } from '@/components/organisms/Footer'

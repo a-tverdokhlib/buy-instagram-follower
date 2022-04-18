@@ -65,47 +65,10 @@ const Provider: React.VFC<PackageProps> = (props) => {
     </div>
   )
 }
-
-const providers = [
-  {
-    providerId: 0,
-    title: 'DOES PURCHASING VIDEO VIEWS HURT MY ACCOUNT?',
-    description:
-      'Nope! Buying video views is allowed and does not hurt your account. The only thing adding video views does is put your brand in front of more people and help convert more followers and customers. We stay on top of all the latest changes to Instagram’s guidelines, and we take your account security seriously. You are safe with Goread.io.',
-  },
-  {
-    providerId: 1,
-    title: 'IS THERE AN OPTION FOR A MONTHLY SUBSCRIPTION?',
-    description:
-      'Yep! We have an affordable monthly subscription package that automatically promotes all of your new posts. You don’t have to worry about not receiving new views and likes again. We also monitor your account 24/7 to make sure every new post you add is included in your monthly subscription. If you ever need help, our customer support is available 24/7.',
-  },
-  {
-    providerId: 2,
-    title: 'DO I HAVE TO GIVE YOU MY PASSWORD TO BUY INSTAGRAM VIEWS?',
-    description:
-      'Not quite! We don’t need your password, but we do need your username. When you receive video views organically, people don’t need your password to watch, so neither do we!',
-  },
-  {
-    providerId: 3,
-    title: 'HOW DO I BUY INSTAGRAM VIEWS?',
-    description:
-      'Currently, we accept Visa, Mastercard, and Maestro card. We can also accept debit cards. All of your payments are safely handled by a secure payment processor that complies with all PCI DSS standards. PCI DSS standards make sure that your payment data is protected whenever you make any online purchase.',
-  },
-  {
-    providerId: 4,
-    title: 'HOW FAST ARE YOU?',
-    description:
-      'We have instant delivery! As soon as you sign up and make your first payment, our social media experts place your posts in our high-traffic network so that you can instantly start getting new views. We can deliver results in mere minutes!',
-  },
-  {
-    providerId: 5,
-    title: 'WHY HAVEN’T YOU SIGNED UP YET?',
-    description:
-      'Social media is currently the best way to advance your brand awareness and increase your fan base. Through Instagram, you can put your brand or product in front of as many new members of your target market as possible. With Goread.io on your side, your video campaigns will receive a large stream of new views that can turn into new followers or customers in minutes. Well, what are you waiting for?',
-  },
-]
-
-export const FAQ: React.VFC = () => {
+type Props = {
+  readonly faqs: any[]
+}
+export const FAQ: React.VFC<Props> = (props) => {
   return (
     <div className="flex flex-col flex-wrap w-full items-center bg-[#222232] min-h-screen">
       <div className="flex flex-col flex-wrap w-10/12 mt-32 py-9 m-auto bg-[black] bg-opacity-50 rounded-xl">
@@ -123,32 +86,30 @@ export const FAQ: React.VFC = () => {
         </div>
         <div className="mt-16 flex flex-col md:flex-row md:flex-nowrap md:space-x-3 md:space-y-0 justify-center">
           <div className="flex flex-col flex-wrap space-y-3 w-full md:w-1/2">
-            {providers
-              .filter((value) => value.providerId % 2 === 0)
-              .map((item, id) => {
+            {props.faqs.map((item, id) => {
+              if (id % 2 === 0)
                 return (
                   <Provider
                     key={id}
                     providerId={id}
-                    title={item.title}
-                    description={item.description}
+                    title={item.question}
+                    description={item.answer}
                   />
                 )
-              })}
+            })}
           </div>
           <div className="flex flex-col flex-wrap space-y-3 w-full md:w-1/2">
-            {providers
-              .filter((value) => value.providerId % 2 !== 0)
-              .map((item, id) => {
+            {props.faqs.map((item, id) => {
+              if (id % 2 === 1)
                 return (
                   <Provider
                     key={id}
                     providerId={id}
-                    title={item.title}
-                    description={item.description}
+                    title={item.question}
+                    description={item.answer}
                   />
                 )
-              })}
+            })}
           </div>
         </div>
       </div>

@@ -1,6 +1,6 @@
 import parse from 'html-react-parser'
 import Router, { NextRouter } from 'next/router'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { renderToString } from 'react-dom/server'
 
 import { Banner } from '@/components/Buy-Instagram-Views/Banner'
@@ -11,6 +11,7 @@ import { Header } from '@/components/organisms/Header'
 import { HowTo } from '@/components/organisms/HowTo'
 import { setScrollPosition, setType } from '@/redux/reducers/views'
 import { useAppDispatch, useAppSelector } from '@/redux/store/hooks'
+import { packageFAQService } from '@/services/packageFAQ'
 
 function saveScrollPosition(
   url: string,
@@ -30,6 +31,16 @@ const BuyInstagramLikes: React.VFC = (props: any) => {
   const dispatch = useAppDispatch()
   const { viewType } = useAppSelector((state) => state.views)
   const { scrollPosition } = useAppSelector((state) => state.views)
+  const [packageFAQs, setPackageFAQs] = useState([])
+
+  useEffect(() => {
+    getFAQs()
+  }, [])
+
+  const getFAQs = async () => {
+    const resp = await packageFAQService.search(props.category._id)
+    setPackageFAQs(resp.data)
+  }
 
   const onClickedHighQuality = () => {
     dispatch(setType('highQuality'))
@@ -98,7 +109,7 @@ const BuyInstagramLikes: React.VFC = (props: any) => {
           {props.category !== undefined ? parse(props.category.content) : <></>}
         </div>
         <HowTo />
-        <FAQ />
+        <FAQ faqs={packageFAQs} />
         <Feedback />
         <div className="h-32 bg-[#222232]"></div>
       </main>

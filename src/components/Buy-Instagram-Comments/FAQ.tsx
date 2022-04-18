@@ -65,47 +65,10 @@ const Provider: React.VFC<PackageProps> = (props) => {
     </div>
   )
 }
-
-const providers = [
-  {
-    providerId: 0,
-    title: 'IS BUYING INSTAGRAM COMMENTS SAFE?',
-    description:
-      'You may have heard about Instagram’s algorithm punishing people for purchasing likes. Luckily, comments don’t have that problem – providing you purchase them from a legitimate source. For instance, our team is made up of experienced marketing specialists who have put years of work into developing safe, effective comment strategies. This makes our service 100% risk-free',
-  },
-  {
-    providerId: 1,
-    title: 'WILL ANYONE KNOW I PURCHASED COMMENTS?',
-    description:
-      'We take great care to protect your privacy at all times. This includes ensuring that nobody can tell that you purchased Instagram comments from a third party. We also keep all of your payment and user data on an ultra-secure server.',
-  },
-  {
-    providerId: 2,
-    title: 'HOW LONG WILL I WAIT FOR COMMENTS?',
-    description:
-      'We can start posting comments on your Instagram in seconds in most cases. In others, it might take up to an hour depending on how many orders we have to fill. Luckily, we’re always expanding our human resources and technical capabilities to ensure you get the faster service possible. Welcome to the "internet age!"',
-  },
-  {
-    providerId: 3,
-    title: 'WILL PURCHASING COMMENTS RESULT IN MORE LIKES AND FOLLOWS?',
-    description:
-      'While studies show that having more comments directly increases engagement, we can’t make any specific guarantees of how your engagement will be affected. In fact, if you’re already purchasing comments, we suggest you also purchase likes and video views in order to make your sudden engagement increases look more natural. People are followers, and when you give them an example to emulate, they typically will. Remember, reaching the "top" of Instagram is not something that many people can do organically without a sufficient amount of celebrity power. That’s why nearly everyone out there is using a wide range of strategies (including purchasing engagement) to try and maximize their audience. In the end, it’s just another form of paid marketing – no different from a television commercial.',
-  },
-  {
-    providerId: 4,
-    title: 'CAN I SET UP MY OWN COMMENTS LIST?',
-    description:
-      'Most customers want randomized comments, but if you’re looking for a more specific response, we’re more than happy to accommodate you! We allow you to submit your preferred comments in a dialog box when you order. After reviewing them, we’ll pass them on to our commenters.',
-  },
-  {
-    providerId: 5,
-    title: 'CAN PURCHASING COMMENTS GET MY INSTAGRAM BANNED?',
-    description:
-      'Thankfully, we can assure you that there is absolutely no chance of this happening. After all, you’re not violating any rules! As we said, purchasing comments is no different than any other form of paid marketing or advertising. That’s why millions of businesses and influencers are already using paid commenting services. If that doesn’t allay your fears, we’re happy to report that in all of our years providing this service, not a single complaint has been filed against any of our clients - to say nothing of one of them being banned. And since we store all of your order and payment information on secure servers, your transaction will be 100% private.',
-  },
-]
-
-export const FAQ: React.VFC = () => {
+type Props = {
+  readonly faqs: any[]
+}
+export const FAQ: React.VFC<Props> = (props) => {
   return (
     <div className="flex flex-col flex-wrap w-full items-center bg-[#222232] min-h-screen">
       <div className="flex flex-col flex-wrap w-10/12 mt-32 py-9 m-auto bg-[black] bg-opacity-50 rounded-xl">
@@ -123,32 +86,30 @@ export const FAQ: React.VFC = () => {
         </div>
         <div className="mt-16 flex flex-col md:flex-row md:flex-nowrap md:space-x-3 md:space-y-0 justify-center">
           <div className="flex flex-col flex-wrap space-y-3 w-full md:w-1/2">
-            {providers
-              .filter((value) => value.providerId % 2 === 0)
-              .map((item, id) => {
+            {props.faqs.map((item, id) => {
+              if (id % 2 === 0)
                 return (
                   <Provider
                     key={id}
                     providerId={id}
-                    title={item.title}
-                    description={item.description}
+                    title={item.question}
+                    description={item.answer}
                   />
                 )
-              })}
+            })}
           </div>
           <div className="flex flex-col flex-wrap space-y-3 w-full md:w-1/2">
-            {providers
-              .filter((value) => value.providerId % 2 !== 0)
-              .map((item, id) => {
+            {props.faqs.map((item, id) => {
+              if (id % 2 === 1)
                 return (
                   <Provider
                     key={id}
                     providerId={id}
-                    title={item.title}
-                    description={item.description}
+                    title={item.question}
+                    description={item.answer}
                   />
                 )
-              })}
+            })}
           </div>
         </div>
       </div>

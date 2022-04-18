@@ -5,9 +5,9 @@ import router from 'next/router'
 import { PlanConfirmation } from '@/components/Instagram-Growth/PlanConfirmation'
 import { Footer } from '@/components/organisms/Footer'
 import { Header } from '@/components/organisms/Header'
-import { HowTo } from '@/components/organisms/HowTo'
 import { Banner } from '@/components/ProductItem/Banner'
 import { Feedback } from '@/components/ProductItem/Feedback'
+import { HowTo } from '@/components/ProductItem/HowTo'
 
 const ProductItem: React.VFC = (props: any) => {
   console.log('serviceID =>', props.service._id)
@@ -36,7 +36,7 @@ const ProductItem: React.VFC = (props: any) => {
             <></>
           )}
         </div>
-        <HowTo />
+        <HowTo title={props.service.name} />
         <Feedback />
         <div className="h-32 bg-[#222232]"></div>
       </main>

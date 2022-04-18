@@ -21,7 +21,9 @@ export const packageFAQService = {
 
 function search(keyword) {
   return fetchWrapper
-    .get(`${publicRuntimeConfig.apiUrl}/packageFAQ/search?${keyword}`)
+    .get(
+      `${publicRuntimeConfig.apiUrl}/packageFAQ/search?categoryId=${keyword}`,
+    )
     .then((packageFAQs) => {
       return packageFAQs
     })

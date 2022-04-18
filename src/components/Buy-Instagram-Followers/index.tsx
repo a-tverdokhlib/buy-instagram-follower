@@ -12,7 +12,8 @@ import { Header } from '@/components/organisms/Header'
 import { HowTo } from '@/components/organisms/HowTo'
 import { setScrollPosition, setType } from '@/redux/reducers/followers'
 import { useAppDispatch, useAppSelector } from '@/redux/store/hooks'
-
+import { packageFAQService } from '@/services/packageFAQ'
+import { providerService } from '@/services/provider'
 function saveScrollPosition(
   url: string,
   scrollPos: number,
@@ -31,6 +32,16 @@ const BuyInstagramFollowers: React.VFC = (props: any) => {
   const dispatch = useAppDispatch()
   const { followerType } = useAppSelector((state) => state.followers)
   const { scrollPosition } = useAppSelector((state) => state.followers)
+  const [packageFAQs, setPackageFAQs] = useState([])
+
+  useEffect(() => {
+    getFAQs()
+  }, [])
+
+  const getFAQs = async () => {
+    const resp = await packageFAQService.search(props.category._id)
+    setPackageFAQs(resp.data)
+  }
 
   const onClickedHighQuality = () => {
     dispatch(setType('highQuality'))
@@ -120,7 +131,7 @@ const BuyInstagramFollowers: React.VFC = (props: any) => {
           )}
         </div>
         <HowTo />
-        <FAQ />
+        <FAQ faqs={packageFAQs} />
         <Feedback />
         <div className="h-32 bg-[#222232]"></div>
       </main>
