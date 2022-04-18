@@ -13,7 +13,6 @@ import { HowTo } from '@/components/organisms/HowTo'
 import { setScrollPosition, setType } from '@/redux/reducers/followers'
 import { useAppDispatch, useAppSelector } from '@/redux/store/hooks'
 import { packageFAQService } from '@/services/packageFAQ'
-import { providerService } from '@/services/provider'
 function saveScrollPosition(
   url: string,
   scrollPos: number,

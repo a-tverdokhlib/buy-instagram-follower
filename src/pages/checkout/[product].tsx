@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import { useRouter } from 'next/router'
+import getRawBody from 'raw-body'
 import { useEffect, useRef, useState } from 'react'
 import ReCAPTCHA from 'react-google-recaptcha'
 import { useForm } from 'react-hook-form'
@@ -9,6 +10,7 @@ import { Footer } from '@/components/organisms/Footer'
 import { cardinityService } from '@/services/cardinity'
 import { categoryService } from '@/services/category'
 import { goreadService } from '@/services/goread'
+
 const Product = (props) => {
   const router = useRouter()
   const { register, handleSubmit, reset, formState } = useForm()
@@ -916,17 +918,32 @@ const Product = (props) => {
 
 export default Product
 
-Product.getInitialProps = async (ctx) => {
-  console.log('Context =>', ctx)
-  // if (ctx.req.method === 'POST') {
-  //   let body = ''
-  //   ctx.req.on('data', (chunk) => {
-  //     body += chunk
-  //   })
-  //   ctx.req.on('end', () => {
-  //     console.log('Post Data =>', body)
-  //   })
-  // }
-  const resp = await categoryService.searchByUrlSlug(ctx.query.product)
-  return { category: resp.data, services: resp.services }
+// Product.getInitialProps = async (ctx) => {
+//   console.log('Context =>', ctx)
+// if (ctx.req.method === 'POST') {
+//   let body = ''
+//   ctx.req.on('data', (chunk) => {
+//     body += chunk
+//   })
+//   ctx.req.on('end', () => {
+//     console.log('Post Data =>', body)
+//   })
+// }
+// const resp = await categoryService.searchByUrlSlug(ctx.query.product)
+// return { category: resp.data, services: resp.services }
+// }
+
+// export async function getServerSideProps(context) {
+//   return {
+//     props: {}, // will be passed to the page component as props
+//   }
+// }
+export const getServerSideProps = async (context) => {
+  if (context.req.method == 'POST') {
+    const body = await getRawBody(context.req)
+    console.log(body.toString('utf-8'))
+  }
+  // console.log('Request =>', context.req)
+  const resp = await categoryService.searchByUrlSlug(context.query.product)
+  return { props: { category: resp.data, services: resp.services } }
 }

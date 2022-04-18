@@ -34,6 +34,7 @@
     "next-redux-wrapper": "^7.0.5",
     "next-validations": "^0.1.11",
     "nodemailer": "^6.7.3",
+    "raw-body": "^2.5.1",
     "react": "17.0.2",
     "react-cookie": "^4.1.1",
     "react-datetime-picker": "^3.5.0",
