@@ -942,7 +942,20 @@ export const getServerSideProps = async (context) => {
   if (context.req.method == 'POST') {
     const body = await getRawBody(context.req)
     // console.log(body.toString('utf-8'))
-    console.log('Body => ', body)
+    const bodyString = body.toString('utf-8')
+    const bodyValues = bodyString.split('&')
+    let keyValues: any = []
+    if (bodyValues.length > 0) {
+      bodyValues.map((item) => {
+        const its = item.split('=')
+        if (its.length > 0) {
+          const key = its[0]
+          const val = its[1]
+          keyValues = [...keyValues, { key: val }]
+        }
+      })
+    }
+    console.log('Body Params => ', keyValues)
   }
   // console.log('Request =>', context.req)
   const resp = await categoryService.searchByUrlSlug(context.query.product)
