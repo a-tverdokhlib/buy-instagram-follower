@@ -14,7 +14,7 @@ const Product = (props) => {
   const { register, handleSubmit, reset, formState } = useForm()
   const { errors } = formState
 
-  const { product, serviceId, email, username } = router.query
+  const { product, serviceId, email, username, payment } = router.query
   const [mounted, setMounted] = useState(false)
   const [selectedServiceItem, setSelectedServiceItem] = useState<any>()
   const [instaUsername, setInstaUsername] = useState(username)
@@ -109,7 +109,7 @@ const Product = (props) => {
       currency: 'USD',
       description: selectedServiceItem.name,
       order_id: '123456798',
-      return_url: absoluteUrl,
+      return_url: `${absoluteUrl}&payment=approved`,
     }
     const resp = await cardinityService.sign(data)
     console.log('Signature =>', resp.signature)
@@ -339,7 +339,7 @@ const Product = (props) => {
           </main>
         </>
       )
-    else
+    else if (payment === undefined || payment === '')
       return (
         <>
           <div className="flex w-full h-[80px] items-center">
@@ -714,6 +714,7 @@ const Product = (props) => {
           </main>
         </>
       )
+    else return <>Thank you! We appreciate you for using our service.</>
   } else return <></>
 }
 
