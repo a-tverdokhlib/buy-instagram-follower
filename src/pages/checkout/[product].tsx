@@ -918,6 +918,15 @@ export default Product
 
 Product.getInitialProps = async (ctx) => {
   console.log('Context =>', ctx)
+  if (ctx.req.method === 'POST') {
+    let body = ''
+    ctx.req.on('data', (chunk) => {
+      body += chunk
+    })
+    ctx.req.on('end', () => {
+      console.log('Post Data =>', body)
+    })
+  }
   const resp = await categoryService.searchByUrlSlug(ctx.query.product)
   return { category: resp.data, services: resp.services }
 }
