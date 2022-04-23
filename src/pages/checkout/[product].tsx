@@ -141,6 +141,10 @@ const Product = (props) => {
     router.back()
   }
 
+  const onContinueBrowsingClick = () => {
+    router.push('/')
+  }
+
   if (mounted === true) {
     if (
       email === undefined ||
@@ -771,9 +775,11 @@ const Product = (props) => {
                     <span>
                       <span className="text-gray-400">
                         Thank you! We appreciate you for using our customer
-                        service. Your order has been successfully placed. Please
-                        see order details below you have placed and get back to
-                        us if anything needs to be updated.
+                        service. Now that your order has been successfully
+                        placed, you will get the expected result within a few
+                        business time. Please see order details below you have
+                        placed and get back to us if anything needs to be
+                        updated.
                       </span>
                     </span>
                   </div>
@@ -803,16 +809,16 @@ const Product = (props) => {
                         </select>
                       </div>
                     </div>
-                    <div className="flex w-full">
+                    <div className="flex space-x-2 w-full">
                       <div>
                         <span className="text-gray-300 text-xl">Amount: </span>
                       </div>
-                      <div>
-                        <span>
+                      <div className="ml-2">
+                        <span className="text-gray-400">
                           {
                             props.respData.filter(
                               (item) => item.key === 'amount',
-                            )[0].value
+                            )[0]?.value
                           }
                         </span>
                       </div>
@@ -823,12 +829,12 @@ const Product = (props) => {
                           Currency:{' '}
                         </span>
                       </div>
-                      <div>
-                        <span>
+                      <div className="ml-2">
+                        <span className="text-gray-400">
                           {
                             props.respData.filter(
                               (item) => item.key === 'currency',
-                            )[0].value
+                            )[0]?.value
                           }
                         </span>
                       </div>
@@ -837,13 +843,23 @@ const Product = (props) => {
                       <div>
                         <span className="text-gray-300 text-xl">Status: </span>
                       </div>
-                      <div>
-                        <span>
+                      <div className="ml-2">
+                        <span className="text-gray-400">
                           {
                             props.respData.filter(
                               (item) => item.key === 'status',
-                            )[0].value
+                            )[0]?.value
                           }
+                        </span>
+                      </div>
+                    </div>
+                    <div className="flex w-full">
+                      <div className="ml-auto">
+                        <span
+                          onClick={onContinueBrowsingClick}
+                          className="px-3 text-gray-300 text-xl hover:cursor-pointer underline"
+                        >
+                          Continue Browsing...
                         </span>
                       </div>
                     </div>
