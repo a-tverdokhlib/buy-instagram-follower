@@ -6,8 +6,8 @@ const OrderSchema = new mongoose.Schema({
   email: String,
   price: Number,
   coupanCode: String,
-  itemId: { type: [mongoose.Schema.Types.ObjectId], ref: 'Service' },
-  // itemId: String,
+  // itemId: { type: [mongoose.Schema.Types.ObjectId], ref: 'Service' },
+  itemId: String,
   orderAt: {
     type: Date,
     default: Date.now,
