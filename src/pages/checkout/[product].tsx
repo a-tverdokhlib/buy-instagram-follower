@@ -28,6 +28,7 @@ const Product = (props) => {
   const [loading, setLoading] = useState(false)
   const [showLimitedOffer, setShowLimitedOffer] = useState(true)
   const [cardinityReady, setCardinityReady] = useState(false)
+  const [orderId, setOrderId] = useState('')
   const [signature, setSignature] = useState('')
   const [projectId, setProjectId] = useState('')
   const submitRef = useRef<HTMLButtonElement>(null)
@@ -108,18 +109,23 @@ const Product = (props) => {
     const return_url = `${absoluteUrl}&payment=success`
     const cancel_url = `${absoluteUrl}&payment=cancel`
     const data = {
+      username: username,
+      email: email,
+      serviceId: serviceId,
       amount: selectedServiceItem.price,
       cancel_url: cancel_url,
       country: 'UA',
       language: 'EN',
       currency: 'USD',
       description: selectedServiceItem.name,
-      order_id: '123456798',
       return_url: return_url,
     }
     const resp = await cardinityService.sign(data)
     console.log('Signature =>', resp.signature)
     console.log('ProjectID =>', resp.project_id)
+    console.log('OrderID =>', resp.order_id)
+
+    setOrderId(resp.order_id)
     setSignature(resp.signature)
     setProjectId(resp.project_id)
     setTimeout(() => {
@@ -580,7 +586,7 @@ const Product = (props) => {
                         <input
                           type="hidden"
                           {...register('order_id')}
-                          value={'123456798'}
+                          value={orderId}
                         />
                         <input
                           type="hidden"

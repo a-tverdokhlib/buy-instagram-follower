@@ -4,7 +4,7 @@ const sha256 = require('js-sha256')
 const Cardinity = require('cardinity-nodejs')
 
 import axios from 'axios'
-import { apiHandler } from 'helpers/api'
+import { apiHandler, orderRepo } from 'helpers/api'
 import getConfig from 'next/config'
 import { urlObjectKeys } from 'next/dist/shared/lib/utils'
 
@@ -31,13 +31,23 @@ async function makeSignature(req, res) {
     country,
     language,
     description,
-    order_id,
     return_url,
+    serviceId,
+    username,
+    email,
   } = req.body
 
   var project_id = serverRuntimeConfig.cardinity.project_id
   var project_secret = serverRuntimeConfig.cardinity.project_secret
 
+  const newOrder = await orderRepo.create({
+    username: username,
+    email: email,
+    price: amount,
+    coupanCode: '',
+    itemId: serviceId,
+  })
+  const order_id = newOrder._id
   var attributes = {
     return_url: return_url,
     amount: amount,
@@ -68,6 +78,7 @@ async function makeSignature(req, res) {
   return res.status(200).json({
     signature: signature,
     project_id: project_id,
+    order_id: order_id,
   })
 }
 

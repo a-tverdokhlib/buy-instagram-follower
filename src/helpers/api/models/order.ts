@@ -2,9 +2,16 @@ import mongoose from 'mongoose'
 
 const OrderSchema = new mongoose.Schema({
   _id: [mongoose.Schema.Types.ObjectId],
-  name: String,
-  quantity: Number,
+  username: String,
+  email: String,
   price: Number,
+  coupanCode: String,
+  itemId: { type: [mongoose.Schema.Types.ObjectId], ref: 'Service' },
+  // itemId: String,
+  orderAt: {
+    type: Date,
+    default: Date.now,
+  },
 })
 
 module.exports =
