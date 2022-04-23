@@ -45,7 +45,7 @@ async function makeSignature(req, res) {
     email: email,
     price: amount,
     coupanCode: '',
-    itemId: serviceId,
+    item: serviceId,
   })
   const order_id = newOrder._id
   var attributes = {
